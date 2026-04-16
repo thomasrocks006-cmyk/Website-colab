@@ -2758,3 +2758,38 @@ button {
   color: var(--cc-blue-500);
   opacity: 0.85;
 }
+
+/* ============================================================
+   PASS 8: GLASSMORPHISM · USE-CASE LIFT · TAB FADE
+   ============================================================ */
+
+/* --- TAB PANEL FADE IN --- */
+@keyframes cc-tab-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cc-tab-anim {
+  animation: cc-tab-fade 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* --- USE-CASE CARD HOVER LIFT (global scope) --- */
+.use-case {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s ease;
+}
+.use-case:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+}
+
+/* --- GLASSMORPHISM CARD --- */
+.cc-glass {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+[data-theme="casper"] .cc-glass {
+  background: rgba(24, 24, 27, 0.55) !important;
+  border-color: rgba(63, 63, 70, 0.5) !important;
+}
