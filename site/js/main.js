@@ -690,3 +690,25 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     }, 120);
   });
 })();
+
+// --- TABLE ROW STAGGER REVEAL ---
+(function () {
+  var tables = document.querySelectorAll('table');
+  if (!tables.length) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var rows = entry.target.querySelectorAll('tbody tr');
+      rows.forEach(function (tr, i) {
+        tr.style.opacity = '0';
+        setTimeout(function () {
+          tr.style.opacity = '';
+          tr.classList.add('cc-row-revealed');
+          tr.style.animationDelay = (i * 60) + 'ms';
+        }, i * 60);
+      });
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  tables.forEach(function (t) { obs.observe(t); });
+})();

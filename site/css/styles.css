@@ -2884,3 +2884,65 @@ button {
   color: transparent;
   font-weight: 800;
 }
+
+/* ============================================================
+   PASS 11: WORKFLOW BADGE · TABLE ROWS · CHAPTER LAYER HOVER
+   ============================================================ */
+
+/* --- WORKFLOW NUM → CIRCLE BADGE --- */
+.workflow-num {
+  width: 2.25rem !important;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cc-blue-500), var(--cc-emerald-500));
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem !important;
+  font-weight: 800;
+  letter-spacing: 0;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+}
+
+/* --- WORKFLOW STEP HOVER TINT --- */
+.workflow-step {
+  transition: background 0.25s ease;
+  border-radius: 0.75rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.workflow-step:hover {
+  background: rgba(59,130,246,0.04);
+}
+
+/* --- CHAPTER LAYER ROW HOVER --- */
+.cc-chapter-layer {
+  cursor: default;
+  transition: transform 0.25s ease, background 0.25s ease;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  margin: 0 -0.5rem;
+}
+.cc-chapter-layer:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateX(4px);
+}
+
+/* --- TABLE ROW STAGGER REVEAL --- */
+@keyframes cc-row-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.cc-row-revealed {
+  animation: cc-row-fade 0.3s ease both;
+}
+
+/* --- TABLE ROW HOVER HIGHLIGHT (global) --- */
+.roi-table tbody tr:hover td,
+.matrix-table tbody tr:hover td {
+  background: rgba(59,130,246,0.04) !important;
+}
