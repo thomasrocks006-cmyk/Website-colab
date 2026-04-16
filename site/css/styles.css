@@ -2473,3 +2473,166 @@ button {
   flex-shrink: 0;
   animation: blink 2s ease-in-out infinite;
 }
+
+/* ============================================
+   PASS 5 PREMIUM FEATURES
+   ============================================ */
+
+/* --- VERTICAL TIMELINE --- */
+.cc-vtimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 3rem;
+}
+.cc-vtimeline::before {
+  content: '';
+  position: absolute;
+  left: 0.9375rem;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cc-blue-500), var(--cc-emerald-500), var(--cc-amber-500), var(--cc-zinc-800));
+}
+.cc-vt-item {
+  position: relative;
+  padding: 0 0 4rem 2rem;
+}
+.cc-vt-item:last-child { padding-bottom: 0; }
+.cc-vt-dot {
+  position: absolute;
+  left: -2.625rem;
+  top: 0.125rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  background: var(--cc-zinc-950);
+  border: 2px solid var(--cc-zinc-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--cc-zinc-400);
+  z-index: 2;
+  transition: all 0.4s;
+}
+.cc-vt-item.active .cc-vt-dot,
+.cc-vt-item:hover .cc-vt-dot {
+  background: white;
+  border-color: white;
+  color: var(--cc-zinc-950);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.12);
+}
+.cc-vt-time {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cc-zinc-500);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+}
+.cc-vt-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cc-zinc-900);
+  margin-bottom: 0.75rem;
+}
+.cc-vt-desc {
+  font-size: 0.9375rem;
+  color: var(--cc-zinc-400);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 48rem;
+}
+.cc-vt-detail {
+  font-size: 0.8125rem;
+  color: var(--cc-zinc-500);
+  line-height: 1.8;
+  max-width: 44rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--cc-zinc-100);
+}
+.cc-vt-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+[data-theme="casper"] .cc-vt-title { color: var(--cc-zinc-100); }
+[data-theme="casper"] .cc-vt-detail { border-color: var(--cc-zinc-800); }
+@media (max-width: 640px) {
+  .cc-vtimeline { padding-left: 2.25rem; }
+  .cc-vt-item { padding-left: 1.5rem; }
+  .cc-vt-dot { left: -2rem; width: 1.5rem; height: 1.5rem; font-size: 0.5rem; }
+}
+
+/* --- BLUR REVEAL TEXT ANIMATION --- */
+@keyframes cc-blur-in {
+  from { filter: blur(12px); opacity: 0; transform: translateY(6px); }
+  to   { filter: blur(0);    opacity: 1; transform: translateY(0); }
+}
+.cc-blur-in {
+  animation: cc-blur-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.cc-blur-in-1 { animation-delay: 0.1s; }
+.cc-blur-in-2 { animation-delay: 0.25s; }
+.cc-blur-in-3 { animation-delay: 0.45s; }
+.cc-blur-in-4 { animation-delay: 0.65s; }
+
+/* --- MAGNETIC BUTTON HINT (CSS part) --- */
+.btn-primary, .btn-secondary {
+  will-change: transform;
+  transition: background 0.3s, transform 0.15s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+}
+
+/* --- SCROLL-SNAP HORIZONTAL ROW (mobile) --- */
+.cc-snap-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+}
+.cc-snap-row::-webkit-scrollbar { display: none; }
+.cc-snap-row > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .cc-snap-row {
+    display: grid;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+}
+
+/* --- ANIMATED DASH BACKGROUND ON TERMINAL BLOCKS --- */
+.cc-terminal-anim .terminal-line {
+  animation: cc-blur-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.cc-terminal-anim .terminal-line:nth-child(1) { animation-delay: 0.1s; }
+.cc-terminal-anim .terminal-line:nth-child(2) { animation-delay: 0.3s; }
+.cc-terminal-anim .terminal-line:nth-child(3) { animation-delay: 0.5s; }
+.cc-terminal-anim .terminal-line:nth-child(4) { animation-delay: 0.7s; }
+.cc-terminal-anim .terminal-line:nth-child(5) { animation-delay: 0.9s; }
+.cc-terminal-anim .terminal-line:nth-child(6) { animation-delay: 1.1s; }
+
+/* --- ELEVATED CARD HOVER --- */
+.cc-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+}
+.cc-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+[data-theme="casper"] .cc-lift:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}

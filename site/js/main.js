@@ -522,7 +522,21 @@ document.querySelectorAll('.cc-spotlight-card').forEach(card => {
   });
 });
 
-// --- ANNUAL BILLING TOGGLE ---
+// --- MAGNETIC BUTTONS ---
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) * 0.25;
+    const dy = (e.clientY - cy) * 0.25;
+    btn.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
 (function () {
   const toggle = document.getElementById('billing-toggle');
   if (!toggle) return;
