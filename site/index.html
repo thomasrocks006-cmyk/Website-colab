@@ -21,12 +21,23 @@
     .dashboard-body { display: grid; grid-template-columns: 240px 1fr; }
     .dashboard-sidebar { border-right: 1px solid var(--cc-zinc-100); padding: 2rem; }
     .dashboard-main { padding: 3rem; }
+    .dashboard-nav { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
+    .dashboard-nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 700; color: var(--cc-zinc-400); background: white; border: 1px solid transparent; }
+    .dashboard-nav-item.active { color: var(--cc-zinc-900); background: var(--cc-zinc-50); border-color: var(--cc-zinc-100); }
     .node-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.75rem; background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); font-size: 0.75rem; font-weight: 700; color: var(--cc-zinc-600); margin-bottom: 0.5rem; }
     .node-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--cc-emerald-500); animation: pulse 2s infinite; }
+    .dashboard-main-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
     .metric-card { border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 16/10; }
     .metric-card-dark { background: var(--cc-zinc-950); color: white; }
     .metric-card-light { background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); }
     .metric-value { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.03em; }
+    .activity-feed { margin-top: 1.5rem; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); overflow: hidden; }
+    .activity-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--cc-zinc-50); background: white; }
+    .activity-row:last-child { border-bottom: none; }
+    .activity-agent { font-size: 0.625rem; font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cc-blue-600); }
+    .activity-text { font-size: 0.875rem; color: var(--cc-zinc-600); font-weight: 500; }
+    .activity-time { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cc-zinc-300); }
 
     /* Identity Split — from Identity Playbook */
     .identity-card { padding: 3rem; border-radius: var(--radius-card); display: flex; flex-direction: column; justify-content: space-between; min-height: 420px; border: 1px solid; transition: all 0.7s; }
@@ -49,6 +60,7 @@
     @media (max-width: 768px) {
       .dashboard-body { grid-template-columns: 1fr; }
       .dashboard-sidebar { display: none; }
+      .dashboard-main-top, .metrics-grid { grid-template-columns: 1fr; display: grid; }
       .hero .text-hero { font-size: 3rem; }
     }
   </style>
@@ -187,15 +199,23 @@
           </div>
           <div class="dashboard-body">
             <div class="dashboard-sidebar">
-              <p class="text-micro" style="color:var(--cc-zinc-300);margin-bottom:1rem;">Primary Nodes</p>
-              <div class="node-item"><span class="node-dot"></span> Sales Swarm</div>
-              <div class="node-item"><span class="node-dot"></span> Fiscal Watch</div>
-              <div class="node-item"><span class="node-dot"></span> Admin Core</div>
+              <p class="text-micro" style="color:var(--cc-zinc-300);margin-bottom:1rem;">Executive Interface</p>
+              <div class="dashboard-nav">
+                <div class="dashboard-nav-item active">Dashboard</div>
+                <div class="dashboard-nav-item">The Workforce</div>
+                <div class="dashboard-nav-item">Sovereign Vault</div>
+                <div class="dashboard-nav-item">Ironbark Nodes</div>
+              </div>
+              <p class="text-micro" style="color:var(--cc-zinc-300);margin-bottom:1rem;">Secure Nodes</p>
+              <div class="node-item"><span class="node-dot"></span> Secure Node: Sydney_01</div>
+              <div class="node-item"><span class="node-dot"></span> Sydney_Node_04 Active</div>
+              <div class="node-item"><span class="node-dot"></span> Melbourne_Node_02 Active</div>
             </div>
             <div class="dashboard-main">
-              <div class="flex-between" style="margin-bottom:2.5rem;">
+              <div class="dashboard-main-top">
                 <div>
-                  <h3 class="text-headline">Morning Report.</h3>
+                  <span class="text-label" style="color:var(--cc-zinc-400);">Executive Interface</span>
+                  <h3 class="text-headline" style="margin-top:0.5rem;">Welcome back, Director.</h3>
                   <p style="color:var(--cc-zinc-400);font-weight:300;font-style:italic;margin-top:0.25rem;">Your synthetic team has completed 1,402 actions since midnight.</p>
                 </div>
                 <div class="text-right">
@@ -203,17 +223,29 @@
                   <div class="text-micro" style="color:var(--cc-zinc-300);">Global Sync</div>
                 </div>
               </div>
-              <div class="grid-2">
+              <div class="metrics-grid">
+                <div class="metric-card metric-card-light">
+                  <div class="flex-between">
+                    <div class="card-icon card-icon-dark" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                  </div>
+                  <div>
+                    <div class="metric-value" style="color:var(--cc-zinc-900);">1,402</div>
+                    <div class="text-label" style="color:var(--cc-zinc-400);">Actions Completed Today</div>
+                  </div>
+                </div>
                 <div class="metric-card metric-card-dark">
                   <div class="flex-between">
                     <div class="card-icon card-icon-blue" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-500);">Live_Hustle</span>
+                    <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-500);">Sovereign_Mode</span>
                   </div>
                   <div>
-                    <div class="metric-value">+14 Leads</div>
-                    <div class="text-label" style="color:var(--cc-zinc-500);">Acquired by Swarm</div>
+                    <div class="metric-value">100%</div>
+                    <div class="text-label" style="color:var(--cc-zinc-500);">Sovereign AU Integrity</div>
                   </div>
                 </div>
                 <div class="metric-card metric-card-light">
@@ -224,9 +256,36 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
                   </div>
                   <div>
-                    <div class="metric-value" style="color:var(--cc-zinc-900);">$12.4k</div>
-                    <div class="text-label" style="color:var(--cc-zinc-400);">Revenue Optimized</div>
+                    <div class="metric-value" style="color:var(--cc-zinc-900);">$12,840</div>
+                    <div class="text-label" style="color:var(--cc-zinc-400);">Optimized by Casper</div>
                   </div>
+                </div>
+              </div>
+              <div class="activity-feed">
+                <div class="activity-row" style="background:var(--cc-zinc-50);">
+                  <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cc-zinc-900);">Recent Swarm Activity</div>
+                  <div class="text-micro" style="color:var(--cc-zinc-300);">Live Log</div>
+                </div>
+                <div class="activity-row">
+                  <div>
+                    <div class="activity-agent">Sales_Agent_04</div>
+                    <div class="activity-text">Lead successfully followed up and quote generated.</div>
+                  </div>
+                  <div class="activity-time">2m ago</div>
+                </div>
+                <div class="activity-row">
+                  <div>
+                    <div class="activity-agent">Finance_Agent_22</div>
+                    <div class="activity-text">Invoice #4022 processed and sent to client.</div>
+                  </div>
+                  <div class="activity-time">14m ago</div>
+                </div>
+                <div class="activity-row">
+                  <div>
+                    <div class="activity-agent">Security_Sentinel</div>
+                    <div class="activity-text">Ironbark node audit completed. 100% integrity confirmed.</div>
+                  </div>
+                  <div class="activity-time">1h ago</div>
                 </div>
               </div>
             </div>

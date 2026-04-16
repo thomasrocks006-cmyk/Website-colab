@@ -14,6 +14,7 @@
     .step-time { font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cc-blue-500); }
     .step-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; margin-top: 0.75rem; }
     .step-desc { font-size: 1rem; font-weight: 300; color: var(--cc-zinc-400); line-height: 1.7; margin-top: 1rem; max-width: 32rem; }
+    .step-detail { margin-top: 1.5rem; padding: 1.25rem 1.5rem; border-radius: var(--radius-lg); background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); font-size: 0.8rem; color: var(--cc-zinc-500); line-height: 1.8; }
 
     /* Timeline connector */
     .launch-timeline { position: relative; }
@@ -127,12 +128,12 @@
         <div class="reveal step-card mb-8">
           <div class="step-number">01</div>
           <div class="step-time">Minutes 0–2</div>
-          <div class="step-title">Identify Your Operation</div>
-          <div class="step-desc">Tell us your industry, your team size, and your biggest pain points. The system maps your business profile against our 100-agent manifest to pre-configure your divisions.</div>
+          <div class="step-title">Team Selection</div>
+          <div class="step-desc">Choose your pre-built industry pack, outline your team size, and flag the pressure points you want removed first. We map that profile against the 100-agent manifest and prepare the right experts before deployment starts.</div>
           <div style="display:flex;gap:1rem;margin-top:2rem;">
             <div class="badge badge-light">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>
-              Industry Selection
+              Tradie / Agency / E-com
             </div>
             <div class="badge badge-light">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>
@@ -143,40 +144,42 @@
               Pain Point Mapping
             </div>
           </div>
+          <div class="step-detail">Each pack carries its own knowledge core. For a tradie, that means quoting logic, price-lists, and job-flow defaults. For an agency, it means research, reporting, and client communication protocols.</div>
         </div>
 
         <!-- Step 2 -->
         <div class="reveal step-card mb-8" data-delay="100">
           <div class="step-number">02</div>
           <div class="step-time">Minutes 2–5</div>
-          <div class="step-title">Configure Your Swarm</div>
-          <div class="step-desc">The system pre-assigns agents to your 4 divisions — Hustlers, Capital, Operations, Sentry — based on your profile. You can adjust the weighting or accept the recommended split.</div>
+          <div class="step-title">Secure Handshake</div>
+          <div class="step-desc">Connect the core tools that already run your business — email, Xero, calendar, and operating inboxes. Casper reads the live signals through a secure handshake and creates a read-only mirror inside your private environment.</div>
           <div style="display:flex;gap:2rem;margin-top:2rem;">
             <div>
-              <span class="text-label" style="color:var(--cc-blue-500);">30 Hustlers</span>
+              <span class="text-label" style="color:var(--cc-blue-500);">Email</span>
               <div style="background:var(--cc-blue-500);height:4px;width:120px;border-radius:2px;margin-top:0.5rem;"></div>
             </div>
             <div>
-              <span class="text-label" style="color:var(--cc-emerald-500);">20 Capital</span>
+              <span class="text-label" style="color:var(--cc-emerald-500);">Xero</span>
               <div style="background:var(--cc-emerald-500);height:4px;width:80px;border-radius:2px;margin-top:0.5rem;"></div>
             </div>
             <div>
-              <span class="text-label" style="color:var(--cc-amber-500);">25 Operations</span>
+              <span class="text-label" style="color:var(--cc-amber-500);">Calendar</span>
               <div style="background:var(--cc-amber-500);height:4px;width:100px;border-radius:2px;margin-top:0.5rem;"></div>
             </div>
             <div>
-              <span class="text-label" style="color:var(--cc-red-500);">25 Sentry</span>
+              <span class="text-label" style="color:var(--cc-red-500);">Files</span>
               <div style="background:var(--cc-red-500);height:4px;width:100px;border-radius:2px;margin-top:0.5rem;"></div>
             </div>
           </div>
+          <div class="step-detail">No master passwords are passed around the system. The handshake uses permission-scoped access so the agents can interpret new signals, unpaid invoices, and fresh leads without taking ownership of your source accounts.</div>
         </div>
 
         <!-- Step 3 -->
         <div class="reveal step-card mb-8" data-delay="200">
           <div class="step-number">03</div>
           <div class="step-time">Minutes 5–8</div>
-          <div class="step-title">Deploy on Ironbark</div>
-          <div class="step-desc">Your 100-agent workforce deploys to sovereign Australian infrastructure. Ironbark nodes spin up, encryption layers activate, and the Neural Intercom comes online. Watch each agent register in real-time.</div>
+          <div class="step-title">Ironbark Lock</div>
+          <div class="step-desc">We bring your environment online inside a sovereign Australian Ironbark instance. Sydney or Melbourne rack space is allocated, the air-gap is enforced, and the security sentinels harden the node before the workforce is allowed to act.</div>
           <div style="background:var(--cc-zinc-950);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-top:2rem;font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-zinc-500);line-height:2;">
             <div><span style="color:var(--cc-emerald-500);">✓</span> Lead Scraper #10 — <span style="color:var(--cc-emerald-500);">ONLINE</span></div>
             <div><span style="color:var(--cc-emerald-500);">✓</span> Quote Architect #12 — <span style="color:var(--cc-emerald-500);">ONLINE</span></div>
@@ -185,19 +188,21 @@
             <div><span style="color:var(--cc-zinc-600);">○</span> Encryption Warden #01 — <span style="color:var(--cc-zinc-600);">PENDING</span></div>
             <div style="color:var(--cc-zinc-600);margin-top:0.5rem;">... deploying 95 more agents</div>
           </div>
+          <div class="step-detail">This is a private instance on physical infrastructure, not a shared public AI pool. Your business logic stays behind the Camber shield on Australian soil, isolated from general-purpose training environments.</div>
         </div>
 
         <!-- Step 4 -->
         <div class="reveal step-card" data-delay="300">
           <div class="step-number">04</div>
           <div class="step-time">Minutes 8–10</div>
-          <div class="step-title">Assume Command</div>
-          <div class="step-desc">Your Executive Dashboard goes live. Morning reports begin. The War Room is open. Your 100-agent workforce is now operational. You are the commander — they are the force.</div>
+          <div class="step-title">Live Command</div>
+          <div class="step-desc">Your executive dashboard goes live, your morning report is queued, and your agents are already chasing leads, triaging admin, and watching compliance. You are now the Director — not the admin.</div>
           <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
             <a href="intelligence.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">Open War Room</a>
             <a href="workforce.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">View The 100</a>
             <a href="advantage.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">See the Advantage</a>
           </div>
+          <div class="step-detail">From this point onward, the workforce runs 24/7. The first executive brief lands at 7:00 AM with every quote sent, invoice chased, and operational issue surfaced while you slept.</div>
         </div>
       </div>
     </section>

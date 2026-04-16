@@ -30,6 +30,20 @@
     /* Value Breakdown */
     .value-item { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--cc-zinc-100); }
     .value-item:last-child { border-bottom: none; }
+
+    /* Quantifier */
+    .quantifier-shell { background: var(--cc-zinc-950); border-radius: 60px; padding: 4rem; color: white; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; }
+    .quantifier-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-lg); padding: 2rem; }
+    .quantifier-slider { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px; background: var(--cc-zinc-800); outline: none; margin: 2rem 0 1.5rem; }
+    .quantifier-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: white; border: 2px solid var(--cc-zinc-700); cursor: pointer; }
+    .quantifier-stat { padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .quantifier-stat:last-child { border-bottom: none; }
+    .play { padding: 1rem 0; border-bottom: 1px solid var(--cc-zinc-100); font-size: 0.875rem; color: var(--cc-zinc-500); }
+    .play:last-child { border-bottom: none; }
+
+    @media (max-width: 768px) {
+      .quantifier-shell { grid-template-columns: 1fr; padding: 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -140,6 +154,69 @@
           <div style="display:flex;gap:1.5rem;margin-top:3rem;">
             <a href="#" class="btn-primary" style="flex:1;text-align:center;justify-content:center;">Deploy the Workforce</a>
             <a href="launch.html" class="btn-secondary" style="flex:1;text-align:center;justify-content:center;">See How It Works</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         THE QUANTIFIER — from Agent Manifest v2.2
+         "Redirect the Capital."
+         ============================================ -->
+    <section class="section" style="padding:4rem 2rem 8rem;">
+      <div class="container reveal">
+        <div class="quantifier-shell">
+          <div>
+            <p class="text-label" style="color:var(--cc-blue-500);">The Quantifier v2.2</p>
+            <h2 class="text-display mt-4" style="color:white;">Redirect the<br><span style="color:var(--cc-zinc-500);font-style:italic;">Capital.</span></h2>
+            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);max-width:36rem;">
+              Compare one flat subscription against the real cost of carrying staff. Then see where the recovered capital can actually go back into your business.
+            </p>
+            <div class="quantifier-panel mt-8">
+              <div class="flex-between">
+                <span class="text-label" style="color:var(--cc-zinc-500);">Human Staff Equivalent</span>
+                <span class="font-mono" style="font-size:0.875rem;color:var(--cc-blue-500);"><span id="calc-employees">1</span> Full-Time Hire(s)</span>
+              </div>
+              <input type="range" min="1" max="10" value="1" class="quantifier-slider" oninput="updateCalculator(this.value)">
+              <div class="quantifier-stat">
+                <div class="flex-between">
+                  <div>
+                    <div class="text-label" style="color:var(--cc-zinc-500);">Standard AU Payroll Cost</div>
+                    <div style="font-size:0.75rem;color:var(--cc-zinc-600);margin-top:0.5rem;">Avg $68k + 28% super, tax, and WorkCover</div>
+                  </div>
+                  <div style="font-size:2.25rem;font-weight:700;letter-spacing:-0.03em;">$<span id="calc-human-cost">7,253</span><span style="font-size:0.75rem;color:var(--cc-zinc-600);">/mo</span></div>
+                </div>
+              </div>
+              <div class="quantifier-stat">
+                <div class="flex-between">
+                  <div>
+                    <div class="text-label" style="color:var(--cc-blue-500);">C&C Distributed Intelligence</div>
+                    <div style="font-size:0.75rem;color:var(--cc-zinc-600);margin-top:0.5rem;">100 experts · flat rate</div>
+                  </div>
+                  <div style="font-size:2.5rem;font-weight:800;letter-spacing:-0.04em;color:var(--cc-blue-500);">$799<span style="font-size:0.75rem;color:var(--cc-zinc-600);">/mo</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="quantifier-panel" style="background:white;color:var(--cc-zinc-950);border:none;">
+            <div class="flex-between" style="align-items:flex-start;">
+              <div>
+                <div class="text-label" style="color:var(--cc-zinc-400);">Net Annual Gain</div>
+                <div style="font-size:4rem;font-weight:800;letter-spacing:-0.05em;color:var(--cc-blue-500);margin-top:0.5rem;" id="calc-savings">$72k</div>
+              </div>
+              <div class="badge badge-light">Reinvestment Opportunity</div>
+            </div>
+            <div id="calc-plays" style="margin-top:2rem;">
+              <div class="play">Toyota HiLux SR5 — fully funded within 10 months.</div>
+              <div class="play">500% Marketing Boost — total local search domination.</div>
+              <div class="play">3 Months Off (Paid) — full quarter sabbatical.</div>
+            </div>
+            <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--cc-zinc-100);">
+              <div class="text-label" style="color:var(--cc-zinc-400);">Read it properly</div>
+              <p style="font-size:0.875rem;color:var(--cc-zinc-500);line-height:1.8;margin-top:0.75rem;">
+                This is not a software spend. It is capital recovery. You are replacing payroll drag with a sovereign 24/7 workforce and redirecting the spread into growth, assets, or owner equity.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -450,5 +527,8 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    updateCalculator(1);
+  </script>
 </body>
 </html>
