@@ -628,3 +628,65 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   }, { threshold: 0.6 });
   els.forEach(function(el) { obs.observe(el); });
 })();
+
+// --- AMBIENT ORBS (injected into .section-dark) ---
+(function () {
+  var COLORS = [
+    'rgba(59,130,246,0.22)',
+    'rgba(16,185,129,0.16)',
+    'rgba(245,158,11,0.14)',
+    'rgba(139,92,246,0.14)'
+  ];
+  document.querySelectorAll('.section-dark').forEach(function (section) {
+    var pos = getComputedStyle(section).position;
+    if (pos === 'static') section.style.position = 'relative';
+    section.style.overflow = 'hidden';
+    for (var i = 0; i < 3; i++) {
+      var orb = document.createElement('div');
+      orb.className = 'cc-orb';
+      var size = 300 + Math.random() * 250;
+      orb.style.cssText = [
+        'width:' + size + 'px',
+        'height:' + size + 'px',
+        'background:' + COLORS[i % COLORS.length],
+        'left:' + (10 + Math.random() * 80) + '%',
+        'top:' + (10 + Math.random() * 80) + '%',
+        '--orb-dx:' + (Math.random() * 80 - 40) + 'px',
+        '--orb-dy:' + (Math.random() * 60 - 30) + 'px',
+        'animation-delay:' + (i * 5) + 's',
+        'animation-duration:' + (16 + i * 4) + 's'
+      ].join(';');
+      section.appendChild(orb);
+    }
+  });
+})();
+
+// --- CURSOR TRAIL ---
+(function () {
+  var POOL_SIZE = 10;
+  var dots = [];
+  for (var i = 0; i < POOL_SIZE; i++) {
+    var d = document.createElement('div');
+    d.className = 'cc-trail-dot';
+    d.style.opacity = '0';
+    document.body.appendChild(d);
+    dots.push({ el: d, x: 0, y: 0 });
+  }
+  var head = 0;
+  var lastX = 0, lastY = 0;
+  document.addEventListener('mousemove', function (e) {
+    var dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+    if (dist < 12) return;
+    lastX = e.clientX; lastY = e.clientY;
+    var dot = dots[head % POOL_SIZE];
+    head++;
+    dot.el.style.left = e.clientX + 'px';
+    dot.el.style.top = e.clientY + 'px';
+    dot.el.style.opacity = '0.45';
+    dot.el.style.transform = 'translate(-50%,-50%) scale(1)';
+    clearTimeout(dot._t);
+    dot._t = setTimeout(function () {
+      dot.el.style.opacity = '0';
+    }, 120);
+  });
+})();
