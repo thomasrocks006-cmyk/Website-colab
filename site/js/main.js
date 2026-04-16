@@ -220,6 +220,107 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.body.appendChild(themeToggle);
 
+  // --- PAGE TRANSITION EXIT ---
+  // Intercept internal link clicks → fade out then navigate
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    const isSameOrigin = href && !href.startsWith('http') && !href.startsWith('//') && !href.startsWith('#') && !href.startsWith('mailto');
+    if (isSameOrigin) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.documentElement.classList.add('cc-exiting');
+        setTimeout(() => { window.location.href = href; }, 320);
+      });
+    }
+  });
+
+  // --- STICKY SCROLL STORYTELLING ---
+  const stickyChapters = document.querySelectorAll('.cc-sticky-chapter');
+  if (stickyChapters.length) {
+    const panel = document.querySelector('.cc-sticky-panel');
+    const pips = document.querySelectorAll('.cc-sticky-pip');
+    const numLarge = document.querySelector('.cc-sticky-num-large');
+    const badge = document.querySelector('.cc-sticky-badge');
+    const title = document.querySelector('.cc-sticky-title');
+    const desc = document.querySelector('.cc-sticky-desc');
+    const layerPills = document.querySelector('.cc-sticky-layer-pills');
+
+    const chapterData = [
+      {
+        layers: '01–07', color: 'var(--cc-blue-500)',
+        badgeBg: 'rgba(59,130,246,0.08)', badgeBorder: 'rgba(59,130,246,0.2)', badgeColor: 'var(--cc-blue-600)',
+        badgeText: 'The Cortex',
+        title: 'Foundation Intelligence',
+        desc: 'The bedrock of every decision. Macro forces, fiscal depth, market signals, and the psychological fingerprints of your buyers — synthesised into a single strategic truth.',
+        pills: ['Macro Context', 'Fiscal Depth', 'Competitive Signal', 'Intent DNA'],
+        pip: 'blue'
+      },
+      {
+        layers: '08–14', color: 'var(--cc-emerald-500)',
+        badgeBg: 'rgba(16,185,129,0.08)', badgeBorder: 'rgba(16,185,129,0.2)', badgeColor: 'var(--cc-emerald-500)',
+        badgeText: 'Deep Tissue',
+        title: 'Operational Reality',
+        desc: 'Below the surface of every business is an engine of physical systems, human capital, and supply chains. Layers 8–14 read that engine in real time — down to tool battery levels.',
+        pills: ['Operational Telemetry', 'Regulatory Sentinel', 'Supply Forensics', 'Dark Data Synthesis'],
+        pip: 'green'
+      },
+      {
+        layers: '15–19', color: 'var(--cc-amber-500)',
+        badgeBg: 'rgba(245,158,11,0.08)', badgeBorder: 'rgba(245,158,11,0.2)', badgeColor: 'var(--cc-amber-500)',
+        badgeText: 'Strategic Command',
+        title: 'Revenue and Execution',
+        desc: 'Strategy without execution is fiction. Layers 15–19 bridge the gap — from pipeline orchestration and client lifecycle mapping through to predictive risk and innovation signals.',
+        pills: ['Revenue Architecture', 'Execution Cadence', 'Client Lifecycle', 'Risk Radar'],
+        pip: 'amber'
+      },
+      {
+        layers: '20–24', color: 'var(--cc-red-500)',
+        badgeBg: 'rgba(239,68,68,0.08)', badgeBorder: 'rgba(239,68,68,0.2)', badgeColor: 'var(--cc-red-500)',
+        badgeText: 'Sovereign Core',
+        title: 'Protective Intelligence',
+        desc: 'The final five layers protect your sovereignty — cryptographic audit trails, reputational sentinel, existential risk scanning, and the continuous governance loop that keeps you untouchable.',
+        pills: ['Cryptographic Audit', 'Reputational Sentinel', 'Existential Risk', 'Governance Loop'],
+        pip: 'red'
+      }
+    ];
+
+    function activateChapter(idx) {
+      const d = chapterData[idx];
+      if (!d || !panel) return;
+      stickyChapters.forEach((ch, i) => ch.classList.toggle('active', i === idx));
+      pips.forEach((p, i) => {
+        p.classList.toggle('active', i === idx);
+        p.className = `cc-sticky-pip ${chapterData[i].pip}${i === idx ? ' active' : ''}`;
+      });
+      if (numLarge) { numLarge.style.color = d.color; numLarge.textContent = d.layers; }
+      if (badge) {
+        badge.style.background = d.badgeBg;
+        badge.style.border = `1px solid ${d.badgeBorder}`;
+        badge.style.color = d.badgeColor;
+        badge.textContent = d.badgeText;
+      }
+      if (title) title.textContent = d.title;
+      if (desc) desc.textContent = d.desc;
+      if (layerPills) {
+        layerPills.innerHTML = d.pills.map(p =>
+          `<span class="cc-sticky-layer-pill" style="border:1px solid ${d.badgeBorder};color:${d.color}">${p}</span>`
+        ).join('');
+      }
+    }
+
+    activateChapter(0);
+
+    const chapterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Array.from(stickyChapters).indexOf(entry.target);
+          if (idx >= 0) activateChapter(idx);
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20% 0px -20% 0px' });
+    stickyChapters.forEach(ch => chapterObserver.observe(ch));
+  }
+
   // --- PAGE-SPECIFIC CALCULATOR INIT ---
   const quantifierSlider = document.querySelector('.quantifier-slider');
   if (quantifierSlider && typeof updateCalculator === 'function') {
