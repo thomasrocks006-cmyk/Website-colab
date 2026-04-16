@@ -2946,3 +2946,57 @@ button {
 .matrix-table tbody tr:hover td {
   background: rgba(59,130,246,0.04) !important;
 }
+
+/* ============================================================
+   PASS 12: 3D TILT · BUTTON RIPPLE · RULE DRAW · NAV PULSE
+   ============================================================ */
+
+/* 3D mouse tilt */
+.cc-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform;
+}
+.cc-tilt:hover {
+  box-shadow: 0 24px 48px rgba(0,0,0,0.13);
+}
+
+/* Button ripple */
+.btn-primary,
+.btn-secondary { position: relative; overflow: hidden; }
+.cc-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: cc-ripple-anim 0.6s linear;
+  background: rgba(255,255,255,0.30);
+  pointer-events: none;
+}
+@keyframes cc-ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Animated rule draw */
+.cc-rule-draw {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cc-blue-500), var(--cc-emerald-500));
+  margin: 0 auto 3.5rem;
+  opacity: 0;
+  border: none;
+}
+.cc-rule-draw.cc-rule-drawn {
+  animation: cc-rule-expand 0.85s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes cc-rule-expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 100%; opacity: 1; }
+}
+
+/* Nav CTA soft pulse */
+@keyframes cc-nav-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+  50%      { box-shadow: 0 0 0 5px rgba(59,130,246,0.18); }
+}
+.nav-cta { animation: cc-nav-pulse 3.2s ease-in-out infinite; }

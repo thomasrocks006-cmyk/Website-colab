@@ -712,3 +712,37 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   }, { threshold: 0.15 });
   tables.forEach(function (t) { obs.observe(t); });
 })();
+
+// === PASS 12 ===
+
+// 3D card tilt on mousemove
+document.querySelectorAll('.cc-tilt').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) / r.width;
+    const y = (e.clientY - r.top  - r.height / 2) / r.height;
+    card.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale(1.03)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// Button ripple
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const r    = btn.getBoundingClientRect();
+    const size = Math.max(r.width, r.height);
+    const s    = document.createElement('span');
+    s.className = 'cc-ripple';
+    s.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+    btn.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  });
+});
+
+// Animated rule draw
+const ruleObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('cc-rule-drawn'); ruleObs.unobserve(e.target); }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.cc-rule-draw').forEach(el => ruleObs.observe(el));
