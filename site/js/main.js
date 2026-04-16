@@ -746,3 +746,38 @@ const ruleObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 document.querySelectorAll('.cc-rule-draw').forEach(el => ruleObs.observe(el));
+
+// === PASS 13 ===
+
+// Mouse spotlight on .section-dark
+document.querySelectorAll('.section-dark').forEach(sec => {
+  const bg = document.createElement('div');
+  bg.className = 'cc-spotlight-bg';
+  sec.insertBefore(bg, sec.firstChild);
+  sec.addEventListener('mousemove', e => {
+    const r = sec.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+    const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+    bg.style.background = `radial-gradient(ellipse 520px 420px at ${x}% ${y}%, rgba(59,130,246,0.09) 0%, transparent 68%)`;
+  });
+});
+
+// Clip-path wipe-in observer
+const wipeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('cc-wipe-done'); wipeObs.unobserve(e.target); }
+  });
+}, { threshold: 0.25 });
+document.querySelectorAll('.cc-wipe-in').forEach(el => wipeObs.observe(el));
+
+// Sticky pricing bar (pricing.html only)
+const stickyBar = document.querySelector('.cc-sticky-bar');
+if (stickyBar) {
+  const hero = document.querySelector('.cc-sticky-bar-sentinel');
+  if (hero) {
+    const obs = new IntersectionObserver(([e]) => {
+      stickyBar.classList.toggle('cc-bar-visible', !e.isIntersecting);
+    }, { threshold: 0 });
+    obs.observe(hero);
+  }
+}

@@ -3000,3 +3000,83 @@ button {
   50%      { box-shadow: 0 0 0 5px rgba(59,130,246,0.18); }
 }
 .nav-cta { animation: cc-nav-pulse 3.2s ease-in-out infinite; }
+
+/* ============================================================
+   PASS 13: MOUSE SPOTLIGHT · CLIP WIPE · STICKY BAR · UNDERLINE SWEEP
+   ============================================================ */
+
+/* Dark section mouse spotlight */
+.section-dark { position: relative; }
+.cc-spotlight-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(ellipse 520px 420px at 50% 50%, rgba(59,130,246,0.07) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.section-dark:hover .cc-spotlight-bg { opacity: 1; }
+
+/* Clip-path wipe-in */
+.cc-wipe-in {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+}
+.cc-wipe-in.cc-wipe-done {
+  animation: cc-wipe 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes cc-wipe {
+  from { clip-path: inset(0 100% 0 0); opacity: 1; }
+  to   { clip-path: inset(0 0%   0 0); opacity: 1; }
+}
+
+/* Sticky pricing bar */
+.cc-sticky-bar {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(9,9,11,0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem 0.75rem 1.75rem;
+  transition: bottom 0.4s cubic-bezier(0.4,0,0.2,1);
+  white-space: nowrap;
+}
+.cc-sticky-bar.cc-bar-visible { bottom: 1.75rem; }
+.cc-sticky-bar .cc-bar-price {
+  font-weight: 800;
+  font-size: 1rem;
+  color: white;
+  letter-spacing: -0.02em;
+}
+.cc-sticky-bar .cc-bar-label {
+  font-size: 0.75rem;
+  color: var(--cc-zinc-400);
+  margin-left: -0.75rem;
+}
+.cc-sticky-bar .btn-primary {
+  font-size: 0.8125rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+}
+
+/* Nav link hover sweep underline */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--cc-blue-500), var(--cc-emerald-500));
+  transition: width 0.28s ease;
+}
+.nav-links a:hover::after { width: 100%; }
