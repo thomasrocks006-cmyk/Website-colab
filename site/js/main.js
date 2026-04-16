@@ -484,3 +484,40 @@ function switchTab(btn, group) {
   btn.classList.add('active');
   document.getElementById(group + '-' + btn.dataset.tab).classList.add('active');
 }
+
+/* ============================================
+   PASS 3 PREMIUM FEATURES
+   ============================================ */
+
+// --- BACK TO TOP ---
+(function () {
+  const btn = document.getElementById('cc-back-top');
+  if (!btn) return;
+  const toggle = () => btn.classList.toggle('visible', window.scrollY > 400);
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+// --- FAQ ACCORDION ---
+document.querySelectorAll('.cc-faq-item').forEach(item => {
+  const btn = item.querySelector('.cc-faq-q');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    // close all siblings
+    item.closest('.cc-faq').querySelectorAll('.cc-faq-item.open').forEach(o => o.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// --- SPOTLIGHT HOVER ON .cc-spotlight-card ---
+document.querySelectorAll('.cc-spotlight-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+  });
+});
