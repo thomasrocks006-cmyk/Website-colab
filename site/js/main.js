@@ -64,6 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // --- PAGE-SPECIFIC CALCULATOR INIT ---
+  const quantifierSlider = document.querySelector('.quantifier-slider');
+  if (quantifierSlider && typeof updateCalculator === 'function') {
+    updateCalculator(quantifierSlider.value);
+  }
+
 });
 
 // --- COMPETITIVE RACE SIMULATOR ---
@@ -96,7 +102,7 @@ function updateCalculator(value) {
   const yearlySavings = (salaryBase * overhead * employees) - (799 * 12);
   
   document.getElementById('calc-employees').textContent = employees;
-  document.getElementById('calc-human-cost').textContent = '$' + Math.round(humanMonthly).toLocaleString();
+  document.getElementById('calc-human-cost').textContent = Math.round(humanMonthly).toLocaleString();
   document.getElementById('calc-savings').textContent = '$' + Math.round(yearlySavings / 1000) + 'k';
   
   // Update reinvestment plays
