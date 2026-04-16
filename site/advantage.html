@@ -124,6 +124,11 @@
       border: 1px solid var(--cc-zinc-100);
       border-radius: var(--radius-lg);
       padding: 2.5rem;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s;
+    }
+    .velocity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.07);
     }
 
     .velocity-bar {
@@ -334,7 +339,7 @@
       <div class="container">
         <div class="reveal text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-400);">Dominance Index</p>
-          <h2 class="text-display mt-4">The numbers<br><span class="text-ghost">don't lie.</span></h2>
+          <h2 class="text-display mt-4">The numbers<br><span class="text-ghost cc-grad-text">don't lie.</span></h2>
         </div>
         <div class="gauge-container reveal" data-delay="200">
           <div>
@@ -374,7 +379,7 @@
           <p class="text-label" style="color:var(--cc-zinc-400);">Head-to-Head Comparison</p>
           <h2 class="text-display mt-4">The Dominance Matrix</h2>
         </div>
-        <div class="reveal card" data-delay="200" style="overflow:hidden;padding:0;border-radius:var(--radius-card);">
+        <div class="reveal card cc-glow-border" data-delay="200" style="overflow:hidden;padding:0;border-radius:var(--radius-card);">
           <table class="matrix-table">
             <thead>
               <tr>
@@ -440,7 +445,7 @@
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
           <div>
             <p class="text-label" style="color:var(--cc-zinc-400);">Speed Infrastructure</p>
-            <h2 class="text-display mt-4">Velocity<br><span class="text-ghost">at scale.</span></h2>
+            <h2 class="text-display mt-4">Velocity<br><span class="text-ghost cc-grad-text">at scale.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
               Every function in your business has a speed ceiling. C&C removes it. From lead response to compliance
               filing, we operate at machine speed with human intent.
@@ -566,18 +571,18 @@
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
           <div>
             <p class="text-label" style="color:var(--cc-zinc-400);">The Compound Effect</p>
-            <h2 class="text-display mt-4">The advantage<br><span class="text-ghost">compounds.</span></h2>
+            <h2 class="text-display mt-4">The advantage<br><span class="text-ghost cc-grad-text">compounds.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
               Every quote you send first, every lead you capture faster, every debtor you chase on time — it all stacks.
               Day after day, week after week, the gap between you and the competition becomes permanent.
             </p>
             <div class="grid-2 mt-8" style="gap:2rem;">
               <div class="stat">
-                <div class="stat-value" style="color:var(--cc-blue-500);">+420%</div>
+                <div class="stat-value" data-count="420" data-prefix="+" data-suffix="%" data-scramble="+420%" style="color:var(--cc-blue-500);">0</div>
                 <div class="stat-label italic">Market Reach (12mo)</div>
               </div>
               <div class="stat">
-                <div class="stat-value">94%</div>
+                <div class="stat-value" data-count="94" data-suffix="%" data-scramble="94%">0</div>
                 <div class="stat-label italic">Win Rate</div>
               </div>
             </div>
@@ -674,7 +679,7 @@
     <!-- CTA -->
     <section class="section" style="padding:10rem 2rem;text-align:center;">
       <div class="reveal container-sm">
-        <h2 class="text-display">Win the job.<br><span class="text-ghost">While they're in traffic.</span></h2>
+        <h2 class="text-display">Win the job.<br><span class="text-ghost cc-grad-text">While they're in traffic.</span></h2>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
           The advantage compounds every day. Every quote you send first, every lead you capture faster — it all adds up.
         </p>
