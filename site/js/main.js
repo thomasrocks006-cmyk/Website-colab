@@ -562,3 +562,29 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
     }
   });
 })();
+
+// --- READING PROGRESS BAR ---
+(function () {
+  const bar = document.createElement('div');
+  bar.id = 'cc-progress-bar';
+  document.body.prepend(bar);
+  const update = () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// --- STAGGERED LIST REVEAL ---
+document.querySelectorAll('.cc-list-reveal').forEach(ul => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  obs.observe(ul);
+});

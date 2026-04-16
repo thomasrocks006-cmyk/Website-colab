@@ -2636,3 +2636,73 @@ button {
 [data-theme="casper"] .cc-lift:hover {
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
+
+/* ============================================================
+   PASS 6: PROGRESS BAR · GRADIENT TEXT · LIST REVEAL
+   ============================================================ */
+
+/* --- READING PROGRESS BAR --- */
+#cc-progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cc-blue-500), var(--cc-emerald-500), var(--cc-amber-400));
+  z-index: 9999;
+  transition: width 0.08s linear;
+  pointer-events: none;
+  border-radius: 0 2px 2px 0;
+}
+
+/* --- ANIMATED GRADIENT HEADLINE TEXT --- */
+@keyframes cc-grad-anim {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.cc-grad-text {
+  background: linear-gradient(135deg,
+    var(--cc-blue-400) 0%,
+    var(--cc-emerald-400) 35%,
+    var(--cc-amber-400) 65%,
+    var(--cc-blue-400) 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cc-grad-anim 7s ease infinite;
+}
+
+/* --- STAGGERED LIST REVEAL --- */
+.cc-list-reveal li {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.cc-list-reveal.is-visible li { opacity: 1; transform: translateX(0); }
+.cc-list-reveal.is-visible li:nth-child(1)  { transition-delay: 0.04s; }
+.cc-list-reveal.is-visible li:nth-child(2)  { transition-delay: 0.08s; }
+.cc-list-reveal.is-visible li:nth-child(3)  { transition-delay: 0.12s; }
+.cc-list-reveal.is-visible li:nth-child(4)  { transition-delay: 0.16s; }
+.cc-list-reveal.is-visible li:nth-child(5)  { transition-delay: 0.20s; }
+.cc-list-reveal.is-visible li:nth-child(6)  { transition-delay: 0.24s; }
+.cc-list-reveal.is-visible li:nth-child(7)  { transition-delay: 0.28s; }
+.cc-list-reveal.is-visible li:nth-child(8)  { transition-delay: 0.32s; }
+.cc-list-reveal.is-visible li:nth-child(9)  { transition-delay: 0.36s; }
+.cc-list-reveal.is-visible li:nth-child(10) { transition-delay: 0.40s; }
+.cc-list-reveal.is-visible li:nth-child(11) { transition-delay: 0.44s; }
+.cc-list-reveal.is-visible li:nth-child(12) { transition-delay: 0.48s; }
+
+/* Dark mode — gradient stays readable */
+[data-theme="casper"] .cc-grad-text {
+  background: linear-gradient(135deg,
+    var(--cc-blue-400) 0%,
+    var(--cc-emerald-300) 35%,
+    var(--cc-amber-300) 65%,
+    var(--cc-blue-400) 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: cc-grad-anim 7s ease infinite;
+}
