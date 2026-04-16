@@ -261,14 +261,24 @@
          ============================================ -->
     <section class="section" style="padding:4rem 2rem;">
       <div class="container" style="max-width:56rem;">
+
+        <!-- BILLING TOGGLE -->
+        <div class="cc-billing-toggle">
+          <span class="cc-billing-label active" id="lbl-monthly">Monthly</span>
+          <button class="cc-toggle-track" id="billing-toggle" aria-label="Toggle billing period">
+            <span class="cc-toggle-thumb"></span>
+          </button>
+          <span class="cc-billing-label" id="lbl-annual">Annual <span class="cc-annual-badge">Save 10%</span></span>
+        </div>
+
         <div class="reveal pricing-card featured">
           <div class="pricing-badge">Most Popular</div>
           <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;">
             <div>
               <p class="text-label" style="color:var(--cc-zinc-400);">The Complete Workforce</p>
-              <div class="pricing-amount mt-4">$799</div>
-              <div class="pricing-period">/month · AUD</div>
-              <div class="pricing-breakdown mt-2">$26.28/day · $0.26 per agent per day</div>
+              <div class="pricing-amount mt-4" id="price-display">$799</div>
+              <div class="pricing-period" id="price-period">/month · AUD</div>
+              <div class="pricing-breakdown mt-2" id="price-breakdown">$26.28/day · $0.26 per agent per day</div>
             </div>
             <div style="text-align:right;">
               <div style="font-size:2.5rem;font-weight:800;letter-spacing:-0.05em;color:var(--cc-blue-500);">100</div>
@@ -310,7 +320,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
-              Quantum-grade encryption & air-gapped isolation
+              <span data-tooltip="AES-256 encryption + air-gapped Sydney & Melbourne nodes">Quantum-grade encryption &amp; air-gapped isolation</span>
             </li>
             <li>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -677,6 +687,90 @@
           While you sleep, your team is working. While you're with the family, the agents are closing deals and chasing
           invoices.
         </p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         GUARANTEE & FAQ
+         ============================================ -->
+
+    <!-- COMPARISON TABLE -->
+    <section class="section" style="padding:6rem 2rem;">
+      <div class="container">
+        <div class="reveal text-center mb-12">
+          <p class="text-label" style="color:var(--cc-zinc-400);">How it stacks up</p>
+          <h2 class="text-display mt-4">C&amp;C vs the Alternatives.</h2>
+          <p class="text-body mt-4 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">Every business has three
+            options. One of them wins on every dimension.</p>
+        </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="cc-compare-table">
+            <thead>
+              <tr>
+                <th style="width:30%;"></th>
+                <th>Traditional Hire</th>
+                <th class="cc-th-highlight">C&amp;C Workforce</th>
+                <th>DIY AI Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Monthly cost</td>
+                <td>$7,000–$20,000+</td>
+                <td class="cc-td-highlight">$799 flat</td>
+                <td>$200–$1,500+</td>
+              </tr>
+              <tr>
+                <td>Experts available</td>
+                <td>1–3 generalists</td>
+                <td class="cc-td-highlight">100 specialists</td>
+                <td>0 — tools only</td>
+              </tr>
+              <tr>
+                <td>Setup time</td>
+                <td>4–12 weeks</td>
+                <td class="cc-td-highlight">10 minutes</td>
+                <td>Weeks of config</td>
+              </tr>
+              <tr>
+                <td>Active hours</td>
+                <td>8 hrs/day, 5 days</td>
+                <td class="cc-td-highlight">24/7/365</td>
+                <td>24/7 (no judgment)</td>
+              </tr>
+              <tr>
+                <td>Australian data sovereignty</td>
+                <td><span class="cc-cross">✕</span></td>
+                <td class="cc-td-highlight"><span class="cc-tick">✓</span></td>
+                <td><span class="cc-cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>Strategic intelligence layer</td>
+                <td><span class="cc-cross">✕</span></td>
+                <td class="cc-td-highlight"><span class="cc-tick">✓</span></td>
+                <td><span class="cc-cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>Industry-specific configuration</td>
+                <td>Partial</td>
+                <td class="cc-td-highlight"><span class="cc-tick">✓</span></td>
+                <td><span class="cc-cross">✕</span></td>
+              </tr>
+              <tr>
+                <td>Scales with your business</td>
+                <td>Rehire required</td>
+                <td class="cc-td-highlight">Instant</td>
+                <td>Limited</td>
+              </tr>
+              <tr>
+                <td>Lock-in contract</td>
+                <td>Yes (notice period)</td>
+                <td class="cc-td-highlight">None — month to month</td>
+                <td>Varies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 

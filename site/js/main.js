@@ -521,3 +521,30 @@ document.querySelectorAll('.cc-spotlight-card').forEach(card => {
     card.style.setProperty('--my', y + '%');
   });
 });
+
+// --- ANNUAL BILLING TOGGLE ---
+(function () {
+  const toggle = document.getElementById('billing-toggle');
+  if (!toggle) return;
+  const lblMonthly = document.getElementById('lbl-monthly');
+  const lblAnnual = document.getElementById('lbl-annual');
+  const priceDisplay = document.getElementById('price-display');
+  const pricePeriod = document.getElementById('price-period');
+  const priceBreakdown = document.getElementById('price-breakdown');
+  let isAnnual = false;
+  toggle.addEventListener('click', () => {
+    isAnnual = !isAnnual;
+    toggle.classList.toggle('annual', isAnnual);
+    lblMonthly.classList.toggle('active', !isAnnual);
+    lblAnnual.classList.toggle('active', isAnnual);
+    if (isAnnual) {
+      priceDisplay.textContent = '$719';
+      pricePeriod.textContent = '/month · AUD (billed annually)';
+      priceBreakdown.textContent = '$8,628/yr · saves $960 \u00b7 $0.24 per agent per day';
+    } else {
+      priceDisplay.textContent = '$799';
+      pricePeriod.textContent = '/month \u00b7 AUD';
+      priceBreakdown.textContent = '$26.28/day \u00b7 $0.26 per agent per day';
+    }
+  });
+})();
