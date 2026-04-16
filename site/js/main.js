@@ -588,3 +588,43 @@ document.querySelectorAll('.cc-list-reveal').forEach(ul => {
   }, { threshold: 0.15 });
   obs.observe(ul);
 });
+
+// --- SMOOTH ANCHOR SCROLL ---
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = a.getAttribute('href').slice(1);
+    var target = id ? document.getElementById(id) : null;
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// --- TEXT SCRAMBLE ---
+(function () {
+  var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  var els = document.querySelectorAll('[data-scramble]');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var final = el.dataset.scramble;
+      var frame = 0, total = 20;
+      el.classList.add('is-scrambling');
+      function tick() {
+        frame++;
+        el.textContent = final.split('').map(function(c, i) {
+          if (frame / total > i / final.length) return c;
+          return c === ' ' ? ' ' : CHARS[Math.floor(Math.random() * CHARS.length)];
+        }).join('');
+        if (frame < total) requestAnimationFrame(tick);
+        else { el.textContent = final; el.classList.remove('is-scrambling'); }
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
