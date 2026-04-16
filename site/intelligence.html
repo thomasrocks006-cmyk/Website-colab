@@ -1,48 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cognitive Command — 24 Layers of Omniscience | Camber & Casper</title>
-  <meta name="description" content="24 Layers of Omniscience. The Simulation Engine. Psychology Engine. War Room Protocol. Absolute truth, in your pocket.">
+  <meta name="description"
+    content="24 Layers of Omniscience. The Simulation Engine. Psychology Engine. War Room Protocol. Absolute truth, in your pocket.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Cognitive Command — 24 Layers of Omniscience | Camber &amp; Casper">
+  <meta property="og:description"
+    content="24 intelligence layers feeding one sovereign system. The Simulation Engine. Psychology Engine. War Room Protocol.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Intelligence — 24 Layers | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .layer-card { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.5s; }
-    .layer-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
-    .layer-num { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
-    .layer-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 0.75rem; }
-    .layer-sub { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cc-zinc-400); margin-top: 0.25rem; }
-    .layer-desc { font-size: 0.8rem; color: var(--cc-zinc-400); font-weight: 300; line-height: 1.7; margin-top: 0.5rem; }
-    .layer-group-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.5em; text-transform: uppercase; padding: 0.5rem 1.5rem; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 2rem; }
+    .layer-card {
+      background: white;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.5s;
+    }
 
-    .terminal { background: var(--cc-zinc-950); border: 1px solid var(--cc-zinc-800); border-radius: var(--radius-lg); overflow: hidden; }
-    .terminal-bar { display: flex; align-items: center; gap: 0.5rem; background: var(--cc-zinc-900); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--cc-zinc-800); }
-    .terminal-bar span { width: 8px; height: 8px; border-radius: 50%; }
-    .terminal-body { padding: 2rem; font-family: var(--font-mono); font-size: 0.75rem; line-height: 2; color: var(--cc-zinc-500); }
-    .terminal-body .cmd { color: var(--cc-zinc-300); }
-    .terminal-body .highlight { color: var(--cc-blue-500); }
-    .terminal-body .success { color: var(--cc-emerald-500); }
-    .terminal-body .warn { color: var(--cc-amber-500); }
+    .layer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    }
 
-    .sim-card { background: var(--cc-zinc-950); border: 1px solid var(--cc-zinc-800); border-radius: 60px; padding: 4rem; }
-    .sim-scenario { background: var(--cc-zinc-900); border: 1px solid var(--cc-zinc-800); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 1rem; cursor: pointer; transition: all 0.3s; }
-    .sim-scenario:hover { border-color: var(--cc-blue-500); }
-    .sim-scenario.active { border-color: var(--cc-blue-500); background: rgba(59,130,246,0.05); }
+    .layer-num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
 
-    .psych-meter { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .psych-label { width: 140px; font-size: 0.75rem; font-weight: 600; color: var(--cc-zinc-500); flex-shrink: 0; }
-    .psych-track { flex: 1; background: var(--cc-zinc-800); height: 8px; border-radius: 4px; overflow: hidden; }
-    .psych-fill { height: 100%; border-radius: 4px; }
+    .layer-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 0.75rem;
+    }
 
-    .oracle-query { background: white; border-radius: 60px; padding: 3rem; box-shadow: 0 40px 100px rgba(0,0,0,0.06); }
-    .oracle-question { font-size: 1.25rem; font-weight: 300; font-style: italic; color: var(--cc-zinc-500); }
-    .oracle-answer { background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; margin-top: 1.5rem; }
-    .oracle-answer p { font-size: 0.8125rem; color: var(--cc-zinc-600); line-height: 1.8; font-weight: 300; }
-    .oracle-answer .layer-ref { font-weight: 700; color: var(--cc-zinc-900); }
+    .layer-sub {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cc-zinc-400);
+      margin-top: 0.25rem;
+    }
+
+    .layer-desc {
+      font-size: 0.8rem;
+      color: var(--cc-zinc-400);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+
+    .layer-group-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .terminal {
+      background: var(--cc-zinc-950);
+      border: 1px solid var(--cc-zinc-800);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cc-zinc-900);
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--cc-zinc-800);
+    }
+
+    .terminal-bar span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .terminal-body {
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 2;
+      color: var(--cc-zinc-500);
+    }
+
+    .terminal-body .cmd {
+      color: var(--cc-zinc-300);
+    }
+
+    .terminal-body .highlight {
+      color: var(--cc-blue-500);
+    }
+
+    .terminal-body .success {
+      color: var(--cc-emerald-500);
+    }
+
+    .terminal-body .warn {
+      color: var(--cc-amber-500);
+    }
+
+    .sim-card {
+      background: var(--cc-zinc-950);
+      border: 1px solid var(--cc-zinc-800);
+      border-radius: 60px;
+      padding: 4rem;
+    }
+
+    .sim-scenario {
+      background: var(--cc-zinc-900);
+      border: 1px solid var(--cc-zinc-800);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .sim-scenario:hover {
+      border-color: var(--cc-blue-500);
+    }
+
+    .sim-scenario.active {
+      border-color: var(--cc-blue-500);
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .psych-meter {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .psych-label {
+      width: 140px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cc-zinc-500);
+      flex-shrink: 0;
+    }
+
+    .psych-track {
+      flex: 1;
+      background: var(--cc-zinc-800);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .psych-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .oracle-query {
+      background: white;
+      border-radius: 60px;
+      padding: 3rem;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.06);
+    }
+
+    .oracle-question {
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cc-zinc-500);
+    }
+
+    .oracle-answer {
+      background: var(--cc-zinc-50);
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .oracle-answer p {
+      font-size: 0.8125rem;
+      color: var(--cc-zinc-600);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .oracle-answer .layer-ref {
+      font-weight: 700;
+      color: var(--cc-zinc-900);
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -89,17 +258,30 @@
     <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
       <div class="reveal container-sm">
         <div class="badge badge-light mb-8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M20.66 8A10 10 0 0 0 12 2v10l8.66-4Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2Z" />
+            <path d="M20.66 8A10 10 0 0 0 12 2v10l8.66-4Z" />
+          </svg>
           Cognitive Architecture
         </div>
         <h1 class="text-hero">Total<br><span class="text-ghost">Self-Awareness.</span></h1>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:48rem;color:var(--cc-zinc-400);">
-          We don't just bridge silos. We eliminate them. Casper blends 24 distinct input layers — from global geopolitical friction to the battery levels in your tech's toolkit — to provide absolute strategic reasoning.
+          We don't just bridge silos. We eliminate them. Casper blends 24 distinct input layers — from global
+          geopolitical friction to the battery levels in your tech's toolkit — to provide absolute strategic reasoning.
         </p>
         <div style="display:flex;gap:3rem;justify-content:center;margin-top:3rem;">
-          <div class="stat"><div class="stat-value">24</div><div class="stat-label">Input Layers</div></div>
-          <div class="stat"><div class="stat-value">0.04ms</div><div class="stat-label">Synthesis Latency</div></div>
-          <div class="stat"><div class="stat-value">98.4%</div><div class="stat-label">Confidence</div></div>
+          <div class="stat">
+            <div class="stat-value">24</div>
+            <div class="stat-label">Input Layers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">0.04ms</div>
+            <div class="stat-label">Synthesis Latency</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">98.4%</div>
+            <div class="stat-label">Confidence</div>
+          </div>
         </div>
       </div>
     </section>
@@ -111,52 +293,209 @@
           <p class="text-label" style="color:var(--cc-zinc-400);">Data Architecture</p>
           <h2 class="text-display mt-4">24 Layers<br><span class="text-ghost">of Omniscience.</span></h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
-            Most AI tools see one layer of data. Our agents see twenty-four. Each layer is a dimension of analysis that compounds into decisions no single human could make.
+            Most AI tools see one layer of data. Our agents see twenty-four. Each layer is a dimension of analysis that
+            compounds into decisions no single human could make.
           </p>
         </div>
 
         <!-- CORTEX: 01–07 -->
-        <div class="reveal text-center"><span class="layer-group-label" style="background:rgba(59,130,246,0.08);color:var(--cc-blue-600);border:1px solid rgba(59,130,246,0.15);">The Cortex — Layers 01–07</span></div>
-        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">01</div><div class="layer-name">Macro Context</div><div class="layer-sub">Global / Local Forces</div><div class="layer-desc">RBA rates, inflation, housing starts, commodity prices, and Australian legislative shifts that shape your market environment.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">02</div><div class="layer-name">Environment</div><div class="layer-sub">Physical Variables</div><div class="layer-desc">Live traffic, weather-induced site delays, seasonal demand, local council activity, and supplier stock levels.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">03</div><div class="layer-name">Historical Logic</div><div class="layer-sub">Institutional Memory</div><div class="layer-desc">Years of company seasonal arcs, past wins, losses, pricing patterns, and previous tactical victories.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">04</div><div class="layer-name">Tribal Intel</div><div class="layer-sub">Internal Discourse</div><div class="layer-desc">Meeting transcripts, email sentiment, forum chatter, industry trends, and the unstructured signal from staff comms.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">05</div><div class="layer-name">Fiscal Depth</div><div class="layer-sub">Granular Liquidity</div><div class="layer-desc">Direct Xero/MYOB sync — debt aging, margin erosion patterns, payment velocity, cash burn rate, and break-even tracking.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">06</div><div class="layer-name">Competitive Signal</div><div class="layer-sub">Market Velocity</div><div class="layer-desc">Competitor pricing scrapes, new hires, marketing spend, contract wins, and localised SEO dominance analysis.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-blue-500);">07</div><div class="layer-name">Intent DNA</div><div class="layer-sub">Psychological History</div><div class="layer-desc">Personality markers and objections handled across 1,000s of calls. Buyer intent modelling — who's browsing, who's ready, who's about to defect.</div></div>
+        <div class="reveal text-center"><span class="layer-group-label"
+            style="background:rgba(59,130,246,0.08);color:var(--cc-blue-600);border:1px solid rgba(59,130,246,0.15);">The
+            Cortex — Layers 01–07</span></div>
+        <div class="reveal"
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">01</div>
+            <div class="layer-name">Macro Context</div>
+            <div class="layer-sub">Global / Local Forces</div>
+            <div class="layer-desc">RBA rates, inflation, housing starts, commodity prices, and Australian legislative
+              shifts that shape your market environment.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">02</div>
+            <div class="layer-name">Environment</div>
+            <div class="layer-sub">Physical Variables</div>
+            <div class="layer-desc">Live traffic, weather-induced site delays, seasonal demand, local council activity,
+              and supplier stock levels.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">03</div>
+            <div class="layer-name">Historical Logic</div>
+            <div class="layer-sub">Institutional Memory</div>
+            <div class="layer-desc">Years of company seasonal arcs, past wins, losses, pricing patterns, and previous
+              tactical victories.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">04</div>
+            <div class="layer-name">Tribal Intel</div>
+            <div class="layer-sub">Internal Discourse</div>
+            <div class="layer-desc">Meeting transcripts, email sentiment, forum chatter, industry trends, and the
+              unstructured signal from staff comms.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">05</div>
+            <div class="layer-name">Fiscal Depth</div>
+            <div class="layer-sub">Granular Liquidity</div>
+            <div class="layer-desc">Direct Xero/MYOB sync — debt aging, margin erosion patterns, payment velocity, cash
+              burn rate, and break-even tracking.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">06</div>
+            <div class="layer-name">Competitive Signal</div>
+            <div class="layer-sub">Market Velocity</div>
+            <div class="layer-desc">Competitor pricing scrapes, new hires, marketing spend, contract wins, and localised
+              SEO dominance analysis.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">07</div>
+            <div class="layer-name">Intent DNA</div>
+            <div class="layer-sub">Psychological History</div>
+            <div class="layer-desc">Personality markers and objections handled across 1,000s of calls. Buyer intent
+              modelling — who's browsing, who's ready, who's about to defect.</div>
+          </div>
         </div>
 
         <!-- DEEP TISSUE: 08–14 -->
-        <div class="reveal text-center"><span class="layer-group-label" style="background:rgba(16,185,129,0.08);color:var(--cc-emerald-500);border:1px solid rgba(16,185,129,0.15);">The Deep Tissue — Layers 08–14</span></div>
-        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">08</div><div class="layer-name">Operational Telemetry</div><div class="layer-sub">Hardware Feedback</div><div class="layer-desc">IoT data from fleet GPS, tool battery cycles, engine diagnostics, job completion rates, crew utilisation, and equipment efficiency.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">09</div><div class="layer-name">Regulatory Sentinel</div><div class="layer-sub">Compliance & Safety</div><div class="layer-desc">Real-time monitoring of AU Standard changes, licence expiries, OH&S logs, and new licensing requirements across your verticals.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">10</div><div class="layer-name">Human Capital DNA</div><div class="layer-sub">Performance Vitality</div><div class="layer-desc">Predicting staff churn and burnout risk through tone analysis, response-velocity, skill gaps, training needs, and availability patterns.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">11</div><div class="layer-name">Velocity of Trust</div><div class="layer-sub">Brand Sentiment</div><div class="layer-desc">Cross-referencing Google Reviews, social mentions, word-of-mouth spikes, and how fast clients move from enquiry to commitment.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">12</div><div class="layer-name">Supply Forensics</div><div class="layer-sub">Geopolitical Friction</div><div class="layer-desc">Tracking global shipping lanes, raw material scarcity, port strikes, supplier reliability scores, lead times, and alternate sourcing.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">13</div><div class="layer-name">Recursive Asset Logic</div><div class="layer-sub">ROI Lifecycles</div><div class="layer-desc">Calculating the exact point where tool maintenance costs exceed replacement ROI. Client lifetime value and predictive churn modelling.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-emerald-500);">14</div><div class="layer-name">Dark Data Synthesis</div><div class="layer-sub">Unstructured Chaos</div><div class="layer-desc">OCR processing of handwritten site notes, whiteboard photos, and field voice memos. The signal in the noise that no analyst would see.</div></div>
+        <div class="reveal text-center"><span class="layer-group-label"
+            style="background:rgba(16,185,129,0.08);color:var(--cc-emerald-500);border:1px solid rgba(16,185,129,0.15);">The
+            Deep Tissue — Layers 08–14</span></div>
+        <div class="reveal"
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">08</div>
+            <div class="layer-name">Operational Telemetry</div>
+            <div class="layer-sub">Hardware Feedback</div>
+            <div class="layer-desc">IoT data from fleet GPS, tool battery cycles, engine diagnostics, job completion
+              rates, crew utilisation, and equipment efficiency.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">09</div>
+            <div class="layer-name">Regulatory Sentinel</div>
+            <div class="layer-sub">Compliance & Safety</div>
+            <div class="layer-desc">Real-time monitoring of AU Standard changes, licence expiries, OH&S logs, and new
+              licensing requirements across your verticals.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">10</div>
+            <div class="layer-name">Human Capital DNA</div>
+            <div class="layer-sub">Performance Vitality</div>
+            <div class="layer-desc">Predicting staff churn and burnout risk through tone analysis, response-velocity,
+              skill gaps, training needs, and availability patterns.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">11</div>
+            <div class="layer-name">Velocity of Trust</div>
+            <div class="layer-sub">Brand Sentiment</div>
+            <div class="layer-desc">Cross-referencing Google Reviews, social mentions, word-of-mouth spikes, and how
+              fast clients move from enquiry to commitment.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">12</div>
+            <div class="layer-name">Supply Forensics</div>
+            <div class="layer-sub">Geopolitical Friction</div>
+            <div class="layer-desc">Tracking global shipping lanes, raw material scarcity, port strikes, supplier
+              reliability scores, lead times, and alternate sourcing.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">13</div>
+            <div class="layer-name">Recursive Asset Logic</div>
+            <div class="layer-sub">ROI Lifecycles</div>
+            <div class="layer-desc">Calculating the exact point where tool maintenance costs exceed replacement ROI.
+              Client lifetime value and predictive churn modelling.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">14</div>
+            <div class="layer-name">Dark Data Synthesis</div>
+            <div class="layer-sub">Unstructured Chaos</div>
+            <div class="layer-desc">OCR processing of handwritten site notes, whiteboard photos, and field voice memos.
+              The signal in the noise that no analyst would see.</div>
+          </div>
         </div>
 
         <!-- STRATEGIC: 15–19 -->
-        <div class="reveal text-center"><span class="layer-group-label" style="background:rgba(245,158,11,0.08);color:var(--cc-amber-500);border:1px solid rgba(245,158,11,0.15);">The Strategic Layer — Layers 15–19</span></div>
-        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-amber-500);">15</div><div class="layer-name">Revenue Architecture</div><div class="layer-sub">Pipeline Orchestration</div><div class="layer-desc">Maps the entire sales pipeline from lead generation through conversion, identifying bottlenecks, stalled deals, and high-probability close windows.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-amber-500);">16</div><div class="layer-name">Client Lifecycle Mapping</div><div class="layer-sub">Relationship Intelligence</div><div class="layer-desc">Tracks every client from first touch to repeat purchase. Onboarding friction, satisfaction decay curves, upsell timing, and churn prediction signals.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-amber-500);">17</div><div class="layer-name">Behavioral Economics</div><div class="layer-sub">Sales Psychology</div><div class="layer-desc">Real-time objection modelling, negotiation pattern recognition, and decision-fatigue scoring. Powers the Sales Sparring Engine and 12 native accents.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-amber-500);">18</div><div class="layer-name">Market Timing Engine</div><div class="layer-sub">Opportunity Windows</div><div class="layer-desc">Identifies the optimal moment to launch campaigns, send proposals, or adjust pricing based on market sentiment cycles and competitive gaps.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-amber-500);">19</div><div class="layer-name">Network Effect Modelling</div><div class="layer-sub">Growth Multipliers</div><div class="layer-desc">Maps referral chains, influence pathways, and word-of-mouth amplification. Identifies which client relationships generate exponential returns.</div></div>
+        <div class="reveal text-center"><span class="layer-group-label"
+            style="background:rgba(245,158,11,0.08);color:var(--cc-amber-500);border:1px solid rgba(245,158,11,0.15);">The
+            Strategic Layer — Layers 15–19</span></div>
+        <div class="reveal"
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">15</div>
+            <div class="layer-name">Revenue Architecture</div>
+            <div class="layer-sub">Pipeline Orchestration</div>
+            <div class="layer-desc">Maps the entire sales pipeline from lead generation through conversion, identifying
+              bottlenecks, stalled deals, and high-probability close windows.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">16</div>
+            <div class="layer-name">Client Lifecycle Mapping</div>
+            <div class="layer-sub">Relationship Intelligence</div>
+            <div class="layer-desc">Tracks every client from first touch to repeat purchase. Onboarding friction,
+              satisfaction decay curves, upsell timing, and churn prediction signals.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">17</div>
+            <div class="layer-name">Behavioral Economics</div>
+            <div class="layer-sub">Sales Psychology</div>
+            <div class="layer-desc">Real-time objection modelling, negotiation pattern recognition, and decision-fatigue
+              scoring. Powers the Sales Sparring Engine and 12 native accents.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">18</div>
+            <div class="layer-name">Market Timing Engine</div>
+            <div class="layer-sub">Opportunity Windows</div>
+            <div class="layer-desc">Identifies the optimal moment to launch campaigns, send proposals, or adjust pricing
+              based on market sentiment cycles and competitive gaps.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">19</div>
+            <div class="layer-name">Network Effect Modelling</div>
+            <div class="layer-sub">Growth Multipliers</div>
+            <div class="layer-desc">Maps referral chains, influence pathways, and word-of-mouth amplification.
+              Identifies which client relationships generate exponential returns.</div>
+          </div>
         </div>
 
         <!-- SOVEREIGN: 20–24 -->
-        <div class="reveal text-center"><span class="layer-group-label" style="background:rgba(239,68,68,0.08);color:var(--cc-red-500);border:1px solid rgba(239,68,68,0.15);">The Sovereign Layer — Layers 20–24</span></div>
-        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-red-500);">20</div><div class="layer-name">Institutional Foresight</div><div class="layer-sub">Anticipatory Steering</div><div class="layer-desc">Autonomous strategy proposals — concrete inflation locks, fleet scale-up timing, territory expansion readiness. Casper acts before you ask.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-red-500);">21</div><div class="layer-name">Tax Position</div><div class="layer-sub">Fiscal Sovereignty</div><div class="layer-desc">Correlates with Layer 12 (Supply) and Layer 05 (Fiscal). Throttles ad spend, adjusts procurement timing, and optimises GST obligations in real-time.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-red-500);">22</div><div class="layer-name">Refund Forensics</div><div class="layer-sub">Loss Prevention</div><div class="layer-desc">Batch-level traceability, sentiment pattern recognition, and automated supplier dispute claims. Tracks anomalous return rates to their source.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-red-500);">23</div><div class="layer-name">Cross-Layer Correlation</div><div class="layer-sub">Convergence Engine</div><div class="layer-desc">The meta-layer. Finds compound relationships between unrelated data dimensions — when a freight strike + tax deadline + seasonal demand = hidden opportunity.</div></div>
-          <div class="layer-card"><div class="layer-num" style="color:var(--cc-zinc-950);">24</div><div class="layer-name">Physical Compliance Matrix</div><div class="layer-sub">Safety & Standards</div><div class="layer-desc">Integrates OH&S protocols, site safety audits, equipment certification cycles, and worker qualifications into every operational decision.</div></div>
+        <div class="reveal text-center"><span class="layer-group-label"
+            style="background:rgba(239,68,68,0.08);color:var(--cc-red-500);border:1px solid rgba(239,68,68,0.15);">The
+            Sovereign Layer — Layers 20–24</span></div>
+        <div class="reveal"
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:4rem;">
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">20</div>
+            <div class="layer-name">Institutional Foresight</div>
+            <div class="layer-sub">Anticipatory Steering</div>
+            <div class="layer-desc">Autonomous strategy proposals — concrete inflation locks, fleet scale-up timing,
+              territory expansion readiness. Casper acts before you ask.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">21</div>
+            <div class="layer-name">Tax Position</div>
+            <div class="layer-sub">Fiscal Sovereignty</div>
+            <div class="layer-desc">Correlates with Layer 12 (Supply) and Layer 05 (Fiscal). Throttles ad spend, adjusts
+              procurement timing, and optimises GST obligations in real-time.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">22</div>
+            <div class="layer-name">Refund Forensics</div>
+            <div class="layer-sub">Loss Prevention</div>
+            <div class="layer-desc">Batch-level traceability, sentiment pattern recognition, and automated supplier
+              dispute claims. Tracks anomalous return rates to their source.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">23</div>
+            <div class="layer-name">Cross-Layer Correlation</div>
+            <div class="layer-sub">Convergence Engine</div>
+            <div class="layer-desc">The meta-layer. Finds compound relationships between unrelated data dimensions —
+              when a freight strike + tax deadline + seasonal demand = hidden opportunity.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-zinc-950);">24</div>
+            <div class="layer-name">Physical Compliance Matrix</div>
+            <div class="layer-sub">Safety & Standards</div>
+            <div class="layer-desc">Integrates OH&S protocols, site safety audits, equipment certification cycles, and
+              worker qualifications into every operational decision.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -167,37 +506,50 @@
       <div class="container reveal" style="position:relative;z-index:1;">
         <div class="text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-600);">Convergence</p>
-          <h2 class="text-display mt-4">One Brain.<br><span style="color:var(--cc-zinc-600);font-style:italic;">1,000s of Variables.</span></h2>
+          <h2 class="text-display mt-4">One Brain.<br><span style="color:var(--cc-zinc-600);font-style:italic;">1,000s
+              of Variables.</span></h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">
-            All 24 layers don't operate in silos. They converge through the Universal Synthesis Engine — producing compound intelligence that grows sharper every day.
+            All 24 layers don't operate in silos. They converge through the Universal Synthesis Engine — producing
+            compound intelligence that grows sharper every day.
           </p>
         </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:800px;margin:0 auto;">
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
             <div style="font-size:1.5rem;font-weight:700;color:white;">Fiscal</div>
             <div class="text-label" style="color:var(--cc-zinc-600);margin-top:0.25rem;">Integration</div>
-            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L05 + L21 + L22</div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L05
+              + L21 + L22</div>
           </div>
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
             <div style="font-size:1.5rem;font-weight:700;color:white;">Comms</div>
             <div class="text-label" style="color:var(--cc-zinc-600);margin-top:0.25rem;">Internal</div>
-            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L04 + L10 + L17</div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L04
+              + L10 + L17</div>
           </div>
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
             <div style="font-size:1.5rem;font-weight:700;color:white;">Macro</div>
             <div class="text-label" style="color:var(--cc-zinc-600);margin-top:0.25rem;">Factors</div>
-            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L01 + L02 + L12</div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L01
+              + L02 + L12</div>
           </div>
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;">
             <div style="font-size:1.5rem;font-weight:700;color:white;">Memory</div>
             <div class="text-label" style="color:var(--cc-zinc-600);margin-top:0.25rem;">Company</div>
-            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L03 + L13 + L14</div>
+            <div style="font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-blue-500);margin-top:0.5rem;">L03
+              + L13 + L14</div>
           </div>
         </div>
         <div class="text-center mt-8">
           <div style="max-width:800px;margin:0 auto;">
-            <div class="progress-bar progress-bar-dark" style="height:6px;"><div class="progress-fill progress-fill-blue" style="width:100%;"></div></div>
-            <p class="font-mono mt-4" style="font-size:0.625rem;color:var(--cc-blue-500);letter-spacing:0.3em;">CONVERGENCE: OPTIMAL // CROSS_VARIABLE_SYNAPSE_ACTIVE</p>
+            <div class="progress-bar progress-bar-dark" style="height:6px;">
+              <div class="progress-fill progress-fill-blue" style="width:100%;"></div>
+            </div>
+            <p class="font-mono mt-4" style="font-size:0.625rem;color:var(--cc-blue-500);letter-spacing:0.3em;">
+              CONVERGENCE: OPTIMAL // CROSS_VARIABLE_SYNAPSE_ACTIVE</p>
           </div>
         </div>
       </div>
@@ -211,23 +563,35 @@
             <p class="text-label" style="color:var(--cc-zinc-400);">Natural Language</p>
             <h2 class="text-display mt-4">The Oracle.<br><span class="text-ghost">Ask anything.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-              Ask a question in plain English. Casper queries all 24 layers, identifies the relevant data dimensions, and returns a multi-factor synthesis in seconds.
+              Ask a question in plain English. Casper queries all 24 layers, identifies the relevant data dimensions,
+              and returns a multi-factor synthesis in seconds.
             </p>
             <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
-              "Why did we miss revenue on Wednesday?" → 3-factor Casper synthesis drawing from Fiscal lag + Macro sentiment + Internal tech-fatigue.
+              "Why did we miss revenue on Wednesday?" → 3-factor Casper synthesis drawing from Fiscal lag + Macro
+              sentiment + Internal tech-fatigue.
             </p>
-            <p class="text-body mt-6" style="font-weight:700;color:var(--cc-zinc-900);font-size:1.5rem;">Know the Why.</p>
+            <p class="text-body mt-6" style="font-weight:700;color:var(--cc-zinc-900);font-size:1.5rem;">Know the Why.
+            </p>
           </div>
           <div class="oracle-query reveal" data-delay="200">
             <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-400)" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="23"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-400)" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" x2="12" y1="19" y2="23" />
+              </svg>
               <div class="oracle-question">"Why is job turnaround in Melbourne slowing down?"</div>
             </div>
             <div class="oracle-answer">
-              <div style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-blue-600);margin-bottom:1rem;">Casper Multi-Layer Synthesis</div>
-              <p><span class="layer-ref">Layer 08 + 12:</span> IoT sensors on Tech_Fleet_A show 14% increase in idle time; Geopolitical freight delays have restricted local 'Copper-Valve' stock by 40%.</p>
-              <p style="margin-top:0.75rem;"><span class="layer-ref">Layer 10 + 04:</span> Sentiment analysis of Tuesday's field audio indicates 'High Fatigue' in Lead Techs due to overtime burn.</p>
-              <p style="margin-top:0.75rem;"><span class="layer-ref">Strategy:</span> 48-hour 'Rest Allocation' initiated for Fleet A. Alternate stock secured via Layer 02 weather-protected lane.</p>
+              <div
+                style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-blue-600);margin-bottom:1rem;">
+                Casper Multi-Layer Synthesis</div>
+              <p><span class="layer-ref">Layer 08 + 12:</span> IoT sensors on Tech_Fleet_A show 14% increase in idle
+                time; Geopolitical freight delays have restricted local 'Copper-Valve' stock by 40%.</p>
+              <p style="margin-top:0.75rem;"><span class="layer-ref">Layer 10 + 04:</span> Sentiment analysis of
+                Tuesday's field audio indicates 'High Fatigue' in Lead Techs due to overtime burn.</p>
+              <p style="margin-top:0.75rem;"><span class="layer-ref">Strategy:</span> 48-hour 'Rest Allocation'
+                initiated for Fleet A. Alternate stock secured via Layer 02 weather-protected lane.</p>
             </div>
           </div>
         </div>
@@ -241,25 +605,86 @@
         <div class="text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-600);">Predictive Engine</p>
           <h2 class="text-display mt-4">The Simulation Engine</h2>
-          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">Before you commit real resources, run the scenario. Models outcomes across all 24 layers — foresight, not hindsight.</p>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">Before you commit real
+            resources, run the scenario. Models outcomes across all 24 layers — foresight, not hindsight.</p>
         </div>
         <div class="sim-card reveal" data-delay="200">
           <div class="flex-between mb-8">
-            <div><h3 style="font-size:1.5rem;font-weight:700;color:white;letter-spacing:-0.02em;">Scenario Builder</h3><p class="text-label" style="color:var(--cc-zinc-500);">Select a scenario</p></div>
+            <div>
+              <h3 style="font-size:1.5rem;font-weight:700;color:white;letter-spacing:-0.02em;">Scenario Builder</h3>
+              <p class="text-label" style="color:var(--cc-zinc-500);">Select a scenario</p>
+            </div>
             <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);">SIM_ENGINE_v3.0</span>
           </div>
           <div id="simScenarios">
-            <div class="sim-scenario active" onclick="selectScenario(this,'price')"><div class="flex-between"><div><h4 style="font-size:0.875rem;font-weight:700;color:white;">Raise Prices 15%</h4><p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Impact on win-rate, revenue, and retention</p></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-            <div class="sim-scenario" onclick="selectScenario(this,'expand')"><div class="flex-between"><div><h4 style="font-size:0.875rem;font-weight:700;color:white;">Expand to New Territory</h4><p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Market density, competition, ramp-up timeline</p></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-            <div class="sim-scenario" onclick="selectScenario(this,'hire')"><div class="flex-between"><div><h4 style="font-size:0.875rem;font-weight:700;color:white;">Hire 2 Staff vs Scale Agents</h4><p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Cost, output, and risk comparison</p></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
-            <div class="sim-scenario" onclick="selectScenario(this,'fleet')"><div class="flex-between"><div><h4 style="font-size:0.875rem;font-weight:700;color:white;">$85k Fleet Scale-Up</h4><p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Institutional modelling — burn rate, yield, Casper Verdict</p></div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div></div>
+            <div class="sim-scenario active" onclick="selectScenario(this,'price')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Raise Prices 15%</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Impact on win-rate, revenue,
+                    and retention</p>
+                </div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)"
+                  stroke-width="2">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="sim-scenario" onclick="selectScenario(this,'expand')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Expand to New Territory</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Market density, competition,
+                    ramp-up timeline</p>
+                </div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)"
+                  stroke-width="2">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="sim-scenario" onclick="selectScenario(this,'hire')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Hire 2 Staff vs Scale Agents</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Cost, output, and risk
+                    comparison</p>
+                </div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)"
+                  stroke-width="2">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="sim-scenario" onclick="selectScenario(this,'fleet')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">$85k Fleet Scale-Up</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Institutional modelling —
+                    burn rate, yield, Casper Verdict</p>
+                </div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)"
+                  stroke-width="2">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </div>
+            </div>
           </div>
-          <div id="simResult" style="margin-top:2rem;padding:2rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-lg);">
-            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-blue-500);letter-spacing:0.2em;margin-bottom:1rem;">SIMULATION_OUTPUT</div>
+          <div id="simResult"
+            style="margin-top:2rem;padding:2rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-lg);">
+            <div class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-blue-500);letter-spacing:0.2em;margin-bottom:1rem;">
+              SIMULATION_OUTPUT</div>
             <div class="grid-3" style="gap:2rem;">
-              <div><div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric1">+$4.2k</div><div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel1">Monthly Revenue Gain</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric2">-8%</div><div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel2">Win Rate Impact</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:var(--cc-emerald-500);" id="simMetric3">Net Positive</div><div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel3">Verdict</div></div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric1">+$4.2k</div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel1">Monthly Revenue Gain</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric2">-8%</div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel2">Win Rate Impact</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--cc-emerald-500);" id="simMetric3">Net Positive
+                </div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel3">Verdict</div>
+              </div>
             </div>
           </div>
         </div>
@@ -273,8 +698,11 @@
           <div>
             <p class="text-label" style="color:var(--cc-zinc-400);">Behavioral Intelligence</p>
             <h2 class="text-display mt-4">The Psychology<br><span class="text-ghost">Engine.</span></h2>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">Your agents don't just process data — they read intent. The Psychology Engine profiles every client, scores urgency, and recommends the optimal approach for every negotiation.</p>
-            <p class="text-body mt-4" style="color:var(--cc-zinc-400);">Source: Email cadence, response timing, language sentiment, payment behaviour, past decision patterns. Combined into a single "Intent DNA" score.</p>
+            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">Your agents don't just process data — they
+              read intent. The Psychology Engine profiles every client, scores urgency, and recommends the optimal
+              approach for every negotiation.</p>
+            <p class="text-body mt-4" style="color:var(--cc-zinc-400);">Source: Email cadence, response timing, language
+              sentiment, payment behaviour, past decision patterns. Combined into a single "Intent DNA" score.</p>
             <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
               <span class="badge badge-light">12 Native Accents</span>
               <span class="badge badge-light">Objection Handling v4</span>
@@ -282,36 +710,102 @@
             </div>
           </div>
           <div style="background:var(--cc-zinc-950);border-radius:60px;padding:3rem;">
-            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:2rem;">CLIENT_PROFILE // SAMPLE</div>
-            <div class="psych-meter"><div class="psych-label" style="color:var(--cc-zinc-400);">Urgency</div><div class="psych-track"><div class="psych-fill" style="width:85%;background:var(--cc-red-500);"></div></div></div>
-            <div class="psych-meter"><div class="psych-label" style="color:var(--cc-zinc-400);">Trust Level</div><div class="psych-track"><div class="psych-fill" style="width:62%;background:var(--cc-amber-500);"></div></div></div>
-            <div class="psych-meter"><div class="psych-label" style="color:var(--cc-zinc-400);">Price Sensitivity</div><div class="psych-track"><div class="psych-fill" style="width:40%;background:var(--cc-emerald-500);"></div></div></div>
-            <div class="psych-meter"><div class="psych-label" style="color:var(--cc-zinc-400);">Decision Readiness</div><div class="psych-track"><div class="psych-fill" style="width:78%;background:var(--cc-blue-500);"></div></div></div>
-            <div class="psych-meter"><div class="psych-label" style="color:var(--cc-zinc-400);">Loyalty Probability</div><div class="psych-track"><div class="psych-fill" style="width:90%;background:var(--cc-blue-500);"></div></div></div>
-            <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--cc-zinc-800);"><p class="font-mono" style="font-size:0.625rem;color:var(--cc-blue-500);">RECOMMENDATION: Value-based close. High urgency + low price sensitivity = premium positioning opportunity.</p></div>
+            <div class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:2rem;">
+              CLIENT_PROFILE // SAMPLE</div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Urgency</div>
+              <div class="psych-track">
+                <div class="psych-fill" style="width:85%;background:var(--cc-red-500);"></div>
+              </div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Trust Level</div>
+              <div class="psych-track">
+                <div class="psych-fill" style="width:62%;background:var(--cc-amber-500);"></div>
+              </div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Price Sensitivity</div>
+              <div class="psych-track">
+                <div class="psych-fill" style="width:40%;background:var(--cc-emerald-500);"></div>
+              </div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Decision Readiness</div>
+              <div class="psych-track">
+                <div class="psych-fill" style="width:78%;background:var(--cc-blue-500);"></div>
+              </div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Loyalty Probability</div>
+              <div class="psych-track">
+                <div class="psych-fill" style="width:90%;background:var(--cc-blue-500);"></div>
+              </div>
+            </div>
+            <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--cc-zinc-800);">
+              <p class="font-mono" style="font-size:0.625rem;color:var(--cc-blue-500);">RECOMMENDATION: Value-based
+                close. High urgency + low price sensitivity = premium positioning opportunity.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ANTICIPATORY RADAR -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-400);">Anticipatory Intelligence</p>
           <h2 class="text-display mt-4">The Radar</h2>
-          <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">Casper doesn't wait for problems. It detects threats and opportunities before they materialise — and proposes strategy before you ask.</p>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">Casper doesn't wait for
+            problems. It detects threats and opportunities before they materialise — and proposes strategy before you
+            ask.</p>
         </div>
-        <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:960px;margin:0 auto;">
-          <div class="card" style="border-left:3px solid var(--cc-red-500);"><div style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-red-500);">Threat</div><h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">Piping +14%</h4><p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Supply cost spike detected via Layer 12. Alternate vendor secured. No impact to current quotes.</p><div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">CONFIDENCE: 98.4%</div></div>
-          <div class="card" style="border-left:3px solid var(--cc-emerald-500);"><div style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-emerald-500);">Opportunity</div><h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">LiDAR V2 +42%</h4><p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">New technology adoption yields 42% time advantage on surveying. ROI positive within 60 days.</p><div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">CONFIDENCE: 91.2%</div></div>
-          <div class="card" style="border-left:3px solid var(--cc-amber-500);"><div style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-amber-500);">Macro</div><h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">RBA Shift</h4><p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Rate decision imminent. Layer 01 + 05 modelling cashflow impact. Pre-positioned hedging strategy ready.</p><div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">CONFIDENCE: 94.7%</div></div>
+        <div class="reveal"
+          style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:960px;margin:0 auto;">
+          <div class="card" style="border-left:3px solid var(--cc-red-500);">
+            <div
+              style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-red-500);">
+              Threat</div>
+            <h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">Piping +14%</h4>
+            <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Supply cost spike detected via
+              Layer 12. Alternate vendor secured. No impact to current quotes.</p>
+            <div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">
+              CONFIDENCE: 98.4%</div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--cc-emerald-500);">
+            <div
+              style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-emerald-500);">
+              Opportunity</div>
+            <h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">LiDAR V2 +42%</h4>
+            <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">New technology adoption yields 42%
+              time advantage on surveying. ROI positive within 60 days.</p>
+            <div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">
+              CONFIDENCE: 91.2%</div>
+          </div>
+          <div class="card" style="border-left:3px solid var(--cc-amber-500);">
+            <div
+              style="font-size:0.5625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-amber-500);">
+              Macro</div>
+            <h4 style="font-size:1rem;font-weight:700;margin-top:0.5rem;">RBA Shift</h4>
+            <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Rate decision imminent. Layer 01 +
+              05 modelling cashflow impact. Pre-positioned hedging strategy ready.</p>
+            <div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-zinc-300);margin-top:1rem;">
+              CONFIDENCE: 94.7%</div>
+          </div>
         </div>
         <div class="reveal text-center mt-8" data-delay="200">
-          <div style="background:white;border:1px solid var(--cc-zinc-100);border-radius:var(--radius-lg);padding:1.5rem 3rem;display:inline-flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:center;">
-            <div style="font-size:0.625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-zinc-400);">Anticipatory Steer</div>
-            <div style="font-size:0.8125rem;font-weight:600;color:var(--cc-zinc-900);">Concrete inflation lock: Saving $14k</div>
-            <div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-emerald-500);">CASPER_VERDICT: EXECUTE</div>
+          <div
+            style="background:white;border:1px solid var(--cc-zinc-100);border-radius:var(--radius-lg);padding:1.5rem 3rem;display:inline-flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:center;">
+            <div
+              style="font-size:0.625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-zinc-400);">
+              Anticipatory Steer</div>
+            <div style="font-size:0.8125rem;font-weight:600;color:var(--cc-zinc-900);">Concrete inflation lock: Saving
+              $14k</div>
+            <div style="font-family:var(--font-mono);font-size:0.5625rem;color:var(--cc-emerald-500);">CASPER_VERDICT:
+              EXECUTE</div>
           </div>
         </div>
       </div>
@@ -323,25 +817,37 @@
         <div class="reveal text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-400);">Sales Intelligence</p>
           <h2 class="text-display mt-4">The Sparring<br><span class="text-ghost">Session.</span></h2>
-          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">Agent_78 doesn't just call prospects — it trains against them first. Simulates objections, maps psychology, and calibrates tone. Twelve native Australian accents. Zero scripts.</p>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">Agent_78 doesn't just
+            call prospects — it trains against them first. Simulates objections, maps psychology, and calibrates tone.
+            Twelve native Australian accents. Zero scripts.</p>
         </div>
         <div class="reveal" style="max-width:700px;margin:0 auto;">
           <div class="terminal">
-            <div class="terminal-bar"><span style="background:var(--cc-red-500);"></span><span style="background:var(--cc-amber-500);"></span><span style="background:var(--cc-emerald-500);"></span><span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);margin-left:1rem;">sales_sparring // miller_electrical_sim</span></div>
+            <div class="terminal-bar"><span style="background:var(--cc-red-500);"></span><span
+                style="background:var(--cc-amber-500);"></span><span
+                style="background:var(--cc-emerald-500);"></span><span class="font-mono"
+                style="font-size:0.625rem;color:var(--cc-zinc-600);margin-left:1rem;">sales_sparring //
+                miller_electrical_sim</span></div>
             <div class="terminal-body">
-              <div><span class="cmd">AGENT_78:</span> "G'day Jim, just following up on the switchboard upgrade quote we sent through last Tuesday."</div>
+              <div><span class="cmd">AGENT_78:</span> "G'day Jim, just following up on the switchboard upgrade quote we
+                sent through last Tuesday."</div>
               <div>&nbsp;</div>
-              <div><span class="warn">PROSPECT_SIM:</span> "Yeah look, I got three other quotes and yours is a fair bit higher."</div>
+              <div><span class="warn">PROSPECT_SIM:</span> "Yeah look, I got three other quotes and yours is a fair bit
+                higher."</div>
               <div>&nbsp;</div>
-              <div style="color:var(--cc-zinc-700);font-size:0.625rem;font-style:italic;">[ PSYCHOLOGY_CORE: Price anchoring detected. Competitor bluff probability: 72%. Recommend: value reframe. ]</div>
+              <div style="color:var(--cc-zinc-700);font-size:0.625rem;font-style:italic;">[ PSYCHOLOGY_CORE: Price
+                anchoring detected. Competitor bluff probability: 72%. Recommend: value reframe. ]</div>
               <div>&nbsp;</div>
-              <div><span class="cmd">AGENT_78:</span> "Completely understand, Jim. Out of interest — did those quotes include the after-hours emergency line and the 5-year compliance guarantee?"</div>
+              <div><span class="cmd">AGENT_78:</span> "Completely understand, Jim. Out of interest — did those quotes
+                include the after-hours emergency line and the 5-year compliance guarantee?"</div>
               <div>&nbsp;</div>
               <div><span class="warn">PROSPECT_SIM:</span> "...no, they didn't mention that."</div>
               <div>&nbsp;</div>
-              <div><span class="success">✓ OBJECTION_RESOLVED // Trust_Level: +18% // Conversion_Probability: 84%</span></div>
+              <div><span class="success">✓ OBJECTION_RESOLVED // Trust_Level: +18% // Conversion_Probability: 84%</span>
+              </div>
               <div>&nbsp;</div>
-              <div style="color:var(--cc-zinc-600);font-size:0.625rem;">[ Mentor Mode: ON — Tone calibrated for Regional NSW. Accent profile: Wagga Wagga basin. ]</div>
+              <div style="color:var(--cc-zinc-600);font-size:0.625rem;">[ Mentor Mode: ON — Tone calibrated for Regional
+                NSW. Accent profile: Wagga Wagga basin. ]</div>
             </div>
           </div>
         </div>
@@ -349,20 +855,29 @@
     </section>
 
     <!-- WAR ROOM -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-400);">Command Interface</p>
           <h2 class="text-display mt-4">The War Room</h2>
-          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">Total Command. Zero silos. The Oracle terminal gives you a conversational interface to your entire swarm. Real-time answers drawn from all 24 layers.</p>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">Total Command. Zero
+            silos. The Oracle terminal gives you a conversational interface to your entire swarm. Real-time answers
+            drawn from all 24 layers.</p>
         </div>
         <div class="terminal reveal" data-delay="200" style="max-width:700px;margin:0 auto;">
-          <div class="terminal-bar"><span style="background:var(--cc-red-500);"></span><span style="background:var(--cc-amber-500);"></span><span style="background:var(--cc-emerald-500);"></span><span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);margin-left:1rem;">casper_oracle // war_room_v2</span></div>
+          <div class="terminal-bar"><span style="background:var(--cc-red-500);"></span><span
+              style="background:var(--cc-amber-500);"></span><span
+              style="background:var(--cc-emerald-500);"></span><span class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-zinc-600);margin-left:1rem;">casper_oracle // war_room_v2</span>
+          </div>
           <div class="terminal-body">
-            <div><span class="cmd">$</span> <span class="highlight">oracle</span> --query "What's my biggest risk this quarter?"</div>
+            <div><span class="cmd">$</span> <span class="highlight">oracle</span> --query "What's my biggest risk this
+              quarter?"</div>
             <div>&nbsp;</div>
             <div><span class="success">▸ Analysing 24 layers...</span></div>
-            <div><span class="success">▸ Cross-referencing fiscal depth + competitive signal + tax position...</span></div>
+            <div><span class="success">▸ Cross-referencing fiscal depth + competitive signal + tax position...</span>
+            </div>
             <div>&nbsp;</div>
             <div><span class="warn">⚠ PRIMARY RISK IDENTIFIED:</span></div>
             <div>Cash collection velocity has slowed 18% over 60 days.</div>
@@ -385,7 +900,9 @@
     <section class="section" style="padding:10rem 2rem;text-align:center;">
       <div class="reveal container-sm">
         <h2 class="text-hero" style="font-style:italic;">Own the truth.</h2>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:40rem;color:var(--cc-zinc-400);">Don't operate in the dark. Deploy the only workforce physically connected to every metric, every machine, and every human signal in your business.</p>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:40rem;color:var(--cc-zinc-400);">Don't operate in the
+          dark. Deploy the only workforce physically connected to every metric, every machine, and every human signal in
+          your business.</p>
         <a href="pricing.html" class="btn-primary mt-8">Activate Intelligence</a>
       </div>
     </section>
@@ -396,7 +913,10 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
-        <div><span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span><span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span></div>
+        <div><span class="font-serif"
+            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span><span
+            class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence
+            Systems</span></div>
       </div>
       <div class="footer-links">
         <a href="workforce.html">The 100</a>
@@ -418,10 +938,10 @@
       document.querySelectorAll('.sim-scenario').forEach(s => s.classList.remove('active'));
       el.classList.add('active');
       const data = {
-        price: { m1:'+$4.2k', l1:'Monthly Revenue Gain', m2:'-8%', l2:'Win Rate Impact', m3:'Net Positive', l3:'Verdict' },
-        expand: { m1:'6 months', l1:'Ramp-Up Time', m2:'$12k', l2:'Required Investment', m3:'High Potential', l3:'Market Rating' },
-        hire: { m1:'$156k/yr', l1:'2 FTE Annual Cost', m2:'$9.6k/yr', l2:'Agent Equivalent', m3:'16x Savings', l3:'Cost Ratio' },
-        fleet: { m1:'-$4.2k/mo', l1:'Monthly Burn Rate', m2:'+$128k', l2:'12-Month Yield', m3:'Execute', l3:'Casper Verdict' }
+        price: { m1: '+$4.2k', l1: 'Monthly Revenue Gain', m2: '-8%', l2: 'Win Rate Impact', m3: 'Net Positive', l3: 'Verdict' },
+        expand: { m1: '6 months', l1: 'Ramp-Up Time', m2: '$12k', l2: 'Required Investment', m3: 'High Potential', l3: 'Market Rating' },
+        hire: { m1: '$156k/yr', l1: '2 FTE Annual Cost', m2: '$9.6k/yr', l2: 'Agent Equivalent', m3: '16x Savings', l3: 'Cost Ratio' },
+        fleet: { m1: '-$4.2k/mo', l1: 'Monthly Burn Rate', m2: '+$128k', l2: '12-Month Yield', m3: 'Execute', l3: 'Casper Verdict' }
       };
       const d = data[type];
       document.getElementById('simMetric1').textContent = d.m1;
@@ -433,4 +953,5 @@
     }
   </script>
 </body>
+
 </html>

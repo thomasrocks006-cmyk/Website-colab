@@ -1,45 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The 100 — Meet Your Synthetic Workforce | Camber & Casper</title>
-  <meta name="description" content="100 autonomous AI agents organized into 4 divisions — Hustlers, Capital, Operations, Sentry. Each with a name, a role, and a mission.">
+  <meta name="description"
+    content="100 autonomous AI agents organized into 4 divisions — Hustlers, Capital, Operations, Sentry. Each with a name, a role, and a mission.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="The 100 — Meet Your Synthetic Workforce | Camber &amp; Casper">
+  <meta property="og:description"
+    content="100 autonomous AI agents. Hustlers, Capital, Operations, Sentry. Each with a name, a role, and a mission.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The 100 — Meet Your Synthetic Workforce | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .agent-card { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.5s; }
-    .agent-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
-    .agent-id { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.3em; color: var(--cc-zinc-300); text-transform: uppercase; }
-    .agent-name { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 0.5rem; }
-    .agent-role { font-size: 0.75rem; color: var(--cc-zinc-400); font-style: italic; margin-top: 0.25rem; }
-    .agent-desc { font-size: 0.8rem; color: var(--cc-zinc-500); font-weight: 300; line-height: 1.7; margin-top: 1rem; }
-    .agent-status { display: flex; align-items: center; gap: 0.5rem; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--cc-zinc-50); }
-    .agent-status .dot { width: 6px; height: 6px; border-radius: 50%; animation: pulse 2s infinite; }
+    .agent-card {
+      background: white;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.5s;
+    }
 
-    .division-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--cc-zinc-100); }
-    .division-count { font-family: var(--font-mono); font-size: 3rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+    .agent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    }
+
+    .agent-id {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      color: var(--cc-zinc-300);
+      text-transform: uppercase;
+    }
+
+    .agent-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-top: 0.5rem;
+    }
+
+    .agent-role {
+      font-size: 0.75rem;
+      color: var(--cc-zinc-400);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+
+    .agent-desc {
+      font-size: 0.8rem;
+      color: var(--cc-zinc-500);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+
+    .agent-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--cc-zinc-50);
+    }
+
+    .agent-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .division-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--cc-zinc-100);
+    }
+
+    .division-count {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
 
     /* Org Visualizer — from Executive System 1 */
-    .org-viz { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-    .org-bar { border-radius: 60px; padding: 2rem; text-align: center; display: flex; flex-direction: column; justify-content: flex-end; transition: all 0.5s; position: relative; overflow: hidden; }
-    .org-bar:hover { transform: scale(1.02); }
+    .org-viz {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .org-bar {
+      border-radius: 60px;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .org-bar:hover {
+      transform: scale(1.02);
+    }
 
     /* Autonomy Calculator — from Agent Manifest v2.2 */
-    .calc-container { background: var(--cc-zinc-950); border-radius: 60px; padding: 4rem; color: white; }
-    .calc-slider { width: 100%; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: var(--cc-zinc-800); outline: none; margin: 2rem 0; }
-    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: white; cursor: pointer; border: 2px solid var(--cc-zinc-700); }
-    .calc-output { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--cc-zinc-800); }
-    .calc-output .stat-value { font-size: 2rem; color: white; }
-    .calc-output .stat-label { color: var(--cc-zinc-500); }
+    .calc-container {
+      background: var(--cc-zinc-950);
+      border-radius: 60px;
+      padding: 4rem;
+      color: white;
+    }
+
+    .calc-slider {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--cc-zinc-800);
+      outline: none;
+      margin: 2rem 0;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      border: 2px solid var(--cc-zinc-700);
+    }
+
+    .calc-output {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cc-zinc-800);
+    }
+
+    .calc-output .stat-value {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .calc-output .stat-label {
+      color: var(--cc-zinc-500);
+    }
 
     @media (max-width: 768px) {
-      .org-viz { grid-template-columns: 1fr 1fr; }
-      .calc-output { grid-template-columns: 1fr; }
+      .org-viz {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .calc-output {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -86,12 +228,18 @@
     <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
       <div class="reveal container-sm">
         <div class="badge badge-light mb-8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
           Synthetic Workforce Manifest
         </div>
         <h1 class="text-hero">Meet<br><span class="text-ghost">the 100.</span></h1>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
-          Not tools. Not plugins. <em>Employees.</em> Each has a name, a role, a specialization. Organized into 4 divisions, they form the most efficient synthetic organization ever assembled.
+          Not tools. Not plugins. <em>Employees.</em> Each has a name, a role, a specialization. Organized into 4
+          divisions, they form the most efficient synthetic organization ever assembled.
         </p>
       </div>
     </section>
@@ -151,50 +299,63 @@
           </div>
         </div>
         <p class="text-body-lg mb-8" style="color:var(--cc-zinc-400);max-width:48rem;">
-          Your front line. They find the leads, build the quotes, chase the follow-ups, and close the deals while you're on-site or off the clock. The revenue engine that never sleeps.
+          Your front line. They find the leads, build the quotes, chase the follow-ups, and close the deals while you're
+          on-site or off the clock. The revenue engine that never sleeps.
         </p>
         <div class="grid-3" style="gap:1.5rem;">
           <div class="agent-card">
             <div class="agent-id">Agent #10</div>
             <div class="agent-name">Lead Scraper</div>
             <div class="agent-role">Primary Lead Intelligence</div>
-            <div class="agent-desc">Scrapes the web and monitors council DAs, tenders, and directories. Generates qualified leads filtered by your trade, radius, and revenue fit.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span style="color:var(--cc-blue-500);">Active</span></div>
+            <div class="agent-desc">Scrapes the web and monitors council DAs, tenders, and directories. Generates
+              qualified leads filtered by your trade, radius, and revenue fit.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span
+                style="color:var(--cc-blue-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #12</div>
             <div class="agent-name">Quote Architect</div>
             <div class="agent-role">Proposal & Estimation Engine</div>
-            <div class="agent-desc">Builds detailed, margin-optimized quotes in under 42 seconds. References your pricing history, material costs, and competitor benchmarking.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span style="color:var(--cc-blue-500);">Active</span></div>
+            <div class="agent-desc">Builds detailed, margin-optimized quotes in under 42 seconds. References your
+              pricing history, material costs, and competitor benchmarking.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span
+                style="color:var(--cc-blue-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #15</div>
             <div class="agent-name">Pipeline Warden</div>
             <div class="agent-role">Deal Velocity Control</div>
-            <div class="agent-desc">Monitors your pipeline stage-by-stage. Ensures no lead stalls. Triggers follow-ups and escalation based on probabilistic win-rate modelling.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span style="color:var(--cc-blue-500);">Active</span></div>
+            <div class="agent-desc">Monitors your pipeline stage-by-stage. Ensures no lead stalls. Triggers follow-ups
+              and escalation based on probabilistic win-rate modelling.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span
+                style="color:var(--cc-blue-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #18</div>
             <div class="agent-name">Outbound Hunter</div>
             <div class="agent-role">Cold Outreach Specialist</div>
-            <div class="agent-desc">Crafts personalized outreach across email, LinkedIn, and SMS. A/B tests messaging and learns from reply patterns to optimize open rates.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Standby</span></div>
+            <div class="agent-desc">Crafts personalized outreach across email, LinkedIn, and SMS. A/B tests messaging
+              and learns from reply patterns to optimize open rates.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Standby</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #22</div>
             <div class="agent-name">Proposal Closer</div>
             <div class="agent-role">Document & Sign-off</div>
-            <div class="agent-desc">Takes final quotes and wraps them in branded proposal docs. Manages e-signatures, deposit collection, and confirmation scheduling.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span style="color:var(--cc-blue-500);">Active</span></div>
+            <div class="agent-desc">Takes final quotes and wraps them in branded proposal docs. Manages e-signatures,
+              deposit collection, and confirmation scheduling.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-blue-500);"></span> <span
+                style="color:var(--cc-blue-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #28</div>
             <div class="agent-name">Review Harvester</div>
             <div class="agent-role">Social Proof Engine</div>
-            <div class="agent-desc">Post-job, this agent triggers review requests across Google, Facebook, and HiPages. Manages your star rating as a growth asset.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Standby</span></div>
+            <div class="agent-desc">Post-job, this agent triggers review requests across Google, Facebook, and HiPages.
+              Manages your star rating as a growth asset.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Standby</span></div>
           </div>
         </div>
       </div>
@@ -205,7 +366,8 @@
          Source: Agent Manifest v1.0, v2.2, Meet Team v1/v2
          20 Agents — Invoicing, cashflow, debt recovery
          ============================================ -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:6rem 2rem;" id="capital">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:6rem 2rem;" id="capital">
       <div class="container reveal">
         <div class="division-header">
           <div class="division-count" style="color:var(--cc-emerald-500);">02</div>
@@ -215,29 +377,36 @@
           </div>
         </div>
         <p class="text-body-lg mb-8" style="color:var(--cc-zinc-400);max-width:48rem;">
-          Guards your cashflow like a fortress. Invoices go out on time, debtors are chased, and reconciliation happens while you sleep.
+          Guards your cashflow like a fortress. Invoices go out on time, debtors are chased, and reconciliation happens
+          while you sleep.
         </p>
         <div class="grid-3" style="gap:1.5rem;">
           <div class="agent-card">
             <div class="agent-id">Agent #31</div>
             <div class="agent-name">Invoice Commander</div>
             <div class="agent-role">Billing & Payment Sync</div>
-            <div class="agent-desc">Auto-generates invoices from job completion data. Manages Xero/MYOB integration, payment reminders, and late-fee triggers.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Active</span></div>
+            <div class="agent-desc">Auto-generates invoices from job completion data. Manages Xero/MYOB integration,
+              payment reminders, and late-fee triggers.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #44</div>
             <div class="agent-name">Debt Collector</div>
             <div class="agent-role">Receivable Recovery</div>
-            <div class="agent-desc">Escalating cadence from polite reminder to formal notice. Tracks overdue accounts and surfaces high-risk debtors to your dashboard.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Active</span></div>
+            <div class="agent-desc">Escalating cadence from polite reminder to formal notice. Tracks overdue accounts
+              and surfaces high-risk debtors to your dashboard.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #38</div>
             <div class="agent-name">Cashflow Oracle</div>
             <div class="agent-role">Predictive Finance</div>
-            <div class="agent-desc">Forecasts your 30/60/90 day cashflow position. Flags upcoming gaps and recommends deposit timing to maintain runway.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Active</span></div>
+            <div class="agent-desc">Forecasts your 30/60/90 day cashflow position. Flags upcoming gaps and recommends
+              deposit timing to maintain runway.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Active</span></div>
           </div>
         </div>
       </div>
@@ -258,29 +427,36 @@
           </div>
         </div>
         <p class="text-body-lg mb-8" style="color:var(--cc-zinc-400);max-width:48rem;">
-          The backbone of your day. Scheduling, compliance, supply chain, and fleet coordination — all automated, all tracked.
+          The backbone of your day. Scheduling, compliance, supply chain, and fleet coordination — all automated, all
+          tracked.
         </p>
         <div class="grid-3" style="gap:1.5rem;">
           <div class="agent-card">
             <div class="agent-id">Agent #72</div>
             <div class="agent-name">Schedule Pilot</div>
             <div class="agent-role">Calendar & Dispatch Engine</div>
-            <div class="agent-desc">Manages your job calendar, crew assignments, material deliveries, and travel optimization. Keeps every moving part synchronized.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-amber-500);"></span> <span style="color:var(--cc-amber-500);">Active</span></div>
+            <div class="agent-desc">Manages your job calendar, crew assignments, material deliveries, and travel
+              optimization. Keeps every moving part synchronized.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-amber-500);"></span> <span
+                style="color:var(--cc-amber-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #85</div>
             <div class="agent-name">Compliance Sorter</div>
             <div class="agent-role">Regulatory & License Watch</div>
-            <div class="agent-desc">Tracks expiry dates for licences, insurances, and certifications. Auto-files renewals and flags compliance gaps before they become fines.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-amber-500);"></span> <span style="color:var(--cc-amber-500);">Active</span></div>
+            <div class="agent-desc">Tracks expiry dates for licences, insurances, and certifications. Auto-files
+              renewals and flags compliance gaps before they become fines.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-amber-500);"></span> <span
+                style="color:var(--cc-amber-500);">Active</span></div>
           </div>
           <div class="agent-card">
             <div class="agent-id">Agent #78</div>
             <div class="agent-name">Supply Sentinel</div>
             <div class="agent-role">Procurement & Stock</div>
-            <div class="agent-desc">Monitors material stock levels, compares supplier pricing, and auto-generates POs when thresholds are hit.</div>
-            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span style="color:var(--cc-emerald-500);">Standby</span></div>
+            <div class="agent-desc">Monitors material stock levels, compares supplier pricing, and auto-generates POs
+              when thresholds are hit.</div>
+            <div class="agent-status"><span class="dot" style="background:var(--cc-emerald-500);"></span> <span
+                style="color:var(--cc-emerald-500);">Standby</span></div>
           </div>
         </div>
       </div>
@@ -302,29 +478,40 @@
           </div>
         </div>
         <p class="text-body-lg mb-8" style="color:var(--cc-zinc-500);max-width:48rem;">
-          The silent guardians. They encrypt, they monitor, they protect. Sovereign security on Australian soil — watching over every transaction, every byte.
+          The silent guardians. They encrypt, they monitor, they protect. Sovereign security on Australian soil —
+          watching over every transaction, every byte.
         </p>
         <div class="grid-3" style="gap:1.5rem;">
           <div class="agent-card" style="background:var(--cc-zinc-900);border-color:var(--cc-zinc-800);">
             <div class="agent-id" style="color:var(--cc-zinc-600);">Agent #01</div>
             <div class="agent-name" style="color:white;">Encryption Warden</div>
             <div class="agent-role" style="color:var(--cc-zinc-500);">Ironbark Security Lead</div>
-            <div class="agent-desc" style="color:var(--cc-zinc-500);">Manages the quantum-grade encryption layer across all Ironbark nodes. Every packet, every key rotation, every identity check flows through #01.</div>
-            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot" style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active — Classified</span></div>
+            <div class="agent-desc" style="color:var(--cc-zinc-500);">Manages the quantum-grade encryption layer across
+              all Ironbark nodes. Every packet, every key rotation, every identity check flows through #01.</div>
+            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot"
+                style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active —
+                Classified</span></div>
           </div>
           <div class="agent-card" style="background:var(--cc-zinc-900);border-color:var(--cc-zinc-800);">
             <div class="agent-id" style="color:var(--cc-zinc-600);">Agent #05</div>
             <div class="agent-name" style="color:white;">Reputation Shield</div>
             <div class="agent-role" style="color:var(--cc-zinc-500);">Brand & Review Monitor</div>
-            <div class="agent-desc" style="color:var(--cc-zinc-500);">Monitors mentions of your brand across every platform. Flags negative reviews in real-time and triggers response protocols before sentiment spreads.</div>
-            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot" style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active — Classified</span></div>
+            <div class="agent-desc" style="color:var(--cc-zinc-500);">Monitors mentions of your brand across every
+              platform. Flags negative reviews in real-time and triggers response protocols before sentiment spreads.
+            </div>
+            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot"
+                style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active —
+                Classified</span></div>
           </div>
           <div class="agent-card" style="background:var(--cc-zinc-900);border-color:var(--cc-zinc-800);">
             <div class="agent-id" style="color:var(--cc-zinc-600);">Agent #09</div>
             <div class="agent-name" style="color:white;">Audit Ghost</div>
             <div class="agent-role" style="color:var(--cc-zinc-500);">Compliance Trail Logger</div>
-            <div class="agent-desc" style="color:var(--cc-zinc-500);">Creates immutable audit trails for every agent action. If regulators come calling, you have a complete log from day one.</div>
-            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot" style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active — Classified</span></div>
+            <div class="agent-desc" style="color:var(--cc-zinc-500);">Creates immutable audit trails for every agent
+              action. If regulators come calling, you have a complete log from day one.</div>
+            <div class="agent-status" style="border-color:var(--cc-zinc-800);"><span class="dot"
+                style="background:var(--cc-red-500);"></span> <span style="color:var(--cc-red-500);">Active —
+                Classified</span></div>
           </div>
         </div>
       </div>
@@ -337,15 +524,20 @@
     <section class="section section-dark" style="padding:10rem 2rem;text-align:center;">
       <div class="dot-grid"></div>
       <div class="reveal container-sm" style="position:relative;z-index:1;">
-        <div class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.2);color:var(--cc-red-500);animation:pulse 2s infinite;">
+        <div class="badge"
+          style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.2);color:var(--cc-red-500);animation:pulse 2s infinite;">
           The Future Is Already Here
         </div>
-        <h2 class="text-display mt-8" style="color:white;">Don't get caught<br><span style="color:var(--cc-zinc-600);font-style:italic;">flat-footed.</span></h2>
+        <h2 class="text-display mt-8" style="color:white;">Don't get caught<br><span
+            style="color:var(--cc-zinc-600);font-style:italic;">flat-footed.</span></h2>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-500);">
-          The shift to autonomous workforces has begun. You can either be the business with 100 experts under your fingertip, or be the one left trying to compete with one.
+          The shift to autonomous workforces has begun. You can either be the business with 100 experts under your
+          fingertip, or be the one left trying to compete with one.
         </p>
-        <p style="font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;color:white;margin-top:2rem;">Jump. Join. Or be replaced.</p>
-        <a href="pricing.html" class="btn-primary mt-8" style="background:white;color:var(--cc-zinc-950);">Hire the Swarm — $799/mo</a>
+        <p style="font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;color:white;margin-top:2rem;">Jump. Join. Or
+          be replaced.</p>
+        <a href="pricing.html" class="btn-primary mt-8" style="background:white;color:var(--cc-zinc-950);">Hire the
+          Swarm — $799/mo</a>
       </div>
     </section>
 
@@ -359,18 +551,21 @@
           <p class="text-label" style="color:var(--cc-zinc-400);">Adaptive Intelligence</p>
           <h2 class="text-display mt-4">The Autonomy Engine</h2>
           <p class="text-body-lg mt-4 mx-auto" style="max-width:40rem;color:var(--cc-zinc-400);">
-            As you reinvest in the platform, your swarm evolves. More agents earn "trust-state" status, unlocking deeper autonomy tiers.
+            As you reinvest in the platform, your swarm evolves. More agents earn "trust-state" status, unlocking deeper
+            autonomy tiers.
           </p>
         </div>
         <div class="calc-container reveal" data-delay="200">
           <div class="flex-between">
             <div>
               <p class="text-label" style="color:var(--cc-zinc-500);">Reinvestment Level</p>
-              <div id="calcLevel" style="font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;margin-top:0.5rem;">$799</div>
+              <div id="calcLevel" style="font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;margin-top:0.5rem;">
+                $799</div>
             </div>
             <div class="text-right">
               <p class="text-label" style="color:var(--cc-zinc-500);">Autonomy Tier</p>
-              <div id="calcTier" style="font-size:1.5rem;font-weight:600;color:var(--cc-blue-500);margin-top:0.5rem;">Foundation</div>
+              <div id="calcTier" style="font-size:1.5rem;font-weight:600;color:var(--cc-blue-500);margin-top:0.5rem;">
+                Foundation</div>
             </div>
           </div>
           <input type="range" class="calc-slider" id="autonomySlider" min="799" max="4999" value="799" step="100">
@@ -395,7 +590,8 @@
     <!-- CTA -->
     <section class="section" style="padding:10rem 2rem;text-align:center;border-top:1px solid var(--cc-zinc-100);">
       <div class="reveal container-sm">
-        <h2 class="text-display">The Future is Synthetic.<br><span class="text-ghost">100 Agents. Zero Complexity.</span></h2>
+        <h2 class="text-display">The Future is Synthetic.<br><span class="text-ghost">100 Agents. Zero
+            Complexity.</span></h2>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
           One subscription. Four divisions. A complete synthetic workforce operational in under 10 minutes.
         </p>
@@ -410,8 +606,10 @@
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
         <div>
-          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+          <span class="font-serif"
+            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+            Intelligence Systems</span>
         </div>
       </div>
       <div class="footer-links">
@@ -433,7 +631,7 @@
     // Autonomy Calculator — interactive
     const slider = document.getElementById('autonomySlider');
     if (slider) {
-      slider.addEventListener('input', function() {
+      slider.addEventListener('input', function () {
         const val = parseInt(this.value);
         document.getElementById('calcLevel').textContent = '$' + val.toLocaleString();
         let tier, agents, actions, roi;
@@ -449,4 +647,5 @@
     }
   </script>
 </body>
+
 </html>

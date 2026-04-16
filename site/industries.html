@@ -1,35 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Industries — Tradies, Agencies, E-Commerce | Camber & Casper</title>
-  <meta name="description" content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
+  <meta name="description"
+    content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Industries — Tradies, Agencies, E-Commerce | Camber &amp; Casper">
+  <meta property="og:description"
+    content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Industries | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .tab-bar { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 4rem; border: 1px solid var(--cc-zinc-100); border-radius: 999px; padding: 0.375rem; background: white; width: fit-content; margin-left: auto; margin-right: auto; }
-    .tab-btn { padding: 0.75rem 2rem; border-radius: 999px; border: none; background: transparent; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; color: var(--cc-zinc-400); transition: all 0.3s; }
-    .tab-btn.active { background: var(--cc-zinc-950); color: white; }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
+    .tab-bar {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 4rem;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: 999px;
+      padding: 0.375rem;
+      background: white;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-    .use-case { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; }
-    .use-case-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--cc-zinc-50); }
-    .use-case h4 { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
-    .use-case p { font-size: 0.8rem; color: var(--cc-zinc-400); line-height: 1.7; margin-top: 0.5rem; }
+    .tab-btn {
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--cc-zinc-400);
+      transition: all 0.3s;
+    }
 
-    .testimonial { background: var(--cc-zinc-950); border-radius: 60px; padding: 4rem; color: white; text-align: center; }
-    .testimonial-quote { font-family: var(--font-serif); font-size: 1.75rem; font-style: italic; font-weight: 400; line-height: 1.5; max-width: 36rem; margin: 0 auto; }
-    .testimonial-author { font-weight: 700; font-size: 0.875rem; margin-top: 2rem; }
-    .testimonial-role { font-size: 0.75rem; color: var(--cc-zinc-500); margin-top: 0.25rem; }
+    .tab-btn.active {
+      background: var(--cc-zinc-950);
+      color: white;
+    }
 
-    .workflow-step { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--cc-zinc-100); }
-    .workflow-step:last-child { border-bottom:none; }
-    .workflow-num { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--cc-blue-500); flex-shrink: 0; width: 3rem; }
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .use-case {
+      background: white;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .use-case-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      background: var(--cc-zinc-50);
+    }
+
+    .use-case h4 {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .use-case p {
+      font-size: 0.8rem;
+      color: var(--cc-zinc-400);
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+
+    .testimonial {
+      background: var(--cc-zinc-950);
+      border-radius: 60px;
+      padding: 4rem;
+      color: white;
+      text-align: center;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--cc-zinc-500);
+      margin-top: 0.25rem;
+    }
+
+    .workflow-step {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--cc-zinc-100);
+    }
+
+    .workflow-step:last-child {
+      border-bottom: none;
+    }
+
+    .workflow-num {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cc-blue-500);
+      flex-shrink: 0;
+      width: 3rem;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -77,7 +192,8 @@
       <div class="reveal container-sm">
         <h1 class="text-hero">Built for how<br><span class="text-ghost">you actually work.</span></h1>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
-          We don't sell one-size-fits-all AI. Every vertical gets a purpose-built command portal tailored to the actual pain points of your industry.
+          We don't sell one-size-fits-all AI. Every vertical gets a purpose-built command portal tailored to the actual
+          pain points of your industry.
         </p>
       </div>
     </section>
@@ -98,15 +214,20 @@
              James Miller testimonial, 42-second quotes
              ============================================ -->
         <div class="tab-panel active" id="tab-tradies">
-          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+          <div class="reveal"
+            style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
               <div class="badge badge-light mb-6">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
+                  <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+                </svg>
                 Tradie Command Portal
               </div>
               <h2 class="text-display">Win back<br><span class="text-ghost">your weekends.</span></h2>
               <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-                You're a plumber, not an admin. C&C handles the quoting, invoicing, scheduling, and debt-chasing while you're on-site — or on the boat.
+                You're a plumber, not an admin. C&C handles the quoting, invoicing, scheduling, and debt-chasing while
+                you're on-site — or on the boat.
               </p>
               <div class="grid-2 mt-8" style="gap:2rem;">
                 <div class="stat">
@@ -127,28 +248,32 @@
                   <div class="workflow-num">01</div>
                   <div>
                     <h4 style="font-weight:700;font-size:0.875rem;">Lead Comes In</h4>
-                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Lead Scraper #10 captures it from HiPages, Google, or direct enquiry. Instantly qualified.</p>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Lead Scraper #10 captures
+                      it from HiPages, Google, or direct enquiry. Instantly qualified.</p>
                   </div>
                 </div>
                 <div class="workflow-step">
                   <div class="workflow-num">02</div>
                   <div>
                     <h4 style="font-weight:700;font-size:0.875rem;">Quote Sent in 42 Seconds</h4>
-                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Quote Architect #12 builds a margin-optimized proposal before the client has checked another provider.</p>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Quote Architect #12 builds
+                      a margin-optimized proposal before the client has checked another provider.</p>
                   </div>
                 </div>
                 <div class="workflow-step">
                   <div class="workflow-num">03</div>
                   <div>
                     <h4 style="font-weight:700;font-size:0.875rem;">Job Scheduled & Invoiced</h4>
-                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Schedule Pilot #72 manages the calendar. Invoice Commander #31 sends the bill on completion.</p>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Schedule Pilot #72 manages
+                      the calendar. Invoice Commander #31 sends the bill on completion.</p>
                   </div>
                 </div>
                 <div class="workflow-step">
                   <div class="workflow-num">04</div>
                   <div>
                     <h4 style="font-weight:700;font-size:0.875rem;">You Go Home</h4>
-                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Casper handles the evening follow-ups, review requests, and tomorrow's prep. Tools down. Hood up.</p>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Casper handles the evening
+                      follow-ups, review requests, and tomorrow's prep. Tools down. Hood up.</p>
                   </div>
                 </div>
               </div>
@@ -157,39 +282,67 @@
           <!-- Use Cases Grid -->
           <div class="grid-3 reveal" style="gap:1.5rem;margin-bottom:4rem;">
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-blue-500)" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                </svg></div>
               <h4>Lead Generation</h4>
               <p>Auto-scrapes council DAs, tenders, and directories. Filters by trade, radius, and revenue fit.</p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-emerald-500)" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg></div>
               <h4>Invoicing & Debt</h4>
-              <p>Auto-invoices on job completion. Debt Collector #44 chases overdue accounts on an escalating cadence.</p>
+              <p>Auto-invoices on job completion. Debt Collector #44 chases overdue accounts on an escalating cadence.
+              </p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-amber-500)" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg></div>
               <h4>Scheduling & Dispatch</h4>
               <p>Calendar management, crew assignments, material deliveries, and travel optimization — all synced.</p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-red-500)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-red-500)" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg></div>
               <h4>Compliance Watch</h4>
-              <p>Tracks licence expiry, insurance renewals, and builder registration. Flags gaps before they cost you.</p>
+              <p>Tracks licence expiry, insurance renewals, and builder registration. Flags gaps before they cost you.
+              </p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-blue-500)" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg></div>
               <h4>Review Harvesting</h4>
-              <p>Post-job review requests across Google, Facebook, HiPages. Manages your star rating as a growth asset.</p>
+              <p>Post-job review requests across Google, Facebook, HiPages. Manages your star rating as a growth asset.
+              </p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-emerald-500)" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg></div>
               <h4>Cashflow Forecasting</h4>
               <p>30/60/90 day cashflow projections. Flags upcoming gaps and recommends deposit timing.</p>
             </div>
           </div>
           <!-- Testimonial — from Tradie Command Portal "James Miller" -->
           <div class="testimonial reveal">
-            <div class="testimonial-quote">"I used to chase invoices until 9pm. Now my phone buzzes with payment confirmations while I'm at the kids' footy. Win-rate went up 40% in the first month."</div>
+            <div class="testimonial-quote">"I used to chase invoices until 9pm. Now my phone buzzes with payment
+              confirmations while I'm at the kids' footy. Win-rate went up 40% in the first month."</div>
             <div class="testimonial-author">James Miller</div>
             <div class="testimonial-role">Miller Electrical Solutions · Melbourne</div>
           </div>
@@ -202,23 +355,31 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:48rem;margin:0 auto;">
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">Recruitment & Onboarding</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">$5,800 + 40hrs per hire</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Instant Commissioning</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  $5,800 + 40hrs per hire</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Instant
+                  Commissioning</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">SaaS Stack Bloat</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">$450–$900/mo across 8+ tools</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Included in C&C Core</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  $450–$900/mo across 8+ tools</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Included
+                  in C&C Core</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">The "Drama" Tax</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">Mental Load: HIGH</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 0% Volatility</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  Mental Load: HIGH</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 0%
+                  Volatility</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">Opportunity Cost</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">Lost Jobs: 20%+ (slow quoting)</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Apex Response: 42 Seconds</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  Lost Jobs: 20%+ (slow quoting)</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Apex
+                  Response: 42 Seconds</p>
               </div>
             </div>
           </div>
@@ -230,15 +391,20 @@
              "Output like a network agency. Run like a founder."
              ============================================ -->
         <div class="tab-panel" id="tab-agencies">
-          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+          <div class="reveal"
+            style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
               <div class="badge badge-light mb-6">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
                 Agency Command Portal
               </div>
               <h2 class="text-display">Output like<br><span class="text-ghost">a network agency.</span></h2>
               <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-                You're a boutique agency punching above your weight. C&C gives you the research depth, reporting cadence, and outbound volume of agencies 10x your size. Run like a founder, output like a network.
+                You're a boutique agency punching above your weight. C&C gives you the research depth, reporting
+                cadence, and outbound volume of agencies 10x your size. Run like a founder, output like a network.
               </p>
               <div class="grid-2 mt-8" style="gap:2rem;">
                 <div class="stat">
@@ -257,45 +423,64 @@
                 <div class="workflow-num">01</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Deep Research</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Competitive analysis, market mapping, and audience insights — all before the brief lands.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Competitive analysis, market
+                    mapping, and audience insights — all before the brief lands.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">02</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Content at Scale</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Draft copy, social calendars, and reporting packs generated and scheduled automatically.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Draft copy, social calendars,
+                    and reporting packs generated and scheduled automatically.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">03</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Client Reporting</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">White-label reports with real-time data. Client dashboards that update without you touching them.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">White-label reports with
+                    real-time data. Client dashboards that update without you touching them.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">04</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">New Business Pipeline</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Outbound prospecting, proposal generation, and pitch deck assembly — all automated.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Outbound prospecting,
+                    proposal generation, and pitch deck assembly — all automated.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="grid-3 reveal" style="gap:1.5rem;">
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-blue-500)" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg></div>
               <h4>Market Intelligence</h4>
-              <p>Competitor monitoring, trend detection, and opportunity identification across your client's verticals.</p>
+              <p>Competitor monitoring, trend detection, and opportunity identification across your client's verticals.
+              </p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-emerald-500)" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg></div>
               <h4>Automated Reporting</h4>
-              <p>Weekly and monthly reporting packs with real data, insights, and recommendations — zero manual work.</p>
+              <p>Weekly and monthly reporting packs with real data, insights, and recommendations — zero manual work.
+              </p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-amber-500)" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                </svg></div>
               <h4>Outbound at Scale</h4>
               <p>Personalized outreach, LinkedIn automation, and follow-up sequences that feel human.</p>
             </div>
@@ -309,26 +494,36 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:48rem;margin:0 auto;">
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">Specialized Talent</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">$120k+/yr per Senior</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 100 Polymath Agents</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  $120k+/yr per Senior</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 100
+                  Polymath Agents</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">Non-Billable Grind</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">40% of Staff Time</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 100% Autonomous Ops</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  40% of Staff Time</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ 100%
+                  Autonomous Ops</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">Client Data Leakage</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">Brand Reputation Risk (Global LLMs)</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Sovereign AU Shield</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  Brand Reputation Risk (Global LLMs)</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Sovereign
+                  AU Shield</p>
               </div>
               <div class="card" style="padding:2rem;">
                 <h4 style="font-weight:700;font-size:0.875rem;">The Scaling Ceiling</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">Fixed by Headcount</p>
-                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Elastic Scale</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  Fixed by Headcount</p>
+                <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;margin-top:0.25rem;">→ Elastic
+                  Scale</p>
               </div>
             </div>
-            <p class="text-center mt-6" style="font-size:0.75rem;color:var(--cc-zinc-400);font-style:italic;">Agencies using standard LLMs are inadvertently leaking client strategies to global training pools. C&C is air-gapped.</p>
+            <p class="text-center mt-6" style="font-size:0.75rem;color:var(--cc-zinc-400);font-style:italic;">Agencies
+              using standard LLMs are inadvertently leaking client strategies to global training pools. C&C is
+              air-gapped.</p>
           </div>
         </div>
 
@@ -338,15 +533,21 @@
              "Supply Forensics. LTV Optimization."
              ============================================ -->
         <div class="tab-panel" id="tab-ecommerce">
-          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+          <div class="reveal"
+            style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
               <div class="badge badge-light mb-6">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="8" cy="21" r="1" />
+                  <circle cx="19" cy="21" r="1" />
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
                 E-Commerce Command
               </div>
               <h2 class="text-display">Commerce<br><span class="text-ghost">on autopilot.</span></h2>
               <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-                Supply forensics, LTV optimization, and negotiated supplier recovery. Your e-commerce operation runs 24/7 with agents managing inventory, pricing, and customer lifecycle.
+                Supply forensics, LTV optimization, and negotiated supplier recovery. Your e-commerce operation runs
+                24/7 with agents managing inventory, pricing, and customer lifecycle.
               </p>
               <div class="grid-2 mt-8" style="gap:2rem;">
                 <div class="stat">
@@ -365,70 +566,98 @@
                 <div class="workflow-num">01</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Supply Chain Intelligence</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Tracks supplier pricing, lead times, and reliability. Auto-negotiates reorders based on forecasted demand.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Tracks supplier pricing, lead
+                    times, and reliability. Auto-negotiates reorders based on forecasted demand.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">02</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Dynamic Pricing</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Adjusts pricing in real-time based on competitor moves, margin targets, and demand signals.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Adjusts pricing in real-time
+                    based on competitor moves, margin targets, and demand signals.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">03</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Customer Lifecycle</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Churn prediction, win-back campaigns, and LTV optimization running continuously.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Churn prediction, win-back
+                    campaigns, and LTV optimization running continuously.</p>
                 </div>
               </div>
               <div class="workflow-step">
                 <div class="workflow-num">04</div>
                 <div>
                   <h4 style="font-weight:700;font-size:0.875rem;">Loss Recovery</h4>
-                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Abandoned cart recovery, refund negotiation, and inventory loss-prevention at machine speed.</p>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Abandoned cart recovery,
+                    refund negotiation, and inventory loss-prevention at machine speed.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="grid-3 reveal" style="gap:1.5rem;">
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-blue-500)" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg></div>
               <h4>Demand Forecasting</h4>
               <p>Predictive inventory management using historical sales, seasonal trends, and market signals.</p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-emerald-500)" stroke-width="2">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg></div>
               <h4>Customer Retention</h4>
               <p>Identifies at-risk customers before they churn. Triggers personalized win-back sequences.</p>
             </div>
             <div class="use-case">
-              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="var(--cc-amber-500)" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg></div>
               <h4>Margin Optimization</h4>
               <p>Real-time margin tracking across SKUs with automated repricing to protect profit targets.</p>
             </div>
           </div>
           <!-- Supply Forensics + Refund Forensics — from E-commerce Command -->
           <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem;">
-            <div class="card" style="padding:2.5rem;background:var(--cc-zinc-950);border-color:var(--cc-zinc-900);color:white;">
-              <div class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">SUPPLY_FORENSICS</div>
+            <div class="card"
+              style="padding:2.5rem;background:var(--cc-zinc-950);border-color:var(--cc-zinc-900);color:white;">
+              <div class="font-mono"
+                style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">
+                SUPPLY_FORENSICS</div>
               <h4 style="font-weight:700;font-size:1.125rem;">Supply Chain Intelligence</h4>
               <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">
-                Casper monitors global shipping lanes and manufacturer lead-times. Knows if a port strike in Ningbo will delay your Sydney restock by 14 days and automatically throttles ad-spend.
+                Casper monitors global shipping lanes and manufacturer lead-times. Knows if a port strike in Ningbo will
+                delay your Sydney restock by 14 days and automatically throttles ad-spend.
               </p>
-              <div style="margin-top:1.5rem;padding:1rem;background:var(--cc-zinc-900);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.625rem;">
+              <div
+                style="margin-top:1.5rem;padding:1rem;background:var(--cc-zinc-900);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.625rem;">
                 <div style="color:var(--cc-red-500);">⚠ Ningbo Port Strike: 14 Day Projected Delay</div>
                 <div style="color:var(--cc-amber-500);margin-top:0.5rem;">↳ Auto-throttling Facebook spend by 18%</div>
-                <div style="color:var(--cc-emerald-500);margin-top:0.5rem;">✓ Alternate supplier secured: Melbourne 3PL</div>
+                <div style="color:var(--cc-emerald-500);margin-top:0.5rem;">✓ Alternate supplier secured: Melbourne 3PL
+                </div>
               </div>
             </div>
-            <div class="card" style="padding:2.5rem;background:var(--cc-zinc-950);border-color:var(--cc-zinc-900);color:white;">
-              <div class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">REFUND_FORENSICS</div>
+            <div class="card"
+              style="padding:2.5rem;background:var(--cc-zinc-950);border-color:var(--cc-zinc-900);color:white;">
+              <div class="font-mono"
+                style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">
+                REFUND_FORENSICS</div>
               <h4 style="font-weight:700;font-size:1.125rem;">Refund & Return Intelligence</h4>
               <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">
-                Returns are the silent killer of e-com profit. Casper identifies the exact manufacturing batch, warehouse shift, or shipping route causing return spikes.
+                Returns are the silent killer of e-com profit. Casper identifies the exact manufacturing batch,
+                warehouse shift, or shipping route causing return spikes.
               </p>
-              <div style="margin-top:1.5rem;padding:1rem;background:var(--cc-zinc-900);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.625rem;">
+              <div
+                style="margin-top:1.5rem;padding:1rem;background:var(--cc-zinc-900);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:0.625rem;">
                 <div style="color:var(--cc-red-500);">🔍 Batch_CN_004: 22% return rate</div>
                 <div style="color:var(--cc-zinc-400);margin-top:0.5rem;">↳ Reason: "Sizing Inconsistency"</div>
                 <div style="color:var(--cc-blue-500);margin-top:0.5rem;">→ Auto-dispute filed with Mascot 3PL</div>
@@ -443,17 +672,20 @@
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:48rem;margin:0 auto;">
               <div class="card" style="padding:2rem;text-align:center;">
                 <h4 style="font-weight:700;font-size:0.75rem;">Customer Support</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">$45k/yr (Offshore)</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  $45k/yr (Offshore)</p>
                 <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;">→ $799/mo</p>
               </div>
               <div class="card" style="padding:2rem;text-align:center;">
                 <h4 style="font-weight:700;font-size:0.75rem;">3PL Coordination</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">15hrs/wk (Founder)</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  15hrs/wk (Founder)</p>
                 <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;">→ Autonomous</p>
               </div>
               <div class="card" style="padding:2rem;text-align:center;">
                 <h4 style="font-weight:700;font-size:0.75rem;">Ad Optimization</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">$3k/mo (Agency)</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);text-decoration:line-through;margin-top:0.5rem;">
+                  $3k/mo (Agency)</p>
                 <p style="font-size:0.75rem;color:var(--cc-emerald-500);font-weight:700;">→ Native Integration</p>
               </div>
             </div>
@@ -480,8 +712,10 @@
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
         <div>
-          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+          <span class="font-serif"
+            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+            Intelligence Systems</span>
         </div>
       </div>
       <div class="footer-links">
@@ -511,7 +745,7 @@
     // Handle direct hash links
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.replace('#', '');
-      if (['tradies','agencies','ecommerce'].includes(hash)) {
+      if (['tradies', 'agencies', 'ecommerce'].includes(hash)) {
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById('tab-' + hash).classList.add('active');
@@ -522,4 +756,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,53 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Unfair Advantage — 100 Agents vs 1 Human | Camber & Casper</title>
-  <meta name="description" content="While your competitors are checking emails, you've already sent the quote. See the competitive race between C&C and traditional business.">
+  <meta name="description"
+    content="While your competitors are checking emails, you've already sent the quote. See the competitive race between C&amp;C and traditional business.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="The Unfair Advantage — 100 Agents vs 1 Human | Camber &amp; Casper">
+  <meta property="og:description" content="While your competitors are checking emails, you've already sent the quote.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Unfair Advantage | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
     /* Race Simulator — from Unfair Advantage v3.0 */
-    .race-track { background: var(--cc-zinc-950); border-radius: 60px; padding: 4rem; overflow: hidden; }
-    .race-lane { margin-bottom: 2rem; }
-    .race-lane:last-child { margin-bottom: 0; }
-    .race-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-    .race-bar-bg { background: var(--cc-zinc-800); border-radius: 999px; height: 48px; position: relative; overflow: hidden; }
-    .race-bar-fill { height: 100%; border-radius: 999px; display: flex; align-items: center; padding: 0 1.5rem; justify-content: flex-end; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); width: 0; }
-    .race-bar-fill span { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+    .race-track {
+      background: var(--cc-zinc-950);
+      border-radius: 60px;
+      padding: 4rem;
+      overflow: hidden;
+    }
+
+    .race-lane {
+      margin-bottom: 2rem;
+    }
+
+    .race-lane:last-child {
+      margin-bottom: 0;
+    }
+
+    .race-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .race-bar-bg {
+      background: var(--cc-zinc-800);
+      border-radius: 999px;
+      height: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .race-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      justify-content: flex-end;
+      transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0;
+    }
+
+    .race-bar-fill span {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
     /* Dominance Matrix — from Unfair Advantage v2.0/v2.3 */
-    .matrix-table { width: 100%; border-collapse: collapse; }
-    .matrix-table th { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cc-zinc-400); padding: 1.25rem 1.5rem; text-align: left; border-bottom: 1px solid var(--cc-zinc-100); }
-    .matrix-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--cc-zinc-50); font-size: 0.875rem; }
-    .matrix-table tr:last-child td { border-bottom: none; }
-    .matrix-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.375rem 0.875rem; border-radius: 999px; }
-    .matrix-tag-apex { background: rgba(59,130,246,0.1); color: var(--cc-blue-500); }
-    .matrix-tag-human { background: var(--cc-zinc-50); color: var(--cc-zinc-300); }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .matrix-table th {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cc-zinc-400);
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--cc-zinc-100);
+    }
+
+    .matrix-table td {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--cc-zinc-50);
+      font-size: 0.875rem;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.375rem 0.875rem;
+      border-radius: 999px;
+    }
+
+    .matrix-tag-apex {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--cc-blue-500);
+    }
+
+    .matrix-tag-human {
+      background: var(--cc-zinc-50);
+      color: var(--cc-zinc-300);
+    }
 
     /* Velocity Chart — from Unfair Advantage v2.1 */
-    .velocity-card { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2.5rem; }
-    .velocity-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
-    .velocity-bar:last-child { margin-bottom: 0; }
-    .velocity-bar-label { width: 120px; font-size: 0.75rem; font-weight: 600; color: var(--cc-zinc-500); flex-shrink: 0; }
-    .velocity-bar-track { flex: 1; background: var(--cc-zinc-50); height: 32px; border-radius: 8px; overflow: hidden; }
-    .velocity-bar-fill { height: 100%; border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; }
-    .velocity-bar-fill span { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.1em; color: white; }
+    .velocity-card {
+      background: white;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+
+    .velocity-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .velocity-bar:last-child {
+      margin-bottom: 0;
+    }
+
+    .velocity-bar-label {
+      width: 120px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cc-zinc-500);
+      flex-shrink: 0;
+    }
+
+    .velocity-bar-track {
+      flex: 1;
+      background: var(--cc-zinc-50);
+      height: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .velocity-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .velocity-bar-fill span {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: white;
+    }
 
     /* Dominance Gauge — from Unfair Advantage v2.0 */
-    .gauge-container { display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 4rem; }
-    .gauge-circle { width: 200px; height: 200px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .gauge-value { font-size: 3rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
-    .gauge-label { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.5rem; }
+    .gauge-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      padding: 4rem;
+    }
+
+    .gauge-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge-value {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .gauge-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
 
     @media (max-width: 768px) {
-      .gauge-container { flex-direction: column; gap: 2rem; }
-      .velocity-bar-label { width: 80px; font-size: 0.625rem; }
+      .gauge-container {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .velocity-bar-label {
+        width: 80px;
+        font-size: 0.625rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -94,12 +262,16 @@
     <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
       <div class="reveal container-sm">
         <div class="badge badge-light mb-8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+          </svg>
           Competitive Intelligence Report
         </div>
         <h1 class="text-hero">Your Unfair<br><span class="text-ghost">Advantage.</span></h1>
         <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
-          While your competitors are checking emails at 9 AM, you've already sent 14 quotes, chased 8 debtors, and scheduled next week's workforce. The race isn't fair — by design.
+          While your competitors are checking emails at 9 AM, you've already sent 14 quotes, chased 8 debtors, and
+          scheduled next week's workforce. The race isn't fair — by design.
         </p>
       </div>
     </section>
@@ -130,7 +302,8 @@
           <div class="race-lane">
             <div class="race-label">
               <span class="text-label" style="color:var(--cc-zinc-500);">Traditional Competitor</span>
-              <span class="font-mono" style="font-size:0.75rem;color:var(--cc-zinc-600);" id="raceTimeHuman">pending...</span>
+              <span class="font-mono" style="font-size:0.75rem;color:var(--cc-zinc-600);"
+                id="raceTimeHuman">pending...</span>
             </div>
             <div class="race-bar-bg">
               <div class="race-bar-fill" id="raceFillHuman" style="background:var(--cc-zinc-600);width:0%;">
@@ -144,7 +317,9 @@
             <span class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-700);">QUOTE_SENT</span>
             <span class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-700);">CLIENT_LOCKED</span>
           </div>
-          <button id="raceBtn" style="margin-top:2rem;background:white;color:var(--cc-zinc-950);border:none;padding:0.875rem 2rem;border-radius:999px;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;">Run the Race</button>
+          <button id="raceBtn"
+            style="margin-top:2rem;background:white;color:var(--cc-zinc-950);border:none;padding:0.875rem 2rem;border-radius:999px;font-weight:700;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;">Run
+            the Race</button>
         </div>
       </div>
     </section>
@@ -153,7 +328,8 @@
          DOMINANCE GAUGE — from Unfair Advantage v2.0
          Visual: circular gauges showing dominance score
          ============================================ -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-12">
           <p class="text-label" style="color:var(--cc-zinc-400);">Dominance Index</p>
@@ -169,7 +345,8 @@
           </div>
           <div style="font-size:2rem;font-weight:300;color:var(--cc-zinc-200);">vs</div>
           <div>
-            <div class="gauge-circle" style="background:white;border:1px solid var(--cc-zinc-100);color:var(--cc-zinc-300);">
+            <div class="gauge-circle"
+              style="background:white;border:1px solid var(--cc-zinc-100);color:var(--cc-zinc-300);">
               <div class="gauge-value">8</div>
               <div class="gauge-label">Hours / Day</div>
             </div>
@@ -256,14 +433,16 @@
          VELOCITY CHART — from Unfair Advantage v2.1
          Speed bars across different business functions
          ============================================ -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
       <div class="container">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
           <div>
             <p class="text-label" style="color:var(--cc-zinc-400);">Speed Infrastructure</p>
             <h2 class="text-display mt-4">Velocity<br><span class="text-ghost">at scale.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-              Every function in your business has a speed ceiling. C&C removes it. From lead response to compliance filing, we operate at machine speed with human intent.
+              Every function in your business has a speed ceiling. C&C removes it. From lead response to compliance
+              filing, we operate at machine speed with human intent.
             </p>
           </div>
           <div class="velocity-card reveal" data-delay="300">
@@ -282,13 +461,15 @@
             <div class="velocity-bar">
               <div class="velocity-bar-label">Invoice Cycle</div>
               <div class="velocity-bar-track">
-                <div class="velocity-bar-fill" style="width:95%;background:var(--cc-emerald-500);"><span>Instant</span></div>
+                <div class="velocity-bar-fill" style="width:95%;background:var(--cc-emerald-500);"><span>Instant</span>
+                </div>
               </div>
             </div>
             <div class="velocity-bar">
               <div class="velocity-bar-label">Debt Recovery</div>
               <div class="velocity-bar-track">
-                <div class="velocity-bar-fill" style="width:85%;background:var(--cc-emerald-500);"><span>Auto</span></div>
+                <div class="velocity-bar-fill" style="width:85%;background:var(--cc-emerald-500);"><span>Auto</span>
+                </div>
               </div>
             </div>
             <div class="velocity-bar">
@@ -300,7 +481,8 @@
             <div class="velocity-bar">
               <div class="velocity-bar-label">Security Scan</div>
               <div class="velocity-bar-track">
-                <div class="velocity-bar-fill" style="width:100%;background:var(--cc-red-500);"><span>Always</span></div>
+                <div class="velocity-bar-fill" style="width:100%;background:var(--cc-red-500);"><span>Always</span>
+                </div>
               </div>
             </div>
           </div>
@@ -317,29 +499,55 @@
       <div class="dot-grid"></div>
       <div class="container" style="position:relative;z-index:1;">
         <div class="reveal text-center mb-12">
-          <div class="badge" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.2);color:var(--cc-blue-500);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <div class="badge"
+            style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.2);color:var(--cc-blue-500);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
             Apex Predator Protocol
           </div>
-          <h2 class="text-display mt-6" style="color:white;">The 42-Second<br><span style="color:var(--cc-zinc-600);font-style:italic;">Winning Streak.</span></h2>
+          <h2 class="text-display mt-6" style="color:white;">The 42-Second<br><span
+              style="color:var(--cc-zinc-600);font-style:italic;">Winning Streak.</span></h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-500);">
-            A new lead hits your inbox. Within 42 seconds, 7 agents coordinate to send a margin-optimized quote. Your competitor is still reading the email.
+            A new lead hits your inbox. Within 42 seconds, 7 agents coordinate to send a margin-optimized quote. Your
+            competitor is still reading the email.
           </p>
         </div>
         <div class="reveal" data-delay="200" style="max-width:640px;margin:0 auto;">
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;font-family:var(--font-mono);font-size:0.6875rem;line-height:2.2;">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--cc-zinc-800);padding-bottom:1rem;margin-bottom:1.5rem;">
-              <span style="font-size:0.5rem;font-weight:700;color:var(--cc-blue-500);letter-spacing:0.3em;text-transform:uppercase;">Live Synthesis Feed</span>
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;font-family:var(--font-mono);font-size:0.6875rem;line-height:2.2;">
+            <div
+              style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--cc-zinc-800);padding-bottom:1rem;margin-bottom:1.5rem;">
+              <span
+                style="font-size:0.5rem;font-weight:700;color:var(--cc-blue-500);letter-spacing:0.3em;text-transform:uppercase;">Live
+                Synthesis Feed</span>
               <span style="font-size:0.5rem;color:var(--cc-zinc-600);">TIMER: 00:42</span>
             </div>
-            <div><span style="color:var(--cc-blue-500);">[02s]</span> <span style="color:var(--cc-zinc-500);">Agent_10</span> — <span style="color:var(--cc-zinc-300);">Incoming lead extracted from HiPages. Qualification: <span style="color:var(--cc-emerald-500);">HIGH</span></span></div>
-            <div><span style="color:var(--cc-blue-500);">[06s]</span> <span style="color:var(--cc-zinc-500);">Agent_42 → Agent_03</span> — <span style="color:var(--cc-zinc-300);">Retrieving Ironbark pricing matrix for Residential HVAC...</span></div>
-            <div><span style="color:var(--cc-blue-500);">[12s]</span> <span style="color:var(--cc-zinc-500);">Agent_85 ↔ Agent_42</span> — <span style="color:var(--cc-zinc-300);">Agent-to-agent discussion on margin optimization. Consensus: <span style="color:var(--cc-emerald-500);">18%</span></span></div>
-            <div><span style="color:var(--cc-blue-500);">[18s]</span> <span style="color:var(--cc-zinc-500);">Agent_85</span> — <span style="color:var(--cc-zinc-300);">Cross-referencing supplier stock with Brisbane warehouse...</span></div>
-            <div><span style="color:var(--cc-blue-500);">[24s]</span> <span style="color:var(--cc-zinc-500);">Agent_02</span> — <span style="color:var(--cc-zinc-300);">Drafting project timeline: 3 days, 2 technicians, no conflicts.</span></div>
-            <div><span style="color:var(--cc-blue-500);">[32s]</span> <span style="color:var(--cc-zinc-500);">Agent_12 → Agent_78</span> — <span style="color:var(--cc-zinc-300);">Value propositions framed. Psychology overlay: trust-first language.</span></div>
-            <div><span style="color:var(--cc-blue-500);">[38s]</span> <span style="color:var(--cc-zinc-500);">Casper / Executive</span> — <span style="color:white;font-weight:700;">"Final sovereign audit complete. Quote dispatched to client inbox."</span></div>
-            <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cc-zinc-800);display:flex;justify-content:space-between;">
+            <div><span style="color:var(--cc-blue-500);">[02s]</span> <span
+                style="color:var(--cc-zinc-500);">Agent_10</span> — <span style="color:var(--cc-zinc-300);">Incoming
+                lead extracted from HiPages. Qualification: <span
+                  style="color:var(--cc-emerald-500);">HIGH</span></span></div>
+            <div><span style="color:var(--cc-blue-500);">[06s]</span> <span style="color:var(--cc-zinc-500);">Agent_42 →
+                Agent_03</span> — <span style="color:var(--cc-zinc-300);">Retrieving Ironbark pricing matrix for
+                Residential HVAC...</span></div>
+            <div><span style="color:var(--cc-blue-500);">[12s]</span> <span style="color:var(--cc-zinc-500);">Agent_85 ↔
+                Agent_42</span> — <span style="color:var(--cc-zinc-300);">Agent-to-agent discussion on margin
+                optimization. Consensus: <span style="color:var(--cc-emerald-500);">18%</span></span></div>
+            <div><span style="color:var(--cc-blue-500);">[18s]</span> <span
+                style="color:var(--cc-zinc-500);">Agent_85</span> — <span
+                style="color:var(--cc-zinc-300);">Cross-referencing supplier stock with Brisbane warehouse...</span>
+            </div>
+            <div><span style="color:var(--cc-blue-500);">[24s]</span> <span
+                style="color:var(--cc-zinc-500);">Agent_02</span> — <span style="color:var(--cc-zinc-300);">Drafting
+                project timeline: 3 days, 2 technicians, no conflicts.</span></div>
+            <div><span style="color:var(--cc-blue-500);">[32s]</span> <span style="color:var(--cc-zinc-500);">Agent_12 →
+                Agent_78</span> — <span style="color:var(--cc-zinc-300);">Value propositions framed. Psychology overlay:
+                trust-first language.</span></div>
+            <div><span style="color:var(--cc-blue-500);">[38s]</span> <span style="color:var(--cc-zinc-500);">Casper /
+                Executive</span> — <span style="color:white;font-weight:700;">"Final sovereign audit complete. Quote
+                dispatched to client inbox."</span></div>
+            <div
+              style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cc-zinc-800);display:flex;justify-content:space-between;">
               <span style="color:var(--cc-emerald-500);">✓ QUOTE SENT — $12,450.00</span>
               <span style="color:var(--cc-zinc-600);">Manual Competitor: ~13.9 Hours Remaining</span>
             </div>
@@ -359,7 +567,8 @@
             <p class="text-label" style="color:var(--cc-zinc-400);">The Compound Effect</p>
             <h2 class="text-display mt-4">The advantage<br><span class="text-ghost">compounds.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-              Every quote you send first, every lead you capture faster, every debtor you chase on time — it all stacks. Day after day, week after week, the gap between you and the competition becomes permanent.
+              Every quote you send first, every lead you capture faster, every debtor you chase on time — it all stacks.
+              Day after day, week after week, the gap between you and the competition becomes permanent.
             </p>
             <div class="grid-2 mt-8" style="gap:2rem;">
               <div class="stat">
@@ -372,27 +581,39 @@
               </div>
             </div>
           </div>
-          <div class="card" style="padding:3rem;background:var(--cc-zinc-950);color:white;border-color:var(--cc-zinc-900);">
-            <div class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1.5rem;">COMPOUND_GROWTH_MODEL</div>
+          <div class="card"
+            style="padding:3rem;background:var(--cc-zinc-950);color:white;border-color:var(--cc-zinc-900);">
+            <div class="font-mono"
+              style="font-size:0.5rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1.5rem;">
+              COMPOUND_GROWTH_MODEL</div>
             <div style="display:flex;flex-direction:column;gap:1rem;">
               <div style="display:flex;align-items:center;gap:1rem;">
                 <span style="font-size:0.625rem;color:var(--cc-zinc-600);width:3rem;">Month 1</span>
-                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;"><div style="width:10%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div></div>
+                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;">
+                  <div style="width:10%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div>
+                </div>
               </div>
               <div style="display:flex;align-items:center;gap:1rem;">
                 <span style="font-size:0.625rem;color:var(--cc-zinc-600);width:3rem;">Month 3</span>
-                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;"><div style="width:32%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div></div>
+                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;">
+                  <div style="width:32%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div>
+                </div>
               </div>
               <div style="display:flex;align-items:center;gap:1rem;">
                 <span style="font-size:0.625rem;color:var(--cc-zinc-600);width:3rem;">Month 6</span>
-                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;"><div style="width:58%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div></div>
+                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;">
+                  <div style="width:58%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div>
+                </div>
               </div>
               <div style="display:flex;align-items:center;gap:1rem;">
                 <span style="font-size:0.625rem;color:var(--cc-zinc-600);width:3rem;">Month 12</span>
-                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;"><div style="width:100%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div></div>
+                <div style="flex:1;height:12px;background:var(--cc-zinc-900);border-radius:6px;overflow:hidden;">
+                  <div style="width:100%;height:100%;background:var(--cc-blue-500);border-radius:6px;"></div>
+                </div>
               </div>
             </div>
-            <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:1.5rem;font-style:italic;">Comparing human-only fatigue against synthetic consistency over 12 months.</p>
+            <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:1.5rem;font-style:italic;">Comparing
+              human-only fatigue against synthetic consistency over 12 months.</p>
           </div>
         </div>
       </div>
@@ -400,7 +621,7 @@
 
     <!-- ============================================
          NEURAL INTERCOM — from Unfair Advantage v3.0
-         The real-time coordination that makes 100 agents 
+         The real-time coordination that makes 100 agents
          work as a single organism
          ============================================ -->
     <section class="section section-dark" style="padding:10rem 2rem;">
@@ -410,24 +631,40 @@
           <p class="text-label" style="color:var(--cc-zinc-600);">Architecture</p>
           <h2 class="text-display mt-4">The Neural Intercom</h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">
-            Our agents don't just exist independently. They communicate through a shared neural layer — a real-time intercom that coordinates 100 specialists as a single, unified intelligence.
+            Our agents don't just exist independently. They communicate through a shared neural layer — a real-time
+            intercom that coordinates 100 specialists as a single, unified intelligence.
           </p>
         </div>
         <div class="grid-3" style="gap:1.5rem;">
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
-            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_01</div>
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
+            <div class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_01
+            </div>
             <h3 style="font-size:1.25rem;font-weight:700;color:white;letter-spacing:-0.02em;">Shared Context</h3>
-            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">Every agent shares the same knowledge base. When Lead Scraper #10 finds a lead, Quote Architect #12 already knows the client's history.</p>
+            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">Every agent shares
+              the same knowledge base. When Lead Scraper #10 finds a lead, Quote Architect #12 already knows the
+              client's history.</p>
           </div>
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
-            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_02</div>
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
+            <div class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_02
+            </div>
             <h3 style="font-size:1.25rem;font-weight:700;color:white;letter-spacing:-0.02em;">Signal Routing</h3>
-            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">Urgent signals get routed first. A payment overdue alert triggers Debt Collector #44 before it triggers a report. Priority is dynamic.</p>
+            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">Urgent signals get
+              routed first. A payment overdue alert triggers Debt Collector #44 before it triggers a report. Priority is
+              dynamic.</p>
           </div>
-          <div style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
-            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_03</div>
+          <div
+            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
+            <div class="font-mono"
+              style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:1rem;">LAYER_03
+            </div>
             <h3 style="font-size:1.25rem;font-weight:700;color:white;letter-spacing:-0.02em;">Swarm Consensus</h3>
-            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">For complex decisions, agents reach consensus. Pricing recommendations combine input from Capital, Operations, and Growth divisions simultaneously.</p>
+            <p style="font-size:0.8rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.75rem;">For complex
+              decisions, agents reach consensus. Pricing recommendations combine input from Capital, Operations, and
+              Growth divisions simultaneously.</p>
           </div>
         </div>
       </div>
@@ -451,8 +688,10 @@
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
         <div>
-          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+          <span class="font-serif"
+            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+            Intelligence Systems</span>
         </div>
       </div>
       <div class="footer-links">
@@ -474,7 +713,7 @@
     // Race Simulator
     const raceBtn = document.getElementById('raceBtn');
     if (raceBtn) {
-      raceBtn.addEventListener('click', function() {
+      raceBtn.addEventListener('click', function () {
         const ccBar = document.getElementById('raceFillCC');
         const humanBar = document.getElementById('raceFillHuman');
         const ccTime = document.getElementById('raceTimeCC');
@@ -500,4 +739,5 @@
     }
   </script>
 </body>
+
 </html>

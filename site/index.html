@@ -1,70 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camber & Casper — Simply Powerful. Engineered for Command.</title>
-  <meta name="description" content="100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure. The unfair advantage for tradies, agencies, and modern businesses.">
+  <meta name="description"
+    content="100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure. The unfair advantage for tradies, agencies, and modern businesses.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Camber &amp; Casper — Simply Powerful. Engineered for Command.">
+  <meta property="og:description"
+    content="100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure. $799/month.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://camberandcasper.com.au/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Camber &amp; Casper — Simply Powerful. Engineered for Command.">
+  <meta name="twitter:description" content="100 autonomous AI agents. Sovereign Australian infrastructure. $799/month.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
     /* Page-specific hero enhancements */
-    .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; margin-top: 3rem; }
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
 
     /* Dashboard Preview — from Final Brand Identity */
-    .dashboard-preview { background: white; border-radius: 60px; border: 1px solid var(--cc-zinc-100); box-shadow: 0 40px 100px rgba(0,0,0,0.04); overflow: hidden; }
-    .dashboard-header { background: var(--cc-zinc-50); border-bottom: 1px solid var(--cc-zinc-100); padding: 1.25rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .dashboard-dots { display: flex; gap: 0.5rem; }
-    .dashboard-dots span { width: 0.625rem; height: 0.625rem; border-radius: 50%; background: var(--cc-zinc-200); }
-    .dashboard-body { display: grid; grid-template-columns: 240px 1fr; }
-    .dashboard-sidebar { border-right: 1px solid var(--cc-zinc-100); padding: 2rem; }
-    .dashboard-main { padding: 3rem; }
-    .dashboard-nav { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem; }
-    .dashboard-nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 700; color: var(--cc-zinc-400); background: white; border: 1px solid transparent; }
-    .dashboard-nav-item.active { color: var(--cc-zinc-900); background: var(--cc-zinc-50); border-color: var(--cc-zinc-100); }
-    .node-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.75rem; background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); font-size: 0.75rem; font-weight: 700; color: var(--cc-zinc-600); margin-bottom: 0.5rem; }
-    .node-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--cc-emerald-500); animation: pulse 2s infinite; }
-    .dashboard-main-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
-    .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-    .metric-card { border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 16/10; }
-    .metric-card-dark { background: var(--cc-zinc-950); color: white; }
-    .metric-card-light { background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100); }
-    .metric-value { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.03em; }
-    .activity-feed { margin-top: 1.5rem; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); overflow: hidden; }
-    .activity-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--cc-zinc-50); background: white; }
-    .activity-row:last-child { border-bottom: none; }
-    .activity-agent { font-size: 0.625rem; font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cc-blue-600); }
-    .activity-text { font-size: 0.875rem; color: var(--cc-zinc-600); font-weight: 500; }
-    .activity-time { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cc-zinc-300); }
+    .dashboard-preview {
+      background: white;
+      border-radius: 60px;
+      border: 1px solid var(--cc-zinc-100);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .dashboard-header {
+      background: var(--cc-zinc-50);
+      border-bottom: 1px solid var(--cc-zinc-100);
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dashboard-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .dashboard-dots span {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      background: var(--cc-zinc-200);
+    }
+
+    .dashboard-body {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+    }
+
+    .dashboard-sidebar {
+      border-right: 1px solid var(--cc-zinc-100);
+      padding: 2rem;
+    }
+
+    .dashboard-main {
+      padding: 3rem;
+    }
+
+    .dashboard-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .dashboard-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cc-zinc-400);
+      background: white;
+      border: 1px solid transparent;
+    }
+
+    .dashboard-nav-item.active {
+      color: var(--cc-zinc-900);
+      background: var(--cc-zinc-50);
+      border-color: var(--cc-zinc-100);
+    }
+
+    .node-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      background: var(--cc-zinc-50);
+      border: 1px solid var(--cc-zinc-100);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cc-zinc-600);
+      margin-bottom: 0.5rem;
+    }
+
+    .node-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--cc-emerald-500);
+      animation: pulse 2s infinite;
+    }
+
+    .dashboard-main-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .metric-card {
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 16/10;
+    }
+
+    .metric-card-dark {
+      background: var(--cc-zinc-950);
+      color: white;
+    }
+
+    .metric-card-light {
+      background: var(--cc-zinc-50);
+      border: 1px solid var(--cc-zinc-100);
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .activity-feed {
+      margin-top: 1.5rem;
+      border: 1px solid var(--cc-zinc-100);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .activity-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--cc-zinc-50);
+      background: white;
+    }
+
+    .activity-row:last-child {
+      border-bottom: none;
+    }
+
+    .activity-agent {
+      font-size: 0.625rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cc-blue-600);
+    }
+
+    .activity-text {
+      font-size: 0.875rem;
+      color: var(--cc-zinc-600);
+      font-weight: 500;
+    }
+
+    .activity-time {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cc-zinc-300);
+    }
 
     /* Identity Split — from Identity Playbook */
-    .identity-card { padding: 3rem; border-radius: var(--radius-card); display: flex; flex-direction: column; justify-content: space-between; min-height: 420px; border: 1px solid; transition: all 0.7s; }
-    .identity-camber { background: white; border-color: var(--cc-zinc-100); color: var(--cc-zinc-900); }
-    .identity-casper { background: var(--cc-zinc-950); border-color: rgba(255,255,255,0.05); color: white; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-    .identity-card .protocol { margin-top: 2.5rem; padding-top: 2rem; font-size: 0.625rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.3em; opacity: 0.5; }
+    .identity-card {
+      padding: 3rem;
+      border-radius: var(--radius-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      border: 1px solid;
+      transition: all 0.7s;
+    }
+
+    .identity-camber {
+      background: white;
+      border-color: var(--cc-zinc-100);
+      color: var(--cc-zinc-900);
+    }
+
+    .identity-casper {
+      background: var(--cc-zinc-950);
+      border-color: rgba(255, 255, 255, 0.05);
+      color: white;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .identity-card .protocol {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      font-size: 0.625rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      opacity: 0.5;
+    }
 
     /* Force Multiplier — from Unfair Advantage */
-    .compare-card { padding: 3rem; border-radius: 60px; text-align: left; position: relative; overflow: hidden; }
-    .compare-human { background: white; border: 1px solid var(--cc-zinc-100); }
-    .compare-apex { background: var(--cc-zinc-950); color: white; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-    .compare-list { list-style: none; padding: 0; }
-    .compare-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5rem 0; }
-    .compare-list li .dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; flex-shrink: 0; }
+    .compare-card {
+      padding: 3rem;
+      border-radius: 60px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .compare-human {
+      background: white;
+      border: 1px solid var(--cc-zinc-100);
+    }
+
+    .compare-apex {
+      background: var(--cc-zinc-950);
+      color: white;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .compare-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .compare-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 0;
+    }
+
+    .compare-list li .dot {
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
     /* Ironbark Dark Section */
-    .ironbark-visual { background: var(--cc-zinc-900); border-radius: 60px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; min-height: 500px; position: relative; overflow: hidden; }
-    .ironbark-feature { padding: 1.5rem; border-radius: var(--radius-lg); background: var(--cc-zinc-900); border: 1px solid var(--cc-zinc-800); }
+    .ironbark-visual {
+      background: var(--cc-zinc-900);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ironbark-feature {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--cc-zinc-900);
+      border: 1px solid var(--cc-zinc-800);
+    }
 
     @media (max-width: 768px) {
-      .dashboard-body { grid-template-columns: 1fr; }
-      .dashboard-sidebar { display: none; }
-      .dashboard-main-top, .metrics-grid { grid-template-columns: 1fr; display: grid; }
-      .hero .text-hero { font-size: 3rem; }
+      .dashboard-body {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-sidebar {
+        display: none;
+      }
+
+      .dashboard-main-top,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .hero .text-hero {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- SPLASH SCREEN — ComplexCore animated -->
@@ -79,24 +351,42 @@
           </radialGradient>
         </defs>
         <g class="orb-spin">
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(0 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(10 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(20 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(30 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(40 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(50 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(60 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(70 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(80 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(90 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(100 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(110 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(120 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(130 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(140 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(150 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(160 100 100)" />
-          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2" transform="rotate(170 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(0 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(10 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(20 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(30 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(40 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(50 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(60 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(70 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(80 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(90 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(100 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(110 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(120 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(130 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(140 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(150 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(160 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="20" fill="none" stroke="currentColor" strokeWidth="0.2"
+            transform="rotate(170 100 100)" />
         </g>
       </svg>
       <!-- Logo card -->
@@ -153,27 +443,37 @@
   <main>
     <!-- ============================================
          HERO — "Simply Powerful. Engineered for Command."
-         Sources: Final Brand Identity ("Simply Powerful"), 
+         Sources: Final Brand Identity ("Simply Powerful"),
          Unfair Advantage v3 ("Win the job. While they're in traffic."),
          Executive System 1 ("A hundred minds. One click.")
          ============================================ -->
-    <section class="hero pt-40">
-      <div class="reveal container-sm" style="max-width:72rem;">
+    <section class="hero pt-40" style="position:relative;overflow:hidden;">
+      <div class="hero-mesh"></div>
+      <div class="reveal container-sm" style="max-width:72rem;position:relative;z-index:1;">
         <div class="badge badge-light mb-8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="4" width="16" height="16" rx="2" />
+            <path d="M9 9h6v6H9z" />
+          </svg>
           Managed Autonomous Intelligence
         </div>
         <h1 class="text-hero" style="color:var(--cc-zinc-950);">
           Simply Powerful.<br>
-          <span class="text-ghost">Engineered for Command.</span>
+          <span class="text-ghost"><span id="typewriter-cycle" class="typewriter-word"
+              data-words='["Engineered for Command.","Built for Tradies.","Designed for Agencies.","Made for Operators."]'>Engineered
+              for Command.</span></span>
         </h1>
         <p class="text-body-lg mt-8 mx-auto" style="max-width:48rem;color:var(--cc-zinc-400);">
-          Camber & Casper is the elite umbrella for your company's intelligence. We coordinate a specialized workforce of 100 autonomous agents — the power of a corporation, distilled into a single, palpable point of control. All on sovereign Australian soil.
+          Camber & Casper is the elite umbrella for your company's intelligence. We coordinate a specialized workforce
+          of 100 autonomous agents — the power of a corporation, distilled into a single, palpable point of control. All
+          on sovereign Australian soil.
         </p>
         <div class="hero-ctas">
           <a href="pricing.html" class="btn-primary">
             Deploy the Workforce
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </a>
           <a href="infrastructure.html" class="btn-secondary">The Ironbark Legacy</a>
         </div>
@@ -184,9 +484,50 @@
       </div>
     </section>
 
+    <!-- AGENT TICKER —— live activity marquee -->
+    <div class="cc-ticker-wrap">
+      <div class="cc-ticker-track">
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>ARCHER_07 · Closed quote — $4,800 plumbing contract
+        </div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>NOVA_12 · Dispatched morning brief to Director</div>
+        <div class="cc-ticker-item highlight"><span class="ticker-dot"></span>SHIELD_03 · GDPR threat neutralised —
+          Sovereign Mode active</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>PULSE_19 · Facebook CPL dropped 31% — campaign
+          rebalanced</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>LEDGER_05 · $2,340 recovery filed — invoice 180 days
+          overdue</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>REACH_22 · 14 new Google reviews requested post-job
+        </div>
+        <div class="cc-ticker-item highlight"><span class="ticker-dot"></span>CASPER CORE · 1,402 actions completed
+          since midnight</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>APEX_01 · Competitor price change detected — brief
+          prepared</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>ORACLE_24 · 3 high-intent leads scored 94/100 —
+          priority queued</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>ARCHER_07 · Closed quote — $4,800 plumbing contract
+        </div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>NOVA_12 · Dispatched morning brief to Director</div>
+        <div class="cc-ticker-item highlight"><span class="ticker-dot"></span>SHIELD_03 · GDPR threat neutralised —
+          Sovereign Mode active</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>PULSE_19 · Facebook CPL dropped 31% — campaign
+          rebalanced</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>LEDGER_05 · $2,340 recovery filed — invoice 180 days
+          overdue</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>REACH_22 · 14 new Google reviews requested post-job
+        </div>
+        <div class="cc-ticker-item highlight"><span class="ticker-dot"></span>CASPER CORE · 1,402 actions completed
+          since midnight</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>APEX_01 · Competitor price change detected — brief
+          prepared</div>
+        <div class="cc-ticker-item"><span class="ticker-dot"></span>ORACLE_24 · 3 high-intent leads scored 94/100 —
+          priority queued</div>
+      </div>
+    </div>
+
     <!-- ============================================
          DASHBOARD PREVIEW — from Final Brand Identity
-         "Morning Report. Your synthetic team has completed 
+         "Morning Report. Your synthetic team has completed
          1,402 actions since midnight."
          ============================================ -->
     <section class="section-sm" style="padding:5rem 2rem;">
@@ -195,7 +536,10 @@
           <div class="dashboard-header">
             <div class="dashboard-dots"><span></span><span></span><span></span></div>
             <span class="text-micro" style="color:var(--cc-zinc-400);">Casper_Terminal // Executive_Control</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2">
+              <polyline points="15 3 21 3 21 9" />
+              <polyline points="9 21 3 21 3 15" />
+            </svg>
           </div>
           <div class="dashboard-body">
             <div class="dashboard-sidebar">
@@ -216,7 +560,8 @@
                 <div>
                   <span class="text-label" style="color:var(--cc-zinc-400);">Executive Interface</span>
                   <h3 class="text-headline" style="margin-top:0.5rem;">Welcome back, Director.</h3>
-                  <p style="color:var(--cc-zinc-400);font-weight:300;font-style:italic;margin-top:0.25rem;">Your synthetic team has completed 1,402 actions since midnight.</p>
+                  <p style="color:var(--cc-zinc-400);font-weight:300;font-style:italic;margin-top:0.25rem;">Your
+                    synthetic team has completed 1,402 actions since midnight.</p>
                 </div>
                 <div class="text-right">
                   <div style="font-size:0.75rem;font-weight:700;letter-spacing:-0.02em;">0.04ms</div>
@@ -227,33 +572,50 @@
                 <div class="metric-card metric-card-light">
                   <div class="flex-between">
                     <div class="card-icon card-icon-dark" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                        stroke-width="1">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
                     </div>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)"
+                      stroke-width="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
                   </div>
                   <div>
-                    <div class="metric-value" style="color:var(--cc-zinc-900);">1,402</div>
+                    <div class="metric-value" style="color:var(--cc-zinc-900);" data-count="1402">0</div>
                     <div class="text-label" style="color:var(--cc-zinc-400);">Actions Completed Today</div>
                   </div>
                 </div>
                 <div class="metric-card metric-card-dark">
                   <div class="flex-between">
                     <div class="card-icon card-icon-blue" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
                     </div>
                     <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-500);">Sovereign_Mode</span>
                   </div>
                   <div>
-                    <div class="metric-value">100%</div>
+                    <div class="metric-value" data-count="100" data-suffix="%">0%</div>
                     <div class="text-label" style="color:var(--cc-zinc-500);">Sovereign AU Integrity</div>
                   </div>
                 </div>
                 <div class="metric-card metric-card-light">
                   <div class="flex-between">
                     <div class="card-icon card-icon-dark" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                      </svg>
                     </div>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)"
+                      stroke-width="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
                   </div>
                   <div>
                     <div class="metric-value" style="color:var(--cc-zinc-900);">$12,840</div>
@@ -263,7 +625,9 @@
               </div>
               <div class="activity-feed">
                 <div class="activity-row" style="background:var(--cc-zinc-50);">
-                  <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cc-zinc-900);">Recent Swarm Activity</div>
+                  <div
+                    style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cc-zinc-900);">
+                    Recent Swarm Activity</div>
                   <div class="text-micro" style="color:var(--cc-zinc-300);">Live Log</div>
                 </div>
                 <div class="activity-row">
@@ -306,37 +670,48 @@
           <p class="text-label" style="color:var(--cc-zinc-400);">The Dual Core</p>
           <h2 class="text-display mt-4">Strength by Day.<br><span class="text-ghost">Ghost by Night.</span></h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:48rem;color:var(--cc-zinc-400);">
-            We've split the intelligence. <strong>Camber</strong> provides the structural backbone and daytime grunt. <strong>Casper</strong> provides the ethereal, silent office management that never goes home.
+            We've split the intelligence. <strong>Camber</strong> provides the structural backbone and daytime grunt.
+            <strong>Casper</strong> provides the ethereal, silent office management that never goes home.
           </p>
         </div>
         <div class="grid-2 reveal" data-delay="200">
           <!-- CAMBER -->
-          <div class="identity-card identity-camber">
+          <div class="identity-card identity-camber tilt-card">
             <div>
               <div class="card-icon card-icon-light mb-8">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="4" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                </svg>
               </div>
               <h3 style="font-size:2rem;font-weight:600;letter-spacing:-0.03em;">Camber</h3>
               <p class="text-label mt-2" style="color:var(--cc-zinc-400);">The Structural Backbone</p>
               <p style="font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--cc-zinc-500);margin-top:1.5rem;">
-                Built for the high-intensity sunlight of your workday. Camber manages the Ironbark nodes, the air-gapped security, and the raw computational metrics. It is the lift that supports your heaviest tasks.
+                Built for the high-intensity sunlight of your workday. Camber manages the Ironbark nodes, the air-gapped
+                security, and the raw computational metrics. It is the lift that supports your heaviest tasks.
               </p>
             </div>
-            <div class="protocol border-b" style="border-color:var(--cc-zinc-50);">Core Protocol: Daytime Execution & Structural Integrity</div>
+            <div class="protocol border-b" style="border-color:var(--cc-zinc-50);">Core Protocol: Daytime Execution &
+              Structural Integrity</div>
           </div>
           <!-- CASPER -->
-          <div class="identity-card identity-casper">
+          <div class="identity-card identity-casper tilt-card">
             <div>
               <div class="card-icon card-icon-blue mb-8">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                </svg>
               </div>
               <h3 style="font-size:2rem;font-weight:600;letter-spacing:-0.03em;">Casper</h3>
               <p class="text-label mt-2" style="color:var(--cc-blue-500);">The Ethereal Intelligence</p>
               <p style="font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--cc-zinc-400);margin-top:1.5rem;">
-                The 'ghost' in your office. Casper stays behind after the tools go down. It cleans the inbox, chases the invoices, and organizes the next day while you are at the dinner table.
+                The 'ghost' in your office. Casper stays behind after the tools go down. It cleans the inbox, chases the
+                invoices, and organizes the next day while you are at the dinner table.
               </p>
             </div>
-            <div class="protocol" style="border-top:1px solid rgba(255,255,255,0.05);">Core Protocol: Night-time Synthesis & Palatable Management</div>
+            <div class="protocol" style="border-top:1px solid rgba(255,255,255,0.05);">Core Protocol: Night-time
+              Synthesis & Palatable Management</div>
           </div>
         </div>
       </div>
@@ -354,7 +729,8 @@
             <p class="text-label" style="color:var(--cc-zinc-400);">The Human Factor</p>
             <h2 class="text-display mt-4">A hundred minds.<br><span class="text-ghost">One click.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-500);">
-              Camber & Casper coordinates a workforce of 100 specialized agents. Tradies, plumbers, agencies, and business owners use us to scale their efforts without adding a single headcount.
+              Camber & Casper coordinates a workforce of 100 specialized agents. Tradies, plumbers, agencies, and
+              business owners use us to scale their efforts without adding a single headcount.
             </p>
             <div class="grid-2 mt-8" style="gap:2.5rem;border-top:1px solid var(--cc-zinc-100);padding-top:1.5rem;">
               <div class="stat">
@@ -368,42 +744,67 @@
             </div>
             <a href="workforce.html" class="btn-primary mt-8">
               Meet the Team
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </a>
           </div>
           <div>
             <!-- Squad Cards — from Meet the Team v1/v2, Executive System 1 -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
               <div class="card" style="border-radius:var(--radius-lg);padding:1.5rem;">
-                <div class="card-icon card-icon-light" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <div class="card-icon card-icon-light"
+                  style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                    <polyline points="17 6 23 6 23 12" />
+                  </svg>
                 </div>
-                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">The Hustlers</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Lead generation, quote building, and keeping the pipeline full.</p>
+                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">The
+                  Hustlers</h4>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Lead generation, quote
+                  building, and keeping the pipeline full.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-blue-500);">30 Agents</span>
               </div>
               <div class="card" style="border-radius:var(--radius-lg);padding:1.5rem;">
-                <div class="card-icon card-icon-light" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <div class="card-icon card-icon-light"
+                  style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
                 </div>
-                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Capital Team</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Invoice management, cashflow, debt recovery, reconciliation.</p>
+                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Capital
+                  Team</h4>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Invoice management, cashflow,
+                  debt recovery, reconciliation.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-emerald-500);">20 Agents</span>
               </div>
               <div class="card" style="border-radius:var(--radius-lg);padding:1.5rem;">
-                <div class="card-icon card-icon-light" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                <div class="card-icon card-icon-light"
+                  style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                  </svg>
                 </div>
-                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Operations</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Scheduling, compliance, logistics, fleet coordination.</p>
+                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">
+                  Operations</h4>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Scheduling, compliance,
+                  logistics, fleet coordination.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-amber-500);">25 Agents</span>
               </div>
               <div class="card" style="border-radius:var(--radius-lg);padding:1.5rem;">
-                <div class="card-icon card-icon-light" style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <div class="card-icon card-icon-light"
+                  style="width:2.5rem;height:2.5rem;border-radius:0.75rem;margin-bottom:1rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
                 </div>
-                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Sentry</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Security, encryption, reputation monitoring, sovereign watch.</p>
+                <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Sentry
+                </h4>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Security, encryption,
+                  reputation monitoring, sovereign watch.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-red-500);">25 Agents</span>
               </div>
             </div>
@@ -415,11 +816,12 @@
     <!-- ============================================
          THE UNFAIR ADVANTAGE PREVIEW
          Sources: Unfair Advantage v1-v3
-         "While your competitors are checking emails, 
+         "While your competitors are checking emails,
          you've already sent the quote."
          100 Agents vs 1 Human comparison
          ============================================ -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);border-bottom:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);border-bottom:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-16">
           <p class="text-label" style="color:var(--cc-zinc-400);">The Force Multiplier</p>
@@ -427,12 +829,18 @@
         </div>
         <div class="grid-2 reveal" data-delay="200">
           <!-- Competitor -->
-          <div class="compare-card compare-human">
+          <div class="compare-card compare-human tilt-card">
             <div class="flex-between mb-8">
               <span class="text-label" style="color:var(--cc-zinc-300);">Traditional Competitor</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-200)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-200)" stroke-width="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
             </div>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-400);font-style:italic;margin-bottom:1.5rem;">"I'll get back to you by Friday when I'm back in the office."</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-400);font-style:italic;margin-bottom:1.5rem;">"I'll get
+              back to you by Friday when I'm back in the office."</p>
             <ul class="compare-list" style="color:var(--cc-zinc-300);">
               <li><span class="dot" style="background:var(--cc-zinc-200);"></span> Max capacity: 8 hours/day</li>
               <li><span class="dot" style="background:var(--cc-zinc-200);"></span> Lead lag: 12-24 hours</li>
@@ -440,12 +848,16 @@
             </ul>
           </div>
           <!-- C&C Apex -->
-          <div class="compare-card compare-apex">
+          <div class="compare-card compare-apex tilt-card">
             <div class="flex-between mb-8">
               <span class="text-label" style="color:var(--cc-blue-500);">C&C Powered Apex</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2">
+                <path
+                  d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+              </svg>
             </div>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-300);font-style:italic;margin-bottom:1.5rem;">"Your quote is in your inbox now. Our team is ready to start Monday."</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-300);font-style:italic;margin-bottom:1.5rem;">"Your quote
+              is in your inbox now. Our team is ready to start Monday."</p>
             <ul class="compare-list" style="color:var(--cc-zinc-500);">
               <li><span class="dot" style="background:var(--cc-blue-500);"></span> Max capacity: 2,400 hours/day</li>
               <li><span class="dot" style="background:var(--cc-blue-500);"></span> Lead lag: 0.04 seconds</li>
@@ -462,7 +874,7 @@
     <!-- ============================================
          IRONBARK INFRASTRUCTURE — from Infrastructure page,
          Final Brand Identity, Executive System 1
-         "Before the intelligence of Casper, there was 
+         "Before the intelligence of Casper, there was
          the brute force of Ironbark."
          ============================================ -->
     <section class="section section-dark" style="padding:10rem 2rem;">
@@ -471,34 +883,64 @@
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
           <div>
             <p class="text-label" style="color:var(--cc-zinc-600);">The Bedrock Layer</p>
-            <h2 class="text-display mt-4">Ironbark<br><span style="color:var(--cc-zinc-700);font-style:italic;font-weight:300;">Evolved.</span></h2>
+            <h2 class="text-display mt-4">Ironbark<br><span
+                style="color:var(--cc-zinc-700);font-style:italic;font-weight:300;">Evolved.</span></h2>
             <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-              Before the intelligence of Casper, there was the brute force of Ironbark. We've taken that rugged, physical server infrastructure and turned it into the foundation for the Camber umbrella. All on Australian soil. Air-gapped. Sovereign.
+              Before the intelligence of Casper, there was the brute force of Ironbark. We've taken that rugged,
+              physical server infrastructure and turned it into the foundation for the Camber umbrella. All on
+              Australian soil. Air-gapped. Sovereign.
             </p>
             <div class="grid-2 mt-8" style="gap:1rem;">
               <div class="ironbark-feature">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2" style="margin-bottom:1rem;"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"
+                  style="margin-bottom:1rem;">
+                  <ellipse cx="12" cy="5" rx="9" ry="3" />
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                </svg>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:-0.01em;color:white;">Hardened Nodes</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.5rem;">Proprietary physical server clusters in Sydney & Melbourne.</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.5rem;">Proprietary
+                  physical server clusters in Sydney & Melbourne.</p>
               </div>
               <div class="ironbark-feature">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2" style="margin-bottom:1rem;"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)"
+                  stroke-width="2" style="margin-bottom:1rem;">
+                  <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4" />
+                  <path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2" />
+                  <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" />
+                  <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
+                  <path d="M8.65 22c.21-.66.45-1.32.57-2" />
+                  <path d="M14 13.12c0 2.38 0 6.38-1 8.88" />
+                  <path d="M2 16h.01" />
+                  <path d="M21.8 16c.2-2 .131-5.354 0-6" />
+                  <path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2" />
+                </svg>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:-0.01em;color:white;">Quantum Shield</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.5rem;">Identity-first encryption baked into every Ironbark node.</p>
+                <p style="font-size:0.75rem;color:var(--cc-zinc-500);line-height:1.7;margin-top:0.5rem;">Identity-first
+                  encryption baked into every Ironbark node.</p>
               </div>
             </div>
             <a href="infrastructure.html" class="btn-primary mt-8" style="background:white;color:var(--cc-zinc-950);">
               View Infrastructure
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </a>
           </div>
           <div class="ironbark-visual reveal" data-delay="300">
-            <div style="position:absolute;inset:0;opacity:0.1;background-image:radial-gradient(#fff 1px, transparent 1px);background-size:40px 40px;"></div>
+            <div
+              style="position:absolute;inset:0;opacity:0.1;background-image:radial-gradient(#fff 1px, transparent 1px);background-size:40px 40px;">
+            </div>
             <div style="position:relative;z-index:1;text-align:center;">
-              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-800)" stroke-width="0.5" style="opacity:0.6;">
-                <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M2 12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M2 6a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/>
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-800)"
+                stroke-width="0.5" style="opacity:0.6;">
+                <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
+                <path d="M2 12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
+                <path d="M2 6a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
               </svg>
-              <p class="font-mono mt-4" style="font-size:0.625rem;letter-spacing:1em;text-transform:uppercase;color:var(--cc-zinc-600);">Secure Cluster Active</p>
+              <p class="font-mono mt-4"
+                style="font-size:0.625rem;letter-spacing:1em;text-transform:uppercase;color:var(--cc-zinc-600);">Secure
+                Cluster Active</p>
             </div>
           </div>
         </div>
@@ -513,35 +955,51 @@
       <div class="container">
         <div class="reveal text-center mb-16">
           <p class="text-label" style="color:var(--cc-zinc-400);">What You Get Back</p>
-          <h2 class="text-display mt-4">This isn't about software.<br><span class="text-ghost">It's about time.</span></h2>
+          <h2 class="text-display mt-4">This isn't about software.<br><span class="text-ghost">It's about time.</span>
+          </h2>
         </div>
         <div class="grid-3 reveal" data-delay="200">
           <!-- Play 1: The Ghost -->
           <div class="card" style="text-align:center;padding:3rem 2rem;">
             <div class="card-icon card-icon-dark mx-auto mb-8" style="width:4rem;height:4rem;border-radius:1rem;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">The Productive Ghost</h3>
-            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"The most productive team you'll never see."</p>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">While the office is empty, a workforce of 100 never stops. No desk, no pension, no lunch break.</p>
+            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"The most
+              productive team you'll never see."</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">
+              While the office is empty, a workforce of 100 never stops. No desk, no pension, no lunch break.</p>
           </div>
           <!-- Play 2: The Hand-Back -->
           <div class="card" style="text-align:center;padding:3rem 2rem;">
             <div class="card-icon card-icon-dark mx-auto mb-8" style="width:4rem;height:4rem;border-radius:1rem;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">The 6 PM Dinner</h3>
-            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Casper has the office. You have the family."</p>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">We give you 15 hours back every week. That's dinners, weekends, and actual presence with your family.</p>
+            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Casper has the
+              office. You have the family."</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">We
+              give you 15 hours back every week. That's dinners, weekends, and actual presence with your family.</p>
           </div>
           <!-- Play 3: The Passion -->
           <div class="card" style="text-align:center;padding:3rem 2rem;">
             <div class="card-icon card-icon-dark mx-auto mb-8" style="width:4rem;height:4rem;border-radius:1rem;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Tools Down. Hood Up.</h3>
-            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Get back to the work you actually love."</p>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">The boat, the car, the mountain bike — the things that get sacrificed. Let the Swarm handle the rest.</p>
+            <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Get back to the
+              work you actually love."</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">The
+              boat, the car, the mountain bike — the things that get sacrificed. Let the Swarm handle the rest.</p>
           </div>
         </div>
       </div>
@@ -550,7 +1008,8 @@
     <!-- ============================================
          INDUSTRIES TEASER — from Tradie Portal, Agency Portal, E-commerce
          ============================================ -->
-    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
+    <section class="section"
+      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-16">
           <p class="text-label" style="color:var(--cc-zinc-400);">Industry Verticals</p>
@@ -559,26 +1018,41 @@
         <div class="grid-3 reveal" data-delay="200">
           <a href="industries.html#tradies" class="card" style="padding:3rem;text-decoration:none;">
             <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6h0"/><path d="M14 6a6 6 0 0 1 6 6v3"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
+                <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+                <path d="M4 15v-3a6 6 0 0 1 6-6h0" />
+                <path d="M14 6a6 6 0 0 1 6 6v3" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Tradies & Trades</h3>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Win back your weekends. 42-second quotes, automated invoicing, fleet coordination.</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Win back your
+              weekends. 42-second quotes, automated invoicing, fleet coordination.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
           </a>
           <a href="industries.html#agencies" class="card" style="padding:3rem;text-decoration:none;">
             <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Boutique Agencies</h3>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Output like a network agency. Research, reporting, outbound — at scale.</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Output like a
+              network agency. Research, reporting, outbound — at scale.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
           </a>
           <a href="industries.html#ecommerce" class="card" style="padding:3rem;text-decoration:none;">
             <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="8" cy="21" r="1" />
+                <circle cx="19" cy="21" r="1" />
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              </svg>
             </div>
             <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">E-Commerce</h3>
-            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Supply forensics, LTV optimization, and negotiated recovery at scale.</p>
+            <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Supply forensics,
+              LTV optimization, and negotiated recovery at scale.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
           </a>
         </div>
@@ -593,12 +1067,14 @@
       <div class="reveal container-sm">
         <h2 class="text-hero">Intelligence.<br><span class="text-ghost">Within Reach.</span></h2>
         <p class="text-body-lg mt-8 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">
-          One brand. 100 experts. Total autonomy for your business. Australian owned, air-gapped, and ready to deploy for $799/month.
+          One brand. 100 experts. Total autonomy for your business. Australian owned, air-gapped, and ready to deploy
+          for $799/month.
         </p>
         <a href="pricing.html" class="btn-primary mt-12">
           Hire the Swarm
         </a>
-        <p class="text-label mt-6" style="color:var(--cc-zinc-300);font-style:italic;">Zero Headcount · Zero Fatigue · Infinite Scalability</p>
+        <p class="text-label mt-6" style="color:var(--cc-zinc-300);font-style:italic;">Zero Headcount · Zero Fatigue ·
+          Infinite Scalability</p>
       </div>
     </section>
   </main>
@@ -609,8 +1085,10 @@
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
         <div>
-          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+          <span class="font-serif"
+            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+            Intelligence Systems</span>
         </div>
       </div>
       <div class="footer-links">
@@ -629,4 +1107,5 @@
 
   <script src="js/main.js"></script>
 </body>
+
 </html>
