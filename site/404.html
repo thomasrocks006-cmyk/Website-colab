@@ -1,77 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Page Not Found | Camber & Casper</title>
-  <meta name="description" content="Even our 100 agents couldn't find that page.">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .lost-page {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem; position: relative; overflow: hidden;
-    }
-    .lost-mesh {
-      position: absolute; inset: 0; opacity: 0.4; pointer-events: none;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(59,130,246,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 100%, rgba(239,68,68,0.05) 0%, transparent 60%);
-    }
-    .lost-code {
-      font-family: var(--font-serif); font-size: clamp(6rem, 20vw, 14rem);
-      font-weight: 300; letter-spacing: -0.06em; line-height: 1;
-      color: var(--cc-zinc-100);
-    }
-    .lost-agent {
-      font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--cc-zinc-400); margin: 2rem 0;
-      padding: 1rem 2rem; background: var(--cc-zinc-50); border: 1px solid var(--cc-zinc-100);
-      border-radius: var(--radius-pill); display: inline-block;
-    }
-    .lost-agent::before { content: '> '; color: var(--cc-zinc-300); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | Camber & Casper</title>
+    <meta name="description" content="Even our 100 agents couldn't find that page.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .lost-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lost-mesh {
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 100%, rgba(239, 68, 68, 0.05) 0%, transparent 60%);
+        }
+
+        .lost-code {
+            font-family: var(--font-serif);
+            font-size: clamp(6rem, 20vw, 14rem);
+            font-weight: 300;
+            letter-spacing: -0.06em;
+            line-height: 1;
+            color: var(--cc-zinc-100);
+        }
+
+        .lost-agent {
+            font-family: var(--font-mono);
+            font-size: 0.625rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--cc-zinc-400);
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            background: var(--cc-zinc-50);
+            border: 1px solid var(--cc-zinc-100);
+            border-radius: var(--radius-pill);
+            display: inline-block;
+        }
+
+        .lost-agent::before {
+            content: '> ';
+            color: var(--cc-zinc-300);
+        }
+    </style>
 </head>
+
 <body>
 
-  <nav class="nav scrolled" id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
-        <span class="nav-logo-text font-serif">C&C</span>
-      </a>
-      <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
-    </div>
-  </nav>
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+                <span class="nav-logo-text font-serif">C&C</span>
+            </a>
+            <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+        </div>
+    </nav>
 
-  <main class="lost-page">
-    <div class="lost-mesh"></div>
-    <div style="position:relative;z-index:1;max-width:42rem;">
-      <div class="lost-code">404</div>
-      <h1 class="text-display mt-4" style="letter-spacing:-0.04em;">Page Not Found.</h1>
-      <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
-        Even 100 agents couldn't locate this one. It may have been moved, deleted, or never deployed.
-      </p>
-      <div class="lost-agent">ORACLE_24 · Search returned zero results for this path</div>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
-        <a href="index.html" class="btn-primary">
-          Back to Command
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="pricing.html" class="btn-secondary">Deploy the Workforce</a>
-      </div>
-      <div style="margin-top:4rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
-        <a href="workforce.html" class="text-label" style="color:var(--cc-zinc-300);">The 100</a>
-        <a href="advantage.html" class="text-label" style="color:var(--cc-zinc-300);">Advantage</a>
-        <a href="intelligence.html" class="text-label" style="color:var(--cc-zinc-300);">Intelligence</a>
-        <a href="infrastructure.html" class="text-label" style="color:var(--cc-zinc-300);">Infrastructure</a>
-        <a href="pricing.html" class="text-label" style="color:var(--cc-zinc-300);">Pricing</a>
-      </div>
-    </div>
-  </main>
+    <main class="lost-page">
+        <div class="lost-mesh"></div>
+        <div style="position:relative;z-index:1;max-width:42rem;">
+            <div class="lost-code">404</div>
+            <h1 class="text-display mt-4" style="letter-spacing:-0.04em;">Page Not Found.</h1>
+            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+                Even 100 agents couldn't locate this one. It may have been moved, deleted, or never deployed.
+            </p>
+            <div class="lost-agent">ORACLE_24 · Search returned zero results for this path</div>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
+                <a href="index.html" class="btn-primary">
+                    Back to Command
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="pricing.html" class="btn-secondary">Deploy the Workforce</a>
+            </div>
+            <div style="margin-top:4rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
+                <a href="workforce.html" class="text-label" style="color:var(--cc-zinc-300);">The 100</a>
+                <a href="advantage.html" class="text-label" style="color:var(--cc-zinc-300);">Advantage</a>
+                <a href="intelligence.html" class="text-label" style="color:var(--cc-zinc-300);">Intelligence</a>
+                <a href="infrastructure.html" class="text-label" style="color:var(--cc-zinc-300);">Infrastructure</a>
+                <a href="pricing.html" class="text-label" style="color:var(--cc-zinc-300);">Pricing</a>
+            </div>
+        </div>
+    </main>
 
-  <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
