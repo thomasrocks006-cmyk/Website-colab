@@ -1,0 +1,283 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BrainCircuit, 
+  TrendingUp, 
+  Globe, 
+  Zap, 
+  ShieldCheck, 
+  MessageSquare, 
+  Activity, 
+  DollarSign, 
+  Clock, 
+  Database,
+  Search,
+  Mic,
+  ChevronRight,
+  ArrowRight,
+  Monitor,
+  Lock,
+  Waves,
+  CheckCircle2,
+  Scale,
+  History,
+  Lightbulb,
+  Eye,
+  Filter,
+  BarChart3,
+  Network
+} from 'lucide-react';
+
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeSimulation, setActiveSimulation] = useState('price');
+  const [hoverNode, setHoverNode] = useState(null);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Cognitive Command</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500">
+             <a href="#psychology" className="hover:text-white transition-colors">Psychology</a>
+             <a href="#simulation" className="hover:text-white transition-colors">Simulations</a>
+             <a href="#sentinel" className="hover:text-white transition-colors">The Sentinel</a>
+          </div>
+          <button className="bg-blue-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20">
+            Access The Oracle
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: TOTAL OMNISCIENCE */}
+        <section className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-bold tracking-widest text-blue-400 uppercase">
+              <BrainCircuit size={12} /> Anticipatory Intelligence v3.0
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Absolute Truth. <br/>
+              <span className="text-zinc-600 italic font-light">In your pocket.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              C&C doesn't just process data; it synthesizes the <strong>why</strong>. It maps the DNA of your business against the friction of the world, providing a level of ability that was previously impossible.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE "WHAT IF" SIMULATION ENGINE */}
+        <section id="simulation" className="py-40 px-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-10">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Predictive Modeling</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Strategic <br/><span className="not-italic text-zinc-500">Simulations.</span></h3>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                Before you make a move, Casper has already run 10,000 iterations of it. Test pricing shifts, hiring plans, or territory expansions against your real Xero data and current market forces.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  { id: 'price', label: 'Price Elasticity Test', detail: 'Simulates 15% margin increase against RBA sentiment.' },
+                  { id: 'fleet', label: 'Operational Scale-Up', detail: 'Models cashflow impact of 3 new techs + vans.' },
+                  { id: 'macro', label: 'Macro Threat Audit', detail: 'Projecting 12-month growth against inflation forecasts.' }
+                ].map((sim) => (
+                  <button 
+                    key={sim.id}
+                    onClick={() => setActiveSimulation(sim.id)}
+                    className={`w-full p-6 rounded-3xl border text-left transition-all duration-500 flex justify-between items-center group
+                      ${activeSimulation === sim.id ? 'bg-white text-black border-white' : 'bg-white/5 border-white/10 hover:border-white/30'}`}
+                  >
+                    <div>
+                      <div className="text-xs font-bold uppercase tracking-widest">{sim.label}</div>
+                      <p className={`text-[10px] mt-1 ${activeSimulation === sim.id ? 'text-zinc-500' : 'text-zinc-600'}`}>{sim.detail}</p>
+                    </div>
+                    <ChevronRight size={18} className={activeSimulation === sim.id ? 'text-blue-600' : 'text-zinc-800'} />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* SIMULATION VISUALIZER */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-blue-600 blur-[140px] opacity-10" />
+              <div className="relative bg-zinc-950 rounded-[60px] p-1 shadow-2xl border border-white/5 overflow-hidden min-h-[600px] flex flex-col justify-between p-12">
+                <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Simulation_Core_Active</span>
+                  </div>
+                  <BarChart3 size={16} className="text-zinc-700" />
+                </div>
+
+                <div className="flex-1 flex flex-col justify-center space-y-12">
+                   <div className="space-y-4">
+                      <div className="flex justify-between text-[10px] uppercase font-bold text-zinc-600">Projected Success Probability</div>
+                      <div className="text-6xl font-bold tracking-tighter">84.2<span className="text-2xl text-blue-500">%</span></div>
+                      <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-600 w-[84%] transition-all duration-[2000ms]" />
+                      </div>
+                   </div>
+
+                   <div className="grid grid-cols-2 gap-6">
+                      <div className="p-6 bg-white/5 rounded-3xl border border-white/5 space-y-2">
+                        <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">EBITDA Impact</div>
+                        <div className="text-2xl font-bold text-emerald-400">+$124k</div>
+                      </div>
+                      <div className="p-6 bg-white/5 rounded-3xl border border-white/5 space-y-2">
+                        <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Churn Risk</div>
+                        <div className="text-2xl font-bold text-amber-400">4.2%</div>
+                      </div>
+                   </div>
+
+                   <div className="p-6 bg-blue-500/10 border border-blue-500/20 rounded-3xl">
+                      <div className="flex items-center gap-3 text-blue-400 mb-2">
+                        <Lightbulb size={16} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Strategic Recommendation</span>
+                      </div>
+                      <p className="text-xs text-zinc-400 leading-relaxed italic">
+                        "Execution of price hike is viable if paired with 'Ironbark' priority service messaging. Sentiment analysis shows 68% of Mascot clients prioritize reliability over 10% cost delta."
+                      </p>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. THE SENTINEL SHIELD: COGNITIVE FILTERING */}
+        <section id="sentinel" className="py-40 bg-white text-black px-8">
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="order-2 lg:order-1">
+                 <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { title: "Meeting Synthesis", icon: Mic, count: "14 hrs", desc: "Digested into 12 actionable strategy logs." },
+                      { title: "Email Triage", icon: Filter, count: "840+", desc: "Filtered to 4 high-value executive escalations." },
+                      { title: "Xero Audits", icon: DollarSign, count: "Real-time", desc: "Automated reconciliation with margin warnings." },
+                      { title: "Lead Vetting", icon: Target, count: "100%", desc: "Psychology-qualified before you see them." }
+                    ].map((m, i) => (
+                      <div key={i} className="p-8 bg-zinc-50 rounded-[48px] border border-zinc-100 space-y-4 hover:shadow-2xl transition-all group">
+                         <div className="flex justify-between items-start">
+                            <div className="w-10 h-10 bg-zinc-950 text-white rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"><m.icon size={18} /></div>
+                            <span className="text-[10px] font-bold text-blue-600 font-mono">{m.count}</span>
+                         </div>
+                         <h5 className="text-lg font-bold tracking-tight">{m.title}</h5>
+                         <p className="text-xs text-zinc-400 leading-relaxed">{m.desc}</p>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+
+              <div className="space-y-10 order-1 lg:order-2">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">The Sentinel Protocol</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic">Eliminate <br/><span className="not-italic text-zinc-300">the Noise.</span></h3>
+                 <p className="text-xl text-zinc-600 font-light leading-relaxed">
+                   Being a Director means making decisions, not doing chores. Casper acts as your **Cognitive Filter**, digesting every staff meeting, internal email, and financial signal. It hides the complexity and presents you with the truth.
+                 </p>
+                 <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-zinc-900 border-t border-zinc-100 pt-8">
+                    <CheckCircle2 size={24} className="text-blue-500" /> From 1,000 Signals to 1 Strategy.
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 4. THE MACRO-TO-MICRO ARCHITECTURE */}
+        <section className="py-40 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="text-center space-y-6 max-w-3xl mx-auto">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Universal Context</h2>
+              <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic">Macro Power. <br/><span className="not-italic text-zinc-700">Micro Precision.</span></h3>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                The world affects your business. C&C tracks world politics, Australian RBA interest rates, and industry supply chains, applying that context to your exact operations in real-time.
+              </p>
+           </div>
+
+           <div className="relative h-[600px] bg-zinc-900/50 rounded-[60px] border border-white/5 p-12 overflow-hidden group">
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                 <div className="grid grid-cols-24 h-full w-full gap-2">
+                    {[...Array(24)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+                 </div>
+              </div>
+
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                 <div className="flex justify-between items-start">
+                    <div className="space-y-4">
+                       <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/10 w-fit">
+                          <Globe size={20} className="text-blue-400" />
+                          <span className="text-[10px] font-bold uppercase tracking-[0.4em]">Global Context Engine</span>
+                       </div>
+                       <h4 className="text-3xl font-bold tracking-tighter">Correlation Mapping</h4>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-[9px] font-mono text-zinc-500">NODE_SYD_04_SYNC: 100%</div>
+                       <div className="text-[9px] font-mono text-emerald-500 uppercase">Environment: Stable</div>
+                    </div>
+                 </div>
+
+                 {/* Visual Mapping Lines (Symbolic) */}
+                 <div className="flex-1 flex items-center justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl">
+                       <div className="space-y-4 p-8 bg-black rounded-[40px] border border-white/5">
+                          <div className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Input: Macro Force</div>
+                          <div className="text-xl font-bold text-blue-400 italic">RBA Rate Hike (0.25%)</div>
+                          <div className="h-[1px] w-full bg-zinc-800" />
+                          <p className="text-[10px] text-zinc-500">Global inflation pressure mapping.</p>
+                       </div>
+                       <div className="flex items-center justify-center">
+                          <Network size={40} className="text-zinc-800 animate-pulse" />
+                       </div>
+                       <div className="space-y-4 p-8 bg-black rounded-[40px] border border-white/5 text-right">
+                          <div className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Output: Micro Action</div>
+                          <div className="text-xl font-bold text-emerald-400 italic">Dynamic Margin Adj.</div>
+                          <div className="h-[1px] w-full bg-zinc-800" />
+                          <p className="text-[10px] text-zinc-500">Recalibrating high-ticket quotes instantly.</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 5. FINAL KEYNOTE CTA */}
+        <section className="py-60 px-6 text-center border-t border-white/5 relative overflow-hidden">
+           <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+              <div className="grid grid-cols-12 h-full w-full gap-4">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+              </div>
+           </div>
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic text-white">Own the truth.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't operate in the dark. Deploy the autonomous workforce that understands your business better than you do. Revolutionize your ability to lead.
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Secure Total Command
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1">Cognitive Command Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

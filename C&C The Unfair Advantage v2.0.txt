@@ -1,0 +1,320 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Zap, 
+  Trophy, 
+  ChevronRight, 
+  ArrowRight, 
+  Target,
+  Rocket,
+  Gauge,
+  Activity,
+  ShieldCheck,
+  Timer,
+  TrendingUp,
+  Scale,
+  Users
+} from 'lucide-react';
+
+// --- ANIMATION WRAPPER ---
+const Reveal = ({ children, delay = 0 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.1 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-[1200ms] cubic-bezier(0.22, 1, 0.36, 1) ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      {children}
+    </div>
+  );
+};
+
+// --- THE TACTICAL EDGE VISUALIZER ---
+const TacticalEdge = () => {
+  const [percent, setPercent] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPercent(94), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="w-full bg-[#050505] rounded-[48px] p-12 border border-white/5 shadow-2xl relative overflow-hidden group">
+      <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      
+      <div className="relative z-10 space-y-12">
+        <div className="flex justify-between items-start">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono text-blue-500 uppercase tracking-[0.4em] font-bold">Analysis: 30-Day Market Velocity</div>
+            <div className="text-2xl font-bold text-white tracking-tight">The Compound Advantage</div>
+          </div>
+          <div className="bg-blue-600/10 border border-blue-500/20 px-4 py-1 rounded-full text-blue-500 text-[10px] font-bold uppercase tracking-widest animate-pulse">
+            System: Apex_Mode
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Circular Gauge */}
+          <div className="relative flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-48 h-48 transform -rotate-90">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#18181b" strokeWidth="8" />
+              <circle 
+                cx="50" cy="50" r="45" fill="none" stroke="#3b82f6" strokeWidth="8" 
+                strokeDasharray="283" 
+                strokeDashoffset={283 - (283 * percent / 100)}
+                className="transition-all duration-[2000ms] cubic-bezier(0.22, 1, 0.36, 1)"
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+              <span className="text-4xl font-bold tracking-tighter">{percent}%</span>
+              <span className="text-[8px] uppercase tracking-widest text-zinc-500 font-bold">Lead Win Rate</span>
+            </div>
+          </div>
+
+          {/* Stats Breakdown */}
+          <div className="flex flex-col justify-center space-y-6">
+             <div className="space-y-1">
+                <div className="text-[9px] uppercase font-bold text-zinc-500 tracking-widest">Response Velocity</div>
+                <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                   <div className="h-full bg-blue-500 w-full" />
+                </div>
+                <div className="flex justify-between text-[10px] text-white font-mono">
+                   <span>C&C: 42s</span>
+                   <span className="text-zinc-600">Competitor: 14h</span>
+                </div>
+             </div>
+             <div className="space-y-1">
+                <div className="text-[9px] uppercase font-bold text-zinc-500 tracking-widest">Operational Capacity</div>
+                <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                   <div className="h-full bg-blue-500 w-full" />
+                </div>
+                <div className="flex justify-between text-[10px] text-white font-mono">
+                   <span>C&C: 2,400h/day</span>
+                   <span className="text-zinc-600">Competitor: 8h/day</span>
+                </div>
+             </div>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/5 flex justify-between items-center">
+           <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center text-blue-500">
+                 <Activity size={14} />
+              </div>
+              <div className="text-left">
+                 <div className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">System Health</div>
+                 <div className="text-[10px] text-white font-bold">100/100 Agents Online</div>
+              </div>
+           </div>
+           <div className="text-right">
+              <div className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest italic">Conclusion: Inevitable Domination</div>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [stage, setStage] = useState('splash');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStage('ready'), 2500);
+    const scrollHandler = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', scrollHandler);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
+  if (stage === 'splash') {
+    return (
+      <div className="fixed inset-0 bg-[#FDFDFD] flex flex-col items-center justify-center z-[100] transition-opacity duration-1000">
+        <div className="relative w-64 h-64 flex items-center justify-center animate-in zoom-in duration-1000">
+          <div className="w-32 h-32 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800">
+             <span className="font-serif text-5xl font-light text-white tracking-tighter">C<span className="text-zinc-400 italic">C</span></span>
+          </div>
+        </div>
+        <p className="mt-12 text-[10px] tracking-[1.2em] uppercase text-zinc-400 font-bold animate-pulse">Apex Protocol</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white">
+      
+      {/* 1. NAVIGATION */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${isScrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100 shadow-sm' : 'py-10'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">Tactical</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Velocity</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Secure the Edge
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        {/* 2. HERO: COMPETITIVE AGGRESSION */}
+        <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <Reveal>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 border border-blue-100">
+                <Target size={12} /> The Winners Circle
+              </div>
+              <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.85] text-zinc-950">
+                Hire the <br/>
+                <span className="text-zinc-300 italic font-light">Unfair Advantage.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                In business, you don't compete with the market. You compete with time. Camber & Casper gives you 100 agents to ensure you are always first, always right, and always ahead.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                  Deploy Your Workforce <ArrowRight size={18} />
+                </button>
+                <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-400 uppercase tracking-widest px-6 italic">
+                   <Zap size={14} className="text-blue-500" /> Response Time: 42 Seconds
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 3. SECTION: THE VELOCITY GAP */}
+        <section className="py-20 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-5 space-y-10">
+              <Reveal>
+                <h2 className="text-sm font-bold tracking-[0.6em] uppercase text-zinc-400">Tactical Advantage</h2>
+                <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight">
+                  The First Move <br/>
+                  <span className="text-zinc-300 italic font-light">Wins the Day.</span>
+                </h3>
+                <p className="text-lg text-zinc-500 font-light leading-relaxed">
+                  While your competitor is finishing their morning coffee, your synthetic workforce has already analyzed 4 tenders, followed up 12 leads, and sent 3 formal quotes. By 9:00 AM, the race is over.
+                </p>
+                <div className="grid grid-cols-2 gap-10 pt-6">
+                   <div className="space-y-1">
+                      <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">Lead Lag</div>
+                      <div className="text-3xl font-bold text-blue-600">0.04s</div>
+                   </div>
+                   <div className="space-y-1 border-l border-zinc-100 pl-10">
+                      <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">Daily Work Hours</div>
+                      <div className="text-3xl font-bold text-zinc-900">2,400</div>
+                   </div>
+                </div>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-7">
+               <Reveal delay={200}>
+                  <TacticalEdge />
+               </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. SECTION: THE SOVEREIGN WEAPON */}
+        <section className="py-40 bg-zinc-50 border-y border-zinc-100 px-8">
+           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+              <Reveal>
+                 <div className="relative aspect-square md:aspect-auto md:h-[600px] bg-white rounded-[60px] border border-zinc-100 shadow-2xl flex items-center justify-center p-16 overflow-hidden group">
+                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                    <div className="relative z-10 text-center space-y-8">
+                       <ShieldCheck size={140} className="text-blue-500 mx-auto" strokeWidth={0.5} />
+                       <div className="space-y-2">
+                          <div className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-400">Air-Gapped Shield</div>
+                          <div className="text-3xl font-bold tracking-tighter">Your competitors' data is <br/> leaking. Yours is sovereign.</div>
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+              <div className="space-y-10">
+                 <Reveal delay={200}>
+                    <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-400">The Trust Factor</h2>
+                    <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight">Trust is a <br/><span className="text-zinc-200 italic font-light text-zinc-900">Weapon.</span></h3>
+                    <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                       Camber & Casper’s Australian-soil hosting isn't just about compliance—it's a competitive advantage. High-end clients trust businesses that protect their data. When you show them the Camber Shield, the contract is yours.
+                    </p>
+                    <div className="pt-8 space-y-4">
+                       {[
+                         { title: "No Foreign Training", text: "Your business secrets stay inside your private Ironbark node." },
+                         { title: "Sovereign Law", text: "Protected by the strictest privacy framework in the world." },
+                         { title: "Air-Gapped Logic", text: "Physical separation between the swarm and the public web." }
+                       ].map((item, i) => (
+                         <div key={i} className="flex items-start gap-4">
+                            <CheckCircle2 size={18} className="text-blue-500 mt-1" />
+                            <div>
+                               <div className="text-sm font-bold uppercase tracking-widest text-zinc-900">{item.title}</div>
+                               <div className="text-xs text-zinc-400 mt-1">{item.text}</div>
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                 </Reveal>
+              </div>
+           </div>
+        </section>
+
+        {/* 5. FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center">
+           <Reveal>
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Stop Competing. <br/><span className="text-zinc-200 italic font-light text-blue-500/10">Start Winning.</span></h2>
+              <div className="flex flex-col items-center space-y-12">
+                 <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-[0_40px_100px_rgba(0,0,0,0.15)]">
+                    Employ the Advantage Today
+                 </button>
+                 <div className="flex gap-12 text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em] italic">
+                    <span>Zero Headcount</span>
+                    <span>Zero Fatigue</span>
+                    <span>Infinite Scalability</span>
+                 </div>
+              </div>
+           </Reveal>
+        </section>
+      </main>
+
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Sovereign Growth Group</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">The Map</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">The Swarm</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">
+            © 2024 CAMBER_CASPER_SOVEREIGN
+         </div>
+      </footer>
+
+      {/* GLOBAL REFINEMENTS */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+      `}} />
+    </div>
+  );
+}

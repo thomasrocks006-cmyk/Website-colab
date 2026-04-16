@@ -1,0 +1,357 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Users, 
+  Zap, 
+  TrendingUp, 
+  Wallet, 
+  ShieldCheck, 
+  ClipboardList, 
+  ChevronRight, 
+  ArrowRight,
+  Database,
+  Cpu,
+  Search,
+  MessageSquare,
+  Lock,
+  Globe,
+  Layout,
+  CheckCircle2,
+  AlertTriangle,
+  Activity,
+  Briefcase,
+  Target
+} from 'lucide-react';
+
+// --- ANIMATION WRAPPER ---
+const Reveal = ({ children, delay = 0 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = React.useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.1 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-[1000ms] ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      {children}
+    </div>
+  );
+};
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeDivision, setActiveDivision] = useState('growth');
+  const [useCase, setUseCase] = useState('trade'); // 'trade' | 'agency'
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const divisions = {
+    growth: {
+      title: "Growth & Acquisition",
+      count: 30,
+      description: "Elite agents focused on the front-end. They scan markets, capture high-intent leads, and follow up quotes with autonomous persistence.",
+      icon: <Target size={20} />,
+      color: "blue"
+    },
+    fiscal: {
+      title: "Fiscal Operations",
+      count: 20,
+      description: "Managing the financial heartbeat. Autonomous invoice chasing, bill reconciliation, and real-time cashflow optimization.",
+      icon: <Wallet size={20} />,
+      color: "emerald"
+    },
+    logistics: {
+      title: "Logistical Intelligence",
+      count: 25,
+      description: "The organizational backbone. From schedule orchestration to supplier liaison, these agents handle the administrative burden.",
+      icon: <Layout size={20} />,
+      color: "amber"
+    },
+    sovereign: {
+      title: "Sovereign Sentry",
+      count: 25,
+      description: "The Australian shield. 25 agents dedicated to encryption, identity protection, and air-gapped data integrity.",
+      icon: <ShieldCheck size={20} />,
+      color: "zinc"
+    }
+  };
+
+  const useCases = {
+    trade: {
+      title: "The Modern Trade Professional",
+      role: "Plumbing / Electrical / HVAC",
+      pain: "Spending evenings doing quotes and weekends doing receipts.",
+      solution: "The Growth Division captures leads while you're on site. Fiscal Ops chaser invoices the moment you leave the job. Logistics manages the calendar. You just do the work."
+    },
+    agency: {
+      title: "The Specialized Agency",
+      role: "Marketing / Consulting / Design",
+      pain: "Drowning in client communication and research instead of creative work.",
+      solution: "Growth handles outbound outreach. Sentry secures client assets on Australian soil. Fiscal Ops manages retainer billing. 100 experts support your core talent."
+    }
+  };
+
+  if (!isLoaded) {
+    return (
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[100] transition-opacity duration-1000">
+        <div className="relative w-48 h-48 flex items-center justify-center animate-in zoom-in duration-1000">
+           <div className="w-24 h-24 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800">
+              <span className="font-serif text-5xl font-light text-white">C<span className="text-zinc-400 italic">C</span></span>
+           </div>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[1.5em] uppercase text-zinc-400 font-bold animate-pulse pl-4">Deploying Divisions</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Access The 100
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        
+        {/* 2. HERO: THE URGENCY PLAY */}
+        <section className="min-h-[80vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <Reveal>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-[10px] font-bold tracking-[0.4em] uppercase text-red-600 border border-red-100 animate-pulse">
+                <AlertTriangle size={12} /> The Future Is Already Here
+              </div>
+              <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.9] text-zinc-950">
+                Don't get caught <br/>
+                <span className="text-zinc-300 italic font-light">flat-footed.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                The shift to autonomous workforces has begun. You can either be the business with 100 experts under your fingertip, or be the one left behind. Join the umbrella or be replaced by speed.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-12">
+              <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                Deploy The 100 <Zap size={18} fill="white" />
+              </button>
+              <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-400 uppercase tracking-widest px-6">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Australian Managed Intelligence
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 3. THE SPECIALIZED DIVISIONS (PROFESSIONAL DIRECTORY) */}
+        <section className="py-20 px-6 max-w-7xl mx-auto">
+          <div className="mb-16 space-y-4">
+             <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-400 text-center">Division Directory</h2>
+             <h3 className="text-4xl md:text-5xl font-semibold tracking-tight text-center">A Team Organized for Power.</h3>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {Object.entries(divisions).map(([key, div]) => (
+              <button 
+                key={key}
+                onMouseEnter={() => setActiveDivision(key)}
+                className={`p-10 rounded-[48px] border transition-all duration-700 text-left flex flex-col justify-between min-h-[400px] relative overflow-hidden group
+                  ${activeDivision === key ? 'bg-zinc-950 text-white border-zinc-800 shadow-2xl scale-[1.02]' : 'bg-white border-zinc-100 text-zinc-900 opacity-60'}`}
+              >
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-all ${activeDivision === key ? 'bg-blue-600 text-white' : 'bg-zinc-50 text-zinc-400'}`}>
+                  {div.icon}
+                </div>
+                <div className="space-y-4 relative z-10">
+                   <div>
+                      <h3 className="text-2xl font-semibold tracking-tight">{div.title}</h3>
+                      <p className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${activeDivision === key ? 'text-blue-400' : 'text-zinc-400'}`}>{div.count} Specialized Agents</p>
+                   </div>
+                   <p className={`text-sm leading-relaxed font-light transition-opacity duration-500 ${activeDivision === key ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
+                     {div.description}
+                   </p>
+                </div>
+                {activeDivision === key && (
+                   <div className="absolute -bottom-10 -right-10 opacity-5 rotate-12">
+                      <Cpu size={240} strokeWidth={0.5} />
+                   </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. INDUSTRY USE-CASES: REAL WORLD DEPLOYMENT */}
+        <section className="py-40 bg-zinc-50 border-y border-zinc-100">
+           <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-12">
+                 <div className="space-y-4">
+                    <h2 className="text-xs font-bold tracking-[0.6em] uppercase text-zinc-400">Industry Deployment</h2>
+                    <h3 className="text-5xl font-semibold tracking-tighter">Your business, <br/><span className="italic font-light text-zinc-300">perfectly supported.</span></h3>
+                 </div>
+                 <div className="flex bg-white p-1.5 rounded-full border border-zinc-200 shadow-sm">
+                    <button 
+                      onClick={() => setUseCase('trade')}
+                      className={`px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${useCase === 'trade' ? 'bg-zinc-900 text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-900'}`}
+                    >
+                      Trade Professional
+                    </button>
+                    <button 
+                      onClick={() => setUseCase('agency')}
+                      className={`px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${useCase === 'agency' ? 'bg-zinc-900 text-white shadow-lg' : 'text-zinc-400 hover:text-zinc-900'}`}
+                    >
+                      Boutique Agency
+                    </button>
+                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                 <div className="space-y-12 animate-in fade-in slide-in-from-left-4 duration-700">
+                    <div className="space-y-2">
+                       <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-600">{useCases[useCase].role}</span>
+                       <h4 className="text-4xl font-semibold tracking-tight">{useCases[useCase].title}</h4>
+                    </div>
+                    
+                    <div className="bg-white p-10 rounded-[40px] border border-zinc-100 shadow-sm space-y-6">
+                       <div className="flex items-start gap-4">
+                          <div className="p-2 bg-red-50 text-red-500 rounded-lg"><AlertTriangle size={18} /></div>
+                          <div>
+                             <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">The Manual Grind</div>
+                             <p className="text-zinc-700 text-sm mt-1">{useCases[useCase].pain}</p>
+                          </div>
+                       </div>
+                       <div className="h-[1px] bg-zinc-50 w-full" />
+                       <div className="flex items-start gap-4">
+                          <div className="p-2 bg-blue-50 text-blue-600 rounded-lg"><Zap size={18} fill="currentColor" /></div>
+                          <div>
+                             <div className="text-[10px] font-bold uppercase tracking-widest text-blue-600">The C&C Advantage</div>
+                             <p className="text-zinc-700 text-sm mt-1 font-light leading-relaxed">{useCases[useCase].solution}</p>
+                          </div>
+                       </div>
+                    </div>
+
+                    <button className="flex items-center gap-3 text-sm font-bold tracking-tight text-zinc-900 group">
+                       View deployment path for this industry <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                 </div>
+
+                 <div className="bg-white rounded-[60px] p-16 shadow-[0_50px_100px_rgba(0,0,0,0.04)] border border-zinc-100 relative overflow-hidden h-[600px] flex flex-col justify-between">
+                    <div className="flex justify-between items-center pb-8 border-b border-zinc-50">
+                       <div className="flex items-center gap-3">
+                          <Activity size={18} className="text-blue-500" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Live Workforce Handshake</span>
+                       </div>
+                       <span className="text-[9px] font-mono text-green-600">ENCRYPTED_LINK_ACTIVE</span>
+                    </div>
+                    
+                    <div className="space-y-8 relative z-10">
+                       <div className="space-y-2">
+                          <div className="flex justify-between items-end">
+                             <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">Throughput</div>
+                             <div className="text-xl font-bold">1.2 TB/s</div>
+                          </div>
+                          <div className="h-1 w-full bg-zinc-50 rounded-full overflow-hidden">
+                             <div className="h-full bg-blue-500 w-[84%] animate-pulse" />
+                          </div>
+                       </div>
+                       <div className="grid grid-cols-2 gap-6">
+                          <div className="p-6 bg-zinc-50 rounded-3xl space-y-1">
+                             <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">Active Agents</div>
+                             <div className="text-2xl font-bold tracking-tighter">100/100</div>
+                          </div>
+                          <div className="p-6 bg-zinc-50 rounded-3xl space-y-1">
+                             <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">Latency</div>
+                             <div className="text-2xl font-bold tracking-tighter">0.04ms</div>
+                          </div>
+                       </div>
+                    </div>
+
+                    <div className="pt-12 text-center relative z-10">
+                       <p className="text-xs text-zinc-400 italic">"The transition was seamless. Within 10 minutes, my office was autonomous."</p>
+                    </div>
+
+                    {/* Faded Background Pattern */}
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                       <div className="grid grid-cols-12 h-full gap-4 px-8">
+                          {[...Array(12)].map((_, i) => <div key={i} className="border-r border-black h-full" />)}
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 5. REINFORCING THE SOVEREIGNTY */}
+        <section className="py-40 px-6 max-w-5xl mx-auto text-center space-y-16">
+           <Reveal>
+              <div className="w-16 h-16 bg-zinc-950 rounded-2xl mx-auto flex items-center justify-center text-white mb-8 shadow-2xl">
+                 <ShieldCheck size={32} />
+              </div>
+              <h2 className="text-4xl md:text-7xl font-semibold tracking-tighter leading-tight">Your data. Australian soil. <br/> <span className="text-zinc-300 italic font-light">Untouchable AI.</span></h2>
+              <p className="text-lg text-zinc-500 font-light max-w-2xl mx-auto">
+                 Camber & Casper is the only 100-man workforce that is physically hosted on private Ironbark nodes in Australia. No foreign training pools. No offshore fine print. Just sovereign integrity.
+              </p>
+              <div className="flex justify-center gap-8">
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                    <CheckCircle2 size={16} className="text-blue-500" /> Air-Gapped Logic
+                 </div>
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                    <CheckCircle2 size={16} className="text-blue-500" /> Australian Owned
+                 </div>
+              </div>
+           </Reveal>
+        </section>
+
+        {/* 6. FINAL CONVERSION */}
+        <section className="py-60 px-6 bg-[#09090B] text-white text-center relative overflow-hidden">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="grid grid-cols-6 h-full w-full">
+                 {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/10 h-full" />)}
+              </div>
+           </div>
+           <Reveal>
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Jump. Join. <br/><span className="text-zinc-700 italic font-light">Or be replaced.</span></h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                The future isn't coming; it's here. Hire your synthetic workforce today for as little as $799/month and launch your productivity gains.
+              </p>
+              <button className="bg-white text-zinc-950 px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+                 Claim Your Workforce
+              </button>
+           </Reveal>
+        </section>
+
+      </main>
+
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Specialized Divisions Group</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900">Ethics</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">
+            © 2024 CAMBER_CASPER_CORE
+         </div>
+      </footer>
+    </div>
+  );
+}

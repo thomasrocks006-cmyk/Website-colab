@@ -1,0 +1,231 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, 
+  CheckCircle2, 
+  Clock, 
+  Users, 
+  ArrowRight, 
+  ShieldCheck, 
+  ChevronRight,
+  Plus,
+  Minus,
+  Briefcase,
+  Timer,
+  Rocket
+} from 'lucide-react';
+
+const App = () => {
+  const [stage, setStage] = useState('splash');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [deployStep, setDeployStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStage('main'), 2500);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const features = [
+    "No technical expertise required",
+    "Packaged and built for your specific trade",
+    "Zero fatigue, 24/7/365 availability",
+    "100% Sovereign Australian Data Guard"
+  ];
+
+  if (stage === 'splash') {
+    return (
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[100]">
+        <div className="relative animate-in zoom-in duration-1000">
+          <div className="w-24 h-24 bg-zinc-950 rounded-[28%] flex items-center justify-center shadow-2xl">
+            <span className="font-serif text-3xl font-light text-white">C<span className="text-zinc-500 italic">C</span></span>
+          </div>
+        </div>
+        <p className="mt-8 text-[9px] tracking-[0.8em] uppercase text-zinc-400 font-bold animate-pulse">Preparing Deployment</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white transition-opacity duration-1000">
+      
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${isScrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100 shadow-sm' : 'py-10'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-[10px] font-serif">
+              C<span className="text-zinc-500">C</span>
+            </div>
+            <span className="font-serif text-2xl font-light tracking-tighter">C&C</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-[10px] font-bold tracking-widest uppercase text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">The Package</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">The Workforce</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Safety</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight shadow-xl shadow-zinc-200">
+            Launch Now
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        {/* HERO SECTION: THE CORE PITCH */}
+        <section className="px-6 py-20 max-w-6xl mx-auto text-center space-y-12">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              <Timer size={12} /> Ready in 10 Minutes
+            </div>
+            <h1 className="text-5xl md:text-[90px] font-semibold tracking-tighter leading-[1.0] text-zinc-950">
+              Want the power of AI, <br/>
+              <span className="text-zinc-300 italic font-light">but don't know where to start?</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              We’ve packaged, built, and refined the world’s most powerful intelligence specifically for you. No technical expertise needed. Just one click to launch your new workforce.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="group bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+              Deploy Your Team <Rocket size={18} />
+            </button>
+            <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-400 uppercase tracking-widest px-6">
+              <CheckCircle2 size={16} className="text-emerald-500" /> Easy Setup Guaranteed
+            </div>
+          </div>
+        </section>
+
+        {/* COMPARISON SECTION: THE $799 VALUE */}
+        <section className="py-32 px-6 bg-zinc-50 border-y border-zinc-100">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-8">
+              <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">The Economics of Scale</h2>
+              <h3 className="text-5xl font-semibold tracking-tighter leading-none">
+                Add 100 staff to <br/> your payroll.
+              </h3>
+              <p className="text-lg text-zinc-500 font-light leading-relaxed">
+                Imagine the productivity of a 100-man back-office. They don't fatigue. They don't make mistakes. They go above and beyond to bring you value—24 hours a day.
+              </p>
+              
+              <div className="space-y-4">
+                {features.map((f, i) => (
+                  <div key={i} className="flex items-center gap-4 text-sm font-semibold text-zinc-700">
+                    <CheckCircle2 size={18} className="text-emerald-500" /> {f}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pricing Card: The "Apple-Style" Selection */}
+            <div className="bg-white rounded-[48px] p-12 shadow-[0_40px_100px_rgba(0,0,0,0.05)] border border-zinc-100 text-center space-y-10 relative overflow-hidden group">
+               <div className="absolute top-0 right-0 p-8 opacity-5">
+                  <Users size={200} />
+               </div>
+               <div className="space-y-2">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">The Growth Package</div>
+                  <div className="text-7xl font-bold tracking-tighter">$799<span className="text-xl text-zinc-300 font-light tracking-normal">/mo</span></div>
+                  <div className="text-xs text-zinc-400 uppercase tracking-widest font-bold pt-2">Includes 100 Autonomous Agents</div>
+               </div>
+               
+               <div className="bg-zinc-50 rounded-3xl p-8 space-y-6">
+                  <div className="flex justify-between items-center text-xs font-bold uppercase tracking-widest text-zinc-400 border-b border-zinc-200 pb-4">
+                     <span>Traditional Payroll</span>
+                     <span className="text-zinc-900 italic line-through">$450,000+</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs font-bold uppercase tracking-widest text-blue-600">
+                     <span>C&C Synthetic Payroll</span>
+                     <span className="text-2xl tracking-tighter">$799</span>
+                  </div>
+               </div>
+
+               <button className="w-full bg-zinc-900 text-white py-6 rounded-3xl font-bold text-lg tracking-tight hover:bg-black transition-all hover:scale-[1.02] shadow-xl">
+                  Deploy Your Workforce
+               </button>
+               <p className="text-[10px] font-bold text-zinc-300 uppercase tracking-widest">No contract. Cancel anytime.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 10-MINUTE SETUP SECTION */}
+        <section className="py-40 px-6 max-w-7xl mx-auto">
+          <div className="text-center space-y-6 mb-24">
+             <h2 className="text-sm font-bold tracking-[0.4em] uppercase text-zinc-400">Zero Technical Barrier</h2>
+             <h3 className="text-5xl font-semibold tracking-tight">Up and running <br/> in 10 minutes.</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+             {[
+               { step: '01', title: 'Pick Your Package', desc: 'Select the workforce that fits your business. We have pre-built teams for Tradies, Agencies, and Retailers.' },
+               { step: '02', title: 'Secure Link', desc: 'Connect your basic tools (Email, Calendar, Bank) through our Sovereign Australian Guard.' },
+               { step: '03', title: 'Activate the Swarm', desc: 'Click launch. Your 100 agents wake up and start organizing your business immediately.' }
+             ].map((item, i) => (
+               <div key={i} className="p-12 bg-white rounded-[40px] border border-zinc-100 hover:shadow-2xl transition-all group">
+                  <div className="text-4xl font-serif italic text-zinc-100 mb-8 group-hover:text-zinc-900 transition-colors">{item.step}</div>
+                  <h4 className="text-2xl font-semibold mb-4 tracking-tight">{item.title}</h4>
+                  <p className="text-zinc-400 text-sm leading-relaxed font-light">{item.desc}</p>
+               </div>
+             ))}
+          </div>
+        </section>
+
+        {/* REINFORCING THE SOVEREIGNTY (Australia Only) */}
+        <section className="py-40 bg-zinc-950 text-white px-8 overflow-hidden">
+           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div className="space-y-8">
+                 <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-600">Secure Australian Foundation</h2>
+                 <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight">Your company data <br/> is untouchable.</h3>
+                 <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
+                    Camber & Casper runs on private, air-gapped Ironbark nodes based in Australia. We never use your business data to train global models. Your competitive edge is locked down.
+                 </p>
+                 <div className="flex gap-4">
+                    <div className="p-4 bg-zinc-900 rounded-2xl border border-zinc-800 flex items-center gap-3">
+                       <ShieldCheck className="text-blue-500" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest">Sovereign AU</span>
+                    </div>
+                    <div className="p-4 bg-zinc-900 rounded-2xl border border-zinc-800 flex items-center gap-3">
+                       <Database className="text-emerald-500" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest">Air-Gapped</span>
+                    </div>
+                 </div>
+              </div>
+              <div className="relative aspect-square flex items-center justify-center">
+                 <div className="absolute inset-0 bg-blue-500/10 blur-[120px] rounded-full animate-pulse" />
+                 <div className="w-64 h-64 bg-white rounded-[48px] shadow-2xl flex items-center justify-center border border-zinc-800">
+                    <span className="font-serif text-6xl font-light text-zinc-900 tracking-tighter">C<span className="text-zinc-300 italic">C</span></span>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION: THE KEYNOTE CALL */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-5xl md:text-[130px] font-semibold tracking-tighter leading-none mb-16">Launch your <br/><span className="text-zinc-300 italic font-light">productivity gains.</span></h2>
+           <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl shadow-zinc-400">
+              Employ Your 100 Agents
+           </button>
+           <p className="mt-8 text-xs font-bold text-zinc-300 uppercase tracking-[0.5em]">Starts at $799/Month</p>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-20 px-8 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+        <div className="flex items-center gap-4">
+           <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white text-[10px] font-serif">C<span className="text-zinc-500 italic">C</span></div>
+           <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-400 italic">Camber & Casper Umbrella</span>
+        </div>
+        <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+          <a href="#" className="hover:text-zinc-900 transition-colors">Infrastructure</a>
+          <a href="#" className="hover:text-zinc-900 transition-colors">Privacy</a>
+          <a href="#" className="hover:text-zinc-900 transition-colors">Pricing</a>
+          <a href="#" className="hover:text-zinc-900 transition-colors">Contact</a>
+        </div>
+        <div className="text-zinc-200 text-[10px] tracking-widest">
+           © 2024 C&C SYNTHETIC WORKFORCE
+        </div>
+      </footer>
+    </div>
+  );
+}

@@ -1,0 +1,271 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  PhoneCall, 
+  MessageSquare, 
+  Settings2, 
+  BrainCircuit, 
+  Mic, 
+  Play, 
+  ShieldCheck, 
+  Users, 
+  Zap, 
+  ArrowRight, 
+  ChevronRight, 
+  CheckCircle2, 
+  Activity, 
+  Volume2, 
+  RotateCcw,
+  Target,
+  Ear,
+  Waves
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('sparring');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isSimulating, setIsSimulating] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const sparringLogs = [
+    { side: 'agent', msg: "G'day, I'm calling from Miller Electrical regarding the quote for the Mascot site. Is now a good time?", tone: "Friendly / Neutral" },
+    { side: 'prospect', msg: "A bit busy mate, can you call back? Also, the price seems a bit steep compared to the last guy.", tone: "Resistant / Price-Sensitive" },
+    { side: 'agent', msg: "Totally get that. Most of our Mascot clients feel the same until they see the Ironbark warranty. I'm happy to walk through the line items—should we chat at 4 PM or tomorrow morning?", tone: "Nuanced / Assumptive Close" },
+    { side: 'prospect', msg: "Actually, 4 PM works. Send me a calendar invite.", tone: "Converted" }
+  ];
+
+  if (!isLoaded) return <div className="h-screen bg-zinc-950" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Sales Command</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+             <a href="#nuance" className="hover:text-zinc-900">Aussie Nuance</a>
+             <a href="#sparring" className="hover:text-zinc-900">Sparring Loop</a>
+             <a href="#mentor" className="hover:text-zinc-900">Mentor Mode</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl">
+            Open Terminal
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE PSYCHOLOGY OF SALES */}
+        <section className="min-h-[75vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.4em] uppercase text-blue-600 border border-blue-100">
+              <BrainCircuit size={12} /> The Psychology Agent
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-zinc-950">
+              Sales with <br/>
+              <span className="text-zinc-200 italic font-light text-zinc-900">local nuance.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Don't trust your leads to generic AI. Casper’s sales agents are trained on Australian social dynamics, regional accents, and local business etiquette. They don't just "call"; they negotiate.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6">
+             <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                Deploy Sales Swarm <Zap size={16} fill="white" />
+             </button>
+             <div className="flex items-center gap-3 px-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-100 rounded-full bg-zinc-50">
+                <Ear size={16} className="text-blue-500" /> Dialect-Aware Synthesis
+             </div>
+          </div>
+        </section>
+
+        {/* 2. THE SPARRING LOOP (THE TRAINING MODEL) */}
+        <section id="sparring" className="py-24 px-8 max-w-7xl mx-auto space-y-16">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">The Training Model</h2>
+                 <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic text-zinc-950">Watch them <br/><span className="not-italic text-zinc-300">perfect the win.</span></h3>
+                 <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                   Before your agent ever picks up the phone for a real client, they enter the **Sparring Loop**. Your Sales Agent roleplays with a Prospect Agent (trained to be difficult, price-sensitive, or skeptical). You watch the transcript in real-time and tweak the logic until it's perfect.
+                 </p>
+                 <div className="space-y-4">
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-zinc-900">
+                       <CheckCircle2 size={20} className="text-blue-500" /> Infinite Roleplay Iterations
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-zinc-900">
+                       <CheckCircle2 size={20} className="text-blue-500" /> Objective Handling Logic
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-zinc-900">
+                       <CheckCircle2 size={20} className="text-blue-500" /> Tone & Dialect Calibration
+                    </div>
+                 </div>
+              </div>
+
+              {/* SPARRING VISUALIZER */}
+              <div className="relative group">
+                 <div className="absolute inset-0 bg-blue-600 blur-[140px] opacity-10" />
+                 <div className="relative bg-zinc-950 rounded-[60px] p-1 shadow-2xl overflow-hidden border border-white/5">
+                    <div className="w-full bg-[#0A0A0C] rounded-[58px] p-10 flex flex-col h-[600px] justify-between">
+                       <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                          <div className="flex items-center gap-3">
+                             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                             <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Internal Sparring Protocol: v4.2</span>
+                          </div>
+                          <button 
+                            onClick={() => setIsSimulating(!isSimulating)}
+                            className="p-2 bg-white/5 rounded-full text-zinc-400 hover:text-white transition-colors"
+                          >
+                             {isSimulating ? <RotateCcw size={16} /> : <Play size={16} fill="currentColor" />}
+                          </button>
+                       </div>
+
+                       <div className="flex-1 overflow-y-auto py-8 space-y-6 scrollbar-hide">
+                          {sparringLogs.map((log, i) => (
+                            <div key={i} className={`flex flex-col gap-2 ${log.side === 'agent' ? 'items-start' : 'items-end animate-in fade-in slide-in-from-right-4'}`}>
+                               <div className="flex items-center gap-2">
+                                  <span className="text-[8px] font-mono text-zinc-600 uppercase font-bold">{log.side === 'agent' ? 'Agent_78' : 'Simulated_Lead'}</span>
+                                  <span className="text-[8px] px-2 py-0.5 rounded bg-white/5 text-zinc-500">{log.tone}</span>
+                               </div>
+                               <div className={`max-w-[80%] p-4 rounded-3xl text-sm leading-relaxed ${log.side === 'agent' ? 'bg-blue-600 text-white rounded-tl-none' : 'bg-white/5 text-zinc-400 border border-white/5 rounded-tr-none'}`}>
+                                  {log.msg}
+                               </div>
+                            </div>
+                          ))}
+                       </div>
+
+                       <div className="pt-6 border-t border-white/5 text-center">
+                          <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Simulation Mode: Active Negotiation</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. MENTOR MODE (DIRECT INTERACTION) */}
+        <section id="mentor" className="py-40 bg-zinc-50 border-y border-zinc-100">
+           <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="order-2 lg:order-1 flex justify-center">
+                 <div className="relative">
+                    <div className="absolute inset-0 bg-blue-600 blur-[100px] opacity-10" />
+                    <div className="relative w-80 h-[550px] bg-white rounded-[50px] border-[8px] border-zinc-950 shadow-2xl overflow-hidden flex flex-col">
+                       <div className="bg-zinc-950 p-8 text-white space-y-2">
+                          <div className="flex justify-between items-start">
+                             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-zinc-950 shadow-xl">
+                                <Mic size={24} />
+                             </div>
+                             <div className="h-6 w-12 bg-red-500 rounded-lg flex items-center justify-center text-[8px] font-bold uppercase tracking-widest animate-pulse">Live</div>
+                          </div>
+                          <h5 className="text-xl font-bold tracking-tight pt-4">Casper Training</h5>
+                          <p className="text-zinc-500 text-[10px] uppercase tracking-widest">Voice-to-Knowledge Link</p>
+                       </div>
+                       
+                       <div className="flex-1 bg-zinc-50 p-8 flex flex-col justify-center items-center gap-12">
+                          <div className="relative flex items-center justify-center">
+                             <div className="w-32 h-32 rounded-full bg-blue-100 flex items-center justify-center">
+                                <div className="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center shadow-xl">
+                                   <Waves size={40} className="text-white animate-pulse" />
+                                </div>
+                             </div>
+                          </div>
+                          <div className="text-center space-y-2">
+                             <p className="text-sm font-bold text-zinc-900 uppercase tracking-widest">Agent is listening...</p>
+                             <p className="text-xs text-zinc-400 font-light italic">"Tell me how to handle the 'I need to talk to my partner' objection."</p>
+                          </div>
+                       </div>
+                       
+                       <div className="p-6 bg-white border-t border-zinc-100 flex justify-center">
+                          <button className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white shadow-xl hover:scale-105 transition-all">
+                             <Zap size={24} fill="white" />
+                          </button>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="order-1 lg:order-2 space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">Mentor Mode</h2>
+                 <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Your voice is <br/><span className="not-italic text-zinc-300">the final law.</span></h3>
+                 <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                   Want to tweak the agent's style? Pick up the phone and talk to it. In **Mentor Mode**, you explain your preferences, your "secret sauce," and your values. The agent learns from your voice, understands the context, and remembers it **forever**.
+                 </p>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="p-8 bg-white rounded-[40px] border border-zinc-100 shadow-sm space-y-4">
+                       <div className="w-10 h-10 bg-zinc-50 rounded-2xl flex items-center justify-center">
+                          <Target size={20} className="text-blue-600" />
+                       </div>
+                       <div className="text-[10px] font-bold uppercase tracking-widest">Perpetual Learning</div>
+                       <p className="text-xs text-zinc-400 font-light leading-relaxed">Agent logic compounds over time. Every call makes the Swarm smarter.</p>
+                    </div>
+                    <div className="p-8 bg-white rounded-[40px] border border-zinc-100 shadow-sm space-y-4">
+                       <div className="w-10 h-10 bg-zinc-50 rounded-2xl flex items-center justify-center">
+                          <Settings2 size={20} className="text-emerald-600" />
+                       </div>
+                       <div className="text-[10px] font-bold uppercase tracking-widest">Total Control</div>
+                       <p className="text-xs text-zinc-400 font-light leading-relaxed">Access full transcripts and recordings of every negotiation.</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 4. SOVEREIGN SALES: AUSTRALIAN SOIL */}
+        <section id="nuance" className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+              <div className="w-16 h-16 bg-blue-600 rounded-3xl mx-auto flex items-center justify-center shadow-2xl mb-12">
+                 <ShieldCheck size={32} />
+              </div>
+              <h2 className="text-5xl md:text-[130px] font-semibold tracking-tighter leading-none italic">Sovereign Sales.</h2>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
+                 Our sales intelligence is physically contained on Australian Ironbark nodes. Your call data, lead lists, and recorded negotiations never leave the country. Local laws, local trust, local results.
+              </p>
+              <div className="flex justify-center gap-8 pt-8">
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <Activity size={14} className="text-emerald-500" /> Sydney_Node_Active
+                 </div>
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <Volume2 size={14} className="text-blue-500" /> 12 Native Accents
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic text-zinc-950">Start winning.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't just handle leads. Negotiate them. Deploy the 100-man sales team that sounds like you and works for you 24/7.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Commission Your Sales Team
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-xs font-serif shadow-xl">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Sovereign Sales Group</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Training Logic</a>
+            <a href="#" className="hover:text-zinc-900">Sovereignty</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

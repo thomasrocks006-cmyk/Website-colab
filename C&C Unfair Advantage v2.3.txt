@@ -1,0 +1,397 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Zap, 
+  Trophy, 
+  ArrowRight, 
+  Target,
+  Rocket,
+  Activity,
+  ShieldCheck,
+  CheckCircle2,
+  XCircle,
+  Clock,
+  TrendingUp,
+  BarChart3,
+  Timer,
+  ChevronRight,
+  MousePointer2,
+  Users,
+  MessageSquare,
+  Coffee,
+  BrainCircuit
+} from 'lucide-react';
+
+// --- REUSABLE REVEAL ANIMATION ---
+const Reveal = ({ children, delay = 0 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.05 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      {children}
+    </div>
+  );
+};
+
+// --- FEATURE 1: THE SYNTHESIS RACE (Upgraded Pass 3) ---
+const CompetitiveRace = () => {
+  const [status, setStatus] = useState('idle'); // idle, racing, finished
+  const [timer, setTimer] = useState(0);
+  const [logIndex, setLogIndex] = useState(-1);
+
+  const synthesisLogs = [
+    { time: 2, agent: "Agent_10", msg: "Scanned incoming lead requirements and extracted scope.", icon: <Target size={12}/> },
+    { time: 6, agent: "Agent_03", msg: "Retrieved historical Ironbark pricing for similar HVAC installs.", icon: <BarChart3 size={12}/> },
+    { time: 12, agent: "Agent_42", msg: "Initiated discussion with Agent_85 on margin optimization.", icon: <MessageSquare size={12}/> },
+    { time: 18, agent: "Agent_85", msg: "Cross-referenced current supplier stock availability.", icon: <Activity size={12}/> },
+    { time: 24, agent: "Agent_02", msg: "Drafted specialized project timeline based on current logs.", icon: <Clock size={12}/> },
+    { time: 32, agent: "Agent_78", msg: "Synthesized executive framing and value propositions.", icon: <Zap size={12}/> },
+    { time: 40, agent: "Casper", msg: "Final audit complete. Sovereign quote dispatched.", icon: <CheckCircle2 size={12}/> },
+  ];
+
+  useEffect(() => {
+    let interval;
+    if (status === 'racing') {
+      interval = setInterval(() => {
+        setTimer(prev => {
+          if (prev >= 42) {
+            setStatus('finished');
+            return 42;
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    } else if (status === 'idle') {
+      setTimer(0);
+      setLogIndex(-1);
+    }
+    return () => clearInterval(interval);
+  }, [status]);
+
+  useEffect(() => {
+    const currentLog = synthesisLogs.findIndex(log => log.time === timer);
+    if (currentLog !== -1) setLogIndex(currentLog);
+  }, [timer]);
+
+  return (
+    <div className="w-full bg-zinc-950 rounded-[48px] p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden flex flex-col h-full">
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      
+      <div className="relative z-10 space-y-10 flex-1">
+        <div className="flex justify-between items-start">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.4em] font-bold">Protocol: Rapid_Synthesis</div>
+            <div className="text-2xl font-bold text-white tracking-tight">The 42-Second Response</div>
+          </div>
+          <div className="flex flex-col items-end gap-2">
+            <button 
+              onClick={() => setStatus(status === 'racing' ? 'idle' : 'racing')} 
+              className="px-6 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-xl"
+            >
+              {status === 'racing' ? 'Interrupt' : status === 'finished' ? 'Reset' : 'Simulate Win'}
+            </button>
+            <div className="text-2xl font-mono text-white tabular-nums">00:{timer < 10 ? `0${timer}` : timer}s</div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Comparison Lanes */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+               <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-zinc-500">
+                  <span>Manual Competitor (Human)</span>
+                  <span className="flex items-center gap-2"><Coffee size={10}/> Taking Lunch</span>
+               </div>
+               <div className="h-2 bg-zinc-900 rounded-full relative border border-white/5 overflow-hidden">
+                  <div 
+                    className="h-full bg-zinc-700 transition-all duration-[42000ms] ease-linear" 
+                    style={{ width: status === 'racing' ? '0.08%' : status === 'finished' ? '0.08%' : '0' }}
+                  />
+               </div>
+               <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-tighter italic">Status: Unaware of incoming lead.</div>
+            </div>
+
+            <div className="space-y-4">
+               <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-blue-400">
+                  <span>C&C Apex User (100 Agents)</span>
+                  <span className="flex items-center gap-2"><BrainCircuit size={10} className="animate-spin-slow"/> Neural Sync</span>
+               </div>
+               <div className="h-2 bg-zinc-900 rounded-full relative border border-blue-500/20 overflow-hidden shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+                  <div 
+                    className="h-full bg-blue-600 shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all duration-[42000ms] ease-linear" 
+                    style={{ width: status === 'racing' || status === 'finished' ? '100%' : '0' }}
+                  />
+               </div>
+               <div className="text-[8px] font-mono text-blue-500 uppercase tracking-tighter">Current Step: {logIndex >= 0 ? synthesisLogs[logIndex].agent : "Waiting..."}</div>
+            </div>
+          </div>
+
+          {/* Live Synthesis Feed */}
+          <div className="bg-black/40 border border-white/5 rounded-3xl p-6 relative overflow-hidden min-h-[220px]">
+             <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Activity size={10} /> Live Agent Synthesis Feed
+             </div>
+             <div className="space-y-3">
+                {synthesisLogs.map((log, i) => (
+                  <div 
+                    key={i} 
+                    className={`flex items-start gap-3 transition-all duration-500 ${timer >= log.time ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}
+                  >
+                    <div className={`mt-1 p-1 rounded ${timer >= log.time ? 'bg-blue-600/20 text-blue-400' : 'bg-zinc-800 text-zinc-600'}`}>
+                       {log.icon}
+                    </div>
+                    <div>
+                       <div className="text-[9px] font-mono font-bold text-blue-400 uppercase">{log.agent}</div>
+                       <div className="text-[11px] text-zinc-400 leading-tight">{log.msg}</div>
+                    </div>
+                  </div>
+                ))}
+             </div>
+             {status === 'finished' && (
+               <div className="absolute inset-0 bg-blue-600 flex items-center justify-center animate-in fade-in duration-500">
+                  <div className="text-center space-y-2">
+                    <Trophy size={40} className="text-white mx-auto" />
+                    <div className="text-sm font-bold uppercase tracking-widest text-white">Project Secured</div>
+                    <div className="text-[10px] text-blue-200">Quote accepted by client within 3 minutes.</div>
+                  </div>
+               </div>
+             )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const VelocityChart = () => (
+  <div className="bg-white rounded-[48px] p-12 border border-zinc-100 shadow-[0_40px_100px_rgba(0,0,0,0.04)] relative overflow-hidden group h-full flex flex-col justify-between">
+    <div className="space-y-2">
+      <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">Velocity Analysis</div>
+      <h4 className="text-2xl font-semibold tracking-tight">The Growth Gap.</h4>
+      <p className="text-sm text-zinc-400 font-light">Comparing human-only fatigue against synthetic consistency.</p>
+    </div>
+    
+    <div className="relative h-48 w-full mt-12">
+      <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
+        <path d="M0,35 Q25,34 50,33 T100,32" fill="none" stroke="#e4e4e7" strokeWidth="1" strokeDasharray="2 2" />
+        <path d="M0,35 Q25,30 50,20 T100,2" fill="none" stroke="#2563eb" strokeWidth="1.5" className="animate-in slide-in-from-left duration-[2000ms]" />
+        <circle cx="100" cy="2" r="2" fill="#2563eb" className="animate-pulse" />
+      </svg>
+      <div className="absolute top-0 right-0 text-[10px] font-bold text-blue-600 uppercase tracking-widest">+420% Market Reach</div>
+      <div className="absolute bottom-4 left-0 text-[9px] font-bold text-zinc-300 uppercase tracking-widest">Month 0</div>
+      <div className="absolute bottom-4 right-0 text-[9px] font-bold text-zinc-300 uppercase tracking-widest">Month 12</div>
+    </div>
+    
+    <div className="grid grid-cols-2 gap-4 mt-8">
+       <div className="p-4 bg-zinc-50 rounded-2xl">
+          <div className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Win Rate</div>
+          <div className="text-xl font-bold text-zinc-900">94%</div>
+       </div>
+       <div className="p-4 bg-zinc-50 rounded-2xl">
+          <div className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Output</div>
+          <div className="text-xl font-bold text-zinc-900">2.4k hrs</div>
+       </div>
+    </div>
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white">
+      
+      {/* 1. SPLASH INTRO */}
+      <div className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.8, 0, 0.2, 1) ${isLoaded ? 'translate-y-[-100%] opacity-0' : 'opacity-100'}`}>
+        <div className="w-24 h-24 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800 animate-in zoom-in duration-1000">
+           <span className="font-serif text-5xl font-light text-white italic">C</span>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[1.2em] uppercase text-zinc-400 font-bold animate-pulse">Apex Predator Protocol</p>
+      </div>
+
+      {/* 2. NAVIGATION */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${scrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100 shadow-sm' : 'py-10'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Secure the Advantage
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: AGGRESSIVE MARKET LEADERSHIP */}
+        <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <Reveal>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 border border-blue-100">
+                <Target size={12} /> Competitive Domination
+              </div>
+              <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.85] text-zinc-950">
+                Win in 42 <br/>
+                <span className="text-zinc-300 italic font-light">Seconds.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Speed isn't just about fast tools. It's about a 100-man team synthesizing your business data, discussing the best strategy, and delivering a quote while your competitor is finishing lunch.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                  Deploy Your Workforce <ArrowRight size={18} />
+                </button>
+                <div className="flex flex-col items-start justify-center px-6 text-left">
+                   <div className="text-[10px] font-bold text-zinc-950 uppercase tracking-widest italic">Zero Latency.</div>
+                   <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest italic">Zero Human Delay.</div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 4. VISUALIZERS (Integrated) */}
+        <section className="py-20 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <Reveal delay={100}>
+            <CompetitiveRace />
+          </Reveal>
+          <Reveal delay={300}>
+            <VelocityChart />
+          </Reveal>
+        </section>
+
+        {/* 5. THE DOMINANCE MATRIX */}
+        <section className="py-40 px-6 max-w-7xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-24 space-y-4">
+              <h2 className="text-xs font-bold tracking-[0.6em] uppercase text-zinc-400">The Power Divide</h2>
+              <h3 className="text-5xl font-semibold tracking-tight leading-tight">The difference between <br/> <span className="italic font-light text-zinc-300">human and synthetic.</span></h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-100 bg-zinc-100">
+               {[
+                 { label: "Daily Output", human: "8 Productive Hours", apex: "2,400 Combined Hours", icon: <Clock size={16}/> },
+                 { label: "Quote Response", human: "12-24 Hour Average", apex: "42 Second Delivery", icon: <Zap size={16}/> },
+                 { label: "Internal Collab", human: "Email Ping-Pong", apex: "Concurrent Multi-Agent Protocol", icon: <BrainCircuit size={16}/> }
+               ].map((item, i) => (
+                 <div key={i} className="p-12 space-y-12 bg-white hover:bg-zinc-50 transition-colors">
+                    <div className="flex items-center gap-4">
+                       <div className="w-10 h-10 rounded-xl bg-zinc-50 flex items-center justify-center text-zinc-900 border border-zinc-100">
+                          {item.icon}
+                       </div>
+                       <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">{item.label}</div>
+                    </div>
+                    <div className="space-y-6">
+                       <div className="flex items-center gap-3 text-sm text-zinc-400">
+                          <XCircle size={14} className="text-zinc-200" /> <span className="line-through">{item.human}</span>
+                       </div>
+                       <div className="flex items-center gap-3 text-xl font-bold text-zinc-900">
+                          <CheckCircle2 size={20} className="text-blue-500" /> {item.apex}
+                       </div>
+                    </div>
+                 </div>
+               ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 6. INFRASTRUCTURE PLEDGE */}
+        <section className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full p-20">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="white" strokeWidth="0.1" strokeDasharray="1 4" />
+                <path d="M20 50 A 30 30 0 0 1 80 50" fill="none" stroke="white" strokeWidth="0.5" />
+              </svg>
+           </div>
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <Reveal>
+                 <div className="space-y-10">
+                    <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-600">Sovereign Performance</h2>
+                    <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">Power is <br/><span className="text-zinc-700 italic font-light text-zinc-400">Private.</span></h3>
+                    <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
+                       To move at this speed, you need high-integrity hardware. Our Australian nodes provide the bandwidth for 100 agents to collaborate simultaneously without data ever leaving the country.
+                    </p>
+                    <div className="flex gap-4">
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800">
+                          <ShieldCheck size={14} className="text-blue-500" /> 100% Air-Gapped
+                       </div>
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800">
+                          <Rocket size={14} className="text-emerald-500" /> Apex Speed
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+              <Reveal delay={200}>
+                 <div className="bg-zinc-900 aspect-video md:aspect-auto md:h-[600px] rounded-[60px] border border-white/5 flex items-center justify-center p-1 group">
+                    <div className="w-full h-full bg-black rounded-[58px] flex items-center justify-center relative overflow-hidden">
+                       <div className="absolute inset-0 grid grid-cols-8 gap-1 p-12 opacity-10">
+                          {[...Array(32)].map((_, i) => ( <div key={i} className="bg-white rounded-sm animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} /> ))}
+                       </div>
+                       <div className="relative z-10 text-center space-y-6">
+                          <BrainCircuit size={100} className="text-zinc-800 group-hover:text-blue-500 transition-colors duration-1000" strokeWidth={0.5} />
+                          <div className="text-[10px] font-mono tracking-[1em] uppercase text-zinc-600">Cognitive_Cluster_Online</div>
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+           </div>
+        </section>
+
+        {/* 7. FINAL CTA */}
+        <section className="py-60 px-6 text-center">
+           <Reveal>
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Win first.</h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                 Join the Camber & Casper umbrella and deploy the workforce that makes the competition irrelevant. $799/month. Zero complexity.
+              </p>
+              <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-[0_40px_100px_rgba(0,0,0,0.2)]">
+                 Hire the Swarm
+              </button>
+           </Reveal>
+        </section>
+
+      </main>
+
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Synthetic Intelligence</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Economics</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(12deg); }
+          100% { transform: translateX(200%) skewX(12deg); }
+        }
+        .animate-spin-slow {
+          animation: spin 8s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+}

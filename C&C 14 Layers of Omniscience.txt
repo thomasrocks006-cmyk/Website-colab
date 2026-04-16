@@ -1,0 +1,274 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BrainCircuit, 
+  Mic, 
+  Database, 
+  Globe, 
+  Zap, 
+  DollarSign, 
+  MessageSquare, 
+  Target, 
+  Activity, 
+  Clock, 
+  ShieldCheck, 
+  LineChart, 
+  Search, 
+  Network,
+  ChevronRight,
+  Eye,
+  History,
+  Scale,
+  Radar,
+  ArrowRight,
+  Cpu,
+  Truck,
+  Gavel,
+  HeartPulse,
+  PackageSearch,
+  Wrench,
+  FileSearch,
+  HardDrive
+} from 'lucide-react';
+
+const InputSet = ({ id, title, label, desc, active, onHover, layer }) => (
+  <div 
+    onMouseEnter={onHover}
+    className={`p-6 rounded-[32px] border transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[240px] group relative overflow-hidden
+      ${active ? 'bg-white text-zinc-950 border-white shadow-2xl scale-[1.02]' : 'bg-zinc-900/40 text-zinc-500 border-white/5 hover:border-white/20'}`}
+  >
+    <div className="space-y-3 relative z-10">
+      <div className="flex justify-between items-center">
+        <span className={`text-[9px] font-mono font-bold tracking-[0.2em] ${active ? 'text-blue-600' : 'text-zinc-700'}`}>SET_{id}</span>
+        <span className={`text-[8px] font-bold uppercase px-2 py-0.5 rounded ${layer === 'Cortex' ? 'bg-zinc-800 text-zinc-400' : 'bg-blue-900/30 text-blue-400'}`}>
+          {layer}
+        </span>
+      </div>
+      <h3 className="text-xl font-semibold tracking-tighter leading-tight">{title}</h3>
+      <p className="text-[9px] font-bold uppercase tracking-widest opacity-50">{label}</p>
+      <p className="text-[11px] leading-relaxed font-light opacity-80">{desc}</p>
+    </div>
+    <div className={`absolute -bottom-4 -right-4 opacity-5 group-hover:opacity-10 transition-opacity`}>
+       <Database size={100} />
+    </div>
+  </div>
+);
+
+export default function App() {
+  const [activeSet, setActiveSet] = useState("08");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const inputSets = [
+    // LAYER 1: THE CORTEX (PREVIOUS 7)
+    { id: "01", layer: "Cortex", title: "Macro Context", label: "Global/Local Forces", desc: "RBA rates, inflation, and Australian legislative shifts." },
+    { id: "02", layer: "Cortex", title: "Environment", label: "Physical Variables", desc: "Live traffic, weather-induced site delays, and supplier stock levels." },
+    { id: "03", layer: "Cortex", title: "Historical Logic", label: "Institutional Memory", desc: "Years of company seasonal arcs and previous tactical wins." },
+    { id: "04", layer: "Cortex", title: "Tribal Intel", label: "Internal Discourse", desc: "Meeting transcripts and email sentiment captured from staff comms." },
+    { id: "05", layer: "Cortex", title: "Fiscal Depth", label: "Granular Liquidity", desc: "Direct Xero/MYOB sync including debt aging and tax positions." },
+    { id: "06", layer: "Cortex", title: "Competitive Signal", label: "Market Velocity", desc: "Competitor pricing scrapes and localized SEO dominance." },
+    { id: "07", layer: "Cortex", title: "Intent DNA", label: "Psychological History", desc: "Personality markers and objections handled across 1,000s of calls." },
+    
+    // LAYER 2: THE DEEP TISSUE (THE NEW 7)
+    { id: "08", layer: "Deep Tissue", title: "Operational Telemetry", label: "Hardware Feedback", desc: "IoT data from fleet GPS, tool battery cycles, and engine diagnostics on heavy machinery.", icon: Truck },
+    { id: "09", layer: "Deep Tissue", title: "Regulatory Sentinel", label: "Compliance & Safety", desc: "Real-time monitoring of AU Standard changes, license expiries, and OH&S logs.", icon: Gavel },
+    { id: "10", layer: "Deep Tissue", title: "Human Capital DNA", label: "Performance Vitality", desc: "Predicting staff churn and burnout risk through tone and response-velocity analysis.", icon: HeartPulse },
+    { id: "11", layer: "Deep Tissue", title: "Velocity of Trust", label: "Brand Sentiment", desc: "Cross-referencing Google Reviews, social mentions, and word-of-mouth spikes locally.", icon: Search },
+    { id: "12", layer: "Deep Tissue", title: "Supply Forensics", label: "Geopolitical Friction", desc: "Tracking global shipping lanes and raw material scarcity impacting specific Aussie parts.", icon: PackageSearch },
+    { id: "13", layer: "Deep Tissue", title: "Recursive Asset Logic", label: "ROI Lifecycles", desc: "Calculating the exact point where tool maintenance costs exceed replacement ROI.", icon: Wrench },
+    { id: "14", layer: "Deep Tissue", title: "Dark Data Synthesis", label: "Unstructured Chaos", desc: "OCR processing of handwritten site notes, whiteboard photos, and field voice memos.", icon: FileSearch }
+  ];
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-500 overflow-x-hidden">
+      
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-10 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Omniscience Protocol</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex flex-col items-end">
+               <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Active Input Streams</span>
+               <span className="text-xs font-mono font-bold text-blue-500">14_NODES_LIVE</span>
+            </div>
+            <button className="bg-blue-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:scale-105 transition-all shadow-xl shadow-blue-900/20">
+              Terminal Access
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO SECTION */}
+        <section className="min-h-[50vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-bold tracking-widest text-blue-400 uppercase">
+              <BrainCircuit size={12} /> The 14 Layers of Truth
+            </div>
+            <h1 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Total <br/>
+              <span className="text-zinc-600 italic font-light">Self-Awareness.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed">
+              We don't just bridge silos. We eliminate them. Casper blends 14 distinct input sets—from global geopolitical friction to the battery levels in your tech's toolkit—to provide absolute strategic reasoning.
+            </p>
+          </div>
+        </section>
+
+        {/* THE 14 INPUTS GRID */}
+        <section className="py-40 px-8 max-w-[1600px] mx-auto">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {inputSets.map((set) => (
+                <InputSet 
+                  key={set.id}
+                  id={set.id}
+                  title={set.title}
+                  label={set.label}
+                  desc={set.desc}
+                  layer={set.layer}
+                  active={activeSet === set.id}
+                  onHover={() => setActiveSet(set.id)}
+                />
+              ))}
+              
+              {/* THE CTA BOX */}
+              <div className="p-8 rounded-[40px] bg-blue-600 text-white flex flex-col justify-between items-start group hover:bg-blue-500 transition-all cursor-pointer shadow-2xl shadow-blue-900/30">
+                 <Zap size={32} fill="white" className="group-hover:animate-pulse" />
+                 <div className="space-y-2">
+                    <h4 className="text-2xl font-bold tracking-tight">Commission the Brain.</h4>
+                    <p className="text-xs opacity-80 leading-relaxed font-light">Unified deployment of all 14 layers in under 10 minutes.</p>
+                 </div>
+                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest bg-black/20 px-4 py-2 rounded-full">
+                    Deploy Now <ArrowRight size={12} />
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* THE NERVOUS SYSTEM VISUALIZER */}
+        <section className="py-40 bg-zinc-950 px-8 border-y border-white/5 relative overflow-hidden">
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <div className="space-y-12">
+                 <div className="space-y-4">
+                    <h2 className="text-xs font-bold tracking-[0.6em] text-blue-500 uppercase">Interactive Reasoning</h2>
+                    <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none text-white italic">The Macro <br/><span className="text-zinc-600 not-italic">to Micro.</span></h3>
+                 </div>
+                 <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                    Watch how Casper connects **Layer 01 (RBA)** with **Layer 08 (Hardware)** and **Layer 10 (Staff Performance)** to explain why your profit margin shifted on a Tuesday morning. This isn't software. It's an organism.
+                 </p>
+                 
+                 <div className="p-8 rounded-[40px] bg-white text-zinc-950 space-y-8 shadow-2xl relative">
+                    <div className="flex justify-between items-center border-b border-zinc-100 pb-4">
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Recursive Truth Query</span>
+                       <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" /><span className="text-[10px] font-mono text-blue-600">CONVERGING_14_NODES</span></div>
+                    </div>
+                    <div className="space-y-6">
+                       <div className="flex items-start gap-4">
+                          <Mic size={18} className="text-zinc-400 mt-1" />
+                          <p className="text-lg font-light italic text-zinc-600">"Why is the job turnaround in Melbourne slowing down?"</p>
+                       </div>
+                       <div className="p-6 bg-zinc-50 rounded-2xl border border-zinc-200 space-y-4">
+                          <div className="text-[9px] font-bold text-blue-600 uppercase tracking-widest">Casper Multi-Layer Synthesis:</div>
+                          <div className="text-xs text-zinc-700 space-y-3 font-light leading-relaxed">
+                             <p><span className="font-bold">Layer 08 + 12:</span> IoT sensors on Tech_Fleet_A show a 14% increase in idle time; Geopolitical freight delays have restricted local 'Copper-Valve' stock by 40%.</p>
+                             <p><span className="font-bold">Layer 10 + 04:</span> Sentiment analysis of Tuesday's field audio indicates 'High Fatigue' in Lead Techs due to overtime burn.</p>
+                             <p><span className="font-bold">Strategy:</span> I have initiated a 48-hour 'Rest Allocation' for Fleet A and secured alternate stock via a Layer 02 weather-protected lane.</p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              {/* DYNAMIC NERVOUS SYSTEM VISUAL */}
+              <div className="relative aspect-square flex items-center justify-center">
+                 <div className="absolute inset-0 bg-blue-600 blur-[180px] opacity-[0.08] rounded-full" />
+                 <div className="relative w-full max-w-lg bg-black rounded-[60px] border border-white/10 p-12 space-y-12 shadow-2xl min-h-[650px] flex flex-col justify-between overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+                       <Network size={600} className="text-white" />
+                    </div>
+                    
+                    <div className="flex justify-between items-center relative z-10 border-b border-white/5 pb-6">
+                       <div className="flex items-center gap-3">
+                          <Activity size={16} className="text-blue-500 animate-pulse" />
+                          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Nervous_System_Load</span>
+                       </div>
+                       <div className="text-[8px] font-mono text-zinc-700">IRONBARK_CORE_STABLE</div>
+                    </div>
+                    
+                    <div className="flex-1 flex items-center justify-center relative">
+                       {/* The Monolith Brain */}
+                       <div className="w-48 h-48 rounded-[28%] bg-white flex items-center justify-center shadow-[0_0_100px_rgba(255,255,255,0.1)] relative z-20 transition-all duration-700 hover:scale-110">
+                          <BrainCircuit size={80} className="text-black animate-pulse" strokeWidth={1} />
+                       </div>
+                       
+                       {/* The 14 Layers orbital network */}
+                       <div className="absolute inset-0 flex items-center justify-center animate-spin-slow">
+                          {[...Array(14)].map((_, i) => (
+                            <div 
+                              key={i}
+                              className="absolute w-2 h-2 rounded-full transition-all duration-1000"
+                              style={{
+                                transform: `rotate(${i * 25.7}deg) translateY(-220px)`,
+                                backgroundColor: activeSet === inputSets[i].id ? '#3b82f6' : '#27272a',
+                                boxShadow: activeSet === inputSets[i].id ? '0 0 20px #3b82f6' : 'none'
+                              }}
+                            />
+                          ))}
+                       </div>
+                    </div>
+
+                    <div className="relative z-10 bg-white/5 p-6 rounded-3xl border border-white/10 space-y-4">
+                       <div className="flex justify-between text-[10px] uppercase font-bold text-zinc-500">Cross-Variable Synapse</div>
+                       <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-600 w-[100%] transition-all duration-[4000ms]" />
+                       </div>
+                       <p className="text-center text-[8px] font-mono text-blue-400 uppercase tracking-widest">Nervous_Pulse: Optimal</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center border-t border-white/5 relative">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic text-white">Own the truth.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't operate in the dark. Deploy the only workforce that is physically connected to every metric, every machine, and every human signal in your business. 
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Secure Total Command
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1 italic">Cognitive Command Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 40s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+}

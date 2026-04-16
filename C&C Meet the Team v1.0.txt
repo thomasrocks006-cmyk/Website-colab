@@ -1,0 +1,276 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Users, 
+  Zap, 
+  TrendingUp, 
+  Wallet, 
+  ShieldCheck, 
+  ClipboardList, 
+  ChevronRight, 
+  ArrowRight,
+  Database,
+  Cpu,
+  Search,
+  MessageSquare,
+  Lock,
+  Globe,
+  Layout,
+  UserCheck
+} from 'lucide-react';
+
+// --- SUB-COMPONENTS ---
+
+const AgentCard = ({ id, role, description, icon: Icon, colorClass }) => (
+  <div className="group bg-white p-8 rounded-[32px] border border-zinc-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-colors ${colorClass}`}>
+      <Icon size={20} />
+    </div>
+    <div className="space-y-2">
+      <div className="flex justify-between items-center">
+        <span className="text-[10px] font-mono font-bold text-zinc-300 uppercase tracking-widest">Agent_{id}</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+      </div>
+      <h4 className="text-xl font-semibold tracking-tight text-zinc-900">{role}</h4>
+      <p className="text-sm text-zinc-400 font-light leading-relaxed">{description}</p>
+    </div>
+    <div className="mt-6 pt-6 border-t border-zinc-50 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">View Protocol</span>
+      <ChevronRight size={14} className="text-zinc-300" />
+    </div>
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeSquad, setActiveSquad] = useState('growth');
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 2400);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const squads = {
+    growth: {
+      name: "Growth Squad",
+      count: 30,
+      icon: <TrendingUp size={18} />,
+      theme: "text-blue-600 bg-blue-50",
+      description: "Dedicated to the front-end of your business. These agents hunt leads, follow up quotes, and manage your reputation while you work.",
+      agents: [
+        { id: "04", role: "Lead Prospector", desc: "Scans local markets for active tender opportunities and high-intent leads.", icon: Search },
+        { id: "12", role: "Quote Synthesizer", desc: "Instantly generates professional quotes based on your Ironbark rate-sheets.", icon: Zap },
+        { id: "28", role: "Follow-up Specialist", desc: "Closes the gap between quote and cash with autonomous, polite persistence.", icon: MessageSquare }
+      ]
+    },
+    capital: {
+      name: "Capital Squad",
+      count: 20,
+      icon: <Wallet size={18} />,
+      theme: "text-emerald-600 bg-emerald-50",
+      description: "The financial engine. Managing the flow of money, chasing late invoices, and keeping your cashflow optimized 24/7.",
+      agents: [
+        { id: "44", role: "Invoice Guardian", desc: "Monitors accounts and autonomously chases unpaid invoices with zero awkwardness.", icon: ShieldCheck },
+        { id: "51", role: "Tax Optimizer", desc: "Pre-sorts compliance logs and identifies deductions as they happen.", icon: Database },
+        { id: "60", role: "Fiscal Forecaster", desc: "Analyzes profit margins and warns you of upcoming seasonal lulls.", icon: Cpu }
+      ]
+    },
+    ops: {
+      name: "Operations Squad",
+      count: 25,
+      icon: <ClipboardList size={18} />,
+      theme: "text-amber-600 bg-amber-50",
+      description: "The organizational backbone. Sorting the schedule, managing suppliers, and handling the paperwork you hate.",
+      agents: [
+        { id: "72", role: "Schedule Orchestrator", desc: "Coordinates site visits and job blocks, avoiding double-bookings.", icon: Layout },
+        { id: "85", role: "Compliance Sorter", desc: "Ensures every job has the required OH&S documentation filed instantly.", icon: UserCheck },
+        { id: "91", role: "Supplier Liaison", desc: "Automates materials ordering once a quote is accepted by a client.", icon: Globe }
+      ]
+    },
+    sentry: {
+      name: "Sentry Squad",
+      count: 25,
+      icon: <Lock size={18} />,
+      theme: "text-zinc-900 bg-zinc-100",
+      description: "The Sovereign Australian Shield. Keeping your business data air-gapped and protected by Australian law.",
+      agents: [
+        { id: "01", role: "Encryption Warden", desc: "Manages the physical air-gap between your core and the public web.", icon: Lock },
+        { id: "10", role: "Identity Guard", desc: "Protects your login integrity and business reputation from deep-fakes.", icon: ShieldCheck },
+        { id: "25", role: "Node Sentinel", desc: "Monitors the physical Ironbark hardware nodes in Sydney & Melbourne.", icon: Database }
+      ]
+    }
+  };
+
+  if (!isLoaded) {
+    return (
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[100]">
+        <div className="relative w-48 h-48 flex items-center justify-center animate-in zoom-in duration-1000">
+           <div className="w-24 h-24 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800">
+              <span className="font-serif text-5xl font-light text-white">C<span className="text-zinc-400 italic">C</span></span>
+           </div>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[1.2em] uppercase text-zinc-400 font-bold animate-pulse">Summoning The 100</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 cursor-pointer group">
+            <div className="w-8 h-8 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">The 100</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Squads</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Pricing</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Secure Your Team
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        
+        {/* HERO: MEET THE WORKFORCE */}
+        <section className="min-h-[80vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              <Users size={12} /> Meet Your New Workforce
+            </div>
+            <h1 className="text-6xl md:text-[110px] font-semibold tracking-tighter leading-[0.9] text-zinc-950">
+              100 Minds. <br/>
+              <span className="text-zinc-300 italic font-light">One Point of Command.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Scale your business from a one-man show to a 100-man powerhouse. Our synthetic workforce is divided into elite squads designed to manage every corner of your company.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+            <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+              Deploy the Swarm <Zap size={16} fill="white" />
+            </button>
+            <div className="flex flex-col items-start justify-center px-6">
+               <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Starts at $799/Mo</span>
+               <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest underline">10-Minute Setup</span>
+            </div>
+          </div>
+        </section>
+
+        {/* SQUAD SELECTION SECTION */}
+        <section className="py-20 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-16">
+            {Object.entries(squads).map(([key, squad]) => (
+              <button 
+                key={key}
+                onClick={() => setActiveSquad(key)}
+                className={`p-10 rounded-[40px] border transition-all duration-500 text-left flex flex-col justify-between h-[320px] 
+                  ${activeSquad === key ? 'bg-zinc-950 text-white border-zinc-800 shadow-2xl scale-[1.02]' : 'bg-white border-zinc-100 text-zinc-900 hover:bg-zinc-50 opacity-60'}`}
+              >
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-all ${activeSquad === key ? 'bg-blue-600 text-white' : squad.theme}`}>
+                  {squad.icon}
+                </div>
+                <div>
+                   <h3 className="text-2xl font-semibold tracking-tight">{squad.name}</h3>
+                   <p className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${activeSquad === key ? 'text-blue-400' : 'text-zinc-400'}`}>{squad.count} Dedicated Agents</p>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* ACTIVE SQUAD DETAIL */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start py-20 border-t border-zinc-100 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <div className="lg:col-span-4 space-y-6">
+               <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">Squad Overview</h2>
+               <h3 className="text-4xl font-semibold tracking-tighter">{squads[activeSquad].name}</h3>
+               <p className="text-lg text-zinc-500 font-light leading-relaxed">
+                 {squads[activeSquad].description}
+               </p>
+               <button className="flex items-center gap-3 bg-zinc-100 text-zinc-900 px-8 py-3 rounded-full text-xs font-bold tracking-tight hover:bg-zinc-200 transition-all group">
+                 View Full Manifest <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+               </button>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {squads[activeSquad].agents.map((agent) => (
+                <AgentCard 
+                  key={agent.id}
+                  id={agent.id}
+                  role={agent.role}
+                  description={agent.desc}
+                  icon={agent.icon}
+                  colorClass={activeSquad === 'sentry' ? 'text-zinc-900 bg-zinc-100' : squads[activeSquad].theme}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* C&C METRIC: THE PRICE OF ONE EMPLOYEE */}
+        <section className="py-40 bg-zinc-50 border-y border-zinc-100 px-6">
+           <div className="max-w-5xl mx-auto text-center space-y-16">
+              <div className="space-y-4">
+                 <h2 className="text-sm font-bold tracking-[0.6em] uppercase text-zinc-400">The Ultimate Comparison</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">A 100-man team. <br/><span className="text-zinc-300 italic font-light">Zero headcount.</span></h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                 <div className="space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Traditional Cost</div>
+                    <div className="text-4xl font-bold tracking-tighter">$450,000+</div>
+                    <p className="text-[10px] text-zinc-400 font-medium">Est. 100 Staff Salaries</p>
+                 </div>
+                 <div className="relative flex items-center justify-center md:border-x border-zinc-200">
+                    <div className="bg-zinc-950 text-white p-6 rounded-3xl shadow-xl scale-110">
+                       <div className="text-[9px] font-bold uppercase tracking-widest text-blue-400 mb-1">C&C Logic</div>
+                       <div className="text-3xl font-bold">$799</div>
+                    </div>
+                 </div>
+                 <div className="space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Management Load</div>
+                    <div className="text-4xl font-bold tracking-tighter">0.0%</div>
+                    <p className="text-[10px] text-zinc-400 font-medium">Autonomous Execution</p>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CALL TO ACTION */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Employ <br/><span className="text-zinc-200 italic font-light text-blue-500/10">the future.</span></h2>
+           <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
+              Claim Your Workforce
+           </button>
+           <p className="mt-10 text-[10px] font-bold text-zinc-300 uppercase tracking-[0.6em]">No Contract. Australian Owned. Air-Gapped Security.</p>
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+           <div className="flex items-center gap-4">
+              <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+              <div className="flex flex-col text-left">
+                 <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+                 <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Synthetic Workforce Group</span>
+              </div>
+           </div>
+           <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+              <a href="#" className="hover:text-zinc-900 transition-colors">Manifest</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Economics</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Compliance</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Contact</a>
+           </div>
+           <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">
+              © 2024 CAMBER_CASPER_CORE
+           </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

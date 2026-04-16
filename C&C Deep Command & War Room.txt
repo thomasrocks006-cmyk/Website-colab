@@ -1,0 +1,346 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ShieldAlert, Zap, BrainCircuit, Activity, Target, 
+  Globe, DollarSign, MessageSquare, Mic, Lock, 
+  Radar, ChevronRight, ArrowRight, CheckCircle2, 
+  LineChart, BarChart3, Calculator, Compass, Scale
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('radar');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [pulse, setPulse] = useState(0);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const interval = setInterval(() => setPulse(p => (p + 1) % 100), 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // --- UI Components ---
+
+  const SidebarItem = ({ id, label, icon: Icon }) => (
+    <button 
+      onClick={() => setActiveTab(id)}
+      className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 ${activeTab === id ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' : 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300'}`}
+    >
+      <Icon size={18} />
+      <span className="text-[10px] font-bold uppercase tracking-widest">{label}</span>
+    </button>
+  );
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-500 overflow-x-hidden">
+      
+      {/* 1. TOP NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl">C</div>
+            <div className="flex flex-col">
+              <span className="font-serif text-2xl font-light tracking-tighter uppercase leading-none">The War Room</span>
+              <span className="text-[7px] font-mono text-zinc-500 uppercase tracking-[0.4em] mt-1">Sovereign_Survival_Protocol_v3.0</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-bold uppercase tracking-widest flex items-center gap-2">
+              <div className="w-1 h-1 bg-emerald-500 rounded-full animate-ping" /> System Stable
+            </div>
+            <button className="bg-red-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-red-500 transition-all shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+              Engage Swarm
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div className="pt-32 flex flex-col lg:flex-row max-w-[1600px] mx-auto p-8 gap-8">
+        
+        {/* SIDEBAR NAVIGATION */}
+        <aside className="w-full lg:w-64 space-y-2">
+          <SidebarItem id="radar" label="Strategic Radar" icon={Radar} />
+          <SidebarItem id="math" label="Institutional Math" icon={Calculator} />
+          <SidebarItem id="sparring" label="Sales Sparring" icon={Target} />
+          <SidebarItem id="oracle" label="The Oracle UI" icon={BrainCircuit} />
+          <div className="pt-8 px-4 border-t border-white/5 mt-8">
+            <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest mb-4">Tactical Metrics</div>
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <div className="flex justify-between text-[9px] text-zinc-400"><span>Node Sync</span><span>100%</span></div>
+                <div className="h-0.5 bg-zinc-800 rounded-full"><div className="h-full bg-blue-500 w-full" /></div>
+              </div>
+              <div className="space-y-1">
+                <div className="flex justify-between text-[9px] text-zinc-400"><span>Threat Level</span><span>Zero</span></div>
+                <div className="h-0.5 bg-zinc-800 rounded-full"><div className="h-full bg-emerald-500 w-full" /></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {/* MAIN CONTENT AREA */}
+        <main className="flex-1 space-y-8">
+          
+          {/* TAB 1: RADAR & SURVIVAL INSTINCT */}
+          {activeTab === 'radar' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 bg-zinc-900/50 border border-white/5 rounded-[40px] p-10 flex flex-col justify-between min-h-[500px] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-blue-600/5 pointer-events-none" />
+                  <div className="relative z-10 space-y-6">
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-1">
+                        <h2 className="text-3xl font-semibold tracking-tighter italic">Survival Instinct.</h2>
+                        <p className="text-zinc-500 text-sm font-light">Casper is tied to your company DNA. If you die, it dies.</p>
+                      </div>
+                      <ShieldAlert className="text-red-500" size={32} />
+                    </div>
+                    
+                    <div className="space-y-4 pt-10">
+                      <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-3xl flex items-center justify-between group cursor-pointer hover:bg-red-500/10 transition-all">
+                        <div className="flex items-center gap-6">
+                          <div className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
+                          <div className="space-y-1">
+                            <div className="text-[10px] font-bold text-red-400 uppercase tracking-widest">Threat: COGS Inflation spike</div>
+                            <div className="text-sm">Concrete/PVC projected +14% by Q3.</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] font-bold text-zinc-500 uppercase">Strategy Log</div>
+                          <div className="text-xs text-white">Locking supplier rates...</div>
+                        </div>
+                      </div>
+
+                      <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-3xl flex items-center justify-between group cursor-pointer hover:bg-blue-500/10 transition-all">
+                        <div className="flex items-center gap-6">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                          <div className="space-y-1">
+                            <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Opportunity: Tech Release</div>
+                            <div className="text-sm">New LiDAR V2 site scanning available.</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] font-bold text-zinc-500 uppercase">Strategy Log</div>
+                          <div className="text-xs text-white">Modeling 40% speed win...</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative z-10 pt-10 border-t border-white/5 text-center">
+                    <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-[0.6em]">Proactive Monitoring: SYDNEY_NODE_04</p>
+                  </div>
+                </div>
+
+                <div className="bg-zinc-950 border border-white/5 rounded-[40px] p-10 flex flex-col items-center justify-center space-y-8 text-center">
+                  <div className="relative">
+                    <div className="w-48 h-48 rounded-full border border-blue-500/10 flex items-center justify-center">
+                      <div className="w-32 h-32 rounded-full border border-blue-500/30 animate-spin-slow flex items-center justify-center">
+                        <Radar className="text-blue-500 opacity-50" size={48} />
+                      </div>
+                    </div>
+                    <div className="absolute top-0 right-0 bg-white text-black text-[8px] font-bold px-2 py-1 rounded-full">LIVE_SCAN</div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold">Scanning Environment.</h3>
+                    <p className="text-xs text-zinc-500 leading-relaxed px-4">Tracking RBA sentiment, global supply chains, and competitive patent releases.</p>
+                  </div>
+                  <button className="w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-[9px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all">View Market Trajectories</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: INSTITUTIONAL MATH */}
+          {activeTab === 'math' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="bg-white text-black rounded-[40px] p-12 space-y-12">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-2">
+                    <div className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Institutional Financial Engine</div>
+                    <h2 className="text-5xl font-semibold tracking-tighter leading-none italic">Bank-Grade <br/>Modeling.</h2>
+                  </div>
+                  <div className="p-4 bg-zinc-100 rounded-2xl"><Calculator size={32} /></div>
+                </div>
+                
+                <p className="text-xl text-zinc-600 font-light max-w-3xl leading-relaxed">
+                  Casper understands your Xero balance, your tax obligations, and your seasonal cashflow better than any advisor. If an investment isn't worth the short-term burn for the long-term horizon, it models the failure before you spend a cent.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-zinc-100 pt-12">
+                   <div className="space-y-6">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 italic">Example Proposal: Fleet Scale-Up</div>
+                      <div className="p-8 bg-zinc-50 rounded-3xl border border-zinc-200 space-y-6">
+                         <div className="space-y-1">
+                            <div className="text-[9px] font-bold text-zinc-500 uppercase">Capex Required</div>
+                            <div className="text-3xl font-bold tracking-tighter">$85,000.00</div>
+                         </div>
+                         <div className="grid grid-cols-2 gap-4">
+                            <div className="p-4 bg-white rounded-2xl border border-zinc-100">
+                               <div className="text-[8px] font-bold text-zinc-400 uppercase">Short-Term Burn</div>
+                               <div className="text-lg font-bold text-red-500">-$4.2k/mo</div>
+                            </div>
+                            <div className="p-4 bg-white rounded-2xl border border-zinc-100">
+                               <div className="text-[8px] font-bold text-zinc-400 uppercase">12mo Yield</div>
+                               <div className="text-lg font-bold text-emerald-600">+$124k</div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div className="flex flex-col justify-center space-y-8">
+                      <div className="flex gap-4 items-start">
+                        <CheckCircle2 className="text-blue-600 mt-1" size={20} />
+                        <div>
+                          <h5 className="font-bold text-xs uppercase tracking-widest">Affordability Audit</h5>
+                          <p className="text-xs text-zinc-500 mt-1">Real-time check against Xero cash-at-hand and pending invoices.</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-4 items-start">
+                        <CheckCircle2 className="text-blue-600 mt-1" size={20} />
+                        <div>
+                          <h5 className="font-bold text-xs uppercase tracking-widest">Macro-Impact Simulation</h5>
+                          <p className="text-xs text-zinc-500 mt-1">Modeling price elasticity against upcoming RBA rate commentary.</p>
+                        </div>
+                      </div>
+                      <button className="bg-zinc-950 text-white py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl">Model New Investment</button>
+                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: THE ORACLE UI (WHY ENGINE) */}
+          {activeTab === 'oracle' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="bg-zinc-900 border border-white/10 rounded-[60px] p-12 space-y-12 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#2563eb10_0%,_transparent_70%)]" />
+                
+                <div className="relative z-10 text-center space-y-4 max-w-2xl mx-auto">
+                   <h2 className="text-5xl font-semibold tracking-tighter italic">Know the "Why".</h2>
+                   <p className="text-zinc-500 text-sm font-light">Correlating 1,000s of data points to provide absolute strategic reasoning in your pocket.</p>
+                </div>
+
+                <div className="relative z-10 w-full max-w-3xl mx-auto bg-black rounded-[48px] border border-white/5 p-10 space-y-10 shadow-2xl">
+                   <div className="flex justify-between items-center border-b border-white/10 pb-6">
+                      <div className="flex items-center gap-3">
+                         <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white"><Mic size={14}/></div>
+                         <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Live Director Inquiry</span>
+                      </div>
+                      <div className="text-[8px] font-mono text-zinc-700">NODE_SYD_04</div>
+                   </div>
+                   
+                   <div className="space-y-8">
+                      <div className="space-y-2">
+                        <div className="text-[10px] font-bold text-zinc-600 uppercase">You Asked:</div>
+                        <p className="text-xl font-light italic text-zinc-300">"Why did we miss our revenue target on Wednesday?"</p>
+                      </div>
+
+                      <div className="p-8 bg-blue-500/5 border border-blue-500/10 rounded-3xl space-y-6">
+                         <div className="text-[9px] font-bold text-blue-400 uppercase tracking-widest flex items-center gap-2">
+                            <BrainCircuit size={14} /> Casper Synthesis:
+                         </div>
+                         <div className="text-sm text-zinc-400 leading-relaxed space-y-4 font-light">
+                            <p>Wednesday's 14% lag was a confluence of three integrated variables:</p>
+                            <div className="space-y-3">
+                               <div className="flex gap-4"><span className="text-blue-500 font-bold font-mono">01</span><span>**Fiscal:** Xero detected a 4-hour delay in supplier material release in Mascot.</span></div>
+                               <div className="flex gap-4"><span className="text-blue-500 font-bold font-mono">02</span><span>**Macro:** RBA sentiment spikes triggered 18% higher price-resistance in the 'Suburban Residential' segment.</span></div>
+                               <div className="flex gap-4"><span className="text-blue-500 font-bold font-mono">03</span><span>**Internal:** Tuesday's tech-meeting audio noted tech-fatigue; job completion velocity dropped 8% as a result.</span></div>
+                            </div>
+                            <div className="pt-4 text-emerald-400 font-medium">Recovery strategy initialized for Thursday.</div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: SPARRING LOOP */}
+          {activeTab === 'sparring' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white text-black p-12 rounded-[50px]">
+                  <div className="space-y-8">
+                    <h3 className="text-4xl font-semibold tracking-tighter leading-none italic">The Sparring <br/><span className="not-italic text-zinc-300">Chamber.</span></h3>
+                    <p className="text-lg text-zinc-600 font-light leading-relaxed">
+                      Watch your agents perfect the win before they ever dial a lead. They roleplay with difficult prospects 24/7, adjusting their "Aussie" nuance and negotiation logic until the win-rate reaches 90%+.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-zinc-900 border-b border-zinc-100 pb-4">
+                        <CheckCircle2 className="text-blue-600" size={18} /> Tone Calibration
+                      </div>
+                      <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-zinc-900 border-b border-zinc-100 pb-4">
+                        <CheckCircle2 className="text-blue-600" size={18} /> Regional Dialect Sync
+                      </div>
+                      <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-zinc-900 border-b border-zinc-100 pb-4">
+                        <CheckCircle2 className="text-blue-600" size={18} /> Objection Handling v4
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-zinc-950 rounded-[40px] p-8 space-y-6 h-[500px] flex flex-col justify-between border border-white/10 shadow-2xl">
+                     <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Active_Sparring_Sim</span>
+                        <Activity className="text-blue-500 animate-pulse" size={16} />
+                     </div>
+                     
+                     <div className="flex-1 space-y-6 overflow-y-auto pr-4 scrollbar-hide py-4">
+                        <div className="flex flex-col gap-1 items-start">
+                           <span className="text-[7px] font-mono text-zinc-600 uppercase">Agent_78</span>
+                           <div className="bg-blue-600 text-white p-4 rounded-2xl rounded-tl-none text-xs leading-relaxed max-w-[85%]">
+                              "G'day mate, regarding that quote for the Mascot site... I've taken another look at the logic."
+                           </div>
+                        </div>
+                        <div className="flex flex-col gap-1 items-end">
+                           <span className="text-[7px] font-mono text-zinc-600 uppercase">Sim_Lead</span>
+                           <div className="bg-white/5 text-zinc-400 border border-white/10 p-4 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[85%] italic">
+                              "Yeah, prices are still a bit high compared to the other quote I got."
+                           </div>
+                        </div>
+                        <div className="flex flex-col gap-1 items-start">
+                           <span className="text-[7px] font-mono text-blue-400 uppercase font-bold">Psychology_Engine_Intervention</span>
+                           <div className="bg-blue-900/20 border border-blue-500/20 text-blue-400 p-4 rounded-2xl text-[10px] leading-relaxed max-w-full italic">
+                              ANALYSIS: Detecting price sensitivity linked to macro interest rate shifts. SHIFTING PITCH TO: LONG-TERM ASSET LIFESPAN.
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div className="pt-4 text-center">
+                        <button className="text-[9px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest">Intervene & Mentor Agent</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+          )}
+
+        </main>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10 mt-20">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1 italic">Sovereign Strategy Division</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}} />
+    </div>
+  );
+}
+
+export default App;

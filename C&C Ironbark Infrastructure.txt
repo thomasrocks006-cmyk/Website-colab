@@ -1,0 +1,314 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Server, 
+  ShieldCheck, 
+  Activity, 
+  Database, 
+  Cpu, 
+  Lock, 
+  Globe, 
+  MapPin,
+  Zap,
+  ArrowRight,
+  ChevronRight,
+  Wind,
+  HardDrive,
+  CloudOff
+} from 'lucide-react';
+
+// --- SUB-COMPONENTS ---
+
+const MetricCard = ({ label, value, unit, icon: Icon }) => (
+  <div className="bg-zinc-900/50 border border-white/5 p-8 rounded-[32px] hover:border-blue-500/50 transition-all group">
+    <div className="flex justify-between items-start mb-6">
+      <div className="p-3 bg-white/5 rounded-xl text-zinc-400 group-hover:text-blue-400 transition-colors">
+        <Icon size={20} />
+      </div>
+      <div className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">Live_Telemetry</div>
+    </div>
+    <div className="space-y-1">
+      <div className="text-4xl font-bold tracking-tighter text-white">
+        {value}<span className="text-sm font-light text-zinc-500 ml-1">{unit}</span>
+      </div>
+      <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500">{label}</div>
+    </div>
+  </div>
+);
+
+const NodeCard = ({ city, status, latency, specs }) => (
+  <div className="bg-white p-10 rounded-[48px] border border-zinc-100 shadow-sm space-y-8 group hover:shadow-2xl transition-all duration-700">
+    <div className="flex justify-between items-center">
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 bg-zinc-950 rounded-2xl flex items-center justify-center text-white shadow-xl">
+          <MapPin size={24} />
+        </div>
+        <div>
+          <h4 className="text-2xl font-semibold tracking-tight">{city} Node</h4>
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">{status}</span>
+          </div>
+        </div>
+      </div>
+      <div className="text-right">
+        <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Ping</div>
+        <div className="text-xl font-bold tracking-tighter text-blue-600">{latency}ms</div>
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 border-b border-zinc-50 pb-2">Hardware Manifest</div>
+      <div className="grid grid-cols-2 gap-4">
+        {specs.map((spec, i) => (
+          <div key={i} className="flex items-center gap-2 text-xs text-zinc-600">
+            <div className="w-1 h-1 rounded-full bg-zinc-200" />
+            {spec}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <button className="w-full py-4 rounded-2xl bg-zinc-50 text-[10px] font-bold uppercase tracking-widest text-zinc-400 group-hover:bg-zinc-950 group-hover:text-white transition-all">
+      View Rack Status
+    </button>
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeLayer, setActiveLayer] = useState('physical'); // physical, airgap, compute
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return <div className="h-screen bg-zinc-950" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-9 h-9 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Ironbark Core</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+             <a href="#nodes" className="hover:text-zinc-900 transition-colors">Nodes</a>
+             <a href="#airgap" className="hover:text-zinc-900 transition-colors">Air-Gap</a>
+             <a href="#metrics" className="hover:text-zinc-900 transition-colors">Metrics</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Terminal Access
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        
+        {/* HERO: THE ENGINE ROOM */}
+        <section className="min-h-[85vh] bg-zinc-950 text-white relative flex flex-col items-center justify-center px-6 overflow-hidden">
+          {/* Hardware Background Simulation */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="grid grid-cols-12 h-full w-full gap-4 px-10">
+              {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white/10 h-full" />)}
+            </div>
+          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 blur-[160px] rounded-full animate-pulse" />
+
+          <div className="relative z-10 text-center space-y-12 max-w-5xl mx-auto">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-bold tracking-[0.5em] uppercase text-zinc-400 border border-white/10">
+                <Server size={12} /> Ironbark Physical Infrastructure
+              </div>
+              <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.85] text-white">
+                Strength by <br/>
+                <span className="text-zinc-700 italic font-light">Design.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Camber & Casper isn't "Cloud" software. It is a physical workforce hosted on proprietary, air-gapped server nodes located deep within Australian soil.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button className="bg-white text-zinc-950 px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                View Rack Status <Activity size={18} />
+              </button>
+              <div className="flex items-center gap-3 px-8 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
+                 <ShieldCheck size={16} className="text-blue-500" /> Sovereign AU Jurisdiction
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. THE NODE NETWORK (Map & Local Cards) */}
+        <section id="nodes" className="py-40 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">Distributed Power</h2>
+                 <h3 className="text-5xl font-semibold tracking-tighter leading-tight">Australian Soil. <br/> <span className="text-zinc-300 italic font-light text-zinc-900">Ironbark Core.</span></h3>
+                 <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                   By owning our physical hardware in Sydney and Melbourne, we eliminate the latency and legal risks of offshore processing. Your business logic stays within the country that built it.
+                 </p>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
+                    <NodeCard 
+                      city="Sydney" 
+                      status="Operational" 
+                      latency="0.04" 
+                      specs={["128-Core Compute", "Liquid Cooling", "Solar Backed"]}
+                    />
+                    <NodeCard 
+                      city="Melbourne" 
+                      status="Operational" 
+                      latency="0.07" 
+                      specs={["Sovereign Encryption", "NVMe Array", "Dual Grid Power"]}
+                    />
+                 </div>
+              </div>
+
+              {/* STYLIZED AUSTRALIA MAP (SVG) */}
+              <div className="relative aspect-square bg-zinc-50 rounded-[60px] flex items-center justify-center p-20 group overflow-hidden border border-zinc-100 shadow-inner">
+                 <svg viewBox="0 0 400 300" className="w-full h-full opacity-10 transition-opacity group-hover:opacity-30 duration-1000">
+                    <path d="M50,150 L80,100 L150,50 L250,50 L350,100 L350,200 L300,250 L200,280 L100,250 Z" fill="none" stroke="black" strokeWidth="1" />
+                    <circle cx="340" cy="120" r="4" fill="black" /> {/* Sydney */}
+                    <circle cx="280" cy="240" r="4" fill="black" /> {/* Melbourne */}
+                 </svg>
+                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="text-center space-y-4">
+                       <Globe size={100} className="text-zinc-200 mx-auto" strokeWidth={0.5} />
+                       <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-400">Local Sovereignty</p>
+                    </div>
+                 </div>
+                 {/* Sydney Pulse */}
+                 <div className="absolute top-[38%] right-[16%] w-4 h-4">
+                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping" />
+                    <div className="absolute inset-1 bg-blue-600 rounded-full" />
+                 </div>
+                 {/* Melbourne Pulse */}
+                 <div className="absolute bottom-[22%] right-[32%] w-4 h-4">
+                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping" />
+                    <div className="absolute inset-1 bg-blue-600 rounded-full" />
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. THE AIR-GAP LOGIC (Interactive Feature) */}
+        <section id="airgap" className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+            <div className="space-y-12">
+              <div className="space-y-4">
+                <h2 className="text-xs font-bold tracking-[0.6em] text-zinc-500 uppercase">The Camber Shield</h2>
+                <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter">Physical <br/> <span className="text-zinc-700 italic">Isolation.</span></h3>
+              </div>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                Most AI is "leaky." C&C uses an Ironbark Air-Gap protocol. Your business logic resides on an isolated segment of our hardware, physically separated from the public internet. 
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  { title: "No Public Training", desc: "Your customer data is never used to train global models." },
+                  { title: "Sovereign Encryption", desc: "Military-grade keys managed by the Ironbark warden." },
+                  { title: "Zero Data Migration", desc: "Information never leaves the Sydney/Melbourne perimeter." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-6 items-start">
+                    <div className="mt-1 p-2 bg-white/5 rounded-lg text-blue-500"><ShieldCheck size={18} /></div>
+                    <div>
+                      <h5 className="text-sm font-bold uppercase tracking-widest text-white">{item.title}</h5>
+                      <p className="text-xs text-zinc-500 mt-1">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative aspect-square flex items-center justify-center">
+               <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full" />
+               <div className="w-80 h-80 border border-white/10 rounded-full flex items-center justify-center animate-spin-slow">
+                  <div className="w-64 h-64 border border-white/20 rounded-full flex items-center justify-center">
+                    <div className="w-48 h-48 bg-white rounded-3xl flex items-center justify-center shadow-2xl">
+                       <Lock size={64} className="text-zinc-950" />
+                    </div>
+                  </div>
+               </div>
+               <div className="absolute top-10 right-10 flex items-center gap-3">
+                  <CloudOff size={24} className="text-red-500" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500">Air-Gap: Active</span>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PERFORMANCE METRICS (Raw Specs) */}
+        <section id="metrics" className="py-40 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="text-center space-y-6">
+              <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">Operational Capacity</h2>
+              <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter">The Brute Force of 100.</h3>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <MetricCard icon={Cpu} label="Processing Density" value="1.2" unit="Exaflops" />
+              <MetricCard icon={Activity} label="System Uptime" value="100" unit="%" />
+              <MetricCard icon={Zap} label="Response Latency" value="0.04" unit="ms" />
+              <MetricCard icon={HardDrive} label="Storage Throughput" value="400" unit="GB/s" />
+           </div>
+
+           <div className="bg-zinc-50 rounded-[60px] p-16 flex flex-col md:flex-row items-center justify-between gap-12 border border-zinc-100">
+              <div className="flex items-center gap-8">
+                 <div className="w-16 h-16 bg-zinc-950 rounded-2xl flex items-center justify-center text-white shadow-xl">
+                    <Database size={32} />
+                 </div>
+                 <div className="space-y-1">
+                    <h5 className="text-2xl font-semibold tracking-tight leading-none">The Engine Room is Open.</h5>
+                    <p className="text-sm text-zinc-400 font-light">Audit our infrastructure protocols anytime.</p>
+                 </div>
+              </div>
+              <button className="bg-zinc-900 text-white px-10 py-5 rounded-full font-bold text-sm tracking-tight hover:bg-black transition-all flex items-center gap-3">
+                 Request Technical Whitepaper <ChevronRight size={16} />
+              </button>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Grounded Power.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16">
+             Join the only workforce that is physically contained within Australian jurisdiction. Scale with the strength of Ironbark infrastructure.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Claim Your Foundation
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Ironbark Core Division</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Architecture</a>
+            <a href="#" className="hover:text-zinc-900">Economics</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+}

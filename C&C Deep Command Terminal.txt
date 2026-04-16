@@ -1,0 +1,362 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  BrainCircuit, 
+  ShieldAlert, 
+  TrendingUp, 
+  Target, 
+  Activity, 
+  DollarSign, 
+  MessageSquare, 
+  Globe, 
+  Zap, 
+  Lock, 
+  Mic, 
+  Waves, 
+  PieChart, 
+  BarChart3, 
+  ArrowRight, 
+  ChevronRight, 
+  CheckCircle2, 
+  Scale, 
+  History, 
+  Network,
+  Cpu,
+  Fingerprint,
+  Lightbulb,
+  Radar,
+  Filter,
+  Eye,
+  Bot,
+  Terminal,
+  MousePointer2
+} from 'lucide-react';
+
+// --- SUB-COMPONENT: DATA FLOW NODE ---
+const DataNode = ({ icon: Icon, label, status, detail, color }) => (
+  <div className="flex items-start gap-4 p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-white/20 transition-all group">
+    <div className={`p-3 rounded-xl ${color} shadow-lg`}>
+      <Icon size={20} className="text-white" />
+    </div>
+    <div className="space-y-1">
+      <div className="flex items-center gap-2">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">{label}</span>
+        <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse" />
+      </div>
+      <p className="text-xs text-zinc-500 leading-relaxed">{detail}</p>
+      <div className="text-[8px] font-mono text-zinc-600 mt-2 uppercase tracking-tighter">Status: {status}</div>
+    </div>
+  </div>
+);
+
+// --- SUB-COMPONENT: THE SPARRING SIMULATOR ---
+const SparringSession = () => {
+  const [logIndex, setLogIndex] = useState(0);
+  const logs = [
+    { role: 'Agent_78', text: "G'day, just calling from Miller's regarding the Mascot quote.", intent: "Approach" },
+    { role: 'Prospect_SIM', text: "Yeah, it's a bit higher than I expected, mate. Other guys were 10% lower.", intent: "Price Objection" },
+    { role: 'Psychology_CORE', text: "Detected: Price-sensitivity linked to recent RBA rate commentary. Pivot to long-term asset value.", intent: "Logic Adjustment" },
+    { role: 'Agent_78', text: "I hear you. The Mascot soil needs specific sealing that the cheaper guys skip—I've adjusted the warranty logic to match.", intent: "Execution" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLogIndex(prev => (prev + 1) % logs.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="space-y-4">
+      {logs.slice(0, logIndex + 1).map((log, i) => (
+        <div key={i} className={`flex flex-col gap-1 animate-in fade-in slide-in-from-left-4 duration-500 ${log.role === 'Prospect_SIM' ? 'items-end' : 'items-start'}`}>
+          <div className="flex items-center gap-2">
+            <span className={`text-[8px] font-mono font-bold uppercase tracking-widest ${log.role === 'Psychology_CORE' ? 'text-blue-400' : 'text-zinc-500'}`}>{log.role}</span>
+          </div>
+          <div className={`max-w-[85%] p-4 rounded-2xl text-xs leading-relaxed ${
+            log.role === 'Psychology_CORE' ? 'bg-blue-600/10 border border-blue-500/20 text-blue-300 italic' : 
+            log.role === 'Prospect_SIM' ? 'bg-white/5 text-zinc-400 border border-white/5' : 'bg-white text-black font-medium'
+          }`}>
+            {log.text}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeLayer, setActiveLayer] = useState('modeling');
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Deep Command</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500">
+             <a href="#brain" className="hover:text-white transition-colors">Cognitive Core</a>
+             <a href="#warroom" className="hover:text-white transition-colors">The War Room</a>
+             <a href="#training" className="hover:text-white transition-colors">Sales Sparring</a>
+          </div>
+          <button className="bg-red-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-red-500 transition-all shadow-[0_0_40px_rgba(220,38,38,0.2)]">
+            Activate Survival Mode
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE OMNISCIENCE PITCH */}
+        <section className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-bold tracking-widest text-blue-400 uppercase">
+              <BrainCircuit size={12} /> Institutional Omniscience
+            </div>
+            <h1 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Total Command. <br/>
+              <span className="text-zinc-700 italic font-light">Zero silos.</span>
+            </h1>
+            <p className="text-xl md:text-3xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed">
+              Once Casper belongs to you, it becomes your business's central nervous system. It digests every signal—from Xero balances to verbal staff promises—to ensure that when you move, the whole company wins.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE COGNITIVE CORE: HOW IT SYNTHESIZES EVERYTHING */}
+        <section id="brain" className="py-40 px-8 max-w-7xl mx-auto border-t border-white/5 relative">
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 blur-[160px] rounded-full" />
+           
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <div className="space-y-12">
+                 <div className="space-y-4">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Universal Synthesis Engine</h2>
+                    <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">One Brain. <br/><span className="not-italic text-zinc-500">1,000s of variables.</span></h3>
+                 </div>
+                 <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                   Most businesses fail because their sales team doesn't talk to their finance team, and their finance team doesn't understand the market. C&C fixes this by unifying all internal data points into a single logic model.
+                 </p>
+                 
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <DataNode icon={DollarSign} label="Fiscal Integration" detail="Direct Xero/MYOB sync tracks live margins and cash-at-bank." status="SYNC_OK" color="bg-emerald-600" />
+                    <DataNode icon={MessageSquare} label="Internal Comms" detail="Staff meetings & emails are transcribed to understand project risks." status="AUDIT_LIVE" color="bg-blue-600" />
+                    <DataNode icon={Globe} label="Macro Factors" detail="Tracking RBA rates, inflation, and Australian industry politics." status="MONITORING" color="bg-purple-600" />
+                    <DataNode icon={History} label="Company Memory" detail="Your agent remembers every preference and strategy you set, forever." status="PERPETUAL" color="bg-amber-600" />
+                 </div>
+              </div>
+
+              {/* CONVERGENCE VISUALIZER */}
+              <div className="relative group aspect-square bg-zinc-900/30 rounded-[60px] border border-white/5 p-1 overflow-hidden shadow-2xl">
+                 <div className="w-full h-full bg-black rounded-[58px] p-12 flex flex-col items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                       <div className="grid grid-cols-12 h-full w-full"><div className="border-r border-white h-full" /></div>
+                    </div>
+                    
+                    <div className="relative">
+                       <div className="w-64 h-64 rounded-full border border-blue-500/20 flex items-center justify-center">
+                          <div className="w-48 h-48 rounded-full border border-blue-500/40 flex items-center justify-center animate-pulse">
+                             <BrainCircuit size={80} className="text-blue-500" strokeWidth={1} />
+                          </div>
+                       </div>
+                       {/* Input Lines */}
+                       <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+                          <span className="text-[7px] font-mono text-zinc-600 uppercase">Input: Financials</span>
+                          <div className="h-12 w-[1px] bg-gradient-to-b from-transparent to-blue-500" />
+                       </div>
+                       <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+                          <div className="h-12 w-[1px] bg-gradient-to-t from-transparent to-blue-500" />
+                          <span className="text-[7px] font-mono text-zinc-600 uppercase">Input: Culture</span>
+                       </div>
+                    </div>
+
+                    <div className="mt-20 w-full space-y-4 bg-white/5 p-6 rounded-3xl border border-white/5">
+                       <div className="flex justify-between text-[10px] uppercase font-bold text-zinc-500">Logic Cohesion</div>
+                       <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 w-[98%] transition-all duration-[4000ms]" />
+                       </div>
+                       <p className="text-[8px] font-mono text-blue-400 text-center uppercase tracking-widest">Synthesizing_Executive_Truth</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. THE WAR ROOM: SURVIVAL & STEERING */}
+        <section id="warroom" className="py-40 bg-zinc-950 px-8 relative overflow-hidden">
+           <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="order-2 lg:order-1">
+                 <div className="bg-black rounded-[60px] p-1 shadow-2xl border border-white/5">
+                    <div className="w-full h-full bg-[#050505] rounded-[58px] p-12 flex flex-col min-h-[650px] justify-between">
+                       <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                          <div className="flex items-center gap-3">
+                             <div className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                             <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest">Active Threat / Opp Radar</span>
+                          </div>
+                          <Radar size={16} className="text-zinc-700" />
+                       </div>
+
+                       <div className="flex-1 py-10 space-y-8">
+                          <div className="p-8 bg-red-500/5 border border-red-500/20 rounded-[40px] space-y-4">
+                             <div className="flex items-center gap-3 text-red-400">
+                                <ShieldAlert size={18} />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Threat Detected: COGS Inflation</span>
+                             </div>
+                             <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                               Concrete supply forecast for Q3 indicates a 14% price spike. 
+                               <br/><br/>
+                               **Action:** Caspers Finance Agent has modeled the hit. Strategy: Lock bulk procurement contracts by Friday to save **$18,420** and protect margins.
+                             </p>
+                          </div>
+
+                          <div className="p-8 bg-blue-500/5 border border-blue-500/20 rounded-[40px] space-y-4">
+                             <div className="flex items-center gap-3 text-blue-400">
+                                <Zap size={18} />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Opportunity: Tech Release</span>
+                             </div>
+                             <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                               LiDAR V2 Integration available for site surveys. 
+                               <br/><br/>
+                               **Action:** Agent_10 identifies this gives you a **42% time advantage** on Mascot site quotes. Model shows ROI achieved in 3 weeks.
+                             </p>
+                          </div>
+                       </div>
+
+                       <div className="pt-8 border-t border-white/5 text-center">
+                          <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-[0.6em]">Ensuring_Company_Survival</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="space-y-12 order-1 lg:order-2">
+                 <div className="space-y-6">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-red-500 uppercase">Ethos: Survival First</h2>
+                    <h4 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic text-white">Win or die. <br/><span className="not-italic text-zinc-600">Simple logic.</span></h4>
+                    <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                      If your company dies, Casper dies. That is the fundamental ethics of our system. It is constantly on alert, looking for ways to win market share, beat the competition, and steer you clear of harm. Once you commission your workforce, its only goal is to make you win.
+                    </p>
+                 </div>
+                 <div className="space-y-4 pt-4">
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-red-500" /> Proactive Threat Mitigation
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-red-500" /> Competitive Edge Acquisition
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-red-500" /> Institutional Financial Shield
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 4. THE TRAINING CHAMBER: SALES SPARRING & MENTOR MODE */}
+        <section id="training" className="py-40 bg-white text-black px-8">
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">Sales Intelligence</h2>
+                 <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Training the <br/><span className="not-italic text-zinc-300">Swarm.</span></h3>
+                 <p className="text-xl text-zinc-600 font-light leading-relaxed">
+                   Never worry about a robot ruining your reputation. Our sales agents are trained in the **Sparring Chamber**. They roleplay with difficult, price-sensitive prospects 24/7. You can watch the calls, tweak the angle, or call the agent yourself in **Mentor Mode** to explain your "secret sauce." 
+                 </p>
+                 <div className="bg-zinc-50 p-8 rounded-[40px] border border-zinc-100 space-y-4">
+                    <div className="flex items-center gap-3 text-blue-600 font-bold uppercase text-[10px] tracking-widest">
+                       <Mic size={16} /> Mentor Mode Active
+                    </div>
+                    <p className="text-sm text-zinc-400 italic">"Tell Casper your preferences once. It understands your context, learns from your tone, and applies it to every customer call forever."</p>
+                 </div>
+              </div>
+
+              {/* INTERACTIVE SPARRING UI */}
+              <div className="bg-zinc-950 rounded-[60px] p-10 md:p-16 space-y-10 shadow-2xl relative group overflow-hidden">
+                 <div className="absolute inset-0 bg-blue-600 blur-[120px] opacity-10" />
+                 <div className="relative z-10 flex justify-between items-center border-b border-white/5 pb-6">
+                    <div className="flex items-center gap-3 text-zinc-500">
+                       <Terminal size={18} />
+                       <span className="text-[10px] font-bold uppercase tracking-widest">Simulation Chamber: Active</span>
+                    </div>
+                    <Activity size={16} className="text-blue-500 animate-pulse" />
+                 </div>
+                 
+                 <div className="relative z-10 h-[400px] overflow-y-auto scrollbar-hide">
+                    <SparringSession />
+                 </div>
+
+                 <div className="relative z-10 pt-8 border-t border-white/5 flex flex-col items-center gap-4">
+                    <p className="text-[9px] font-mono text-zinc-600 uppercase">Owner Feedback Loop Initialized</p>
+                    <button className="px-8 py-3 bg-white text-black rounded-full font-bold text-[10px] uppercase tracking-widest hover:scale-105 transition-all">
+                       Intervene & Tweak Logic
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 5. THE ORACLE: THE DIRECTOR'S HUD */}
+        <section className="py-40 px-8 max-w-5xl mx-auto text-center space-y-20">
+           <div className="space-y-6">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">The Final Ability</h2>
+              <h3 className="text-5xl md:text-[100px] font-semibold tracking-tighter leading-none italic text-white">Ask anything. <br/><span className="not-italic text-zinc-800">Know everything.</span></h3>
+              <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                 You are no longer guessing. You are no longer "too busy" to know. Ask Casper about Wednesday's performance, the impact of a future rail strike, or the ROI on a new truck. It makes sense of 1,000s of variables in your pocket.
+              </p>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: "Macro Context", detail: "RBA rates, inflation cycles, and local industry shifts." },
+                { title: "Environmental Context", detail: "Traffic patterns, weather, and supplier stock-levels." },
+                { title: "Historical Logic", detail: "Your specific company patterns over years of data." }
+              ].map((item, i) => (
+                <div key={i} className="p-10 rounded-[40px] bg-white/5 border border-white/5 space-y-4 hover:border-blue-500/30 transition-all group">
+                   <div className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.5em]">Input_Set_0{i+1}</div>
+                   <h5 className="text-xl font-bold text-white tracking-tight">{item.title}</h5>
+                   <p className="text-xs text-zinc-500 leading-relaxed font-light">{item.detail}</p>
+                </div>
+              ))}
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center border-t border-white/5 bg-black relative">
+           <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+              <div className="grid grid-cols-12 h-full w-full gap-4">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+              </div>
+           </div>
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Own the truth.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't operate in the dark. Deploy the autonomous workforce that understands your business better than you do. Revolutionize your ability to lead.
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Secure Total Command
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-[#020203] flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1">Cognitive Command Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}

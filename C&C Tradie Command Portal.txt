@@ -1,0 +1,354 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, 
+  HardHat, 
+  Truck, 
+  FileText, 
+  DollarSign, 
+  Clock, 
+  ChevronRight, 
+  ArrowRight, 
+  ShieldCheck, 
+  CheckCircle2, 
+  MessageSquare, 
+  Calendar,
+  Smartphone,
+  Briefcase,
+  Activity,
+  MapPin,
+  TrendingUp,
+  Search,
+  Hammer
+} from 'lucide-react';
+
+// --- SUB-COMPONENTS ---
+
+const ToolCard = ({ title, label, icon: Icon, desc, active, onClick }) => (
+  <div 
+    onClick={onClick}
+    className={`p-8 rounded-[40px] border transition-all duration-700 cursor-pointer flex flex-col justify-between h-[450px] relative overflow-hidden group
+      ${active ? 'bg-zinc-950 text-white border-zinc-800 shadow-2xl scale-[1.02]' : 'bg-white border-zinc-100 text-zinc-900 opacity-90 hover:opacity-100'}`}
+  >
+    <div className="space-y-6 relative z-10">
+      <div className="flex justify-between items-start">
+        <div className={`p-4 rounded-2xl ${active ? 'bg-blue-600 text-white' : 'bg-zinc-50 text-zinc-400 group-hover:text-zinc-900 group-hover:bg-zinc-100'} transition-all`}>
+          <Icon size={24} />
+        </div>
+        <div className={`text-[10px] font-mono font-bold tracking-widest ${active ? 'text-blue-400' : 'text-zinc-300'}`}>
+          PROTO_{label}
+        </div>
+      </div>
+      <h3 className="text-3xl font-semibold tracking-tighter leading-none">{title}</h3>
+      <p className={`text-sm leading-relaxed font-light ${active ? 'text-zinc-400' : 'text-zinc-500'}`}>
+        {desc}
+      </p>
+    </div>
+
+    <div className="relative z-10 pt-6 border-t border-current opacity-10 flex justify-between items-center group-hover:opacity-30 transition-opacity">
+      <span className="text-[10px] font-bold uppercase tracking-widest">Open Interface</span>
+      <ChevronRight size={14} />
+    </div>
+
+    {active && (
+      <div className="absolute -bottom-10 -right-10 opacity-5 rotate-12">
+        <Icon size={250} />
+      </div>
+    )}
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+
+export default function App() {
+  const [activeTool, setActiveTool] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const tools = [
+    {
+      title: "The Quote Synthesizer",
+      label: "ESTIMATION",
+      icon: Zap,
+      desc: "Stop doing quotes at night. Your agents monitor incoming leads, extract the scope, cross-reference Ironbark material lists, and deliver a professional quote in 42 seconds.",
+      ui: (
+        <div className="bg-zinc-900 rounded-3xl p-6 space-y-4 border border-white/5">
+          <div className="flex justify-between items-center border-b border-white/5 pb-3">
+            <span className="text-[8px] font-mono text-blue-500 uppercase">Incoming_Signal</span>
+            <span className="text-[8px] font-mono text-zinc-600">SYD_NODE_01</span>
+          </div>
+          <div className="space-y-3">
+             <div className="flex justify-between text-[10px] text-white font-bold uppercase tracking-widest">
+                <span>Residential HVAC</span>
+                <span className="text-blue-500">$12,450.00</span>
+             </div>
+             <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 w-[95%] animate-pulse" />
+             </div>
+             <p className="text-[8px] text-zinc-500 italic leading-tight">"Synthesizing margins, supplier availability, and fleet routing..."</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "The Fiscal Ghost",
+      label: "INVOICING",
+      icon: DollarSign,
+      desc: "Casper stays behind after you leave the site. It reconciles bank feeds, chases unpaid invoices with polite persistence, and ensures your cashflow is automated while you sleep.",
+      ui: (
+        <div className="bg-zinc-900 rounded-3xl p-6 space-y-4 border border-white/5">
+          <div className="flex justify-between items-center border-b border-white/5 pb-3">
+            <span className="text-[8px] font-mono text-emerald-500 uppercase">Debt_Recovery_Active</span>
+            <Activity size={12} className="text-emerald-500" />
+          </div>
+          <div className="space-y-2">
+             <div className="flex justify-between text-[10px] text-white">
+                <span>Invoice #4022</span>
+                <span className="text-zinc-500">PENDING</span>
+             </div>
+             <div className="p-3 bg-white/5 rounded-xl text-[9px] text-zinc-400 font-mono">
+                {'>'} Casper: Email sent to client.<br/>
+                {'>'} Status: Payment link clicked.
+             </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "The Logistics Engine",
+      label: "ORCHESTRATION",
+      icon: Truck,
+      desc: "Camber manages the structural lift. It coordinates your fleet, optimizes routes based on real-time traffic, and ensures your materials are ordered and ready for the morning.",
+      ui: (
+        <div className="bg-zinc-900 rounded-3xl p-6 space-y-4 border border-white/5">
+          <div className="flex justify-between items-center border-b border-white/5 pb-3">
+            <span className="text-[8px] font-mono text-amber-500 uppercase">Fleet_Intelligence</span>
+            <MapPin size={12} className="text-amber-500" />
+          </div>
+          <div className="flex gap-3 h-24">
+             <div className="flex-1 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center space-y-2">
+                <Truck size={16} className="text-white" />
+                <span className="text-[7px] text-zinc-500 uppercase">V_01: En_Route</span>
+             </div>
+             <div className="flex-1 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center space-y-2">
+                <MapPin size={16} className="text-blue-500" />
+                <span className="text-[7px] text-zinc-500 uppercase">Site: Optimal</span>
+             </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  if (!isLoaded) return <div className="h-screen bg-white" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION (DOCK) */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">The Tradie Portal</span>
+          </div>
+          <div className="hidden md:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+             <a href="#tools" className="hover:text-zinc-900">The Toolbag</a>
+             <a href="#advantage" className="hover:text-zinc-900">Advantage</a>
+             <a href="#sovereign" className="hover:text-zinc-900">Sovereign</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl">
+            Access Terminal
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE WORKER'S ADVANTAGE */}
+        <section className="min-h-[80vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              <HardHat size={12} /> Built for the Modern Trade Professional
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-zinc-950">
+              Win back <br/>
+              <span className="text-zinc-200 italic font-light">your weekends.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Stop sacrificing your evenings to paperwork. Camber & Casper gives you an autonomous 100-man back office so you can stay on the tools while we manage the business.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6">
+             <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                Deploy the Crew <Zap size={16} fill="white" />
+             </button>
+             <div className="flex items-center gap-3 px-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-100 rounded-full bg-zinc-50">
+                <CheckCircle2 size={16} className="text-blue-500" /> Sydney/Melbourne Node-Link Active
+             </div>
+          </div>
+        </section>
+
+        {/* 2. THE TOOLBAG: INTERACTIVE FEATURES */}
+        <section id="tools" className="py-24 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {tools.map((tool, idx) => (
+                <ToolCard 
+                  key={idx}
+                  {...tool}
+                  active={activeTool === idx}
+                  onClick={() => setActiveTool(idx)}
+                />
+              ))}
+           </div>
+
+           {/* DYNAMIC TERMINAL PREVIEW */}
+           <div className="bg-zinc-950 rounded-[64px] p-10 md:p-24 text-white relative overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center gap-24">
+              <div className="absolute inset-0 opacity-10 pointer-events-none">
+                 <div className="grid grid-cols-12 h-full gap-4 px-10">
+                    {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white/10 h-full" />)}
+                 </div>
+              </div>
+              
+              <div className="flex-1 space-y-12 relative z-10">
+                 <div className="space-y-4">
+                    <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-blue-500">Live Interface Preview</h2>
+                    <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Control <br/><span className="text-zinc-500 not-italic">the Swarm.</span></h3>
+                 </div>
+                 <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                   While you're working on-site, this is what your workforce is doing. Each division talk to each other in 42-second loops to ensure no lead is dropped and no invoice is left unpaid.
+                 </p>
+                 <div className="flex gap-4">
+                    <div className="flex items-center gap-2 px-6 py-2 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-white/10">
+                       <Smartphone size={14} /> Mobile Terminal
+                    </div>
+                    <div className="flex items-center gap-2 px-6 py-2 bg-white/5 rounded-full text-[9px] font-bold uppercase tracking-widest border border-white/10">
+                       <Activity size={14} /> Real-time Audit
+                    </div>
+                 </div>
+              </div>
+
+              <div className="flex-1 w-full max-w-md relative group">
+                 <div className="absolute inset-0 bg-blue-600 blur-[140px] opacity-10" />
+                 <div className="relative animate-in zoom-in duration-700">
+                    {tools[activeTool].ui}
+                    <div className="mt-6 bg-white rounded-3xl p-8 space-y-6 shadow-2xl text-zinc-950">
+                       <div className="flex justify-between items-center border-b border-zinc-100 pb-4">
+                          <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 italic">Director's Note</span>
+                          <CheckCircle2 size={18} className="text-blue-500" />
+                       </div>
+                       <p className="text-sm font-light leading-relaxed">
+                          "I used to spend 15 hours a week on quotes. Now I just check my phone at 7 AM, and Casper has already sent them out. My win-rate jumped 40% because I'm always first to respond."
+                       </p>
+                       <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 rounded-full bg-zinc-100 border border-zinc-200" />
+                          <div>
+                             <div className="text-[10px] font-bold uppercase tracking-widest">James Miller</div>
+                             <div className="text-[8px] text-zinc-400">Miller Electrical Solutions</div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. THE TRADIE MATH: ROI REINFORCED */}
+        <section id="advantage" className="py-40 bg-white border-y border-zinc-100">
+           <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.6em] text-zinc-400 uppercase">The Economic Shield</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">A Crew of 100. <br/><span className="text-zinc-300 italic font-light">Zero Payroll Tax.</span></h3>
+                 <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                    A physical office manager costs $70k+ a year. A workforce of 100 specialized agents costs $799/month. We help you scale your impact without scaling your stress.
+                 </p>
+                 <div className="grid grid-cols-2 gap-10">
+                    <div className="space-y-2">
+                       <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Weekly Savings</div>
+                       <div className="text-3xl font-bold tracking-tighter">$1,500+</div>
+                    </div>
+                    <div className="space-y-2">
+                       <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Admin Hours Cut</div>
+                       <div className="text-3xl font-bold tracking-tighter">15h /wk</div>
+                    </div>
+                 </div>
+              </div>
+              <div className="bg-zinc-50 rounded-[60px] p-12 space-y-12 border border-zinc-100 shadow-inner">
+                 <div className="space-y-4">
+                    <h4 className="text-xl font-bold uppercase tracking-[0.3em] text-zinc-300">The Replacement Logic</h4>
+                    <div className="space-y-4">
+                       {[
+                         { item: "Office Rental", human: "$2,400", cc: "$0" },
+                         { item: "Superannuation", human: "$720", cc: "$0" },
+                         { item: "Payroll Tax", human: "$340", cc: "$0" },
+                         { item: "Staff Training", human: "10h /mo", cc: "Instant" }
+                       ].map((line, i) => (
+                         <div key={i} className="flex justify-between items-center py-3 border-b border-zinc-100">
+                            <span className="text-sm font-semibold text-zinc-600">{line.item}</span>
+                            <div className="flex gap-8">
+                               <span className="text-sm font-mono text-zinc-300 line-through">{line.human}</span>
+                               <span className="text-sm font-mono font-bold text-blue-600">{line.cc}</span>
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 4. SOVEREIGN PLEDGE: AUSTRALIAN SOIL */}
+        <section id="sovereign" className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+              <div className="w-16 h-16 bg-blue-600 rounded-3xl mx-auto flex items-center justify-center shadow-2xl mb-12">
+                 <ShieldCheck size={32} />
+              </div>
+              <h2 className="text-5xl md:text-[130px] font-semibold tracking-tighter leading-none italic">Hardened Security.</h2>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
+                 Your customer lists, material pricing, and business secrets are air-gapped on Australian soil. We never use your data to train offshore models. Your advantage stays private.
+              </p>
+              <div className="flex justify-center gap-8 pt-8">
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <Activity size={14} className="text-emerald-500" /> Sydney_Node_04 Active
+                 </div>
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <Activity size={14} className="text-emerald-500" /> Melbourne_Node_02 Active
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Deploy the Swarm.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't be the business owner who works for their business. Be the Director. Scale your output today for $799/month.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Launch Your Site Portal
+           </button>
+           <p className="mt-10 text-[10px] font-bold text-zinc-300 uppercase tracking-[0.8em]">Zero Technical Expertise Required.</p>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-xs font-serif shadow-xl">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Sovereign Site Solutions</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900">Economics</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}

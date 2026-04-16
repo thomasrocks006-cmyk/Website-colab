@@ -1,0 +1,23 @@
+Can we add value to layer 5 specialised tools, brainstorm 2 more systems. Should we introduce a humour system of some description for comedic relief, more characters that are humourous such as a witty, sharp, intelligent character like tyrion from game of thrones. Should the LLM be involved in particular systems as well not just as the orchestrator, how do we go about that and which apps do you think would benefit most from this and is it needed. Arc weaver should have it, Narrator should have it, Prose generator? Pov Selector? or are they still benefitting from gpt 5 just running as the orchestrator, like can the model run logic within the systems at that level.   
+
+
+
+ eyes brimming with unspoken schemes 
+
+She had been whispering of alliances with the Northern Clans, whom the council viewed with suspicion. Yet, without their aid, the Shadow Legion's advance would be unstoppable. - telling not showing, too direct and plainly laying it out, no creativity or mystic to the conversation - even "would be unstoppable" is very plain and not great use of vocabulary or words - reading like a year 10 creative writing book more than a publishable novel - 
+
+"She had been whispering of alliances with the Northern Clans" - again telling the reader in way too direct and boring style with no mystic, the reader has to feel like it earns information, not just plainly telling them everything that's going on
+
+yet their eyes brimming with unspoken schemes. Kael's gaze locked on Lady Selene, whose pale blue eyes flickered like candle flames across the parchment laid before her. - eyes word used twice very close together, - 
+
+"The chamber doors creaked open as Kael Thorne entered" Kael Thorne? full name sounds weird for an intro to a book, hes not doing a ted talk?
+
+The Shadow Legion's presence is now undeniable. Every day we delay, their forces swell like an unchecked storm. We must act. - Used shadow legion twice in short time, full name is heavy on the reader and noticible, use another way to describe them - 
+
+
+
+
+
+
+
+few personal Ideas but you're going to have to come up with a lot more this is not anywhere near up to standard - vocabulary enhancer, synonym and paraphrase system, find multiple ways to describe and sum up the same person, group, event, action etc - Needs to not read so basic and plain - repeated noticible words such as names and adjectives and nouns such as eyes and shadow legion's is criminal, in same sentence or sentence after or even within 

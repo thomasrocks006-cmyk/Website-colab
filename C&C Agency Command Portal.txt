@@ -1,0 +1,381 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, 
+  Target, 
+  BarChart3, 
+  Users, 
+  ShieldCheck, 
+  MessageSquare, 
+  Search, 
+  Globe, 
+  TrendingUp, 
+  Briefcase, 
+  Activity, 
+  Cpu, 
+  ArrowRight, 
+  ChevronRight, 
+  CheckCircle2, 
+  LineChart, 
+  UserPlus, 
+  MousePointer2,
+  Lock,
+  Layers,
+  Sparkles
+} from 'lucide-react';
+
+const App = () => {
+  const [activeStrategy, setActiveStrategy] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const agencyBurdenAudit = [
+    {
+      category: "Specialized Talent Pool",
+      humanCost: "$120k+ /yr per Senior",
+      apexBenefit: "100 Polymath Agents",
+      desc: "Stop hunting for 'unicorns'. Your autonomous workforce is pre-trained in market analysis, lead-gen, and financial modeling. No hiring lag.",
+      icon: <UserPlus className="text-blue-500" size={18} />
+    },
+    {
+      category: "Non-Billable Grind",
+      humanCost: "40% of Staff Time",
+      apexBenefit: "100% Autonomous Ops",
+      desc: "Data scraping, client reporting, and meeting prep are handled by Casper. Your core talent stays focused on strategy and high-value creative.",
+      icon: <Layers className="text-indigo-500" size={18} />
+    },
+    {
+      category: "Client Data Leakage",
+      humanCost: "Brand Reputation Risk",
+      apexBenefit: "Sovereign AU Shield",
+      desc: "Standard agencies leak client strategy to public AI pools. C&C locks your client IP on private Australian Ironbark nodes. Trust is your USP.",
+      icon: <ShieldCheck className="text-emerald-500" size={18} />
+    },
+    {
+      category: "The Scaling Ceiling",
+      humanCost: "Fixed by Headcount",
+      apexBenefit: "Elastic Scale",
+      desc: "Take on 10x the client load without adding 10x the staff. The Swarm absorbs the execution weight, you collect the margin.",
+      icon: <Sparkles className="text-amber-500" size={18} />
+    }
+  ];
+
+  const strategies = [
+    {
+      title: "Outbound Synthesis",
+      label: "GROWTH_OPS",
+      icon: Target,
+      desc: "Your agents scan LinkedIn and industry directories, identify high-intent prospects, and execute personalized outreach sequences in 42-second loops.",
+      ui: (
+        <div className="bg-zinc-950 rounded-3xl p-6 space-y-4 border border-white/5">
+           <div className="flex justify-between items-center border-b border-white/5 pb-3">
+              <span className="text-[8px] font-mono text-blue-400 uppercase tracking-widest">Prospecting_Live</span>
+              <Activity size={10} className="text-blue-400 animate-pulse" />
+           </div>
+           <div className="space-y-3">
+              <div className="p-3 bg-white/5 rounded-xl border border-white/10">
+                 <div className="text-[10px] text-white font-bold mb-1 uppercase tracking-tight">Signal: Brand Expansion</div>
+                 <div className="text-[8px] text-zinc-500 font-mono">Found: CEO @ TechLogix Australia</div>
+              </div>
+              <div className="text-[8px] font-mono text-blue-500/60 leading-tight">
+                 {'>'} Agent_10: Analysis complete.<br/>
+                 {'>'} Agent_12: Drafted value-based sequence.
+              </div>
+           </div>
+        </div>
+      )
+    },
+    {
+      title: "The Ghost Researcher",
+      label: "INTEL_GATHERING",
+      icon: Search,
+      desc: "Stop spending days on competitive audits. Casper synthesizes market trends and client competitor data while you sleep, delivering a ready-to-present report.",
+      ui: (
+        <div className="bg-zinc-950 rounded-3xl p-6 space-y-4 border border-white/5">
+           <div className="flex justify-between items-center border-b border-white/5 pb-3">
+              <span className="text-[8px] font-mono text-indigo-400 uppercase tracking-widest">Market_Synthesis</span>
+              <div className="h-1 w-12 bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-indigo-500 w-3/4 animate-pulse" /></div>
+           </div>
+           <div className="space-y-2">
+              <div className="flex justify-between text-[10px] text-zinc-300">
+                 <span>Report: 14 Sectors Scanned</span>
+                 <span className="text-indigo-400">98% SYNC</span>
+              </div>
+              <div className="h-1 w-full bg-zinc-900 rounded-full" />
+              <div className="h-1 w-2/3 bg-zinc-900 rounded-full" />
+           </div>
+        </div>
+      )
+    },
+    {
+      title: "Reporting Sentinel",
+      label: "CLIENT_REPORTS",
+      icon: LineChart,
+      desc: "Automated, white-labeled client reporting that actually looks elite. Real-time metrics pulled from every API, formatted and delivered by your agents.",
+      ui: (
+        <div className="bg-zinc-950 rounded-3xl p-6 space-y-4 border border-white/5">
+           <div className="flex justify-between items-center border-b border-white/5 pb-3">
+              <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">White_Label_Dispatch</span>
+              <CheckCircle2 size={10} className="text-emerald-400" />
+           </div>
+           <div className="grid grid-cols-2 gap-3 h-20">
+              <div className="bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center space-y-1">
+                 <span className="text-[7px] text-zinc-500">ROI</span>
+                 <span className="text-xs font-bold text-white">4.2x</span>
+              </div>
+              <div className="bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center space-y-1">
+                 <span className="text-[7px] text-zinc-500">CPA</span>
+                 <span className="text-xs font-bold text-emerald-400">-$12.00</span>
+              </div>
+           </div>
+        </div>
+      )
+    }
+  ];
+
+  if (!isLoaded) return <div className="h-screen bg-zinc-950" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">The Agency Portal</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+             <a href="#logic" className="hover:text-zinc-900">Agency Logic</a>
+             <a href="#audit" className="hover:text-zinc-900">Burden Audit</a>
+             <a href="#sovereign" className="hover:text-zinc-900">Ethics</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl">
+            Access Command
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE SCALE PLAY */}
+        <section className="min-h-[75vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 text-[10px] font-bold tracking-[0.4em] uppercase text-indigo-600 border border-indigo-100">
+              <Sparkles size={12} /> The Boutique Powerhouse
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-zinc-950">
+              Output like a <br/>
+              <span className="text-zinc-200 italic font-light text-zinc-900">network agency.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Stop limiting your revenue to your headcount. Camber & Casper provides the 100-man back-office that allows you to scale your agency's output without the payroll risk.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6">
+             <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                Commission the Swarm <Zap size={16} fill="white" />
+             </button>
+             <div className="flex items-center gap-3 px-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-100 rounded-full bg-zinc-50">
+                <Globe size={16} className="text-indigo-500" /> Multi-Agent White-Label Ready
+             </div>
+          </div>
+        </section>
+
+        {/* 2. THE AGENCY LOGIC: INTERACTIVE STRATEGIES */}
+        <section id="logic" className="py-24 px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+           {strategies.map((strategy, idx) => (
+             <div 
+               key={idx}
+               onMouseEnter={() => setActiveStrategy(idx)}
+               className={`p-10 rounded-[50px] border transition-all duration-700 cursor-pointer flex flex-col justify-between h-[500px] relative overflow-hidden group
+                 ${activeStrategy === idx ? 'bg-zinc-950 text-white border-zinc-800 shadow-2xl scale-[1.02]' : 'bg-white border-zinc-100 text-zinc-900 opacity-90 hover:opacity-100'}`}
+             >
+               <div className="space-y-6 relative z-10">
+                 <div className="flex justify-between items-start">
+                   <div className={`p-4 rounded-2xl ${activeStrategy === idx ? 'bg-indigo-600 text-white' : 'bg-zinc-50 text-zinc-400 group-hover:text-zinc-900'} transition-all`}>
+                     <strategy.icon size={24} />
+                   </div>
+                   <div className={`text-[10px] font-mono font-bold tracking-widest ${activeStrategy === idx ? 'text-indigo-400' : 'text-zinc-300'}`}>
+                     {strategy.label}
+                   </div>
+                 </div>
+                 <h3 className="text-3xl font-semibold tracking-tighter leading-none">{strategy.title}</h3>
+                 <p className={`text-sm leading-relaxed font-light ${activeStrategy === idx ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                   {strategy.desc}
+                 </p>
+                 <div className="pt-4">{strategy.ui}</div>
+               </div>
+               <div className="relative z-10 pt-6 border-t border-current opacity-10 flex justify-between items-center">
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Protocol Active</span>
+                  <ChevronRight size={14} />
+               </div>
+             </div>
+           ))}
+        </section>
+
+        {/* 3. THE BURDEN AUDIT (AGENCY SPECIFIC) */}
+        <section id="audit" className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="grid grid-cols-12 h-full gap-4 px-10">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white/20 h-full" />)}
+              </div>
+           </div>
+
+           <div className="max-w-7xl mx-auto relative z-10 space-y-24">
+              <div className="text-center space-y-6 max-w-3xl mx-auto">
+                 <h2 className="text-xs font-bold uppercase tracking-[0.6em] text-indigo-400">The Replacement Logic v2.0</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic text-white">The Agency <br/><span className="text-zinc-500 not-italic">Burden Audit.</span></h3>
+                 <p className="text-xl text-zinc-400 font-light">Agencies die in the 'execution valley'. We provide the bridge. Don't hire more staff to grow; deploy more intelligence.</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                 {agencyBurdenAudit.map((item, i) => (
+                   <div key={i} className="group p-10 rounded-[48px] bg-white/5 border border-white/5 hover:border-white/20 transition-all duration-700 flex flex-col justify-between min-h-[320px]">
+                      <div className="space-y-6">
+                         <div className="flex justify-between items-center">
+                            <div className="p-3 bg-white/5 rounded-2xl">
+                               {item.icon}
+                            </div>
+                            <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Division_0{i+1}</div>
+                         </div>
+                         <h4 className="text-3xl font-semibold tracking-tight">{item.category}</h4>
+                         <p className="text-sm text-zinc-500 font-light leading-relaxed max-w-md">{item.desc}</p>
+                      </div>
+
+                      <div className="mt-10 pt-8 border-t border-white/5 flex justify-between items-center">
+                         <div className="space-y-1">
+                            <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Human Hire Cost</div>
+                            <div className="text-lg font-bold text-zinc-400 line-through opacity-50">{item.humanCost}</div>
+                         </div>
+                         <ArrowRight size={20} className="text-zinc-800" />
+                         <div className="space-y-1 text-right">
+                            <div className="text-[9px] font-bold uppercase tracking-widest text-indigo-400">C&C Logic</div>
+                            <div className="text-lg font-bold text-indigo-500">{item.apexBenefit}</div>
+                         </div>
+                      </div>
+                   </div>
+                 ))}
+              </div>
+
+              {/* SAVINGS REINVESTMENT (AGENCY FOCUS) */}
+              <div className="bg-indigo-600 rounded-[56px] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl">
+                 <div className="space-y-4 text-center md:text-left">
+                    <h4 className="text-4xl font-bold tracking-tight">Convert overhead into profit.</h4>
+                    <p className="text-indigo-100 font-light max-w-md italic opacity-80">One Account Manager salary covers the C&C workforce for 12 years. Scale your agency vertically, not horizontally.</p>
+                 </div>
+                 <div className="flex flex-col gap-4 w-full md:w-auto">
+                    <button className="bg-white text-zinc-950 px-12 py-5 rounded-full font-bold text-sm tracking-tight hover:scale-105 transition-all shadow-xl">
+                       Deploy the 100 Experts
+                    </button>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 4. SOVEREIGN IP PROTECTION (The "White Collar" USP) */}
+        <section id="sovereign" className="py-40 px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+           <div className="space-y-10">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase text-center md:text-left">Privacy is Alpha</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight text-center md:text-left italic">Client Trust <br/> <span className="text-zinc-900 not-italic">is Air-Gapped.</span></h3>
+              <p className="text-xl text-zinc-500 font-light leading-relaxed text-center md:text-left">
+                Agencies using standard LLMs are inadvertently leaking client strategies to global training pools. Camber & Casper keeps your client IP on private Australian Ironbark nodes. Your secret sauce stays secret.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+                 <div className="p-8 bg-zinc-50 rounded-[40px] border border-zinc-100 space-y-4">
+                    <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-zinc-100">
+                       <Lock size={20} className="text-zinc-900" />
+                    </div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-900">Private Logic</div>
+                    <p className="text-xs text-zinc-400 font-light">We never train on your data.</p>
+                 </div>
+                 <div className="p-8 bg-zinc-50 rounded-[40px] border border-zinc-100 space-y-4">
+                    <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-zinc-100">
+                       <Globe size={20} className="text-indigo-600" />
+                    </div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-900">Local Jurisdiction</div>
+                    <p className="text-xs text-zinc-400 font-light">Data never leaves Australia.</p>
+                 </div>
+              </div>
+           </div>
+
+           <div className="relative group flex justify-center">
+              <div className="absolute inset-0 bg-indigo-500/10 blur-[140px] rounded-full" />
+              <div className="relative w-full max-w-lg bg-zinc-950 rounded-[60px] p-1 shadow-2xl">
+                 <div className="w-full h-full bg-[#0A0A0C] rounded-[58px] p-12 flex flex-col justify-between min-h-[600px] border border-white/5">
+                    <div className="flex justify-between items-center">
+                       <div className="flex items-center gap-3">
+                          <Activity size={18} className="text-blue-500" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Live Infrastructure Audit</span>
+                       </div>
+                       <span className="text-[8px] font-mono text-zinc-700">Ref: IRONBARK_CORE_V4</span>
+                    </div>
+                    
+                    <div className="space-y-12">
+                       <div className="relative">
+                          <Cpu size={120} className="text-white/5 mx-auto animate-pulse" strokeWidth={0.5} />
+                          <div className="absolute inset-0 flex items-center justify-center text-center">
+                             <div className="space-y-1">
+                                <div className="text-3xl font-bold text-white tracking-tighter">1.2 TB/s</div>
+                                <div className="text-[8px] font-bold text-zinc-500 uppercase tracking-[0.4em]">Sovereign Throughput</div>
+                             </div>
+                          </div>
+                       </div>
+                       
+                       <div className="bg-white/5 p-6 rounded-3xl border border-white/5 space-y-6">
+                          <div className="space-y-2">
+                             <div className="flex justify-between text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Encryption Load</div>
+                             <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-[94%]" /></div>
+                          </div>
+                          <div className="space-y-2">
+                             <div className="flex justify-between text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Node Integrity</div>
+                             <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-emerald-500 w-full" /></div>
+                          </div>
+                       </div>
+                    </div>
+
+                    <div className="text-center pt-8">
+                       <p className="text-[9px] font-mono text-zinc-500 uppercase tracking-[0.5em]">Physical_Airgap_Stable</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center bg-white">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Scale Vertically.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't hire a junior account manager. Commission a 100-man autonomous workforce and give your senior strategy team the weapon they deserve.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl shadow-zinc-300">
+              Claim Your Agency Edge
+           </button>
+           <p className="mt-10 text-[10px] font-bold text-zinc-300 uppercase tracking-[0.8em] italic">Join 420+ Boutique Firms</p>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-xs font-serif shadow-xl">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Distributed Agency Systems</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900">Economics</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

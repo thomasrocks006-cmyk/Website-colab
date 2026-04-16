@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — 10-Minute Launch | Camber & Casper</title>
+  <meta name="description" content="From zero to 100 agents in under 10 minutes. The commissioning protocol that gets your workforce operational immediately.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .step-card { position: relative; padding: 4rem 3rem; background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-card); }
+    .step-number { font-family: var(--font-mono); font-size: 5rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cc-zinc-50); position: absolute; top: 2rem; right: 2.5rem; }
+    .step-time { font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cc-blue-500); }
+    .step-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; margin-top: 0.75rem; }
+    .step-desc { font-size: 1rem; font-weight: 300; color: var(--cc-zinc-400); line-height: 1.7; margin-top: 1rem; max-width: 32rem; }
+
+    /* Timeline connector */
+    .launch-timeline { position: relative; }
+    .launch-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--cc-zinc-100); transform: translateX(-50%); z-index: 0; }
+    .timeline-item { position: relative; z-index: 1; margin-bottom: 3rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    /* Progress bar */
+    .launch-progress { background: var(--cc-zinc-950); border-radius: 60px; padding: 3rem 4rem; display: flex; align-items: center; gap: 2rem; }
+    .progress-step { flex: 1; text-align: center; position: relative; }
+    .progress-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--cc-zinc-800); border: 2px solid var(--cc-zinc-700); margin: 0 auto; position: relative; z-index: 1; }
+    .progress-dot.active { background: var(--cc-blue-500); border-color: var(--cc-blue-500); animation: pulse 2s infinite; }
+    .progress-dot.done { background: var(--cc-emerald-500); border-color: var(--cc-emerald-500); }
+    .progress-line { position: absolute; top: 8px; left: 50%; width: 100%; height: 2px; background: var(--cc-zinc-800); z-index: 0; }
+    .progress-line.active { background: var(--cc-blue-500); }
+    .progress-label { font-size: 0.625rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cc-zinc-500); margin-top: 0.75rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div style="display:flex;align-items:center;gap:3rem;">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <span class="nav-logo-text font-serif">C&C</span>
+        </a>
+        <div class="nav-links">
+          <a href="workforce.html">The 100</a>
+          <a href="advantage.html">Advantage</a>
+          <a href="intelligence.html">Intelligence</a>
+          <a href="infrastructure.html">Infrastructure</a>
+          <a href="industries.html">Industries</a>
+          <a href="launch.html" class="active">How It Works</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
+      <div class="reveal container-sm">
+        <div class="badge badge-light mb-8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Launch Protocol v2.0
+        </div>
+        <h1 class="text-hero">10 Minutes.<br><span class="text-ghost">100 Agents.</span></h1>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+          No integrations. No developers. No 6-week onboarding. The Camber & Casper commissioning protocol gets your entire workforce operational in under 10 minutes.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PROGRESS INDICATOR — from Launch Protocol v2.0
+         4-Phase Visual: Identify → Configure → Deploy → Command
+         ============================================ -->
+    <section class="section" style="padding:4rem 2rem;">
+      <div class="container reveal">
+        <div class="launch-progress">
+          <div class="progress-step">
+            <div class="progress-dot done"></div>
+            <div class="progress-line active"></div>
+            <div class="progress-label" style="color:var(--cc-emerald-500);">Identify</div>
+          </div>
+          <div class="progress-step">
+            <div class="progress-dot done"></div>
+            <div class="progress-line active"></div>
+            <div class="progress-label" style="color:var(--cc-emerald-500);">Configure</div>
+          </div>
+          <div class="progress-step">
+            <div class="progress-dot active"></div>
+            <div class="progress-line"></div>
+            <div class="progress-label" style="color:var(--cc-blue-500);">Deploy</div>
+          </div>
+          <div class="progress-step">
+            <div class="progress-dot"></div>
+            <div class="progress-label">Command</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         THE 4 STEPS — from Launch Protocol v2.0,
+         10-Minute Launch Sequence, Agent Manifest v2.2 OnboardingFlow
+         ============================================ -->
+    <section class="section" style="padding:6rem 2rem 10rem;">
+      <div class="container">
+        <!-- Step 1 -->
+        <div class="reveal step-card mb-8">
+          <div class="step-number">01</div>
+          <div class="step-time">Minutes 0–2</div>
+          <div class="step-title">Identify Your Operation</div>
+          <div class="step-desc">Tell us your industry, your team size, and your biggest pain points. The system maps your business profile against our 100-agent manifest to pre-configure your divisions.</div>
+          <div style="display:flex;gap:1rem;margin-top:2rem;">
+            <div class="badge badge-light">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>
+              Industry Selection
+            </div>
+            <div class="badge badge-light">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>
+              Team Size
+            </div>
+            <div class="badge badge-light">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/></svg>
+              Pain Point Mapping
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="reveal step-card mb-8" data-delay="100">
+          <div class="step-number">02</div>
+          <div class="step-time">Minutes 2–5</div>
+          <div class="step-title">Configure Your Swarm</div>
+          <div class="step-desc">The system pre-assigns agents to your 4 divisions — Hustlers, Capital, Operations, Sentry — based on your profile. You can adjust the weighting or accept the recommended split.</div>
+          <div style="display:flex;gap:2rem;margin-top:2rem;">
+            <div>
+              <span class="text-label" style="color:var(--cc-blue-500);">30 Hustlers</span>
+              <div style="background:var(--cc-blue-500);height:4px;width:120px;border-radius:2px;margin-top:0.5rem;"></div>
+            </div>
+            <div>
+              <span class="text-label" style="color:var(--cc-emerald-500);">20 Capital</span>
+              <div style="background:var(--cc-emerald-500);height:4px;width:80px;border-radius:2px;margin-top:0.5rem;"></div>
+            </div>
+            <div>
+              <span class="text-label" style="color:var(--cc-amber-500);">25 Operations</span>
+              <div style="background:var(--cc-amber-500);height:4px;width:100px;border-radius:2px;margin-top:0.5rem;"></div>
+            </div>
+            <div>
+              <span class="text-label" style="color:var(--cc-red-500);">25 Sentry</span>
+              <div style="background:var(--cc-red-500);height:4px;width:100px;border-radius:2px;margin-top:0.5rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="reveal step-card mb-8" data-delay="200">
+          <div class="step-number">03</div>
+          <div class="step-time">Minutes 5–8</div>
+          <div class="step-title">Deploy on Ironbark</div>
+          <div class="step-desc">Your 100-agent workforce deploys to sovereign Australian infrastructure. Ironbark nodes spin up, encryption layers activate, and the Neural Intercom comes online. Watch each agent register in real-time.</div>
+          <div style="background:var(--cc-zinc-950);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-top:2rem;font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-zinc-500);line-height:2;">
+            <div><span style="color:var(--cc-emerald-500);">✓</span> Lead Scraper #10 — <span style="color:var(--cc-emerald-500);">ONLINE</span></div>
+            <div><span style="color:var(--cc-emerald-500);">✓</span> Quote Architect #12 — <span style="color:var(--cc-emerald-500);">ONLINE</span></div>
+            <div><span style="color:var(--cc-emerald-500);">✓</span> Debt Collector #44 — <span style="color:var(--cc-emerald-500);">ONLINE</span></div>
+            <div><span style="color:var(--cc-blue-500);">⟳</span> Schedule Pilot #72 — <span style="color:var(--cc-blue-500);">CALIBRATING</span></div>
+            <div><span style="color:var(--cc-zinc-600);">○</span> Encryption Warden #01 — <span style="color:var(--cc-zinc-600);">PENDING</span></div>
+            <div style="color:var(--cc-zinc-600);margin-top:0.5rem;">... deploying 95 more agents</div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="reveal step-card" data-delay="300">
+          <div class="step-number">04</div>
+          <div class="step-time">Minutes 8–10</div>
+          <div class="step-title">Assume Command</div>
+          <div class="step-desc">Your Executive Dashboard goes live. Morning reports begin. The War Room is open. Your 100-agent workforce is now operational. You are the commander — they are the force.</div>
+          <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
+            <a href="intelligence.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">Open War Room</a>
+            <a href="workforce.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">View The 100</a>
+            <a href="advantage.html" class="btn-secondary" style="font-size:0.75rem;padding:0.625rem 1.5rem;">See the Advantage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WHAT HAPPENS YOUR FIRST DAY
+         Source: A Day in Command, Executive Experience, 
+         Parallel Experience docs
+         ============================================ -->
+    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
+      <div class="container">
+        <div class="reveal text-center mb-16">
+          <p class="text-label" style="color:var(--cc-zinc-400);">Day One</p>
+          <h2 class="text-display mt-4">Your first 24 hours<br><span class="text-ghost">with the Swarm.</span></h2>
+        </div>
+        <div class="reveal" style="max-width:48rem;margin:0 auto;">
+          <div style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
+            <div class="font-mono" style="font-weight:700;color:var(--cc-blue-500);width:4rem;flex-shrink:0;">6:00</div>
+            <div>
+              <h4 style="font-weight:700;font-size:0.875rem;">Morning Report Arrives</h4>
+              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Your phone buzzes. Casper has already processed overnight enquiries, prioritized leads, and drafted responses. 1,402 actions completed since midnight.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
+            <div class="font-mono" style="font-weight:700;color:var(--cc-blue-500);width:4rem;flex-shrink:0;">9:00</div>
+            <div>
+              <h4 style="font-weight:700;font-size:0.875rem;">You Start Work — Already Ahead</h4>
+              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Your competitors are just opening email. You've already sent 3 quotes, chased 2 debtors, and scheduled next week.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
+            <div class="font-mono" style="font-weight:700;color:var(--cc-emerald-500);width:4rem;flex-shrink:0;">12:00</div>
+            <div>
+              <h4 style="font-weight:700;font-size:0.875rem;">Midday Check-In</h4>
+              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Dashboard shows 14 new leads captured, $12.4k in pipeline, and one compliance alert flagged and auto-resolved by Compliance Sorter #85.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
+            <div class="font-mono" style="font-weight:700;color:var(--cc-amber-500);width:4rem;flex-shrink:0;">17:00</div>
+            <div>
+              <h4 style="font-weight:700;font-size:0.875rem;">Tools Down</h4>
+              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">You finish your day. The agents keep going. Casper takes over the evening shift — invoice follow-ups, tomorrow's schedule prep, and overnight lead monitoring.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:2rem;padding:2rem 0;align-items:flex-start;">
+            <div class="font-mono" style="font-weight:700;color:var(--cc-zinc-400);width:4rem;flex-shrink:0;">18:00</div>
+            <div>
+              <h4 style="font-weight:700;font-size:0.875rem;">Dinner with the Family</h4>
+              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Casper has the office. You have the family. That's the deal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding:10rem 2rem;text-align:center;">
+      <div class="reveal container-sm">
+        <h2 class="text-display">Ready in 10 minutes.<br><span class="text-ghost">Returns in 24 hours.</span></h2>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+          No contracts. No lock-in. Deploy the workforce today and see measurable output by tomorrow morning.
+        </p>
+        <a href="pricing.html" class="btn-primary mt-8">Begin Commissioning</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div>
+          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="workforce.html">The 100</a>
+        <a href="advantage.html">Advantage</a>
+        <a href="intelligence.html">Intelligence</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="industries.html">Industries</a>
+        <a href="launch.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

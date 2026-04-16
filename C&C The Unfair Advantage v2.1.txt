@@ -1,0 +1,282 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Zap, 
+  Trophy, 
+  ArrowRight, 
+  Target,
+  Rocket,
+  Activity,
+  ShieldCheck,
+  CheckCircle2,
+  XCircle,
+  Clock,
+  TrendingUp,
+  BarChart3,
+  MousePointer2,
+  Gauge,
+  Timer
+} from 'lucide-react';
+
+// --- ANIMATION WRAPPER ---
+const Reveal = ({ children, delay = 0 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.05 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      {children}
+    </div>
+  );
+};
+
+// --- FEATURE 1: COMPETITIVE RACE (PASS 1) ---
+const CompetitiveRace = () => {
+  const [racing, setRacing] = useState(false);
+
+  return (
+    <div className="w-full bg-[#050505] rounded-[48px] p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden group">
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      <div className="relative z-10 space-y-10">
+        <div className="flex justify-between items-end">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.4em] font-bold">Real-time Simulation</div>
+            <div className="text-xl font-bold text-white tracking-tight">The Lead Response Race</div>
+          </div>
+          <button onClick={() => setRacing(!racing)} className="px-6 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-blue-600 hover:text-white transition-all">
+            {racing ? 'Reset' : 'Start Race'}
+          </button>
+        </div>
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-zinc-600"><span>Human Competitor</span><span>Status: Idle</span></div>
+            <div className="h-4 bg-zinc-900 rounded-full overflow-hidden relative border border-white/5">
+              <div className={`h-full bg-zinc-700 transition-all duration-[10000ms] ease-linear ${racing ? 'w-[10%]' : 'w-0'}`} />
+              <div className="absolute inset-0 flex items-center px-4 text-[8px] font-mono text-zinc-500">EST. RESPONSE: 14 HOURS</div>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-blue-400"><span>C&C Apex User</span><span>Status: Success ✓</span></div>
+            <div className="h-4 bg-zinc-900 rounded-full overflow-hidden relative border border-blue-500/20">
+              <div className={`h-full bg-blue-600 shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-[800ms] cubic-bezier(0.22, 1, 0.36, 1) ${racing ? 'w-full' : 'w-0'}`} />
+              <div className="absolute inset-0 flex items-center px-4 text-[8px] font-mono text-white">RESPONSE TIME: 42 SECONDS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- FEATURE 2: DOMINANCE GAUGE (PASS 2) ---
+const DominanceGauge = () => {
+  const [percent, setPercent] = useState(0);
+  useEffect(() => { const timer = setTimeout(() => setPercent(94), 1500); return () => clearTimeout(timer); }, []);
+
+  return (
+    <div className="bg-white rounded-[48px] p-12 border border-zinc-100 shadow-[0_30px_80px_rgba(0,0,0,0.05)] text-center space-y-8 relative overflow-hidden group">
+      <div className="relative flex items-center justify-center">
+        <svg viewBox="0 0 100 100" className="w-48 h-48 transform -rotate-90">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#f4f4f5" strokeWidth="8" />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#2563eb" strokeWidth="8" strokeDasharray="283" strokeDashoffset={283 - (283 * percent / 100)} className="transition-all duration-[2000ms] cubic-bezier(0.22, 1, 0.36, 1)" />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-4xl font-bold tracking-tighter text-zinc-900">{percent}%</span>
+          <span className="text-[8px] uppercase tracking-widest text-zinc-400 font-bold">Win Probability</span>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <h4 className="text-xl font-semibold tracking-tight">The Compound Advantage.</h4>
+        <p className="text-xs text-zinc-400 font-light leading-relaxed max-w-[240px] mx-auto">Cumulative lead gained over traditional competitors within 30 days of deployment.</p>
+      </div>
+    </div>
+  );
+};
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 2500);
+    const scrollHandler = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', scrollHandler);
+    return () => { clearTimeout(timer); window.removeEventListener('scroll', scrollHandler); };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+      
+      {/* 1. SPLASH INTRO */}
+      <div className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.8, 0, 0.2, 1) ${isLoaded ? 'translate-y-[-100%] opacity-0' : 'opacity-100'}`}>
+        <div className="relative w-48 h-48 flex items-center justify-center animate-in zoom-in duration-1000">
+           <div className="w-24 h-24 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800">
+              <span className="font-serif text-5xl font-light text-white">C<span className="text-zinc-400 italic">C</span></span>
+           </div>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[1.2em] uppercase text-zinc-400 font-bold animate-pulse">Apex Predator Protocol</p>
+      </div>
+
+      {/* 2. NAVIGATION */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${isScrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100' : 'py-10'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Secure the Edge
+          </button>
+        </div>
+      </nav>
+
+      <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        
+        {/* 3. HERO (CONSOLIDATED) */}
+        <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <Reveal>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 border border-blue-100">
+                <Target size={12} /> Competitive Dominance
+              </div>
+              <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.85] text-zinc-950">
+                Your Unfair <br/>
+                <span className="text-zinc-300 italic font-light">Advantage.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                In business, you don't compete with the market. You compete with time. Camber & Casper gives you 100 agents to ensure you are always first, always right, and always ahead.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                  Deploy Your Workforce <ArrowRight size={18} />
+                </button>
+                <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-400 uppercase tracking-widest px-6 italic">
+                   <Zap size={14} className="text-blue-500" /> Response Time: 42 Seconds
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 4. VISUALIZERS (PASS 1 & 2 INTEGRATED) */}
+        <section className="py-20 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <Reveal delay={100}>
+            <CompetitiveRace />
+          </Reveal>
+          <Reveal delay={300}>
+            <DominanceGauge />
+          </Reveal>
+        </section>
+
+        {/* 5. NEW: THE DOMINANCE MATRIX (Marketing Grid) */}
+        <section className="py-40 px-6 max-w-7xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-24 space-y-4">
+              <h2 className="text-xs font-bold tracking-[0.6em] uppercase text-zinc-400">The Power Divide</h2>
+              <h3 className="text-5xl font-semibold tracking-tight">The difference between <br/> <span className="italic font-light text-zinc-300">surviving and winning.</span></h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-100">
+               {[
+                 { label: "Daily Output", human: "8 Productive Hours", apex: "2,400 Combined Hours" },
+                 { label: "Response Lag", human: "12-24 Hour Average", apex: "0.04 Second Interaction" },
+                 { label: "Administrative Load", human: "Owner Burden (30%)", apex: "Autonomous (0%)" }
+               ].map((item, i) => (
+                 <div key={i} className="p-12 space-y-8 bg-white hover:bg-zinc-50 transition-colors">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">{item.label}</div>
+                    <div className="space-y-6">
+                       <div className="flex items-center gap-3 text-sm text-zinc-400">
+                          <XCircle size={14} className="text-zinc-200" /> {item.human}
+                       </div>
+                       <div className="flex items-center gap-3 text-lg font-bold text-zinc-900">
+                          <CheckCircle2 size={20} className="text-blue-500" /> {item.apex}
+                       </div>
+                    </div>
+                 </div>
+               ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 6. SOVEREIGN WEAPONRY (PASS 2 INTEGRATED) */}
+        <section className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full p-20">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="white" strokeWidth="0.1" strokeDasharray="1 4" />
+                <path d="M20 50 A 30 30 0 0 1 80 50" fill="none" stroke="white" strokeWidth="0.5" />
+              </svg>
+           </div>
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <Reveal>
+                 <div className="space-y-10">
+                    <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-600">The Camber Shield</h2>
+                    <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">Trust is a <br/><span className="text-zinc-700 italic font-light text-zinc-400">Weapon.</span></h3>
+                    <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
+                       High-end clients trust businesses that protect their data. While others leak info to global pools, your business remains air-gapped on Australian soil.
+                    </p>
+                    <div className="flex gap-4">
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800">
+                          <ShieldCheck size={14} className="text-blue-500" /> 100% Air-Gapped
+                       </div>
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800">
+                          <Rocket size={14} className="text-emerald-500" /> Apex Speed
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+              <Reveal delay={200}>
+                 <div className="bg-zinc-900 aspect-square md:aspect-auto md:h-[600px] rounded-[60px] border border-white/5 flex items-center justify-center p-1 group">
+                    <div className="w-full h-full bg-black rounded-[58px] flex items-center justify-center relative overflow-hidden">
+                       <div className="absolute inset-0 grid grid-cols-8 gap-1 p-12 opacity-10">
+                          {[...Array(32)].map((_, i) => ( <div key={i} className="bg-white rounded-sm animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} /> ))}
+                       </div>
+                       <div className="relative z-10 text-center space-y-6">
+                          <Zap size={100} className="text-zinc-800 group-hover:text-blue-500 transition-colors duration-1000" strokeWidth={0.5} />
+                          <div className="text-[10px] font-mono tracking-[0.8em] uppercase text-zinc-600">Infrastructure_Apex</div>
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+           </div>
+        </section>
+
+        {/* 7. FINAL KEYNOTE CTA */}
+        <section className="py-60 px-6 text-center">
+           <Reveal>
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Win <br/><span className="text-zinc-200 italic font-light">the job.</span></h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16">
+                 Join the Camber & Casper umbrella and deploy the workforce that makes the competition irrelevant. $799/month. Zero complexity.
+              </p>
+              <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-[0_40px_100px_rgba(0,0,0,0.1)]">
+                 Claim Your Unfair Advantage
+              </button>
+           </Reveal>
+        </section>
+
+      </main>
+
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Apex Growth Systems</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900">Economics</a>
+            <a href="#" className="hover:text-zinc-900">Ethics</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}

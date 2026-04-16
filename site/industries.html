@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industries — Tradies, Agencies, E-Commerce | Camber & Casper</title>
+  <meta name="description" content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .tab-bar { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 4rem; border: 1px solid var(--cc-zinc-100); border-radius: 999px; padding: 0.375rem; background: white; width: fit-content; margin-left: auto; margin-right: auto; }
+    .tab-btn { padding: 0.75rem 2rem; border-radius: 999px; border: none; background: transparent; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; color: var(--cc-zinc-400); transition: all 0.3s; }
+    .tab-btn.active { background: var(--cc-zinc-950); color: white; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .use-case { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; }
+    .use-case-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--cc-zinc-50); }
+    .use-case h4 { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
+    .use-case p { font-size: 0.8rem; color: var(--cc-zinc-400); line-height: 1.7; margin-top: 0.5rem; }
+
+    .testimonial { background: var(--cc-zinc-950); border-radius: 60px; padding: 4rem; color: white; text-align: center; }
+    .testimonial-quote { font-family: var(--font-serif); font-size: 1.75rem; font-style: italic; font-weight: 400; line-height: 1.5; max-width: 36rem; margin: 0 auto; }
+    .testimonial-author { font-weight: 700; font-size: 0.875rem; margin-top: 2rem; }
+    .testimonial-role { font-size: 0.75rem; color: var(--cc-zinc-500); margin-top: 0.25rem; }
+
+    .workflow-step { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid var(--cc-zinc-100); }
+    .workflow-step:last-child { border-bottom:none; }
+    .workflow-num { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--cc-blue-500); flex-shrink: 0; width: 3rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div style="display:flex;align-items:center;gap:3rem;">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <span class="nav-logo-text font-serif">C&C</span>
+        </a>
+        <div class="nav-links">
+          <a href="workforce.html">The 100</a>
+          <a href="advantage.html">Advantage</a>
+          <a href="intelligence.html">Intelligence</a>
+          <a href="infrastructure.html">Infrastructure</a>
+          <a href="industries.html" class="active">Industries</a>
+          <a href="launch.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="pt-40" style="padding:12rem 2rem 4rem;text-align:center;">
+      <div class="reveal container-sm">
+        <h1 class="text-hero">Built for how<br><span class="text-ghost">you actually work.</span></h1>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+          We don't sell one-size-fits-all AI. Every vertical gets a purpose-built command portal tailored to the actual pain points of your industry.
+        </p>
+      </div>
+    </section>
+
+    <!-- TAB NAVIGATION -->
+    <section class="section" style="padding:4rem 2rem 10rem;">
+      <div class="container">
+        <div class="reveal tab-bar" id="industryTabs">
+          <button class="tab-btn active" onclick="switchTab('tradies')">Tradies & Trades</button>
+          <button class="tab-btn" onclick="switchTab('agencies')">Boutique Agencies</button>
+          <button class="tab-btn" onclick="switchTab('ecommerce')">E-Commerce</button>
+        </div>
+
+        <!-- ============================================
+             TRADIES TAB
+             Sources: Tradie Command Portal, cc tradie v1.1
+             "Win back your weekends."
+             James Miller testimonial, 42-second quotes
+             ============================================ -->
+        <div class="tab-panel active" id="tab-tradies">
+          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+            <div>
+              <div class="badge badge-light mb-6">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/></svg>
+                Tradie Command Portal
+              </div>
+              <h2 class="text-display">Win back<br><span class="text-ghost">your weekends.</span></h2>
+              <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+                You're a plumber, not an admin. C&C handles the quoting, invoicing, scheduling, and debt-chasing while you're on-site — or on the boat.
+              </p>
+              <div class="grid-2 mt-8" style="gap:2rem;">
+                <div class="stat">
+                  <div class="stat-value">42s</div>
+                  <div class="stat-label italic">Quote Generation</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">+40%</div>
+                  <div class="stat-label italic">Win-Rate Increase</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- Tradie Workflow — from Tradie Command Portal -->
+              <div class="card" style="padding:2.5rem;">
+                <h3 style="font-weight:700;font-size:1.125rem;margin-bottom:2rem;">How Your Day Changes</h3>
+                <div class="workflow-step">
+                  <div class="workflow-num">01</div>
+                  <div>
+                    <h4 style="font-weight:700;font-size:0.875rem;">Lead Comes In</h4>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Lead Scraper #10 captures it from HiPages, Google, or direct enquiry. Instantly qualified.</p>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <div class="workflow-num">02</div>
+                  <div>
+                    <h4 style="font-weight:700;font-size:0.875rem;">Quote Sent in 42 Seconds</h4>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Quote Architect #12 builds a margin-optimized proposal before the client has checked another provider.</p>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <div class="workflow-num">03</div>
+                  <div>
+                    <h4 style="font-weight:700;font-size:0.875rem;">Job Scheduled & Invoiced</h4>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Schedule Pilot #72 manages the calendar. Invoice Commander #31 sends the bill on completion.</p>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <div class="workflow-num">04</div>
+                  <div>
+                    <h4 style="font-weight:700;font-size:0.875rem;">You Go Home</h4>
+                    <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Casper handles the evening follow-ups, review requests, and tomorrow's prep. Tools down. Hood up.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Use Cases Grid -->
+          <div class="grid-3 reveal" style="gap:1.5rem;margin-bottom:4rem;">
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+              <h4>Lead Generation</h4>
+              <p>Auto-scrapes council DAs, tenders, and directories. Filters by trade, radius, and revenue fit.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <h4>Invoicing & Debt</h4>
+              <p>Auto-invoices on job completion. Debt Collector #44 chases overdue accounts on an escalating cadence.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <h4>Scheduling & Dispatch</h4>
+              <p>Calendar management, crew assignments, material deliveries, and travel optimization — all synced.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-red-500)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h4>Compliance Watch</h4>
+              <p>Tracks licence expiry, insurance renewals, and builder registration. Flags gaps before they cost you.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <h4>Review Harvesting</h4>
+              <p>Post-job review requests across Google, Facebook, HiPages. Manages your star rating as a growth asset.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <h4>Cashflow Forecasting</h4>
+              <p>30/60/90 day cashflow projections. Flags upcoming gaps and recommends deposit timing.</p>
+            </div>
+          </div>
+          <!-- Testimonial — from Tradie Command Portal "James Miller" -->
+          <div class="testimonial reveal">
+            <div class="testimonial-quote">"I used to chase invoices until 9pm. Now my phone buzzes with payment confirmations while I'm at the kids' footy. Win-rate went up 40% in the first month."</div>
+            <div class="testimonial-author">James Miller</div>
+            <div class="testimonial-role">Miller Electrical Solutions · Melbourne</div>
+          </div>
+        </div>
+
+        <!-- ============================================
+             AGENCIES TAB
+             Source: C&C Agency Command Portal.txt
+             "Output like a network agency. Run like a founder."
+             ============================================ -->
+        <div class="tab-panel" id="tab-agencies">
+          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+            <div>
+              <div class="badge badge-light mb-6">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Agency Command Portal
+              </div>
+              <h2 class="text-display">Output like<br><span class="text-ghost">a network agency.</span></h2>
+              <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+                You're a boutique agency punching above your weight. C&C gives you the research depth, reporting cadence, and outbound volume of agencies 10x your size. Run like a founder, output like a network.
+              </p>
+              <div class="grid-2 mt-8" style="gap:2rem;">
+                <div class="stat">
+                  <div class="stat-value">10x</div>
+                  <div class="stat-label italic">Research Output</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">24/7</div>
+                  <div class="stat-label italic">Client Monitoring</div>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding:2.5rem;">
+              <h3 style="font-weight:700;font-size:1.125rem;margin-bottom:2rem;">Your Agency, Supercharged</h3>
+              <div class="workflow-step">
+                <div class="workflow-num">01</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Deep Research</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Competitive analysis, market mapping, and audience insights — all before the brief lands.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">02</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Content at Scale</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Draft copy, social calendars, and reporting packs generated and scheduled automatically.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">03</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Client Reporting</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">White-label reports with real-time data. Client dashboards that update without you touching them.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">04</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">New Business Pipeline</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Outbound prospecting, proposal generation, and pitch deck assembly — all automated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-3 reveal" style="gap:1.5rem;">
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <h4>Market Intelligence</h4>
+              <p>Competitor monitoring, trend detection, and opportunity identification across your client's verticals.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+              <h4>Automated Reporting</h4>
+              <p>Weekly and monthly reporting packs with real data, insights, and recommendations — zero manual work.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+              <h4>Outbound at Scale</h4>
+              <p>Personalized outreach, LinkedIn automation, and follow-up sequences that feel human.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================
+             E-COMMERCE TAB
+             Source: C&C E-commerce Command.txt
+             "Supply Forensics. LTV Optimization."
+             ============================================ -->
+        <div class="tab-panel" id="tab-ecommerce">
+          <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
+            <div>
+              <div class="badge badge-light mb-6">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                E-Commerce Command
+              </div>
+              <h2 class="text-display">Commerce<br><span class="text-ghost">on autopilot.</span></h2>
+              <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+                Supply forensics, LTV optimization, and negotiated supplier recovery. Your e-commerce operation runs 24/7 with agents managing inventory, pricing, and customer lifecycle.
+              </p>
+              <div class="grid-2 mt-8" style="gap:2rem;">
+                <div class="stat">
+                  <div class="stat-value">+32%</div>
+                  <div class="stat-label italic">LTV Increase</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">-18%</div>
+                  <div class="stat-label italic">Stock Wastage</div>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding:2.5rem;">
+              <h3 style="font-weight:700;font-size:1.125rem;margin-bottom:2rem;">Your Store, Optimized</h3>
+              <div class="workflow-step">
+                <div class="workflow-num">01</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Supply Chain Intelligence</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Tracks supplier pricing, lead times, and reliability. Auto-negotiates reorders based on forecasted demand.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">02</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Dynamic Pricing</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Adjusts pricing in real-time based on competitor moves, margin targets, and demand signals.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">03</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Customer Lifecycle</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Churn prediction, win-back campaigns, and LTV optimization running continuously.</p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-num">04</div>
+                <div>
+                  <h4 style="font-weight:700;font-size:0.875rem;">Loss Recovery</h4>
+                  <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Abandoned cart recovery, refund negotiation, and inventory loss-prevention at machine speed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-3 reveal" style="gap:1.5rem;">
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <h4>Demand Forecasting</h4>
+              <p>Predictive inventory management using historical sales, seasonal trends, and market signals.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-emerald-500)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <h4>Customer Retention</h4>
+              <p>Identifies at-risk customers before they churn. Triggers personalized win-back sequences.</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-amber-500)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <h4>Margin Optimization</h4>
+              <p>Real-time margin tracking across SKUs with automated repricing to protect profit targets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding:10rem 2rem;text-align:center;border-top:1px solid var(--cc-zinc-100);">
+      <div class="reveal container-sm">
+        <h2 class="text-display">Your industry.<br><span class="text-ghost">Your command portal.</span></h2>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+          Same 100-agent workforce. Configured for your vertical. Operational in under 10 minutes.
+        </p>
+        <a href="pricing.html" class="btn-primary mt-8">$799/mo — All Industries</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div>
+          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="workforce.html">The 100</a>
+        <a href="advantage.html">Advantage</a>
+        <a href="intelligence.html">Intelligence</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="industries.html">Industries</a>
+        <a href="launch.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function switchTab(id) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      event.currentTarget.classList.add('active');
+      // Handle hash navigation
+      window.location.hash = id;
+    }
+    // Handle direct hash links
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['tradies','agencies','ecommerce'].includes(hash)) {
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab-' + hash).classList.add('active');
+        const btns = document.querySelectorAll('.tab-btn');
+        const idx = { tradies: 0, agencies: 1, ecommerce: 2 }[hash];
+        btns[idx].classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

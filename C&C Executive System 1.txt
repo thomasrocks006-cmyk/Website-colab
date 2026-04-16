@@ -1,0 +1,401 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import { 
+  ArrowRight, 
+  Cpu, 
+  ShieldCheck, 
+  Zap, 
+  Layers, 
+  ChevronRight,
+  Database,
+  Activity,
+  BarChart3,
+  TrendingUp,
+  Wallet,
+  ClipboardList,
+  Command,
+  MousePointer2,
+  Lock,
+  Boxes
+} from 'lucide-react';
+
+// --- AGENT HUB VISUALIZER ---
+const WorkforceEngine = ({ activeRole }) => {
+  const [pulse, setPulse] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setPulse(p => (p + 1) % 100), 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  // 100 Agents organized into 4 hubs
+  const hubs = [
+    { id: 0, label: "Hustlers", color: "#3b82f6", pos: { x: 30, y: 35 } },
+    { id: 1, label: "Money", color: "#10b981", pos: { x: 70, y: 35 } },
+    { id: 2, label: "Admin", color: "#f59e0b", pos: { x: 30, y: 65 } },
+    { id: 3, label: "Watchdogs", color: "#ef4444", pos: { x: 70, y: 65 } }
+  ];
+
+  const agents = useMemo(() => {
+    return Array.from({ length: 100 }).map((_, i) => ({
+      id: i,
+      hub: i % 4,
+      offset: { x: (Math.random() - 0.5) * 25, y: (Math.random() - 0.5) * 25 },
+      size: 0.5 + Math.random() * 1
+    }));
+  }, []);
+
+  return (
+    <div className="relative w-full h-full bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl group">
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      
+      <svg viewBox="0 0 100 100" className="w-full h-full relative z-10 p-10">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        {/* Connection Lines between Hubs */}
+        <g opacity="0.1">
+          <line x1="30" y1="35" x2="70" y2="35" stroke="white" strokeWidth="0.1" />
+          <line x1="70" y1="35" x2="70" y2="65" stroke="white" strokeWidth="0.1" />
+          <line x1="70" y1="65" x2="30" y2="65" stroke="white" strokeWidth="0.1" />
+          <line x1="30" y1="65" x2="30" y2="35" stroke="white" strokeWidth="0.1" />
+        </g>
+
+        {/* Individual Agents */}
+        {agents.map((agent) => {
+          const hub = hubs[agent.hub];
+          const isActive = activeRole === null || activeRole === agent.hub;
+          return (
+            <circle 
+              key={agent.id}
+              cx={hub.pos.x + agent.offset.x}
+              cy={hub.pos.y + agent.offset.y}
+              r={isActive ? agent.size * 0.4 : agent.size * 0.2}
+              fill={isActive ? hub.color : '#27272a'}
+              filter={isActive ? "url(#glow)" : ""}
+              opacity={isActive ? 0.8 : 0.1}
+              className="transition-all duration-700 ease-in-out"
+            >
+              <animate attributeName="opacity" values="0.4;1;0.4" dur={`${2 + (agent.id % 3)}s`} repeatCount="indefinite" />
+            </circle>
+          );
+        })}
+
+        {/* Hub Centers */}
+        {hubs.map(hub => (
+          <g key={hub.id} className="transition-opacity duration-500" opacity={activeRole === null || activeRole === hub.id ? 1 : 0.2}>
+            <text x={hub.pos.x} y={hub.pos.y - 15} textAnchor="middle" className="fill-white/20 text-[3px] font-bold tracking-[0.3em] uppercase">{hub.label}</text>
+            <circle cx={hub.pos.x} cy={hub.pos.y} r="1.5" fill={hub.color} className="animate-pulse" />
+          </g>
+        ))}
+      </svg>
+
+      {/* Real-time Telemetry */}
+      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end">
+        <div className="space-y-1">
+          <div className="text-[8px] font-mono text-white/20 uppercase tracking-[0.4em]">Active Status</div>
+          <div className="text-xs font-bold text-white uppercase tracking-tighter">
+            {activeRole !== null ? `${hubs[activeRole].label} Engaged` : "100 Agents Standing By"}
+          </div>
+        </div>
+        <div className="flex gap-6 text-right">
+          <div>
+            <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">Load</div>
+            <div className="text-xs font-bold text-white">Optimal</div>
+          </div>
+          <div>
+            <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">Core</div>
+            <div className="text-xs font-bold text-white italic">Camber_v4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- MAIN APP ---
+
+export default function App() {
+  const [stage, setStage] = useState('splash'); // 'splash' | 'main'
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeRole, setActiveRole] = useState(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStage('main'), 2800);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const roles = [
+    { id: 0, title: "The Hustlers", icon: <TrendingUp />, desc: "Getting leads, following up quotes, and keeping the phone ringing while you're busy." },
+    { id: 1, title: "The Money Team", icon: <Wallet />, desc: "Chasing unpaid invoices, paying the bills, and managing your cashflow effortlessly." },
+    { id: 2, title: "The Admin", icon: <ClipboardList />, desc: "Sorting the schedules, filing compliance, and handling the paperwork you hate." },
+    { id: 3, title: "The Watchdogs", icon: <ShieldCheck />, desc: "Watching your data, reputation, and security 24/7 so you never get caught off guard." }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FBFBFB] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white">
+      
+      {/* 1. SPLASH LAYER */}
+      <div className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-all duration-[1200ms] ease-in-out
+        ${stage === 'main' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div className={`transition-all duration-[1200ms] ease-in-out ${stage === 'main' ? 'scale-0 translate-y-[-100px] opacity-0' : 'scale-100'}`}>
+          <div className="relative w-64 h-64 flex items-center justify-center">
+            <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full opacity-10">
+              <path d="M40 120C40 86.8629 66.8629 60 100 60C133.137 60 160 86.8629 160 120" stroke="black" strokeWidth="1.5" fill="none" />
+            </svg>
+            <div className="w-32 h-32 bg-white rounded-[24%] shadow-2xl border border-zinc-100 flex items-center justify-center overflow-hidden">
+               <span className="font-serif text-5xl font-light tracking-tighter">C<span className="text-zinc-300 italic">C</span></span>
+            </div>
+          </div>
+          <div className="mt-12 text-center animate-pulse">
+            <p className="text-[10px] tracking-[0.8em] uppercase text-zinc-400 font-bold">Initializing The Workforce</p>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. NAVIGATION */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${isScrolled || stage === 'main' ? 'py-4 bg-white/70 backdrop-blur-xl border-b border-zinc-100' : 'py-10 opacity-0'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-12">
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <div className="w-8 h-8 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-[10px] font-serif transition-transform group-hover:rotate-12">
+                C<span className="text-zinc-400">C</span>
+              </div>
+              <span className="font-serif text-2xl font-light tracking-tighter">C&C</span>
+            </div>
+            <div className="hidden lg:flex gap-8 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+              <a href="#swarm" className="hover:text-zinc-900 transition-colors">The Swarm</a>
+              <a href="#casper" className="hover:text-zinc-900 transition-colors">Casper OS</a>
+              <a href="#ironbark" className="hover:text-zinc-900 transition-colors">Legacy</a>
+            </div>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Access Terminal
+          </button>
+        </div>
+      </nav>
+
+      <main className={`transition-all duration-1000 ${stage === 'main' ? 'opacity-100' : 'opacity-0'}`}>
+        
+        {/* HERO */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              Structural Intelligence Group
+            </div>
+            <h1 className="text-6xl md:text-[110px] font-semibold tracking-tighter leading-[0.9] text-zinc-950">
+              A hundred minds. <br/>
+              <span className="text-zinc-300 italic font-light">One click.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
+              Camber & Casper coordinates a specialized workforce of 100 agents. The power of a corporation, distilled for the modern business owner.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+              <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl shadow-zinc-300 flex items-center gap-3">
+                Hire the Swarm <ArrowRight size={16} />
+              </button>
+              <button className="bg-white border border-zinc-200 text-zinc-900 px-12 py-5 rounded-full font-bold text-sm tracking-tight hover:bg-zinc-50 transition-all">
+                The Foundation Story
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* SWARM INTERFACE (Visual Proof) */}
+        <section id="swarm" className="py-20 px-6 max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            
+            {/* Left: The Crew Roles */}
+            <div className="lg:w-1/3 grid grid-cols-1 gap-4 w-full">
+              <div className="mb-8 space-y-2">
+                <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">The Crew</h2>
+                <h3 className="text-4xl font-semibold tracking-tight">Meet your team.</h3>
+              </div>
+              {roles.map((role) => (
+                <button 
+                  key={role.id}
+                  onMouseEnter={() => setActiveRole(role.id)}
+                  onMouseLeave={() => setActiveRole(null)}
+                  className={`w-full text-left p-8 rounded-[32px] border transition-all duration-500
+                    ${activeRole === role.id ? 'bg-white border-zinc-200 shadow-xl scale-[1.02]' : 'bg-zinc-50 border-transparent opacity-60'}`}
+                >
+                  <div className="flex items-center gap-6">
+                    <div className={`p-4 rounded-2xl transition-all ${activeRole === role.id ? 'bg-zinc-900 text-white' : 'bg-zinc-200 text-zinc-400'}`}>
+                      {role.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm tracking-tight uppercase tracking-widest">{role.title}</h4>
+                      <p className="text-[10px] font-mono text-zinc-400 mt-1 uppercase tracking-widest">25 Active Agents</p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Right: The Engine Visualizer */}
+            <div className="lg:w-2/3 h-[700px] w-full relative">
+              <WorkforceEngine activeRole={activeRole} />
+              
+              {/* Dynamic Info Overlay */}
+              {activeRole !== null && (
+                <div className="absolute inset-0 flex items-center justify-center p-12 pointer-events-none">
+                  <div className="bg-white/80 backdrop-blur-3xl p-12 rounded-[48px] border border-white shadow-2xl animate-in fade-in zoom-in duration-500 max-w-md text-center">
+                    <div className="flex justify-center mb-6">
+                      <div className="w-16 h-16 bg-zinc-900 text-white rounded-2xl flex items-center justify-center">
+                        {roles[activeRole].icon}
+                      </div>
+                    </div>
+                    <h5 className="text-3xl font-semibold tracking-tight mb-4">{roles[activeRole].title}</h5>
+                    <p className="text-zinc-500 text-lg leading-relaxed font-light">{roles[activeRole].desc}</p>
+                    <div className="mt-8 flex justify-center gap-4">
+                       <div className="px-4 py-1.5 bg-zinc-100 rounded-full text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Node_Cluster_{activeRole}</div>
+                       <div className="px-4 py-1.5 bg-zinc-900 rounded-full text-[9px] font-bold text-white uppercase tracking-widest">Active_Workforce</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* CASPER SECTION: THE PALATABLE SIDE */}
+        <section id="casper" className="py-40 px-6 bg-zinc-50">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+            <div className="space-y-10">
+              <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-zinc-400">Casper Interface</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight">Simple outside. <br/><span className="text-zinc-300 italic font-light">Power inside.</span></h3>
+              <p className="text-xl text-zinc-500 leading-relaxed font-light">
+                A plumber doesn't need to see the neural routing of 100 agents. They just need to see their calendar filled and their invoices paid. Casper turns massive complexity into a single, palpable tap.
+              </p>
+              <div className="grid grid-cols-2 gap-8 pt-4">
+                <div className="space-y-2">
+                   <div className="text-4xl font-semibold tracking-tighter">0.8ms</div>
+                   <div className="text-[10px] uppercase tracking-widest font-bold text-zinc-300">Average Sync</div>
+                </div>
+                <div className="space-y-2">
+                   <div className="text-4xl font-semibold tracking-tighter">140+</div>
+                   <div className="text-[10px] uppercase tracking-widest font-bold text-zinc-300">Daily Automations</div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-[60px] p-12 shadow-2xl border border-zinc-100 space-y-10 group cursor-pointer hover:scale-[1.02] transition-transform">
+               <div className="flex justify-between items-center pb-6 border-b border-zinc-50">
+                  <Command size={24} className="text-zinc-900" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Terminal Preview</span>
+               </div>
+               <div className="space-y-6">
+                  <div className="h-4 w-3/4 bg-zinc-50 rounded-full overflow-hidden relative">
+                    <div className="absolute inset-0 bg-zinc-900 w-2/3 animate-[shimmer_3s_infinite]" />
+                  </div>
+                  <div className="h-4 w-1/2 bg-zinc-50 rounded-full" />
+                  <div className="pt-8 flex gap-4">
+                    <div className="h-20 flex-1 bg-zinc-900 rounded-3xl p-4 flex flex-col justify-between">
+                       <TrendingUp size={14} className="text-blue-400" />
+                       <span className="text-white font-bold text-xs">+22 Leads</span>
+                    </div>
+                    <div className="h-20 flex-1 bg-zinc-50 rounded-3xl p-4 flex flex-col justify-between">
+                       <Wallet size={14} className="text-zinc-300" />
+                       <span className="text-zinc-900 font-bold text-xs">Paid</span>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* IRONBARK SECTION: THE POWER SIDE */}
+        <section id="ironbark" className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <WorkforceEngine activeRole={null} />
+           </div>
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-600">Infrastructure Layer</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">Ironbark <br/><span className="text-zinc-700 italic font-light">Integrity.</span></h3>
+                 <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
+                    Before the intelligence of Casper, there was the brute force of Ironbark. We’ve kept the rugged server hardware but gave it a mind. This is the industrial foundation that supports your growth.
+                 </p>
+                 <div className="flex items-center gap-6 pt-6">
+                    <div className="flex items-center gap-3">
+                       <Database size={20} className="text-zinc-600" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">14 Private Nodes</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                       <Lock size={20} className="text-zinc-600" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Encrypted Backbone</span>
+                    </div>
+                 </div>
+              </div>
+              <div className="bg-zinc-900 aspect-video rounded-[48px] border border-white/5 flex items-center justify-center p-1 group">
+                 <div className="w-full h-full bg-black rounded-[46px] flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 grid grid-cols-8 gap-1 p-8 opacity-20">
+                       {[...Array(32)].map((_, i) => (
+                         <div key={i} className="bg-zinc-800 rounded-sm animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                       ))}
+                    </div>
+                    <div className="relative z-10 text-center">
+                       <Boxes size={100} className="text-zinc-800 group-hover:scale-110 transition-transform duration-1000" strokeWidth={0.5} />
+                       <div className="mt-4 text-[10px] font-mono tracking-[0.8em] uppercase text-zinc-600">Secure Cluster Active</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* CALL TO ACTION */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter mb-16">The Swarm <br/><span className="text-zinc-200 italic font-light">is Ready.</span></h2>
+           <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Partner with C&C
+           </button>
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      <footer className="py-20 px-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-start gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-300">
+         <div className="space-y-6">
+            <div className="flex items-center gap-3">
+               <div className="w-8 h-8 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-[10px] font-serif italic">C<span className="text-zinc-500">C</span></div>
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter">C&C</span>
+            </div>
+            <p className="max-w-xs leading-loose">Managed Intelligence and Structural Hardware Ecosystems.</p>
+         </div>
+         <div className="grid grid-cols-2 md:grid-cols-3 gap-16 text-zinc-400">
+            <div className="space-y-4">
+               <h5 className="text-zinc-900 font-black">System</h5>
+               <ul className="space-y-2">
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">Casper OS</a></li>
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">The Swarm</a></li>
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">Nodes</a></li>
+               </ul>
+            </div>
+            <div className="space-y-4">
+               <h5 className="text-zinc-900 font-black">Company</h5>
+               <ul className="space-y-2">
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">Ironbark Legacy</a></li>
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a></li>
+                  <li><a href="#" className="hover:text-zinc-900 transition-colors">Contact</a></li>
+               </ul>
+            </div>
+         </div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(12deg); }
+          100% { transform: translateX(200%) skewX(12deg); }
+        }
+      `}} />
+    </div>
+  );
+}

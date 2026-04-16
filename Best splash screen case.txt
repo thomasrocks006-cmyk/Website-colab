@@ -1,0 +1,225 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ChevronRight, 
+  Cpu, 
+  ShieldCheck, 
+  Globe, 
+  ArrowRight,
+  Zap,
+  MousePointer2,
+  Lock
+} from 'lucide-react';
+
+// --- ANIMATED COMPONENTS ---
+
+const ComplexCore = () => (
+  <div className="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+    {/* The Internal Complexity (Subtle fine lines) */}
+    <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full opacity-20">
+      <defs>
+        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="100%" stopColor="transparent" />
+        </radialGradient>
+      </defs>
+      <g className="origin-center animate-[spin_60s_linear_infinite]">
+        {[...Array(36)].map((_, i) => (
+          <ellipse 
+            key={i} 
+            cx="100" cy="100" rx="80" ry="20" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="0.1" 
+            transform={`rotate(${i * 10} 100 100)`} 
+          />
+        ))}
+      </g>
+    </svg>
+    
+    {/* The Sleek Outer Surface (C&C Icon) */}
+    <div className="relative z-10 w-32 h-32 md:w-48 md:h-48 bg-white rounded-[40px] shadow-2xl flex items-center justify-center group overflow-hidden border border-zinc-200">
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-zinc-50 to-zinc-200 opacity-50" />
+      <span className="relative font-serif text-4xl md:text-6xl font-light tracking-tighter text-zinc-900 group-hover:scale-110 transition-transform duration-700">
+        C<span className="text-zinc-300 italic">C</span>
+      </span>
+      {/* Subtle scanning light */}
+      <div className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-12 animate-[shimmer_4s_infinite]" />
+    </div>
+  </div>
+);
+
+const App = () => {
+  const [stage, setStage] = useState('splash'); // 'splash' | 'transitioning' | 'landing'
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    // Splash to Landing transition logic
+    const timer = setTimeout(() => {
+      setStage('transitioning');
+      setTimeout(() => setStage('landing'), 1000);
+    }, 2800);
+
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  if (stage === 'splash' || stage === 'transitioning') {
+    return (
+      <div className={`fixed inset-0 bg-white flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${stage === 'transitioning' ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100'}`}>
+        <div className="animate-in fade-in zoom-in duration-1000">
+          <ComplexCore />
+        </div>
+        <div className="mt-12 text-center animate-in slide-in-from-bottom-4 duration-1000 delay-500">
+          <p className="text-[10px] tracking-[0.6em] uppercase text-zinc-400 font-bold mb-2">Camber & Casper</p>
+          <div className="h-[1px] w-8 bg-zinc-200 mx-auto" />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FBFBFB] text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white transition-opacity duration-1000 animate-in fade-in">
+      
+      {/* Apple-Style Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 px-6 ${scrolled ? 'py-4 bg-white/70 backdrop-blur-xl border-b border-zinc-200' : 'py-8'}`}>
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-8">
+            <span className="font-serif text-2xl font-light tracking-tighter">C&C</span>
+            <div className="hidden md:flex gap-8 text-[11px] font-semibold tracking-tight text-zinc-400">
+              <a href="#" className="hover:text-zinc-900 transition-colors">OS</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Infrastructure</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Ironbark</a>
+              <a href="#" className="hover:text-zinc-900 transition-colors">Support</a>
+            </div>
+          </div>
+          <button className="bg-zinc-900 text-white px-5 py-2 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-lg">
+            Get Started
+          </button>
+        </div>
+      </nav>
+
+      <main>
+        {/* Hero: The Product Unveiling */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 text-center">
+          <div className="max-w-4xl space-y-8">
+            <div className="animate-in slide-in-from-bottom-8 duration-1000 delay-200">
+              <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-zinc-400 mb-6">Designed for Command.</h2>
+              <h1 className="text-6xl md:text-8xl font-medium tracking-tight leading-[1.05] text-zinc-950">
+                Powerful Complexity. <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-b from-zinc-400 to-zinc-900 italic font-light">Elegantly Palatable.</span>
+              </h1>
+            </div>
+            
+            <p className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed animate-in slide-in-from-bottom-8 duration-1000 delay-300">
+              Camber & Casper is the high-performance orchestration layer for enterprise AI. We bridge the distance between Ironbark's brute force and human-centered design.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-in slide-in-from-bottom-8 duration-1000 delay-400">
+              <button className="group flex items-center justify-center gap-3 bg-zinc-900 text-white px-8 py-4 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105">
+                Explore the System <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="flex items-center justify-center gap-3 text-zinc-900 px-8 py-4 rounded-full font-bold text-sm tracking-tight hover:bg-zinc-100 transition-all">
+                Legacy Infrastructure
+              </button>
+            </div>
+          </div>
+
+          {/* Centered Product Visual */}
+          <div className="mt-24 scale-75 md:scale-100 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+             <ComplexCore />
+          </div>
+        </section>
+
+        {/* Feature Grid: "The Interior" */}
+        <section className="py-40 px-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Main Feature Card */}
+            <div className="bg-white rounded-[40px] p-12 border border-zinc-200 flex flex-col justify-between aspect-square md:aspect-auto md:h-[600px] overflow-hidden group">
+               <div className="space-y-4">
+                  <div className="w-12 h-12 bg-zinc-50 border border-zinc-200 rounded-2xl flex items-center justify-center shadow-sm">
+                    <Zap size={20} className="text-zinc-900" />
+                  </div>
+                  <h3 className="text-3xl font-medium">Neural Flow.</h3>
+                  <p className="text-zinc-500 leading-relaxed max-w-xs">Our proprietary interface turns trillions of data points into actionable executive insights.</p>
+               </div>
+               <div className="relative mt-8">
+                 <div className="w-full h-48 bg-zinc-50 border border-zinc-100 rounded-3xl p-6 overflow-hidden">
+                    <div className="w-full h-1 bg-zinc-200 rounded-full overflow-hidden">
+                      <div className="w-2/3 h-full bg-zinc-900 animate-[shimmer_2s_infinite]" />
+                    </div>
+                    <div className="mt-8 space-y-3">
+                       <div className="h-2 w-full bg-zinc-200 rounded-full opacity-30" />
+                       <div className="h-2 w-3/4 bg-zinc-200 rounded-full opacity-20" />
+                       <div className="h-2 w-1/2 bg-zinc-200 rounded-full opacity-10" />
+                    </div>
+                 </div>
+               </div>
+            </div>
+
+            {/* Smaller Secondary Cards */}
+            <div className="flex flex-col gap-4">
+               <div className="bg-[#1A1A1A] text-white rounded-[40px] p-12 h-full flex flex-col justify-between group hover:bg-black transition-colors">
+                 <Lock size={24} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                 <div>
+                    <h3 className="text-2xl font-medium mb-2">Ironbark Core.</h3>
+                    <p className="text-zinc-500 text-sm">Hardened, industrial-grade server integrity for the modern umbrella.</p>
+                 </div>
+               </div>
+               <div className="bg-white rounded-[40px] p-12 h-full border border-zinc-200 flex flex-col justify-between group">
+                 <Globe size={24} className="text-zinc-300 group-hover:text-zinc-900 transition-colors" />
+                 <div>
+                    <h3 className="text-2xl font-medium mb-2">Global Scale.</h3>
+                    <p className="text-zinc-400 text-sm">Distributed intelligence across 140+ international nodes.</p>
+                 </div>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Closing Call to Action */}
+        <section className="py-40 px-6 text-center">
+           <h2 className="text-5xl md:text-6xl font-medium tracking-tight mb-12">Built to empower. <br/><span className="text-zinc-300 italic">Designed to simplify.</span></h2>
+           <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Partner with Camber & Casper
+           </button>
+        </section>
+      </main>
+
+      {/* Ultra Minimal Footer */}
+      <footer className="py-20 px-6 border-t border-zinc-200">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex items-center gap-4">
+            <span className="font-serif text-xl">C&C</span>
+            <span className="text-[10px] tracking-[0.4em] uppercase text-zinc-300">Intelligent Umbrellas</span>
+          </div>
+          <div className="flex gap-12 text-[10px] font-bold tracking-widest uppercase text-zinc-400">
+             <a href="#" className="hover:text-zinc-900">Privacy</a>
+             <a href="#" className="hover:text-zinc-900">Security</a>
+             <a href="#" className="hover:text-zinc-900">Legacy</a>
+          </div>
+          <div className="text-[10px] text-zinc-300">
+            &copy; 2024 CAMBER & CASPER INC.
+          </div>
+        </div>
+      </footer>
+
+      {/* Custom Styles for Apple Animations */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-spin-slow {
+          animation: spin 30s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+};
+
+export default App;

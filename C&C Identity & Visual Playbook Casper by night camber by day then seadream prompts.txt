@@ -1,0 +1,204 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, 
+  Moon, 
+  Sun, 
+  ShieldCheck, 
+  Users, 
+  Layout, 
+  Smartphone, 
+  Camera, 
+  ArrowRight,
+  Database,
+  Search,
+  CheckCircle2,
+  Clock,
+  Briefcase,
+  Monitor
+} from 'lucide-react';
+
+// --- SUB-COMPONENTS ---
+
+const IdentityCard = ({ title, icon: Icon, subtitle, description, logic, dark = false }) => (
+  <div className={`p-10 rounded-[48px] border transition-all duration-700 h-full flex flex-col justify-between ${dark ? 'bg-zinc-950 border-white/5 text-white shadow-2xl' : 'bg-white border-zinc-100 text-zinc-900 shadow-sm'}`}>
+    <div className="space-y-8">
+      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${dark ? 'bg-blue-600 text-white' : 'bg-zinc-100 text-zinc-900'}`}>
+        <Icon size={28} />
+      </div>
+      <div className="space-y-3">
+        <h3 className="text-3xl font-semibold tracking-tighter">{title}</h3>
+        <p className={`text-[10px] font-bold uppercase tracking-[0.4em] ${dark ? 'text-blue-400' : 'text-zinc-400'}`}>{subtitle}</p>
+      </div>
+      <p className={`text-lg font-light leading-relaxed ${dark ? 'text-zinc-400' : 'text-zinc-500'}`}>
+        {description}
+      </p>
+    </div>
+    <div className={`mt-10 pt-8 border-t ${dark ? 'border-white/5' : 'border-zinc-50'}`}>
+       <div className="text-[10px] font-mono uppercase tracking-widest opacity-50 mb-2">Core Protocol:</div>
+       <div className="text-sm font-medium">{logic}</div>
+    </div>
+  </div>
+);
+
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isLoaded) {
+    return (
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[100]">
+        <div className="w-24 h-24 bg-zinc-950 rounded-[28%] flex items-center justify-center shadow-2xl animate-pulse">
+          <span className="font-serif text-3xl font-light text-white">C<span className="text-zinc-500 italic">C</span></span>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[0.8em] uppercase text-zinc-400 font-bold">Synchronizing Identities</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 font-sans selection:bg-zinc-950 selection:text-white">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-10 py-8">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 bg-zinc-900 rounded-xl flex items-center justify-center text-white text-[10px] font-serif">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Brand Architecture</span>
+          </div>
+          <div className="text-[9px] font-bold tracking-[0.4em] uppercase text-zinc-400">Identity v2.4 // 2024</div>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: DUALITY */}
+        <section className="px-6 py-20 max-w-6xl mx-auto text-center space-y-12">
+          <div className="space-y-8">
+            <h2 className="text-xs font-bold tracking-[0.6em] uppercase text-zinc-400">The Camber & Casper Umbrella</h2>
+            <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.85] text-zinc-950">
+              Strength by Day. <br/>
+              <span className="text-zinc-300 italic font-light">Ghost by Night.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              We’ve split the intelligence. **Camber** provides the structural backbone and daytime grunt. **Casper** provides the ethereal, silent office management that never goes home.
+            </p>
+          </div>
+        </section>
+
+        {/* IDENTITY SPLIT */}
+        <section className="py-20 px-8 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <IdentityCard 
+            title="Camber"
+            subtitle="The Structural Backbone"
+            icon={Sun}
+            description="Built for the high-intensity sunlight of your workday. Camber manages the Ironbark nodes, the air-gapped security, and the raw computational metrics. It is the lift that supports your heaviest tasks."
+            logic="Daytime Execution & Structural Integrity"
+          />
+          <IdentityCard 
+            title="Casper"
+            subtitle="The Ethereal Intelligence"
+            icon={Moon}
+            description="The 'ghost' in your office. Casper stays behind after the tools go down. It cleans the inbox, chases the invoices, and organizes the next day while you are at the dinner table."
+            logic="Night-time Synthesis & Palatable Management"
+            dark={true}
+          />
+        </section>
+
+        {/* THE MARKETING PLAYS: VISUAL DIRECTION */}
+        <section className="py-40 px-8 bg-white max-w-7xl mx-auto">
+          <div className="mb-24 space-y-4">
+             <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-400">Visual Direction</h2>
+             <h3 className="text-5xl font-semibold tracking-tight">Image Generation Prompts.</h3>
+             <p className="text-zinc-500 font-light">Copy these into your AI image generator for the C&C aesthetic.</p>
+          </div>
+
+          <div className="space-y-12">
+            
+            {/* Play 1 Prompt */}
+            <div className="p-10 bg-zinc-50 rounded-[40px] border border-zinc-100 space-y-6">
+              <div className="flex items-center gap-4 text-zinc-400">
+                <Monitor size={20} />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Marketing Play 01: The Ghost</span>
+              </div>
+              <h4 className="text-2xl font-semibold italic">"The most productive team you'll never see."</h4>
+              <div className="bg-white p-6 rounded-2xl border border-zinc-100 font-mono text-xs text-zinc-500 leading-relaxed relative group">
+                <button className="absolute top-4 right-4 text-zinc-300 hover:text-zinc-900 font-sans font-bold uppercase text-[9px]">Copy Prompt</button>
+                <p>
+                  High-end minimalist commercial office interior, twilight hour, cinematic blue-hour lighting. Stylish designer furniture, desks are completely empty of people. In the background, large computer monitors are glowing with complex abstract blue data visualizations, flickering light reflections on glass surfaces. 8k, photorealistic, shallow depth of field, minimalist architecture, serene atmosphere, Hasselblad photography.
+                </p>
+              </div>
+            </div>
+
+            {/* Play 2 Prompt */}
+            <div className="p-10 bg-zinc-50 rounded-[40px] border border-zinc-100 space-y-6">
+              <div className="flex items-center gap-4 text-zinc-400">
+                <Smartphone size={20} />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Marketing Play 02: The Hand-Back</span>
+              </div>
+              <h4 className="text-2xl font-semibold italic">"Casper has the office. You have the family."</h4>
+              <div className="bg-white p-6 rounded-2xl border border-zinc-100 font-mono text-xs text-zinc-500 leading-relaxed relative">
+                <p>
+                  Candid photography of a 40-year-old Australian man laughing at a dinner table with his wife and two young children. Warm, golden indoor lighting, home atmosphere. The man looks relieved and present, no phone on the table. The kitchen in the background is modern and clean. Shot on 35mm film, soft grain, emotional warmth, high-end lifestyle photography, authentic moment.
+                </p>
+              </div>
+            </div>
+
+            {/* Play 3 Prompt */}
+            <div className="p-10 bg-zinc-50 rounded-[40px] border border-zinc-100 space-y-6">
+              <div className="flex items-center gap-4 text-zinc-400">
+                <Zap size={20} />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Marketing Play 03: The Passion</span>
+              </div>
+              <h4 className="text-2xl font-semibold italic">"Get back to the work you actually love."</h4>
+              <div className="bg-white p-6 rounded-2xl border border-zinc-100 font-mono text-xs text-zinc-500 leading-relaxed relative">
+                <p>
+                  Modern minimalist garage interior. In the center is a classic 1970s Porsche 911, polished silver. A man in work-wear is leaning over the engine bay with a wrench, smiling to himself. Professional garage lighting, clean floors, high-end tools. High contrast, cinematic shadows, architectural garage design, editorial style, 8k.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-60 px-6 bg-zinc-950 text-white text-center relative overflow-hidden">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="grid grid-cols-6 h-full w-full">
+                 {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/10 h-full" />)}
+              </div>
+           </div>
+           <div className="relative z-10 space-y-12 max-w-4xl mx-auto">
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Choose your <br/><span className="text-zinc-700 italic font-light">Advantage.</span></h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed">
+                One brand. Two identities. Total autonomy for your business.
+              </p>
+              <button className="bg-white text-zinc-950 px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+                 Launch the Dual Core
+              </button>
+           </div>
+        </section>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-xl flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Brand Identity Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">
+            © 2024 CAMBER_CASPER_CORE
+         </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,266 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Clock, BrainCircuit, Zap, ShieldCheck, MessageSquare, 
+  DollarSign, Activity, Truck, MapPin, Search, 
+  Mic, Coffee, Moon, Sun, Smartphone, 
+  ChevronRight, ArrowRight, CheckCircle2, ShieldAlert,
+  BarChart3, Users, Landmark, Gavel, Radar
+} from 'lucide-react';
+
+const App = () => {
+  const [activeHour, setActiveHour] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const dayEvents = [
+    {
+      time: "07:00 AM",
+      title: "The Zero Start",
+      label: "EXECUTIVE_SYNTHESIS",
+      icon: <Coffee size={24} />,
+      desc: "You wake up to a clean slate. While you slept, Casper digested 84 emails, reconciled 12 Xero payments, and scrapped the night's lead-gen signals. Your morning report identifies 3 high-value actions for the day. Tomorrow starts at zero.",
+      logic: "Sets 04, 05 & 14",
+      ui: (
+        <div className="space-y-4">
+           <div className="flex justify-between items-center border-b border-white/10 pb-2">
+              <span className="text-[10px] font-bold text-blue-400 uppercase">Director's Brief</span>
+              <span className="text-[8px] font-mono text-zinc-500">Node_Sync: 100%</span>
+           </div>
+           <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                 <CheckCircle2 size={14} className="text-emerald-500" />
+                 <span className="text-xs text-zinc-300">Inbox Zeroed: 12 Leads Qualified</span>
+              </div>
+              <div className="flex items-center gap-3">
+                 <CheckCircle2 size={14} className="text-emerald-500" />
+                 <span className="text-xs text-zinc-300">Xero Audit: All Invoices Reconciled</span>
+              </div>
+              <div className="flex items-center gap-3">
+                 <Zap size={14} className="text-blue-500" />
+                 <span className="text-xs text-white font-bold">Top Priority: Mascot Contract Renewal</span>
+              </div>
+           </div>
+        </div>
+      )
+    },
+    {
+      time: "10:30 AM",
+      title: "The Negotiated Close",
+      label: "PSYCHOLOGY_ENGINE",
+      icon: <Users size={24} />,
+      desc: "You are on a site visit or in a meeting. In your pocket, the Sales Swarm is calling a difficult lead. The Psychology Agent detects price-resistance linked to RBA rate news and instantly pivots the value-proposition. The deal is closed without you opening your mouth.",
+      logic: "Sets 01, 07 & 17",
+      ui: (
+        <div className="bg-blue-600/10 border border-blue-500/20 p-4 rounded-2xl space-y-3">
+           <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Live Call Synthesis</span>
+           </div>
+           <p className="text-[10px] text-zinc-300 italic leading-relaxed">
+             "Lead_A displayed 'Debt-Stress' markers. Casper pivoted to 24-month interest-free logic. Conversion successful."
+           </p>
+           <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-full bg-blue-500 w-full animate-pulse" />
+           </div>
+        </div>
+      )
+    },
+    {
+      time: "02:45 PM",
+      title: "The War Room Pivot",
+      label: "ANTICIPATORY_RADAR",
+      icon: <Radar size={24} />,
+      desc: "A flash-news report hits: Major freight strike in Botany. Casper's Layer 12 (Supply) intercepts this. It immediately checks your inventory (Layer 08) and models the cashflow impact (Layer 21). By 3:00 PM, it has secured alternate stock from a secondary vendor.",
+      logic: "Sets 12, 13 & 21",
+      ui: (
+        <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-2xl space-y-3">
+           <div className="flex items-center gap-2">
+              <ShieldAlert size={16} className="text-red-500" />
+              <span className="text-[9px] font-bold text-red-500 uppercase tracking-widest">Threat Mitigated</span>
+           </div>
+           <p className="text-[10px] text-zinc-300 leading-relaxed">
+             Botany Strike: Supply chain disruption bypassed. <br/>
+             <span className="text-white font-bold">Saving: 4 Days of Site Downtime.</span>
+           </p>
+        </div>
+      )
+    },
+    {
+      time: "05:15 PM",
+      title: "The Sovereign Guard",
+      label: "LEGAL_HARD_BLOCK",
+      icon: <Gavel size={24} />,
+      desc: "A staff member attempts to cut a corner on a late-afternoon safety report to get home early. Casper's Sentinel (Layer 09) flags the missing signature and blocks the job-close on the accounting server. Your liability is physically protected by code.",
+      logic: "Sets 09 & 24",
+      ui: (
+        <div className="bg-zinc-900 border border-white/10 p-4 rounded-2xl space-y-2">
+           <div className="flex items-center gap-2">
+              <Lock size={12} className="text-zinc-500" />
+              <span className="text-[8px] font-mono text-zinc-500 uppercase">Hard_Block_Triggered</span>
+           </div>
+           <p className="text-[10px] text-white font-semibold">Refused: Job_Completion_V40</p>
+           <p className="text-[8px] text-zinc-500 italic">"Reason: Mandatory OH&S safety log (Set_09) incomplete."</p>
+        </div>
+      )
+    },
+    {
+      time: "08:00 PM",
+      title: "The Director's Sabbatical",
+      label: "PERPETUAL_VIGILANCE",
+      icon: <Moon size={24} />,
+      desc: "You are with your family. The computer is off. But the 100-man team is still running. Casper is currently auditing your competitors' new pricing and adjusting your ad-strategy for 06:00 AM tomorrow. Your business never sleeps, so you can.",
+      logic: "Sets 03, 06 & 11",
+      ui: (
+        <div className="flex flex-col items-center py-4">
+           <div className="w-12 h-12 rounded-full border border-blue-500/20 flex items-center justify-center">
+              <Activity size={24} className="text-blue-500 animate-pulse" />
+           </div>
+           <span className="text-[8px] font-mono text-blue-500 mt-2 uppercase tracking-[0.4em]">Agents_On_Watch</span>
+        </div>
+      )
+    }
+  ];
+
+  if (!isLoaded) return <div className="h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-blue-500 overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-10 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl italic">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase italic">Day in Command</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.4em] uppercase text-zinc-400">
+             <a href="#morning" className="hover:text-zinc-950 transition-colors">Morning</a>
+             <a href="#noon" className="hover:text-zinc-950 transition-colors">Operations</a>
+             <a href="#evening" className="hover:text-zinc-950 transition-colors">Survival</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Access The Oracle
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE EMOTIONAL PAYOFF */}
+        <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 border border-blue-100">
+              <Sun size={12} /> The Executive Experience
+            </div>
+            <h1 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-[0.8] text-zinc-950">
+              Control <br/>
+              <span className="text-zinc-200 italic font-light text-zinc-900">without effort.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              What does it actually look like to have a 100-man autonomous workforce in your pocket? Walk through a single day of total command.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE TIMELINE: VERTICAL SCROLL EXPERIENCE */}
+        <section className="py-24 px-8 max-w-7xl mx-auto">
+           <div className="relative border-l border-zinc-100 pl-12 md:pl-24 space-y-40">
+              {dayEvents.map((event, idx) => (
+                <div 
+                  key={idx}
+                  onMouseEnter={() => setActiveHour(idx)}
+                  className={`relative transition-all duration-700 group ${activeHour === idx ? 'opacity-100' : 'opacity-40'}`}
+                >
+                   {/* Timeline Marker */}
+                   <div className={`absolute -left-[54px] md:-left-[102px] top-0 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-700 
+                     ${activeHour === idx ? 'bg-zinc-950 text-white scale-110 shadow-2xl rotate-12' : 'bg-white text-zinc-200 border border-zinc-100'}`}>
+                      {event.icon}
+                   </div>
+
+                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                      <div className="space-y-6">
+                         <div className="flex items-center gap-6">
+                            <span className="text-3xl font-serif italic text-zinc-300">{event.time}</span>
+                            <div className="h-[1px] w-12 bg-zinc-100" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">{event.label}</span>
+                         </div>
+                         <h3 className="text-4xl font-semibold tracking-tighter leading-tight">{event.title}</h3>
+                         <p className="text-lg text-zinc-500 font-light leading-relaxed max-w-md">
+                            {event.desc}
+                         </p>
+                         <div className="inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 rounded-full border border-zinc-100 text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                            Integrated Logic: {event.logic}
+                         </div>
+                      </div>
+
+                      {/* THE POCKET TERMINAL MOCKUP */}
+                      <div className={`transition-all duration-1000 transform ${activeHour === idx ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-12 opacity-0 scale-95'}`}>
+                         <div className="relative w-full max-w-sm mx-auto">
+                            <div className="absolute inset-0 bg-blue-600 blur-[80px] opacity-5" />
+                            <div className="relative bg-zinc-950 rounded-[48px] border border-white/10 p-8 shadow-2xl min-h-[300px] flex flex-col justify-between">
+                               {event.ui}
+                               <div className="pt-6 border-t border-white/5 flex justify-between items-center">
+                                  <span className="text-[8px] font-mono text-zinc-600 uppercase">Casper_Handover_Active</span>
+                                  <Smartphone size={14} className="text-zinc-700" />
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+              ))}
+           </div>
+        </section>
+
+        {/* 3. THE "WHY" ENGINE (RECURSIVE SUMMARY) */}
+        <section className="py-40 bg-zinc-950 text-white px-8 relative overflow-hidden">
+           <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+              <div className="w-16 h-16 bg-blue-600 rounded-3xl mx-auto flex items-center justify-center shadow-2xl mb-12">
+                 <BrainCircuit size={32} />
+              </div>
+              <h2 className="text-5xl md:text-[130px] font-semibold tracking-tighter leading-none italic">Total Mastery.</h2>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto">
+                 Most business owners spend their day reacting to the past. Camber & Casper allows you to spend your day directing the future. It’s the difference between being a worker and being a Director.
+              </p>
+              <div className="flex justify-center gap-8 pt-8">
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <CheckCircle2 size={14} className="text-emerald-500" /> 100 Agents Working
+                 </div>
+                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                    <CheckCircle2 size={14} className="text-emerald-500" /> 24 Inputs Tracked
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic text-zinc-950">Scale the Day.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't be the business owner who works for their business. Be the Director. Scale your output today for $799/month. Zero technical expertise required.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Claim Your Command
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase italic">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Sovereign Management Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

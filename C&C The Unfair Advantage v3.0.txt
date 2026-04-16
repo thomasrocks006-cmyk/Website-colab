@@ -1,0 +1,364 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Zap, 
+  Trophy, 
+  ArrowRight, 
+  Target,
+  Rocket,
+  Activity,
+  ShieldCheck,
+  CheckCircle2,
+  XCircle,
+  Clock,
+  TrendingUp,
+  BarChart3,
+  Timer,
+  ChevronRight,
+  MessageSquare,
+  Car,
+  BrainCircuit,
+  Database,
+  Lock,
+  Search,
+  Settings
+} from 'lucide-react';
+
+// --- REUSABLE REVEAL ANIMATION ---
+const Reveal = ({ children, delay = 0 }) => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisible(true);
+    }, { threshold: 0.05 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      {children}
+    </div>
+  );
+};
+
+// --- THE NEURAL INTERCOM: AGENT COLLABORATION ---
+const CompetitiveRace = () => {
+  const [status, setStatus] = useState('idle'); 
+  const [timer, setTimer] = useState(0);
+  
+  const synthesisLogs = [
+    { time: 2, team: "Growth", agent: "Agent_10", msg: "Incoming Lead extracted. Residential Install. Loc: Sydney CBD.", to: "System" },
+    { time: 6, team: "Fiscal", agent: "Agent_42", msg: "Requesting current Ironbark material margins for Q2.", to: "Agent_10" },
+    { time: 12, team: "Logistics", agent: "Agent_85", msg: "Checking calendar availability for Lead Technician.", to: "Agent_42" },
+    { time: 18, team: "Fiscal", agent: "Agent_42", msg: "Pricing model synthesized. Applying bulk-buy discount logic.", to: "Agent_10" },
+    { time: 25, team: "Growth", agent: "Agent_12", msg: "Value propositions framed: 'Sovereign AU Reliability'.", to: "Agent_85" },
+    { time: 32, team: "Logistics", agent: "Agent_85", msg: "Project timeline verified. 3-day window confirmed.", to: "Agent_12" },
+    { time: 38, team: "Casper", agent: "Executive", msg: "Final Sovereign audit complete. Quote dispatched to client.", to: "All" },
+  ];
+
+  useEffect(() => {
+    let interval;
+    if (status === 'racing') {
+      interval = setInterval(() => {
+        setTimer(prev => {
+          if (prev >= 42) {
+            setStatus('finished');
+            return 42;
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    } else if (status === 'idle') {
+      setTimer(0);
+    }
+    return () => clearInterval(interval);
+  }, [status]);
+
+  const currentLogs = synthesisLogs.filter(log => timer >= log.time);
+
+  return (
+    <div className="w-full bg-[#050505] rounded-[48px] p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden flex flex-col min-h-[650px]">
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      
+      <div className="relative z-10 space-y-10 flex-1">
+        <div className="flex justify-between items-start">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.4em] font-bold">Autonomous Collaboration Protocol</div>
+            <div className="text-2xl font-bold text-white tracking-tight">The 42-Second Winning Streak</div>
+          </div>
+          <div className="flex flex-col items-end gap-2">
+            <button 
+              onClick={() => setStatus(status === 'racing' ? 'idle' : 'racing')} 
+              className="px-6 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-xl"
+            >
+              {status === 'racing' ? 'Observing...' : status === 'finished' ? 'Restart' : 'Watch the Win'}
+            </button>
+            <div className="text-3xl font-mono text-white tabular-nums">00:{timer < 10 ? `0${timer}` : timer}s</div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* COMPARISON LANES */}
+          <div className="lg:col-span-5 space-y-12">
+            <div className="space-y-4">
+               <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-zinc-600">
+                  <span>Non-C&C Member (Manual)</span>
+                  <span className="flex items-center gap-2"><Car size={10}/> Stuck on the M1</span>
+               </div>
+               <div className="h-2 bg-zinc-900 rounded-full relative border border-white/5 overflow-hidden">
+                  <div 
+                    className="h-full bg-zinc-700" 
+                    style={{ width: status === 'racing' || status === 'finished' ? '0.1%' : '0', transition: 'width 42s linear' }}
+                  />
+               </div>
+               <div className="text-[9px] text-zinc-500 font-light italic leading-relaxed">
+                  "Searching for a notebook in the glovebox... Will probably call the lead back in 14 hours."
+               </div>
+            </div>
+
+            <div className="space-y-4">
+               <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-blue-400">
+                  <span>C&C Apex Member (Autonomous)</span>
+                  <span className="flex items-center gap-2 font-mono"><Activity size={10} className="animate-pulse"/> LINK_STABLE</span>
+               </div>
+               <div className="h-2 bg-zinc-900 rounded-full relative border border-blue-500/20 overflow-hidden shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+                  <div 
+                    className="h-full bg-blue-600 shadow-[0_0_20px_rgba(59,130,246,0.6)]" 
+                    style={{ width: status === 'racing' || status === 'finished' ? '100%' : '0', transition: 'width 42s linear' }}
+                  />
+               </div>
+               <div className="text-[9px] text-blue-400/60 font-mono uppercase tracking-widest">
+                  Process: Multi-Agent Synthesis
+               </div>
+            </div>
+          </div>
+
+          {/* THE INTERCOM FEED */}
+          <div className="lg:col-span-7 bg-zinc-900/50 border border-white/5 rounded-3xl p-8 relative overflow-hidden h-[400px]">
+             <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-zinc-900 to-transparent z-20 pointer-events-none" />
+             <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-zinc-900 to-transparent z-20 pointer-events-none" />
+             
+             <div className="space-y-4 overflow-y-auto h-full scrollbar-hide py-6">
+                {currentLogs.length === 0 && (
+                  <div className="flex flex-col items-center justify-center h-full text-zinc-700 space-y-4">
+                    <BrainCircuit size={40} strokeWidth={1} className="opacity-20" />
+                    <p className="text-[10px] font-bold uppercase tracking-widest">Awaiting Lead Signal...</p>
+                  </div>
+                )}
+                {currentLogs.map((log, i) => (
+                  <div key={i} className="animate-in fade-in slide-in-from-left-4 duration-500 flex flex-col gap-1">
+                    <div className="flex items-center gap-3">
+                       <span className={`text-[8px] font-bold px-2 py-0.5 rounded uppercase tracking-widest 
+                         ${log.team === 'Growth' ? 'bg-blue-900/50 text-blue-400' : 
+                           log.team === 'Fiscal' ? 'bg-emerald-900/50 text-emerald-400' : 
+                           log.team === 'Logistics' ? 'bg-amber-900/50 text-amber-400' : 'bg-white text-black'}`}>
+                         {log.team}
+                       </span>
+                       <span className="text-[9px] font-mono text-zinc-500 font-bold">{log.agent} <span className="opacity-40">→</span> {log.to}</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-300 font-light leading-snug pl-4 border-l border-zinc-800 ml-1 mt-1">
+                       {log.msg}
+                    </p>
+                  </div>
+                ))}
+             </div>
+
+             {status === 'finished' && (
+               <div className="absolute inset-0 bg-blue-600 flex flex-col items-center justify-center animate-in fade-in zoom-in duration-500 z-30">
+                  <Trophy size={48} className="text-white mb-4" />
+                  <div className="text-xl font-bold text-white tracking-tighter">WINNER: C&C APEX</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-blue-100 mt-2">Manual Competitor: 13.9 Hours Remaining</div>
+               </div>
+             )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white">
+      
+      {/* 1. SPLASH INTRO */}
+      <div className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-all duration-[1200ms] cubic-bezier(0.8, 0, 0.2, 1) ${isLoaded ? 'translate-y-[-100%] opacity-0' : 'opacity-100'}`}>
+        <div className="w-24 h-24 bg-zinc-950 rounded-[28%] shadow-2xl flex items-center justify-center border border-zinc-800 animate-in zoom-in duration-1000">
+           <span className="font-serif text-5xl font-light text-white italic">C</span>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[1.2em] uppercase text-zinc-400 font-bold animate-pulse">Apex Predator Protocol</p>
+      </div>
+
+      {/* 2. NAVIGATION */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${scrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100 shadow-sm' : 'py-10'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Camber & Casper</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+             <a href="#" className="hover:text-zinc-900 transition-colors">Tactical</a>
+             <a href="#" className="hover:text-zinc-900 transition-colors">Workforce</a>
+             <a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Secure the Edge
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* 3. HERO: AGGRESSIVE MARKET LEADERSHIP */}
+        <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <Reveal>
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 border border-blue-100">
+                <Target size={12} /> Market Domination Logic
+              </div>
+              <h1 className="text-6xl md:text-[120px] font-semibold tracking-tighter leading-[0.85] text-zinc-950">
+                Win the job. <br/>
+                <span className="text-zinc-300 italic font-light">While they're in traffic.</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+                In business, first place is the only place that matters. Camber & Casper gives you an autonomous workforce of 100 experts who synthesize your data and secure the win in under a minute.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                  Deploy Your Workforce <ArrowRight size={18} />
+                </button>
+                <div className="flex flex-col items-start justify-center px-6 text-left">
+                   <div className="text-[10px] font-bold text-zinc-950 uppercase tracking-widest italic">Zero Latency.</div>
+                   <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest italic">Zero Human Error.</div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 4. THE INTERCOM VISUALIZER */}
+        <section className="py-20 px-6 max-w-7xl mx-auto">
+          <Reveal>
+             <CompetitiveRace />
+          </Reveal>
+        </section>
+
+        {/* 5. THE COMPARISON MATRIX (Refining Synthetic to Autonomous) */}
+        <section className="py-40 px-6 max-w-7xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-24 space-y-4">
+              <h2 className="text-xs font-bold tracking-[0.6em] uppercase text-zinc-400">The Apex Standard</h2>
+              <h3 className="text-5xl font-semibold tracking-tight leading-tight">Human effort vs. <br/> <span className="italic font-light text-zinc-300">Autonomous scale.</span></h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-100 bg-zinc-100">
+               {[
+                 { label: "Execution Capacity", human: "Single Output (8h)", apex: "Distributed Intelligence (2,400h)", icon: <Clock size={16}/> },
+                 { label: "Collaboration Logic", human: "Calls & Emails", apex: "Instant Multi-Agent Intercom", icon: <MessageSquare size={16}/> },
+                 { label: "Operational Integrity", human: "Fatigue-Prone", apex: "Hardened Sovereign Ethics", icon: <ShieldCheck size={16}/> }
+               ].map((item, i) => (
+                 <div key={i} className="p-12 space-y-12 bg-white hover:bg-zinc-50 transition-colors">
+                    <div className="flex items-center gap-4">
+                       <div className="w-10 h-10 rounded-xl bg-zinc-50 flex items-center justify-center text-zinc-900 border border-zinc-100">
+                          {item.icon}
+                       </div>
+                       <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">{item.label}</div>
+                    </div>
+                    <div className="space-y-6">
+                       <div className="flex items-center gap-3 text-sm text-zinc-400">
+                          <XCircle size={14} className="text-zinc-200" /> <span className="line-through">{item.human}</span>
+                       </div>
+                       <div className="flex items-center gap-3 text-xl font-bold text-zinc-900">
+                          <CheckCircle2 size={20} className="text-blue-500" /> {item.apex}
+                       </div>
+                    </div>
+                 </div>
+               ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 6. SOVEREIGN WEAPONRY: DATA IS THE BULLET */}
+        <section className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full p-20">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="white" strokeWidth="0.1" strokeDasharray="1 4" />
+              </svg>
+           </div>
+           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <Reveal>
+                 <div className="space-y-10">
+                    <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-600">The Camber Shield</h2>
+                    <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">Trust is the <br/><span className="text-zinc-700 italic font-light text-zinc-400">Killer Blow.</span></h3>
+                    <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-lg">
+                       High-end clients only trust businesses that protect their data. While your competitors leak intelligence to offshore training pools, your business remains air-gapped on Australian soil. Use trust as your weapon.
+                    </p>
+                    <div className="flex gap-4">
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800 shadow-2xl">
+                          <ShieldCheck size={14} className="text-blue-500" /> 100% Air-Gapped
+                       </div>
+                       <div className="px-6 py-3 bg-zinc-900 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-zinc-800">
+                          <Lock size={14} className="text-emerald-500" /> AU Jurisdiction
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+              <Reveal delay={200}>
+                 <div className="bg-zinc-900 aspect-video md:aspect-auto md:h-[600px] rounded-[60px] border border-white/5 flex items-center justify-center p-1 group">
+                    <div className="w-full h-full bg-black rounded-[58px] flex items-center justify-center relative overflow-hidden">
+                       <div className="absolute inset-0 grid grid-cols-8 gap-1 p-12 opacity-10">
+                          {[...Array(32)].map((_, i) => ( <div key={i} className="bg-white rounded-sm animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} /> ))}
+                       </div>
+                       <div className="relative z-10 text-center space-y-6">
+                          <ShieldCheck size={120} className="text-zinc-800 group-hover:text-blue-500 transition-colors duration-1000" strokeWidth={0.5} />
+                          <div className="text-[10px] font-mono tracking-[1em] uppercase text-zinc-600">Sovereign_Node_Live</div>
+                       </div>
+                    </div>
+                 </div>
+              </Reveal>
+           </div>
+        </section>
+
+        {/* 7. FINAL KEYNOTE CTA */}
+        <section className="py-60 px-6 text-center">
+           <Reveal>
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Win first.</h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+                 Join the Camber & Casper umbrella and deploy the workforce that makes the competition irrelevant. $799/month. Zero complexity.
+              </p>
+              <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-[0_40px_100px_rgba(0,0,0,0.2)]">
+                 Hire the Edge Today
+              </button>
+           </Reveal>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Distributed Intelligence</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Economics</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Ethics</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}

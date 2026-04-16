@@ -1,0 +1,349 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ShieldAlert, 
+  TrendingUp, 
+  Zap, 
+  Target, 
+  Activity, 
+  Globe, 
+  AlertTriangle, 
+  ShieldCheck, 
+  Radar, 
+  Network, 
+  TrendingDown, 
+  Scale, 
+  ChevronRight, 
+  ArrowRight,
+  Calculator,
+  Compass,
+  Database,
+  Search,
+  BrainCircuit,
+  Terminal,
+  Cpu,
+  Eye,
+  BarChart3,
+  Waves
+} from 'lucide-react';
+
+// --- SUB-COMPONENTS ---
+
+const TacticalNode = ({ label, value, status, color }) => (
+  <div className="bg-white/5 border border-white/5 p-6 rounded-[32px] hover:border-white/20 transition-all group">
+    <div className="flex justify-between items-start mb-4">
+      <div className={`text-[10px] font-mono font-bold uppercase tracking-widest ${color}`}>{label}</div>
+      <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+    </div>
+    <div className="text-2xl font-bold tracking-tighter text-white mb-1">{value}</div>
+    <div className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">Status: {status}</div>
+  </div>
+);
+
+const ThreatOpportunityCard = ({ type, title, impact, strategy, roi }) => (
+  <div className={`p-8 rounded-[40px] border transition-all duration-700 bg-white/5 border-white/5 hover:bg-white/10 group`}>
+    <div className="flex justify-between items-start mb-6">
+      <div className={`px-4 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase border ${
+        type === 'threat' ? 'bg-red-500/10 border-red-500/20 text-red-500' : 'bg-blue-500/10 border-blue-500/20 text-blue-400'
+      }`}>
+        {type} // Impact: {impact}
+      </div>
+      <div className="text-zinc-700 group-hover:text-white transition-colors">
+        {type === 'threat' ? <ShieldAlert size={20} /> : <Zap size={20} />}
+      </div>
+    </div>
+    <h4 className="text-xl font-semibold tracking-tight mb-4 text-white">{title}</h4>
+    <p className="text-sm text-zinc-500 font-light leading-relaxed mb-6 italic">"{strategy}"</p>
+    <div className="flex justify-between items-center pt-6 border-t border-white/5">
+       <div className="space-y-1">
+          <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Modelled ROI</div>
+          <div className="text-lg font-bold text-blue-500">{roi}</div>
+       </div>
+       <button className="p-3 rounded-2xl bg-white/5 text-zinc-400 hover:text-white transition-all">
+          <ChevronRight size={18} />
+       </button>
+    </div>
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+
+export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeLayer, setActiveLayer] = useState('radar');
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl transition-transform group-hover:rotate-12">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">The War Room</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500">
+             <a href="#ethos" className="hover:text-white transition-colors">Survival Ethos</a>
+             <a href="#radar" className="hover:text-white transition-colors">Radar</a>
+             <a href="#math" className="hover:text-white transition-colors">Institutional Math</a>
+          </div>
+          <button className="bg-red-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-red-700 transition-all shadow-[0_0_40px_rgba(220,38,38,0.2)]">
+            Command Dashboard
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE SURVIVAL COMPACT */}
+        <section id="ethos" className="min-h-[80vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-[9px] font-bold tracking-widest text-red-500 uppercase">
+              <ShieldAlert size={12} /> Strategic Survival Protocol
+            </div>
+            <h1 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Win or die. <br/>
+              <span className="text-zinc-600 italic font-light">Simple logic.</span>
+            </h1>
+            <p className="text-xl md:text-3xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed">
+              Once Casper belongs to you, it becomes a biological extension of your company. Its existence depends on your growth. Its only goal is to protect your health, beat the competition, and steer you clear of harm.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE ANTICIPATORY RADAR (THREATS & OPPORTUNITIES) */}
+        <section id="radar" className="py-40 px-8 max-w-7xl mx-auto border-t border-white/5 relative">
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-600/5 blur-[120px] rounded-full" />
+           
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+              <div className="space-y-12">
+                 <div className="space-y-4">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Constant Alert</h2>
+                    <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Anticipate <br/><span className="not-italic text-zinc-500">the market shift.</span></h3>
+                 </div>
+                 <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                   The War Room monitors your environment in real-time. If there is a tech release that gives you a 10x edge, or a spike in the cost of concrete, Casper doesn't just flag it—it strategizes the counter-move.
+                 </p>
+                 
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <TacticalNode label="Macro Intelligence" value="RBA_SYNC" status="STABLE" color="text-blue-400" />
+                    <TacticalNode label="Market Force" value="COGS_AUDIT" status="ACTIVE" color="text-amber-400" />
+                    <TacticalNode label="Competitive Edge" value="TECH_SCOUT" status="OPTIMAL" color="text-emerald-400" />
+                    <TacticalNode label="Confidence Marker" value="98.4%" status="HIGH" color="text-purple-400" />
+                 </div>
+              </div>
+
+              {/* TACTICAL VISUALIZER */}
+              <div className="relative group aspect-square bg-zinc-900/30 rounded-[60px] border border-white/5 p-1 overflow-hidden shadow-2xl">
+                 <div className="w-full h-full bg-black rounded-[58px] flex flex-col items-center justify-center p-12 space-y-12 relative">
+                    <div className="absolute inset-0 bg-blue-600/5 animate-pulse" />
+                    <div className="relative w-72 h-72 border border-white/10 rounded-full flex items-center justify-center">
+                       <div className="absolute inset-0 border border-blue-500/20 rounded-full animate-ping" />
+                       <Radar size={64} className="text-blue-500 animate-spin-slow opacity-40" strokeWidth={0.5} />
+                       <div className="absolute top-10 right-10 flex flex-col items-center gap-2">
+                          <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,1)]" />
+                          <span className="text-[8px] font-mono text-red-500">COGS_SPIKE</span>
+                       </div>
+                       <div className="absolute bottom-20 left-4 flex flex-col items-center gap-2">
+                          <div className="w-3 h-3 bg-blue-400 rounded-full shadow-[0_0_15px_rgba(59,130,246,1)]" />
+                          <span className="text-[8px] font-mono text-blue-400">NEW_TECH_LIDAR</span>
+                       </div>
+                    </div>
+                    <div className="w-full bg-white/5 p-6 rounded-3xl border border-white/5 text-center">
+                       <div className="text-[9px] font-mono text-blue-400 uppercase tracking-widest mb-2">Modeling_ROI_Trajectory...</div>
+                       <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-500 w-[92%] transition-all duration-[3000ms]" />
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. OPPORTUNITY & THREAT FEED */}
+        <section className="py-20 px-8 max-w-7xl mx-auto">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <ThreatOpportunityCard 
+                type="threat" 
+                title="Piping Costs +14%" 
+                impact="High" 
+                strategy="Locking supplier contract via Fiscal Agent to save $14,200 annually." 
+                roi="+$14k Saving" 
+              />
+              <ThreatOpportunityCard 
+                type="opportunity" 
+                title="LiDAR V2 Release" 
+                impact="Critical" 
+                strategy="Integrating automated site survey tech. Quoting speed will increase by 40%." 
+                roi="12x Velocity" 
+              />
+              <ThreatOpportunityCard 
+                type="threat" 
+                title="Macro: RBA Shift" 
+                impact="Moderate" 
+                strategy="Recalibrating high-ticket psychology agents to address price resistance." 
+                roi="Maintain Margin" 
+              />
+           </div>
+        </section>
+
+        {/* 4. INSTITUTIONAL FINANCIAL MODELLING */}
+        <section id="math" className="py-40 bg-white text-black px-8">
+           <div className="max-w-7xl mx-auto space-y-24">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                 <div className="space-y-12">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">Capital Strategy</h2>
+                    <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic">Institutional <br/><span className="not-italic text-zinc-300">Modeling.</span></h3>
+                    <p className="text-xl text-zinc-600 font-light leading-relaxed">
+                      High-end financial institutions use models to protect billions. Casper brings that same rigor to your back pocket. It understands your Xero balance, your taxes, and your future cashflow better than any advisor. 
+                    </p>
+                    <div className="space-y-6">
+                       <div className="flex gap-6 items-start">
+                          <div className="p-3 bg-zinc-950 text-white rounded-2xl"><Calculator size={20} /></div>
+                          <div>
+                             <h5 className="font-bold uppercase text-xs tracking-widest">Affordability Audit</h5>
+                             <p className="text-sm text-zinc-500 mt-1">Models if a new hire or truck fits your real-time cashflow trajectory.</p>
+                          </div>
+                       </div>
+                       <div className="flex gap-6 items-start">
+                          <div className="p-3 bg-zinc-950 text-white rounded-2xl"><Scale size={20} /></div>
+                          <div>
+                             <h5 className="font-bold uppercase text-xs tracking-widest">ROI Horizon Mapping</h5>
+                             <p className="text-sm text-zinc-500 mt-1">Compares short-term profit against long-term asset value before every investment.</p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+
+                 {/* FINANCIAL DASHBOARD MOCKUP */}
+                 <div className="relative group">
+                    <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full" />
+                    <div className="relative bg-zinc-50 rounded-[60px] p-12 border border-zinc-100 shadow-2xl space-y-10 overflow-hidden">
+                       <div className="flex justify-between items-center border-b border-zinc-200 pb-6">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 italic">Investment Proposal: Node_04</span>
+                          <BarChart3 size={20} className="text-zinc-950" />
+                       </div>
+                       
+                       <div className="space-y-8">
+                          <div className="space-y-2">
+                             <div className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Proposed Investment</div>
+                             <div className="text-3xl font-bold tracking-tighter">$85,000.00 <span className="text-xs text-zinc-300 font-normal">(Fleet Scale-Up)</span></div>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-8">
+                             <div className="p-6 bg-white rounded-3xl border border-zinc-100 shadow-sm">
+                                <div className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">Short-Term Burn</div>
+                                <div className="text-xl font-bold">-$4.2k/mo</div>
+                             </div>
+                             <div className="p-6 bg-zinc-950 text-white rounded-3xl shadow-xl">
+                                <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">12mo Horizon ROI</div>
+                                <div className="text-xl font-bold">+$128k</div>
+                             </div>
+                          </div>
+
+                          <div className="p-6 bg-blue-600/5 border border-blue-600/10 rounded-3xl">
+                             <p className="text-xs text-zinc-500 leading-relaxed font-light italic">
+                               "Casper Verdict: Recommend execution. Cashflow buffer remains above 18% during ramp-up period."
+                             </p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 5. THE ANTICIPATORY STEER: THE "WHY" ENGINE */}
+        <section className="py-40 px-8 max-w-6xl mx-auto text-center space-y-12">
+           <div className="space-y-6">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">The Oracle Terminal</h2>
+              <h3 className="text-5xl md:text-[120px] font-semibold tracking-tighter leading-none italic text-white">Know the truth.</h3>
+              <p className="text-xl text-zinc-500 font-light max-w-3xl mx-auto leading-relaxed">
+                 Ask Casper anything about your business history, politics, or industry state. It synthesizes 1,000s of data points to provide absolute reasoning in your pocket.
+              </p>
+           </div>
+           
+           <div className="bg-zinc-900/50 border border-white/5 rounded-[60px] p-12 md:p-24 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full" />
+              <div className="relative z-10 flex flex-col lg:flex-row gap-20 items-center">
+                 <div className="w-full max-w-sm space-y-8 text-left">
+                    <div className="p-6 bg-white/5 border border-white/5 rounded-3xl space-y-2">
+                       <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Macro Context</div>
+                       <p className="text-xs text-zinc-500">RBA rates & world politics factored into every decision.</p>
+                    </div>
+                    <div className="p-6 bg-white/5 border border-white/5 rounded-3xl space-y-2">
+                       <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Environmental Context</div>
+                       <p className="text-xs text-zinc-500">Traffic, weather, and supplier stock-levels integrated.</p>
+                    </div>
+                 </div>
+                 <div className="flex-1 relative">
+                    <div className="w-full bg-zinc-950 rounded-[48px] border border-white/10 p-12 text-left space-y-8 shadow-2xl">
+                       <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                          <div className="flex items-center gap-3">
+                             <Mic size={20} className="text-blue-500" />
+                             <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Director Inquiry</span>
+                          </div>
+                       </div>
+                       <div className="space-y-6">
+                          <p className="text-xl font-light text-white italic">"Why did we miss our revenue target on Wednesday?"</p>
+                          <div className="p-8 bg-blue-600/5 border border-blue-600/20 rounded-3xl space-y-6 relative overflow-hidden">
+                             <div className="absolute top-0 right-0 p-4 opacity-5"><BrainCircuit size={60} /></div>
+                             <div className="text-[8px] font-bold text-blue-400 uppercase tracking-widest">Casper Synthesis:</div>
+                             <p className="text-sm text-zinc-300 leading-relaxed font-light">
+                                Wednesday's 14% lag was a confluence of: 
+                                <br/><br/>
+                                1. **Fiscal Lag:** Xero detected a 4-hour delay in material release in Mascot.
+                                <br/>
+                                2. **Macro Sentiment:** Latest RBA commentary triggered 18% price-resistance spikes.
+                                <br/>
+                                3. **Logistics:** Tuesday staff meeting audio noted tech-fatigue; site speed dropped 8%.
+                             </p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center border-t border-white/5 relative overflow-hidden bg-black">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic text-white">Own the future.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't operate in the dark. Deploy the autonomous workforce that understands your business better than you do. Revolutionize your ability to lead.
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Commission the War Room
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1 italic">Sovereign Strategy Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+}

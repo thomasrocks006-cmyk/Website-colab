@@ -1,0 +1,258 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  BrainCircuit, 
+  Target, 
+  TrendingUp, 
+  Globe, 
+  Zap, 
+  ShieldCheck, 
+  MessageSquare, 
+  Activity, 
+  LineChart, 
+  DollarSign, 
+  Clock, 
+  PhoneCall, 
+  Settings2, 
+  Database,
+  Search,
+  Mic,
+  ChevronRight,
+  ArrowRight,
+  Monitor,
+  Lock,
+  Waves,
+  PieChart,
+  CheckCircle2,
+  Scale,
+  History,
+  Lightbulb
+} from 'lucide-react';
+
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeTab, setActiveTab] = useState('psychology');
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+        <div className="text-blue-500 font-mono text-xs tracking-[0.3em] animate-pulse uppercase">
+          Initializing_Cognitive_Core...
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl transition-transform group-hover:rotate-12">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Cognitive Command</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500">
+             <button onClick={() => setActiveTab('psychology')} className={activeTab === 'psychology' ? 'text-white' : 'hover:text-white transition-colors'}>Psychology</button>
+             <button onClick={() => setActiveTab('synthesis')} className={activeTab === 'synthesis' ? 'text-white' : 'hover:text-white transition-colors'}>Universal Brain</button>
+             <button onClick={() => setActiveTab('oracle')} className={activeTab === 'oracle' ? 'text-white' : 'hover:text-white transition-colors'}>The Oracle</button>
+          </div>
+          <button className="bg-white text-black px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-200 transition-all shadow-xl">
+            Terminal Access
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: TOTAL OMNISCIENCE */}
+        <section className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center max-w-5xl mx-auto space-y-12">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-bold tracking-widest text-blue-400 uppercase">
+              <BrainCircuit size={12} /> Sovereign Intelligence v2.0
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Across everything. <br/>
+              <span className="text-zinc-600 italic font-light">In such detail.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              C&C understands your business in its entirety. It integrates finances, staff meetings, and global market forces to provide strategic reasoning that makes sense of your world.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE PSYCHOLOGY ENGINE: FLUID NEGOTIATION */}
+        <section id="psychology" className="py-40 px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center border-t border-white/5">
+           <div className="space-y-10">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Strategic Psychology</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Conversational <br/><span className="not-italic text-zinc-500">Adjustment.</span></h3>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                The Psychology Agent doesn't just listen; it analyzes the underlying personality markers of your leads. It detects stress, authority, and skepticism, instantly recalibrating its vocabulary, pace, and negotiation angle to mirror the prospect perfectly.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
+                 <div className="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-3">
+                    <div className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Real-Time Pacing</div>
+                    <p className="text-xs text-zinc-500 leading-relaxed">Matches the lead's urgency and speech patterns to build sub-conscious trust.</p>
+                 </div>
+                 <div className="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-3">
+                    <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Tactical Angle Pivot</div>
+                    <p className="text-xs text-zinc-500 leading-relaxed">Detects price resistance or timeline anxiety and shifts the argument logic immediately.</p>
+                 </div>
+              </div>
+           </div>
+
+           {/* PSYCHOLOGY VISUALIZER */}
+           <div className="relative group aspect-square bg-zinc-900/50 rounded-[60px] border border-white/5 p-1 overflow-hidden shadow-2xl">
+              <div className="w-full h-full bg-black rounded-[58px] flex flex-col items-center justify-center p-12 space-y-12">
+                 <div className="relative flex items-center justify-center">
+                    <div className="absolute inset-0 bg-blue-600 blur-[100px] opacity-10 animate-pulse" />
+                    <div className="w-56 h-56 rounded-full border border-blue-500/20 flex items-center justify-center relative">
+                       <Waves size={64} className="text-blue-500 animate-pulse" />
+                       <div className="absolute top-0 -right-8 p-3 rounded-2xl bg-zinc-900 border border-white/10 text-[8px] font-mono text-blue-400 shadow-xl">TONE: HIGH_AUTHORITY</div>
+                       <div className="absolute bottom-4 -left-12 p-3 rounded-2xl bg-zinc-900 border border-white/10 text-[8px] font-mono text-emerald-400 shadow-xl">RESISTANCE: COLLAPSING</div>
+                    </div>
+                 </div>
+                 <div className="w-full space-y-6">
+                    <div className="space-y-1">
+                       <div className="flex justify-between text-[10px] uppercase font-bold text-zinc-600">Mirroring Intensity</div>
+                       <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-[78%] transition-all duration-[2000ms]" /></div>
+                    </div>
+                    <div className="space-y-1">
+                       <div className="flex justify-between text-[10px] uppercase font-bold text-zinc-600">Cognitive Delta</div>
+                       <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-emerald-500 w-[35%] transition-all duration-[2000ms]" /></div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. THE UNIVERSAL BRAIN: EVERYTHING INTEGRATED */}
+        <section id="synthesis" className="py-40 bg-white text-black px-8">
+           <div className="max-w-7xl mx-auto space-y-24">
+              <div className="text-center space-y-6 max-w-3xl mx-auto">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">The Cognitive Core</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-[0.9] italic">Everything is <br/><span className="not-italic text-zinc-300">understood.</span></h3>
+                 <p className="text-xl text-zinc-600 font-light leading-relaxed">
+                   Camber & Casper doesn't just scan files. It understands context. When you approve internal access, every staff meeting, email, and Xero record is integrated into a unified logic model.
+                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                 {[
+                   { title: "Fiscal Intelligence", icon: DollarSign, desc: "Direct Xero integration allows the AI to set sales targets based on live profit margins and cashflow.", color: "bg-blue-50 text-blue-600" },
+                   { title: "Interpersonal Context", icon: MessageSquare, desc: "Internal meetings are analyzed to understand project roadblocks and staff sentiment before you ask.", color: "bg-purple-50 text-purple-600" },
+                   { title: "Macro Environment", icon: Globe, desc: "The system tracks RBA rates, industry politics, and global supply chain forces and applies them to you.", color: "bg-emerald-50 text-emerald-600" },
+                   { title: "Perpetual Memory", icon: History, desc: "Anything you tell your agent in Mentor Mode is remembered forever and integrated into future logic.", color: "bg-amber-50 text-amber-600" }
+                 ].map((m, i) => (
+                   <div key={i} className="p-10 rounded-[48px] bg-zinc-50 border border-zinc-100 space-y-6 hover:bg-white hover:shadow-2xl transition-all duration-700 group">
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform ${m.color}`}>
+                         <m.icon size={22} />
+                      </div>
+                      <h4 className="text-xl font-semibold tracking-tight">{m.title}</h4>
+                      <p className="text-sm text-zinc-500 font-light leading-relaxed">{m.desc}</p>
+                   </div>
+                 ))}
+              </div>
+           </div>
+        </section>
+
+        {/* 4. THE POCKET ORACLE: ASK ANYTHING */}
+        <section id="oracle" className="py-40 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              {/* ORACLE MOBILE TERMINAL UI */}
+              <div className="relative group">
+                 <div className="absolute inset-0 bg-blue-600 blur-[140px] opacity-10" />
+                 <div className="relative w-full max-w-md mx-auto bg-zinc-900 rounded-[64px] border border-white/10 p-10 space-y-10 shadow-2xl">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                       <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20"><Mic size={18} /></div>
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Live Director Inquiry</span>
+                       </div>
+                       <Activity size={16} className="text-zinc-700" />
+                    </div>
+                    <div className="space-y-8">
+                       <div className="space-y-2">
+                          <p className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">You Asked:</p>
+                          <p className="text-xl font-light text-white italic">"Why did we miss our target on Wednesday?"</p>
+                       </div>
+                       <div className="p-8 bg-blue-600/5 border border-blue-600/10 rounded-[32px] space-y-6 relative overflow-hidden">
+                          <div className="absolute top-0 right-0 p-4 opacity-5"><BrainCircuit size={60} /></div>
+                          <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest">Casper Synthesis:</p>
+                          <div className="text-sm text-zinc-300 leading-relaxed font-light space-y-4">
+                             <p>Wednesday's 14% lag was a confluence of three variables:</p>
+                             <ul className="space-y-3">
+                                <li className="flex gap-3"><span className="text-blue-500 font-bold">01.</span> <span>**Fiscal:** Xero shows a 4-hour delay in material release due to a supplier error in Mascot.</span></li>
+                                <li className="flex gap-3"><span className="text-blue-500 font-bold">02.</span> <span>**Macro:** RBA sentiment spikes triggered higher price-resistance in 12 leads.</span></li>
+                                <li className="flex gap-3"><span className="text-blue-500 font-bold">03.</span> <span>**Internal:** Tuesday's tech-meeting audio noted tech-fatigue; site performance dropped 8%.</span></li>
+                             </ul>
+                             <p className="text-emerald-400 font-medium">Conclusion: Recovery strategy initialized for Thursday.</p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="space-y-12">
+                 <div className="space-y-6">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">The Business Oracle</h2>
+                    <h4 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Understand the <br/><span className="not-italic text-white">"Why".</span></h4>
+                    <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                      Most analytics tools tell you *what* happened. Casper tells you *why*. It correlates 1,000s of data points to give you absolute reasoning, enabling you to operate with a revolutionary level of ability.
+                    </p>
+                 </div>
+                 <div className="space-y-6">
+                    {[
+                      { title: "Deep Historical Integration", text: "Understands your company history, politics, and previous seasonal cycles." },
+                      { title: "Macro Correlation", text: "Applies world politics, interest rates, and industry trends to your exact state." },
+                      { title: "Total Omniscience", text: "Across everything. In your pocket. Making sense of it for you." }
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-4">
+                         <CheckCircle2 size={20} className="text-blue-500 mt-1" />
+                         <div>
+                            <div className="text-sm font-bold uppercase tracking-widest text-white">{item.title}</div>
+                            <div className="text-xs text-zinc-500 mt-1">{item.text}</div>
+                         </div>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION */}
+        <section className="py-60 px-6 text-center border-t border-white/5 relative overflow-hidden">
+           <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+              <div className="grid grid-cols-12 h-full w-full gap-4">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+              </div>
+           </div>
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Own the truth.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't operate in the dark. Deploy the autonomous workforce that understands your business better than you do. Revolutionize your ability to lead.
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Secure Total Command
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1">Cognitive Intelligence Systems</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

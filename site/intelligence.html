@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Command — Intelligence Engine | Camber & Casper</title>
+  <meta name="description" content="14 Layers of Omniscience. The Simulation Engine. War Room Protocol. Absolute truth, in your pocket.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .layer-card { background: white; border: 1px solid var(--cc-zinc-100); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.5s; }
+    .layer-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+    .layer-num { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; }
+    .layer-name { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 0.75rem; }
+    .layer-desc { font-size: 0.8rem; color: var(--cc-zinc-400); font-weight: 300; line-height: 1.7; margin-top: 0.5rem; }
+
+    /* War Room Terminal */
+    .terminal { background: var(--cc-zinc-950); border: 1px solid var(--cc-zinc-800); border-radius: var(--radius-lg); overflow: hidden; }
+    .terminal-bar { display: flex; align-items: center; gap: 0.5rem; background: var(--cc-zinc-900); padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--cc-zinc-800); }
+    .terminal-bar span { width: 8px; height: 8px; border-radius: 50%; }
+    .terminal-body { padding: 2rem; font-family: var(--font-mono); font-size: 0.75rem; line-height: 2; color: var(--cc-zinc-500); }
+    .terminal-body .cmd { color: var(--cc-zinc-300); }
+    .terminal-body .highlight { color: var(--cc-blue-500); }
+    .terminal-body .success { color: var(--cc-emerald-500); }
+    .terminal-body .warn { color: var(--cc-amber-500); }
+
+    /* Simulation Engine — from Cognitive Command v3.0 */
+    .sim-card { background: var(--cc-zinc-950); border: 1px solid var(--cc-zinc-800); border-radius: 60px; padding: 4rem; }
+    .sim-scenario { background: var(--cc-zinc-900); border: 1px solid var(--cc-zinc-800); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 1rem; cursor: pointer; transition: all 0.3s; }
+    .sim-scenario:hover { border-color: var(--cc-blue-500); }
+    .sim-scenario.active { border-color: var(--cc-blue-500); background: rgba(59,130,246,0.05); }
+
+    /* Psychology Engine */
+    .psych-meter { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .psych-label { width: 140px; font-size: 0.75rem; font-weight: 600; color: var(--cc-zinc-500); flex-shrink: 0; }
+    .psych-track { flex: 1; background: var(--cc-zinc-800); height: 8px; border-radius: 4px; overflow: hidden; }
+    .psych-fill { height: 100%; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div style="display:flex;align-items:center;gap:3rem;">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <span class="nav-logo-text font-serif">C&C</span>
+        </a>
+        <div class="nav-links">
+          <a href="workforce.html">The 100</a>
+          <a href="advantage.html">Advantage</a>
+          <a href="intelligence.html" class="active">Intelligence</a>
+          <a href="infrastructure.html">Infrastructure</a>
+          <a href="industries.html">Industries</a>
+          <a href="launch.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
+      <div class="reveal container-sm">
+        <div class="badge badge-light mb-8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M20.66 8A10 10 0 0 0 12 2v10l8.66-4Z"/></svg>
+          Cognitive Architecture
+        </div>
+        <h1 class="text-hero">Absolute Truth.<br><span class="text-ghost">In Your Pocket.</span></h1>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+          The intelligence engine that drives every agent decision. 14 layers of analysis. Scenario simulation. Psychological modelling. War room protocol. This is how your swarm thinks.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         14 LAYERS OF OMNISCIENCE
+         Source: "CC 14 Layers of Omniscience.txt"
+         Each layer is a data dimension the AI analyses
+         ============================================ -->
+    <section class="section" style="padding:6rem 2rem;">
+      <div class="container">
+        <div class="reveal text-center mb-16">
+          <p class="text-label" style="color:var(--cc-zinc-400);">Data Architecture</p>
+          <h2 class="text-display mt-4">14 Layers<br><span class="text-ghost">of Omniscience.</span></h2>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+            Most AI tools see one layer of data. Our agents see fourteen. Each layer is a dimension of analysis that compounds into decisions no single human could make.
+          </p>
+        </div>
+        <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">01</div>
+            <div class="layer-name">Macro Context</div>
+            <div class="layer-desc">Global economic signals, interest rates, housing starts, and commodity prices that shape your market environment.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">02</div>
+            <div class="layer-name">Environment</div>
+            <div class="layer-desc">Weather patterns, seasonal demand, local council activity, and geographic market conditions.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">03</div>
+            <div class="layer-name">Historical Logic</div>
+            <div class="layer-desc">Your own business history — past wins, losses, pricing patterns, and seasonal performance.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-blue-500);">04</div>
+            <div class="layer-name">Tribal Intel</div>
+            <div class="layer-desc">Industry-specific knowledge. What tradies say on forums, agency trends, supplier gossip — the unstructured signal.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">05</div>
+            <div class="layer-name">Fiscal Depth</div>
+            <div class="layer-desc">Deep financial analysis — margin erosion patterns, payment velocity, cash burn rate, and break-even tracking.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">06</div>
+            <div class="layer-name">Competitive Signal</div>
+            <div class="layer-desc">What your competitors are doing — pricing changes, new hires, marketing spend, contract wins.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-emerald-500);">07</div>
+            <div class="layer-name">Intent DNA</div>
+            <div class="layer-desc">Buyer intent modelling. Which leads are browsing, which are ready, and which are about to choose your competitor.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">08</div>
+            <div class="layer-name">Operational Telemetry</div>
+            <div class="layer-desc">Real-time operational metrics — job completion rates, crew utilisation, equipment efficiency.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">09</div>
+            <div class="layer-name">Regulatory Sentinel</div>
+            <div class="layer-desc">Live monitoring of regulation changes, compliance updates, and new licensing requirements across your verticals.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-amber-500);">10</div>
+            <div class="layer-name">Human Capital DNA</div>
+            <div class="layer-desc">Workforce analytics — contractor reliability, skill gaps, training needs, and availability patterns.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">11</div>
+            <div class="layer-name">Velocity of Trust</div>
+            <div class="layer-desc">How fast a client moves from enquiry to commitment, and what accelerates or stalls that timeline.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">12</div>
+            <div class="layer-name">Supply Forensics</div>
+            <div class="layer-desc">Material price trends, supplier reliability scores, lead times, and alternative sourcing recommendations.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-red-500);">13</div>
+            <div class="layer-name">Recursive Asset Logic</div>
+            <div class="layer-desc">Tracks recurring revenue patterns, client lifetime value, and predictive churn modelling across your portfolio.</div>
+          </div>
+          <div class="layer-card">
+            <div class="layer-num" style="color:var(--cc-zinc-950);">14</div>
+            <div class="layer-name">Dark Data Synthesis</div>
+            <div class="layer-desc">The hidden layer. Correlations between unrelated data points that no single analyst would see. The signal in the noise.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SIMULATION ENGINE — from Cognitive Command v3.0
+         "What would happen if you raised prices 15%?"
+         Run scenarios before committing real resources
+         ============================================ -->
+    <section class="section section-dark" style="padding:10rem 2rem;">
+      <div class="dot-grid"></div>
+      <div class="container reveal" style="position:relative;z-index:1;">
+        <div class="text-center mb-12">
+          <p class="text-label" style="color:var(--cc-zinc-600);">Predictive Engine</p>
+          <h2 class="text-display mt-4">The Simulation Engine</h2>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-500);">
+            Before you commit real resources, run the scenario. Our simulation engine models outcomes across all 14 layers — giving you foresight, not hindsight.
+          </p>
+        </div>
+        <div class="sim-card reveal" data-delay="200">
+          <div class="flex-between mb-8">
+            <div>
+              <h3 style="font-size:1.5rem;font-weight:700;color:white;letter-spacing:-0.02em;">Scenario Builder</h3>
+              <p class="text-label" style="color:var(--cc-zinc-500);">Select a scenario to simulate</p>
+            </div>
+            <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);">SIM_ENGINE_v3.0</span>
+          </div>
+          <div id="simScenarios">
+            <div class="sim-scenario active" onclick="selectScenario(this, 'price')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Raise Prices 15%</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Model the impact on win-rate, revenue, and client retention</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+            <div class="sim-scenario" onclick="selectScenario(this, 'expand')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Expand to New Territory</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Assess market density, competition, and ramp-up timeline</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+            <div class="sim-scenario" onclick="selectScenario(this, 'hire')">
+              <div class="flex-between">
+                <div>
+                  <h4 style="font-size:0.875rem;font-weight:700;color:white;">Hire 2 Staff vs Scale Agents</h4>
+                  <p style="font-size:0.75rem;color:var(--cc-zinc-500);margin-top:0.25rem;">Compare cost, output, and risk between human hires and swarm scaling</p>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+          </div>
+          <div id="simResult" style="margin-top:2rem;padding:2rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-lg);">
+            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-blue-500);letter-spacing:0.2em;margin-bottom:1rem;">SIMULATION_OUTPUT</div>
+            <div class="grid-3" style="gap:2rem;">
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric1">+$4.2k</div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel1">Monthly Revenue Gain</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:white;" id="simMetric2">-8%</div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel2">Win Rate Impact</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--cc-emerald-500);" id="simMetric3">Net Positive</div>
+                <div class="text-label" style="color:var(--cc-zinc-500);" id="simLabel3">Verdict</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PSYCHOLOGY ENGINE — from Cognitive Command v1
+         Client intent profiling, negotiation signals
+         ============================================ -->
+    <section class="section" style="padding:10rem 2rem;">
+      <div class="container">
+        <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
+          <div>
+            <p class="text-label" style="color:var(--cc-zinc-400);">Behavioral Intelligence</p>
+            <h2 class="text-display mt-4">The Psychology<br><span class="text-ghost">Engine.</span></h2>
+            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+              Your agents don't just process data — they read intent. The Psychology Engine profiles every client interaction, scores urgency, and recommends the optimal approach for every negotiation.
+            </p>
+            <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+              Source: Email cadence, response timing, language sentiment, payment behaviour, past decision patterns. Combined into a single "Intent DNA" score.
+            </p>
+          </div>
+          <div style="background:var(--cc-zinc-950);border-radius:60px;padding:3rem;">
+            <div class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);letter-spacing:0.3em;margin-bottom:2rem;">CLIENT_PROFILE // SAMPLE</div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Urgency</div>
+              <div class="psych-track"><div class="psych-fill" style="width:85%;background:var(--cc-red-500);"></div></div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Trust Level</div>
+              <div class="psych-track"><div class="psych-fill" style="width:62%;background:var(--cc-amber-500);"></div></div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Price Sensitivity</div>
+              <div class="psych-track"><div class="psych-fill" style="width:40%;background:var(--cc-emerald-500);"></div></div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Decision Readiness</div>
+              <div class="psych-track"><div class="psych-fill" style="width:78%;background:var(--cc-blue-500);"></div></div>
+            </div>
+            <div class="psych-meter">
+              <div class="psych-label" style="color:var(--cc-zinc-400);">Loyalty Probability</div>
+              <div class="psych-track"><div class="psych-fill" style="width:90%;background:var(--cc-blue-500);"></div></div>
+            </div>
+            <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--cc-zinc-800);">
+              <p class="font-mono" style="font-size:0.625rem;color:var(--cc-blue-500);">RECOMMENDATION: Proceed with value-based close. High urgency + low price sensitivity = premium positioning opportunity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         WAR ROOM / ORACLE TERMINAL — from War Room Protocol v1/v2,
+         Sales & Negotiation Terminal
+         Conversational interface to your swarm
+         ============================================ -->
+    <section class="section" style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+      <div class="container">
+        <div class="reveal text-center mb-12">
+          <p class="text-label" style="color:var(--cc-zinc-400);">Command Interface</p>
+          <h2 class="text-display mt-4">The War Room</h2>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+            Ask anything. The Oracle terminal gives you a conversational interface to your entire swarm. Real-time answers drawn from all 14 layers.
+          </p>
+        </div>
+        <div class="terminal reveal" data-delay="200" style="max-width:700px;margin:0 auto;">
+          <div class="terminal-bar">
+            <span style="background:var(--cc-red-500);"></span>
+            <span style="background:var(--cc-amber-500);"></span>
+            <span style="background:var(--cc-emerald-500);"></span>
+            <span class="font-mono" style="font-size:0.625rem;color:var(--cc-zinc-600);margin-left:1rem;">casper_oracle // war_room_v2</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="cmd">$</span> <span class="highlight">oracle</span> --query "What's my biggest risk this quarter?"</div>
+            <div>&nbsp;</div>
+            <div><span class="success">▸ Analysing 14 layers...</span></div>
+            <div><span class="success">▸ Cross-referencing fiscal depth + competitive signal...</span></div>
+            <div>&nbsp;</div>
+            <div><span class="warn">⚠ PRIMARY RISK IDENTIFIED:</span></div>
+            <div>Cash collection velocity has slowed 18% over 60 days.</div>
+            <div>3 accounts represent 62% of outstanding receivables.</div>
+            <div>&nbsp;</div>
+            <div><span class="highlight">RECOMMENDED ACTION:</span></div>
+            <div>→ Deploy Debt Collector #44 on escalation protocol</div>
+            <div>→ Flag Account_0847 for direct owner outreach</div>
+            <div>→ Trigger Cashflow Oracle #38 for 90-day forecast update</div>
+            <div>&nbsp;</div>
+            <div><span class="cmd">$</span> <span class="highlight">oracle</span> --execute recommendation</div>
+            <div><span class="success">✓ 3 agents deployed. ETA to resolution: 4.2 days.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding:10rem 2rem;text-align:center;">
+      <div class="reveal container-sm">
+        <h2 class="text-display">Intelligence that<br><span class="text-ghost">compounds daily.</span></h2>
+        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+          Every day your swarm runs, it gets smarter. Every data point feeds the next decision. The longer you use it, the sharper it becomes.
+        </p>
+        <a href="pricing.html" class="btn-primary mt-8">Activate Intelligence</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div>
+          <span class="font-serif" style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
+          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed Intelligence Systems</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="workforce.html">The 100</a>
+        <a href="advantage.html">Advantage</a>
+        <a href="intelligence.html">Intelligence</a>
+        <a href="infrastructure.html">Infrastructure</a>
+        <a href="industries.html">Industries</a>
+        <a href="launch.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function selectScenario(el, type) {
+      document.querySelectorAll('.sim-scenario').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      const data = {
+        price: { m1: '+$4.2k', l1: 'Monthly Revenue Gain', m2: '-8%', l2: 'Win Rate Impact', m3: 'Net Positive', l3: 'Verdict' },
+        expand: { m1: '6 months', l1: 'Ramp-Up Time', m2: '$12k', l2: 'Required Investment', m3: 'High Potential', l3: 'Market Rating' },
+        hire: { m1: '$156k/yr', l1: '2 FTE Annual Cost', m2: '$9.6k/yr', l2: 'Agent Equivalent', m3: '16x Savings', l3: 'Cost Ratio' }
+      };
+      const d = data[type];
+      document.getElementById('simMetric1').textContent = d.m1;
+      document.getElementById('simLabel1').textContent = d.l1;
+      document.getElementById('simMetric2').textContent = d.m2;
+      document.getElementById('simLabel2').textContent = d.l2;
+      document.getElementById('simMetric3').textContent = d.m3;
+      document.getElementById('simLabel3').textContent = d.l3;
+    }
+  </script>
+</body>
+</html>

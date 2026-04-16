@@ -1,0 +1,311 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ArrowRight, 
+  Zap, 
+  ChevronRight,
+  ShieldCheck,
+  TrendingUp,
+  Wallet,
+  Clock,
+  Moon,
+  Sun,
+  Coffee,
+  CheckCircle2,
+  XCircle,
+  Smartphone,
+  ShieldAlert,
+  Database
+} from 'lucide-react';
+
+// --- THE REFINED SPLASH (DOCKING LOGO) ---
+const Splash = ({ isVisible, onComplete }) => {
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(onComplete, 2600);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  return (
+    <div className={`fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center transition-all duration-1000 ${!isVisible ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      <div className="relative w-64 h-64 flex items-center justify-center">
+        <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full opacity-10 animate-pulse">
+          <path d="M40 120C40 86.8629 66.8629 60 100 60C133.137 60 160 86.8629 160 120" stroke="black" strokeWidth="1.5" fill="none" />
+        </svg>
+        <div className="w-32 h-32 bg-zinc-950 rounded-[24%] shadow-2xl flex items-center justify-center border border-zinc-800 transition-transform duration-1000 hover:scale-110">
+           <span className="font-serif text-5xl font-light text-white">C<span className="text-zinc-500 italic">C</span></span>
+        </div>
+      </div>
+      <p className="mt-12 text-[10px] tracking-[0.8em] uppercase text-zinc-400 font-bold">Synchronizing The Swarm</p>
+    </div>
+  );
+};
+
+// --- DYNAMIC TIMELINE ROW ---
+const TimelineStep = ({ time, icon, traditional, cc, isActive }) => (
+  <div className={`grid grid-cols-1 md:grid-cols-12 gap-0 border-b border-zinc-100 transition-all duration-700 ${isActive ? 'bg-zinc-50/50' : 'opacity-30'}`}>
+    {/* Time Column */}
+    <div className="md:col-span-2 p-8 flex flex-col justify-center border-r border-zinc-100">
+      <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">{time}</span>
+      <div className={`mt-2 p-2 w-fit rounded-lg ${isActive ? 'bg-zinc-900 text-white shadow-lg' : 'bg-zinc-100 text-zinc-400'}`}>
+        {icon}
+      </div>
+    </div>
+
+    {/* Traditional Grind */}
+    <div className="md:col-span-5 p-10 border-r border-zinc-100 space-y-4">
+      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-300">
+        <XCircle size={12} /> The Chief Everything Officer
+      </div>
+      <h4 className="text-xl font-medium text-zinc-400 italic">"{traditional.pain}"</h4>
+      <p className="text-sm text-zinc-300 font-light">{traditional.task}</p>
+    </div>
+
+    {/* The C&C Command */}
+    <div className={`md:col-span-5 p-10 relative overflow-hidden transition-all duration-700 ${isActive ? 'bg-zinc-900 text-white' : 'bg-transparent'}`}>
+      <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-500 mb-4">
+        <CheckCircle2 size={12} /> The Swarm Command
+      </div>
+      <h4 className="text-xl font-medium mb-4">{cc.task}</h4>
+      <p className={`text-sm leading-relaxed font-light ${isActive ? 'text-zinc-400' : 'text-zinc-500'}`}>{cc.benefit}</p>
+      
+      {isActive && (
+        <div className="absolute -bottom-6 -right-6 opacity-10">
+          <Zap size={140} fill="currentColor" />
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+// --- MAIN APPLICATION ---
+export default function App() {
+  const [isSplashActive, setIsSplashActive] = useState(true);
+  const [activeStep, setActiveStep] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const timelineData = [
+    {
+      time: '07:30 AM',
+      icon: <Coffee size={18} />,
+      traditional: { pain: 'Drowning in unread messages.', task: 'Spending the first hour of the day filtering noise instead of preparing tools.' },
+      cc: { task: 'The Morning Synthesis', benefit: '100 agents have already filtered 42 emails. 3 hot leads booked in your calendar. You start with the results, not the noise.' }
+    },
+    {
+      time: '11:00 AM',
+      icon: <Zap size={18} />,
+      traditional: { pain: 'Losing jobs to slow quotes.', task: 'Returning calls while trying to finish the current site. Mistakes are made, leads go cold.' },
+      cc: { task: 'Autonomous Quote Generation', benefit: 'A customer calls; the Swarm listens, builds the quote based on your Ironbark rates, and sends it in 30 seconds. Job won.' }
+    },
+    {
+      time: '08:00 PM',
+      icon: <Moon size={18} />,
+      traditional: { pain: 'The kitchen table office.', task: 'Missing family time to chase unpaid invoices and sort compliance logs.' },
+      cc: { task: 'The Evening Audit', benefit: 'The workforce is cleaning up. Invoices paid, bills filed, and your morning schedule is optimized. You stay with the family.' }
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-zinc-900 font-sans selection:bg-zinc-950 selection:text-white transition-opacity duration-1000">
+      
+      <Splash isVisible={isSplashActive} onComplete={() => setIsSplashActive(false)} />
+
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-700 px-8 ${scrolled ? 'py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-100' : 'py-10 opacity-0 md:opacity-100'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-8 h-8 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter">Camber & Casper</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">The Swarm</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Economics</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Legacy</a>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl shadow-zinc-200">
+            Launch Terminal
+          </button>
+        </div>
+      </nav>
+
+      <main className={`transition-opacity duration-1000 ${!isSplashActive ? 'opacity-100' : 'opacity-0'}`}>
+        
+        {/* HERO: THE $799 PIVOT */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-6">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              The Sovereign AI Umbrella
+            </div>
+            <h1 className="text-6xl md:text-[110px] font-semibold tracking-tighter leading-[0.9] text-zinc-950">
+              Your business. <br/>
+              <span className="text-zinc-300 italic font-light">Evolved.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Why hire an assistant when you can hire a workforce? 100 specialized agents working 24/7 for the price of a daily coffee.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+            <button className="bg-zinc-900 text-white px-12 py-5 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl shadow-zinc-300 flex items-center gap-3">
+              Deploy Your 100 Agents <ArrowRight size={18} />
+            </button>
+            <div className="flex items-center gap-3 text-[11px] font-bold text-zinc-400 uppercase tracking-widest px-6">
+              <span className="text-zinc-950 underline">$799/Mo</span> No Hidden Fees
+            </div>
+          </div>
+        </section>
+
+        {/* INTERACTIVE TIMELINE: THE PARALLEL DAY */}
+        <section className="py-20 max-w-7xl mx-auto">
+          <div className="px-10 mb-16 space-y-4">
+             <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-400">The 24-Hour Cycle</h2>
+             <h3 className="text-4xl md:text-6xl font-semibold tracking-tighter">One Day. <span className="text-zinc-300 italic">Infinite Efficiency.</span></h3>
+          </div>
+
+          <div className="border-t border-zinc-100">
+            {timelineData.map((step, index) => (
+              <div 
+                key={index}
+                onMouseEnter={() => setActiveStep(index)}
+                className="cursor-pointer"
+              >
+                <TimelineStep 
+                  time={step.time}
+                  icon={step.icon}
+                  traditional={step.traditional}
+                  cc={step.cc}
+                  isActive={activeStep === index}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* MATH SECTION: THE COFFEE METRIC */}
+        <section className="py-40 px-8 bg-zinc-50 border-y border-zinc-100">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+             <div className="space-y-10">
+                <div className="w-16 h-16 bg-white rounded-3xl shadow-xl flex items-center justify-center text-zinc-900">
+                  <Coffee size={32} />
+                </div>
+                <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight">100 Experts. <br/> <span className="text-zinc-300 italic font-light text-zinc-900">One coffee a day.</span></h3>
+                <p className="text-lg text-zinc-500 font-light leading-relaxed">
+                   The average business owner spends $8 a day on caffeine to keep themselves going. For that same price, Camber & Casper gives you 100 agents who never sleep, never fatigue, and never make mistakes.
+                </p>
+                <div className="grid grid-cols-2 gap-8 pt-4">
+                   <div className="space-y-1">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Daily Cost</div>
+                      <div className="text-3xl font-bold">$26.00</div>
+                   </div>
+                   <div className="space-y-1 border-l border-zinc-200 pl-8">
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">Cost Per Agent</div>
+                      <div className="text-3xl font-bold">$0.26</div>
+                   </div>
+                </div>
+             </div>
+             <div className="bg-zinc-900 rounded-[60px] p-16 text-white space-y-12 shadow-[0_50px_100px_rgba(0,0,0,0.15)] relative overflow-hidden group">
+                <div className="absolute inset-0 opacity-10 pointer-events-none">
+                   <div className="grid grid-cols-12 h-full gap-2">
+                      {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+                   </div>
+                </div>
+                <div className="relative z-10 space-y-6">
+                   <h4 className="text-xs font-bold tracking-[0.4em] uppercase text-zinc-500">The ROI Advantage</h4>
+                   <div className="space-y-4">
+                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                         <span className="text-sm opacity-50 font-light italic">Traditional Hire (1 Person)</span>
+                         <span className="text-lg font-bold text-zinc-400 line-through">$6,500/mo</span>
+                      </div>
+                      <div className="flex justify-between items-end border-b border-white/10 pb-4">
+                         <span className="text-sm opacity-50 font-light italic">The C&C Swarm (100 Agents)</span>
+                         <span className="text-2xl font-bold text-blue-500">$799/mo</span>
+                      </div>
+                   </div>
+                   <p className="text-sm text-zinc-500 italic font-light pt-4 leading-relaxed">
+                     "I stopped looking for a personal assistant and started looking for a workforce. Camber & Casper changed my entire P&L in one afternoon."
+                   </p>
+                </div>
+             </div>
+          </div>
+        </section>
+
+        {/* INFRASTRUCTURE: AUSTRALIAN SOIL */}
+        <section className="py-40 px-6 max-w-7xl mx-auto">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+              <div className="relative aspect-square md:aspect-auto md:h-[600px] bg-zinc-50 rounded-[60px] border border-zinc-100 flex items-center justify-center p-12 overflow-hidden shadow-inner group">
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#fff_0%,_transparent_70%)] animate-pulse" />
+                 <div className="relative z-10 text-center space-y-6">
+                    <ShieldCheck size={120} className="text-zinc-200 mx-auto" strokeWidth={0.5} />
+                    <div className="space-y-2">
+                       <div className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-400">Sovereign Guard</div>
+                       <div className="text-xl font-bold tracking-tight">Hosted on Australian Soil</div>
+                    </div>
+                 </div>
+              </div>
+              <div className="space-y-10">
+                 <h2 className="text-sm font-bold tracking-[0.5em] uppercase text-zinc-400">The Camber Shield</h2>
+                 <h3 className="text-5xl font-semibold tracking-tighter leading-tight">Hardened. Private. <br/><span className="text-zinc-200 italic font-light">Untouchable.</span></h3>
+                 <p className="text-lg text-zinc-500 font-light leading-relaxed">
+                    Camber & Casper runs on private Ironbark nodes physically located in Australia. We never use your data to train global models. Your trade secrets, client lists, and profit margins stay yours.
+                 </p>
+                 <div className="flex gap-4">
+                    <div className="px-6 py-3 bg-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                       <Database size={14} /> 100% Air-Gapped
+                    </div>
+                    <div className="px-6 py-3 bg-zinc-100 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                       <ShieldAlert size={14} /> Local Jurisdiction
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Launch your <br/><span className="text-zinc-200 italic font-light">advantage.</span></h2>
+           <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Hire the Swarm Today
+           </button>
+           <p className="mt-8 text-[10px] font-bold text-zinc-300 uppercase tracking-[0.5em]">No Technical Expertise Required.</p>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Synthetic Workforce</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900">Sovereignty</a>
+            <a href="#" className="hover:text-zinc-900">Privacy</a>
+            <a href="#" className="hover:text-zinc-900">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">
+            © 2024 CAMBER_CASPER_CORE
+         </div>
+      </footer>
+
+      {/* Custom Styles for Keynote Feel */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%) skewX(12deg); }
+          100% { transform: translateX(200%) skewX(12deg); }
+        }
+        .animate-shimmer {
+          animation: shimmer 4s infinite;
+        }
+      `}} />
+    </div>
+  );
+}

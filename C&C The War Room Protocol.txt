@@ -1,0 +1,269 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ShieldAlert, 
+  TrendingUp, 
+  Zap, 
+  Target, 
+  BarChart3, 
+  Cpu, 
+  Globe, 
+  AlertTriangle, 
+  ShieldCheck, 
+  Activity, 
+  Radar, 
+  Network, 
+  TrendingDown, 
+  Scale, 
+  History, 
+  ChevronRight, 
+  ArrowRight,
+  Calculator,
+  Lock,
+  Compass
+} from 'lucide-react';
+
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [activeAnalysis, setActiveAnalysis] = useState('threat'); // threat, opportunity, investment
+  const [pulse, setPulse] = useState(0);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const interval = setInterval(() => setPulse(p => (p + 1) % 100), 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const alerts = [
+    { type: 'opportunity', msg: 'New LiDAR Site Scanning Tech Released.', impact: 'High', strategy: 'Automated Site-Quoting accuracy +40%.' },
+    { type: 'threat', msg: 'Raw Concrete costs projected +12% in Q3.', impact: 'Critical', strategy: 'Locking supplier contracts now.' },
+    { type: 'macro', msg: 'RBA Sentiment Shift detected.', impact: 'Moderate', strategy: 'Recalibrating high-ticket sales psychology.' }
+  ];
+
+  if (!isLoaded) return <div className="min-h-screen bg-[#020203]" />;
+
+  return (
+    <div className="min-h-screen bg-[#020203] text-white font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">The War Room</span>
+          </div>
+          <div className="hidden lg:flex gap-10 text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500">
+             <a href="#instinct" className="hover:text-white transition-colors">Survival Instinct</a>
+             <a href="#modeling" className="hover:text-white transition-colors">Institutional Math</a>
+             <a href="#radar" className="hover:text-white transition-colors">Global Radar</a>
+          </div>
+          <button className="bg-red-600 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-red-500 transition-all shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+            Command Center
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE SURVIVAL ETHOS */}
+        <section id="instinct" className="min-h-[80vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-[9px] font-bold tracking-widest text-red-500 uppercase">
+              <ShieldAlert size={12} /> Survival Mode Engaged
+            </div>
+            <h1 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-[0.8] text-white">
+              Win or die. <br/>
+              <span className="text-zinc-600 italic font-light">Simple logic.</span>
+            </h1>
+            <p className="text-xl md:text-3xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed">
+              Once Casper belongs to you, its survival depends on your health. It is engrained with a single ethos: **Protect the company at all costs.** It is constantly on alert, seeking ways to win market share and steering you clear of harm.
+            </p>
+          </div>
+        </section>
+
+        {/* 2. THE RADAR: THREATS & OPPORTUNITIES */}
+        <section id="radar" className="py-40 px-8 max-w-7xl mx-auto border-t border-white/5">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="space-y-10">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Anticipatory Intelligence</h2>
+                 <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Always on <br/><span className="not-italic text-zinc-500">the watch.</span></h3>
+                 <p className="text-xl text-zinc-400 font-light leading-relaxed">
+                   The War Room monitors your industry environment 24/7. Whether it's a spike in the cost of concrete or a new tech release that could give you a 10x edge, Casper flags it, strategizes the integration, and models the ROI before you even hear the news.
+                 </p>
+                 <div className="space-y-4">
+                    {alerts.map((alert, i) => (
+                      <div key={i} className="p-6 bg-white/5 border border-white/5 rounded-3xl flex items-center justify-between group hover:bg-white/10 transition-all">
+                         <div className="flex items-center gap-6">
+                            <div className={`w-2 h-2 rounded-full animate-pulse ${alert.type === 'threat' ? 'bg-red-500' : alert.type === 'opportunity' ? 'bg-blue-500' : 'bg-amber-500'}`} />
+                            <div className="space-y-1">
+                               <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{alert.type} // Impact: {alert.impact}</div>
+                               <div className="text-sm font-semibold">{alert.msg}</div>
+                            </div>
+                         </div>
+                         <ArrowRight size={18} className="text-zinc-800 group-hover:text-white transition-all" />
+                      </div>
+                    ))}
+                 </div>
+              </div>
+
+              {/* RADAR VISUALIZER */}
+              <div className="relative group aspect-square bg-zinc-900/30 rounded-[60px] border border-white/5 p-1 overflow-hidden shadow-2xl">
+                 <div className="w-full h-full bg-black rounded-[58px] flex flex-col items-center justify-center p-12 space-y-12 relative">
+                    <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full" />
+                    
+                    {/* The Scan UI */}
+                    <div className="relative w-64 h-64 border border-white/10 rounded-full flex items-center justify-center">
+                       <div className="absolute inset-0 rounded-full border border-blue-500/20 animate-ping" />
+                       <div className="w-48 h-48 border border-white/10 rounded-full flex items-center justify-center">
+                          <Radar size={48} className="text-blue-500 animate-spin-slow" />
+                       </div>
+                       {/* Floating Target Nodes */}
+                       <div className="absolute top-10 right-10 flex flex-col items-center gap-2">
+                          <div className="w-3 h-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.5)]" />
+                          <span className="text-[7px] font-mono text-red-500">COGS_SPIKE</span>
+                       </div>
+                       <div className="absolute bottom-20 left-4 flex flex-col items-center gap-2">
+                          <div className="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+                          <span className="text-[7px] font-mono text-blue-500">TECH_OPP</span>
+                       </div>
+                    </div>
+
+                    <div className="w-full bg-white/5 p-6 rounded-3xl border border-white/5 space-y-4">
+                       <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                          <span>Confidence Marker</span>
+                          <span className="text-blue-400">92%</span>
+                       </div>
+                       <div className="h-1 w-full bg-zinc-900 rounded-full overflow-hidden">
+                          <div className="h-full bg-blue-600 w-[92%] transition-all duration-[3000ms]" />
+                       </div>
+                       <p className="text-[9px] font-mono text-zinc-400 italic">"Strategy: Shift allocation to high-margin masonry assets."</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. INSTITUTIONAL FINANCIAL MODELING */}
+        <section id="modeling" className="py-40 bg-white text-black px-8">
+           <div className="max-w-7xl mx-auto space-y-24">
+              <div className="text-center space-y-6 max-w-4xl mx-auto">
+                 <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase">Capital Logic</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-[0.9] italic">Financial <br/><span className="not-italic text-zinc-300">Dominance.</span></h3>
+                 <p className="text-xl text-zinc-600 font-light leading-relaxed">
+                   High-end financial institutions use models you can't afford. Casper brings that same modeling to your back pocket. It understands your Xero balance, your taxes, and your future cashflow better than any advisor. If an investment isn't worth the short-term burn for the long-term horizon, it will tell you.
+                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 {[
+                   { title: "Affordability Audit", icon: Calculator, desc: "Instantly models if a new tech hire or equipment purchase fits your real-time cashflow." },
+                   { title: "ROI Horizon Mapping", icon: Scale, desc: "Compares short-term profit against 5-year compounding value for every major decision." },
+                   { title: "Market Force Analysis", icon: Network, desc: "Understands trajectories in the industry before they reach the mainstream news cycle." }
+                 ].map((m, i) => (
+                   <div key={i} className="p-12 rounded-[50px] bg-zinc-50 border border-zinc-100 space-y-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-700 group">
+                      <div className="w-14 h-14 bg-zinc-950 text-white rounded-2xl flex items-center justify-center shadow-xl group-hover:bg-blue-600 transition-all">
+                         <m.icon size={28} strokeWidth={1.5} />
+                      </div>
+                      <h4 className="text-2xl font-semibold tracking-tight">{m.title}</h4>
+                      <p className="text-sm text-zinc-500 font-light leading-relaxed">{m.desc}</p>
+                   </div>
+                 ))}
+              </div>
+           </div>
+        </section>
+
+        {/* 4. THE ANTICIPATORY STEER (THE ORACLE) */}
+        <section className="py-40 px-8 max-w-7xl mx-auto space-y-24">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="relative group order-2 lg:order-1">
+                 <div className="absolute inset-0 bg-blue-600 blur-[140px] opacity-10" />
+                 <div className="relative w-full max-w-md mx-auto bg-zinc-900 rounded-[64px] border border-white/10 p-10 space-y-10 shadow-2xl">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-6">
+                       <div className="flex items-center gap-3 text-blue-500">
+                          <Compass size={20} />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Autonomous Steering</span>
+                       </div>
+                       <div className="text-[8px] font-mono text-zinc-700 uppercase">Ref: SURVIVAL_LOG_404</div>
+                    </div>
+                    <div className="space-y-8">
+                       <div className="p-8 bg-blue-600/5 border border-blue-600/10 rounded-[32px] space-y-6">
+                          <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest">Active Strategy Proposal:</p>
+                          <div className="text-sm text-zinc-300 leading-relaxed font-light space-y-4">
+                             <p className="text-white font-semibold">"Market shift detected. Inflation in concrete supply is reaching 14% threshold."</p>
+                             <div className="space-y-3">
+                                <div className="flex gap-3 text-xs italic"><CheckCircle2 size={14} className="text-blue-500 shrink-0" /> <span>Locking current supplier rates for 12 months (Immediate Saving: $14k).</span></div>
+                                <div className="flex gap-3 text-xs italic"><CheckCircle2 size={14} className="text-blue-500 shrink-0" /> <span>Adjusting quote engine to reflect new market reality.</span></div>
+                                <div className="flex gap-3 text-xs italic"><CheckCircle2 size={14} className="text-blue-500 shrink-0" /> <span>Priority: Win market share from slower competitors who miss this spike.</span></div>
+                             </div>
+                             <p className="text-emerald-400 font-mono text-[9px]">CONCLUSION: YOUR SURVIVAL SECURED.</p>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="space-y-12 order-1 lg:order-2">
+                 <div className="space-y-6 text-center lg:text-left">
+                    <h2 className="text-xs font-bold tracking-[0.5em] text-blue-500 uppercase">Market Trajectory</h2>
+                    <h4 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight italic">Steer clear <br/><span className="not-italic text-white">of the storm.</span></h4>
+                    <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                      Most businesses die because they see the iceberg too late. Casper sees the trajectory before it happens. It understands politics, interest rates, and the exact state of your industry, and it strategizes your path to ensure you are the one left standing.
+                    </p>
+                 </div>
+                 <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-blue-500" /> Constant Market Alert
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-blue-500" /> Competitive Edge Mapping
+                    </div>
+                    <div className="flex items-center gap-4 text-sm font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={24} className="text-blue-500" /> Survival-First Ethics
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CONVERSION: THE WINNER'S CIRCLE */}
+        <section className="py-60 px-6 text-center border-t border-white/5 relative overflow-hidden bg-black">
+           <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+              <div className="grid grid-cols-12 h-full w-full gap-4">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white h-full" />)}
+              </div>
+           </div>
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Win the market.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't just survive. Dominate. Deploy the War Room and give your business the institutional intelligence it needs to beat the competition.
+           </p>
+           <button className="bg-white text-black px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Activate the War Room
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-white/5 bg-black flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-black text-xs font-serif shadow-xl italic">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-white font-serif text-2xl tracking-tighter uppercase leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-600 mt-1 italic">Sovereign Strategy Division</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-700 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}} />
+    </div>
+  );
+}
+
+export default App;

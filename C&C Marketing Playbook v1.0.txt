@@ -1,0 +1,199 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ArrowRight, 
+  Clock, 
+  Zap, 
+  ShieldCheck, 
+  Users, 
+  Coffee, 
+  Moon, 
+  Sun, 
+  Camera,
+  Layout,
+  Car,
+  Anchor,
+  Heart,
+  Briefcase,
+  Monitor
+} from 'lucide-react';
+
+const PlaySection = ({ title, subtitle, imageDescription, children, dark = false }) => (
+  <section className={`py-40 px-8 ${dark ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-900'}`}>
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <h2 className={`text-xs font-bold tracking-[0.6em] uppercase ${dark ? 'text-zinc-500' : 'text-zinc-400'}`}>{subtitle}</h2>
+          <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none">{title}</h3>
+        </div>
+        <div className="text-lg font-light leading-relaxed opacity-70 max-w-lg">
+          {children}
+        </div>
+      </div>
+      <div className={`aspect-square md:aspect-video rounded-[60px] overflow-hidden relative flex items-center justify-center border ${dark ? 'bg-zinc-900 border-white/5' : 'bg-zinc-50 border-zinc-100'}`}>
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="grid grid-cols-12 h-full gap-2">
+            {[...Array(12)].map((_, i) => <div key={i} className={`border-r ${dark ? 'border-white/10' : 'border-black/5'}`} />)}
+          </div>
+        </div>
+        <div className="relative z-10 text-center p-12 space-y-6">
+           <Camera size={48} className={dark ? 'text-zinc-700' : 'text-zinc-200'} strokeWidth={1} />
+           <p className={`text-[10px] font-bold uppercase tracking-[0.4em] ${dark ? 'text-zinc-500' : 'text-zinc-300'}`}>Visual Direction: {imageDescription}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const App = () => {
+  const [stage, setStage] = useState('splash');
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStage('main'), 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (stage === 'splash') {
+    return (
+      <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[100]">
+        <div className="w-24 h-24 bg-zinc-950 rounded-[28%] flex items-center justify-center shadow-2xl animate-in zoom-in duration-1000">
+          <span className="font-serif text-3xl font-light text-white">C<span className="text-zinc-500 italic">C</span></span>
+        </div>
+        <p className="mt-8 text-[10px] tracking-[0.8em] uppercase text-zinc-400 font-bold animate-pulse">Strategy Briefing v1.0</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-950 selection:text-white">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-zinc-100 px-10 py-8">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 bg-zinc-900 rounded-xl flex items-center justify-center text-white text-[10px] font-serif">C&C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">Marketing Playbook</span>
+          </div>
+          <div className="flex gap-8 text-[9px] font-bold tracking-widest uppercase text-zinc-400">
+             <span>Sovereign Guard</span>
+             <span>The 100</span>
+             <span className="text-zinc-900">v1.0</span>
+          </div>
+        </div>
+      </nav>
+
+      <main className="pt-32">
+        {/* PLAY 1: THE INVISIBLE OFFICE */}
+        <PlaySection 
+          subtitle="Marketing Play 01" 
+          title="The Productive Ghost."
+          imageDescription="High-end, minimalist office at dusk. Designer chairs are empty. Screens are glowing with C&C metrics. No humans, but the office feels 'alive'."
+          dark={true}
+        >
+          People are used to seeing busy offices. We want to show them a **Silent Powerhouse**. 
+          "The most productive team you'll never see." 
+          A workforce of 100 specialized agents that doesn't need a desk, a pension, or a lunch break. 
+          While the office is empty, the work is accelerating.
+        </PlaySection>
+
+        {/* PLAY 2: THE HAND-BACK */}
+        <PlaySection 
+          subtitle="Marketing Play 02" 
+          title="The 6 PM <br/> Dinner."
+          imageDescription="A warm, candid shot of a business owner laughing with his family at a dinner table. No phone in sight. A sense of total presence and relief."
+        >
+          We aren't selling software; we are selling **Presence**. 
+          "Camber has the logs. Casper has the office. You have the family." 
+          By offloading the mental burden of 100 staff tasks, we give the business owner 15 hours of their life back every single week.
+        </PlaySection>
+
+        {/* PLAY 3: THE PASSION PLAY */}
+        <PlaySection 
+          subtitle="Marketing Play 03" 
+          title="Tools down. <br/> Hood up."
+          imageDescription="A clean garage. A vintage 1970s Porsche 911 on a jack. A tradie with oil on his hands, smiling. He's finally working on his project, not his paperwork."
+          dark={true}
+        >
+          Most business owners started their trade because they loved the craft. 
+          Then the paperwork buried them. 
+          "Get back to what you love. Let the Swarm handle the rest." 
+          This play targets the 'Weekend Warrior'—the boat, the car, the mountain bike—the things that usually get sacrificed.
+        </PlaySection>
+
+        {/* BRAINSTORMING SECTION: NEW PLAYS */}
+        <section className="py-40 px-8 max-w-7xl mx-auto border-t border-zinc-100">
+           <div className="text-center mb-24 space-y-4">
+              <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-zinc-400">Future Strategy</h2>
+              <h3 className="text-5xl font-semibold tracking-tight">New Marketing Vectors.</h3>
+           </div>
+           
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="space-y-6">
+                 <div className="w-12 h-12 bg-zinc-900 text-white rounded-2xl flex items-center justify-center">
+                    <Monitor size={24} />
+                 </div>
+                 <h4 className="text-2xl font-semibold">The "Zero-Super" Play</h4>
+                 <p className="text-zinc-500 font-light text-sm leading-relaxed">
+                    "100 staff. Zero Payroll Tax. Zero Superannuation. Zero HR Drama." 
+                    Focus on the legal and financial relief of an autonomous workforce versus a human one.
+                 </p>
+              </div>
+
+              <div className="space-y-6">
+                 <div className="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center text-zinc-900 border border-zinc-100">
+                    <ShieldCheck size={24} />
+                 </div>
+                 <h4 className="text-2xl font-semibold">The "Aussie Soil" Shield</h4>
+                 <p className="text-zinc-500 font-light text-sm leading-relaxed">
+                    "Built in Sydney. Hosted in Melbourne. Protected by Aussie Law." 
+                    A play on national pride and the security of having an 'Air-Gapped' fortress for your company data.
+                 </p>
+              </div>
+
+              <div className="space-y-6">
+                 <div className="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center text-zinc-900 border border-zinc-100">
+                    <TrendingUp size={24} />
+                 </div>
+                 <h4 className="text-2xl font-semibold">The "Sellable Asset" Play</h4>
+                 <p className="text-zinc-500 font-light text-sm leading-relaxed">
+                    "Don't build a job. Build an asset." 
+                    Show the owner how C&C makes their business sellable because it's no longer dependent on them personally.
+                 </p>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL IMPACT CTA */}
+        <section className="py-60 px-6 text-center bg-zinc-950 text-white overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="grid grid-cols-6 h-full w-full">
+                 {[...Array(6)].map((_, i) => <div key={i} className="border-r border-white/10 h-full" />)}
+              </div>
+           </div>
+           <div className="relative z-10 space-y-12 max-w-4xl mx-auto">
+              <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16">Own <br/><span className="text-zinc-700 italic font-light">the silence.</span></h2>
+              <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed">
+                Marketing isn't about the technology. It's about the result. Camber & Casper gives the owner back the one thing money usually can't buy: **Time.**
+              </p>
+              <button className="bg-white text-zinc-950 px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl">
+                 Approve Strategy v1.0
+              </button>
+           </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-20 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-900 rounded-[24%] flex items-center justify-center text-white text-xs font-serif italic shadow-xl">C<span className="text-zinc-500">C</span></div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1">Growth & Strategy Group</span>
+            </div>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-200 tracking-[0.3em]">
+            © 2024 CAMBER_CASPER_CORE
+         </div>
+      </footer>
+    </div>
+  );
+}

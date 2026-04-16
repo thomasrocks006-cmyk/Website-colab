@@ -1,0 +1,266 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, 
+  HardHat, 
+  Truck, 
+  FileText, 
+  DollarSign, 
+  Clock, 
+  ChevronRight, 
+  ArrowRight, 
+  ShieldCheck, 
+  CheckCircle2, 
+  MessageSquare, 
+  Calendar,
+  Smartphone,
+  Briefcase,
+  Activity,
+  MapPin,
+  TrendingUp,
+  Search,
+  Hammer,
+  AlertTriangle,
+  UserPlus,
+  Layers,
+  Heart
+} from 'lucide-react';
+
+const App = () => {
+  const [activeTool, setActiveTool] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const burdenAudit = [
+    {
+      category: "Recruitment & Onboarding",
+      humanCost: "$5,800 + 40hrs",
+      apexBenefit: "Instant Commissioning",
+      desc: "Skip the interviews, the background checks, and the 3-month 'ramp up' period. The Swarm arrives fully trained on day one.",
+      icon: <UserPlus className="text-blue-500" size={18} />
+    },
+    {
+      category: "SaaS Stack Bloat",
+      humanCost: "$450 - $900/mo",
+      apexBenefit: "Included in C&C Core",
+      desc: "Stop paying for separate CRM, Scheduling, and Lead-Gen tools. Your agents unify the entire operational stack.",
+      icon: <Layers className="text-emerald-500" size={18} />
+    },
+    {
+      category: "The 'Drama' Tax",
+      humanCost: "Mental Load (High)",
+      apexBenefit: "0% Volatility",
+      desc: "100 agents who never call in sick, never have 'bad Mondays', and never require a performance review. Pure execution.",
+      icon: <Heart className="text-red-500" size={18} />
+    },
+    {
+      category: "Opportunity Cost",
+      humanCost: "Lost Jobs (20%+)",
+      apexBenefit: "Apex Response",
+      desc: "The jobs you lose because you were 'on the tools' and didn't answer the phone. Our agents capture 100% of signals.",
+      icon: <Zap className="text-amber-500" size={18} />
+    }
+  ];
+
+  if (!isLoaded) return <div className="h-screen bg-white" />;
+
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] text-[#1D1D1F] font-sans selection:bg-zinc-900 selection:text-white overflow-x-hidden">
+      
+      {/* 1. NAVIGATION */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100 px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="w-10 h-10 bg-zinc-950 rounded-xl flex items-center justify-center text-white text-[10px] font-serif shadow-xl">C</div>
+            <span className="font-serif text-2xl font-light tracking-tighter uppercase">The Tradie Portal</span>
+          </div>
+          <button className="bg-zinc-900 text-white px-8 py-2.5 rounded-full text-[11px] font-bold tracking-tight hover:bg-zinc-700 transition-all shadow-xl">
+            Access Terminal
+          </button>
+        </div>
+      </nav>
+
+      <main className="pt-40">
+        
+        {/* HERO: THE WORKER'S ADVANTAGE */}
+        <section className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center max-w-6xl mx-auto space-y-12">
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-100 text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 border border-zinc-200">
+              <HardHat size={12} /> Operations Evolved
+            </div>
+            <h1 className="text-6xl md:text-[130px] font-semibold tracking-tighter leading-[0.8] text-zinc-950">
+              Scale your <br/>
+              <span className="text-zinc-200 italic font-light text-zinc-900">impact, not your stress.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Don't hire your first employee. Deploy a 100-man autonomous crew. We've removed the technical, financial, and emotional barriers to growth.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6">
+             <button className="bg-zinc-900 text-white px-16 py-6 rounded-full font-bold text-sm tracking-tight transition-all hover:scale-105 shadow-2xl flex items-center gap-3">
+                Hire the Crew <Zap size={16} fill="white" />
+             </button>
+             <div className="flex items-center gap-3 px-8 text-[11px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-100 rounded-full bg-zinc-50">
+                <CheckCircle2 size={16} className="text-blue-500" /> Sydney/Melbourne Node-Link Active
+             </div>
+          </div>
+        </section>
+
+        {/* 2. THE BURDEN AUDIT (REPLACEMENT LOGIC UPGRADE) */}
+        <section className="py-40 bg-zinc-950 text-white px-8 overflow-hidden relative">
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="grid grid-cols-12 h-full gap-4 px-10">
+                 {[...Array(12)].map((_, i) => <div key={i} className="border-r border-white/20 h-full" />)}
+              </div>
+           </div>
+
+           <div className="max-w-7xl mx-auto relative z-10 space-y-24">
+              <div className="text-center space-y-6 max-w-3xl mx-auto">
+                 <h2 className="text-xs font-bold uppercase tracking-[0.6em] text-blue-400">The Replacement Logic v2.0</h2>
+                 <h3 className="text-5xl md:text-8xl font-semibold tracking-tighter leading-none italic">The Burden <br/><span className="text-zinc-500 not-italic">Audit.</span></h3>
+                 <p className="text-xl text-zinc-400 font-light">Growth usually means more headaches. With Camber & Casper, growth means more silence. We don't just replace payroll; we replace friction.</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                 {burdenAudit.map((item, i) => (
+                   <div key={i} className="group p-10 rounded-[48px] bg-white/5 border border-white/5 hover:border-white/20 transition-all duration-700 flex flex-col justify-between min-h-[320px]">
+                      <div className="space-y-6">
+                         <div className="flex justify-between items-center">
+                            <div className="p-3 bg-white/5 rounded-2xl">
+                               {item.icon}
+                            </div>
+                            <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Protocol_{i+1}</div>
+                         </div>
+                         <h4 className="text-3xl font-semibold tracking-tight">{item.category}</h4>
+                         <p className="text-sm text-zinc-500 font-light leading-relaxed max-w-md">{item.desc}</p>
+                      </div>
+
+                      <div className="mt-10 pt-8 border-t border-white/5 flex justify-between items-center">
+                         <div className="space-y-1">
+                            <div className="text-[9px] font-bold uppercase tracking-widest text-zinc-600">Manual Approach</div>
+                            <div className="text-lg font-bold text-zinc-400 line-through opacity-50">{item.humanCost}</div>
+                         </div>
+                         <ArrowRight size={20} className="text-zinc-800" />
+                         <div className="space-y-1 text-right">
+                            <div className="text-[9px] font-bold uppercase tracking-widest text-blue-400">C&C Advantage</div>
+                            <div className="text-lg font-bold text-blue-500">{item.apexBenefit}</div>
+                         </div>
+                      </div>
+                   </div>
+                 ))}
+              </div>
+
+              <div className="bg-blue-600 rounded-[48px] p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl shadow-blue-900/20">
+                 <div className="space-y-2 text-center md:text-left">
+                    <h4 className="text-3xl font-bold tracking-tight">Ready to kill the friction?</h4>
+                    <p className="text-blue-100 font-light max-w-md italic opacity-80">Stop acting as the HR manager, the admin clerk, and the bookkeeper. Start acting as the Owner.</p>
+                 </div>
+                 <button className="bg-white text-zinc-950 px-12 py-5 rounded-full font-bold text-sm tracking-tight hover:scale-105 transition-all shadow-xl">
+                    Deploy Your 100 Experts
+                 </button>
+              </div>
+           </div>
+        </section>
+
+        {/* 3. TRADIE-SPECIFIC INTERFACE (Mobile-First Focus) */}
+        <section className="py-40 px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+           <div className="space-y-10">
+              <h2 className="text-xs font-bold tracking-[0.5em] text-zinc-400 uppercase text-center md:text-left">The Cockpit</h2>
+              <h3 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-tight text-center md:text-left">Control your crew <br/> <span className="text-zinc-300 italic">from the van.</span></h3>
+              <p className="text-xl text-zinc-500 font-light leading-relaxed text-center md:text-left">
+                The Casper Terminal is designed for the high-intensity environment of a job site. Big buttons, instant notifications, and high-contrast visuals. See who's quoting, who's paying, and where your fleet is at a glance.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-8">
+                 <div className="space-y-2">
+                    <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-zinc-900">
+                       <CheckCircle2 size={18} className="text-blue-500" /> Lead Sync
+                    </div>
+                    <p className="text-xs text-zinc-400 pl-7">100% of web & phone leads captured instantly.</p>
+                 </div>
+                 <div className="space-y-2">
+                    <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-zinc-900">
+                       <CheckCircle2 size={18} className="text-blue-500" /> Cash Logic
+                    </div>
+                    <p className="text-xs text-zinc-400 pl-7">Invoices sent and chased autonomously.</p>
+                 </div>
+              </div>
+           </div>
+
+           {/* Stylized Smartphone UI Mockup */}
+           <div className="relative flex justify-center">
+              <div className="absolute inset-0 bg-blue-500/10 blur-[120px] rounded-full" />
+              <div className="relative w-[320px] h-[640px] bg-zinc-950 rounded-[60px] border-[8px] border-zinc-900 shadow-2xl overflow-hidden p-6 space-y-6">
+                 <div className="flex justify-between items-center text-[8px] font-mono text-zinc-500">
+                    <span>9:41 AM</span>
+                    <div className="flex items-center gap-1">
+                       <Activity size={10} className="text-green-500" /> 100%
+                    </div>
+                 </div>
+                 
+                 <div className="space-y-1">
+                    <h5 className="text-white text-lg font-bold">Good Morning, Mike.</h5>
+                    <p className="text-zinc-500 text-[10px]">Sydney Node: Sydney_04_Active</p>
+                 </div>
+
+                 <div className="bg-white/5 rounded-2xl p-4 border border-white/5 space-y-4">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                       <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Growth Division</span>
+                       <Zap size={12} className="text-blue-500" />
+                    </div>
+                    <p className="text-[10px] text-zinc-300">3 Quotes sent since 06:00 AM.</p>
+                    <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-3/4" /></div>
+                 </div>
+
+                 <div className="bg-white/5 rounded-2xl p-4 border border-white/5 space-y-4">
+                    <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                       <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Fiscal Division</span>
+                       <DollarSign size={12} className="text-emerald-400" />
+                    </div>
+                    <p className="text-[10px] text-zinc-300">$1,450 recovered from late invoices.</p>
+                    <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden"><div className="h-full bg-emerald-600 w-full" /></div>
+                 </div>
+
+                 <div className="pt-10 flex flex-col gap-3">
+                    <button className="w-full bg-white text-black py-4 rounded-2xl font-bold text-xs uppercase tracking-widest">Approve All</button>
+                    <button className="w-full bg-white/5 text-zinc-400 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest border border-white/10">View Log</button>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="py-60 px-6 text-center">
+           <h2 className="text-6xl md:text-[140px] font-semibold tracking-tighter leading-none mb-16 italic">Win the job.</h2>
+           <p className="text-xl text-zinc-500 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
+              Don't hire a human assistant who needs managing. Deploy an autonomous workforce that manages itself. $799/month. Zero drama.
+           </p>
+           <button className="bg-zinc-900 text-white px-20 py-8 rounded-full font-bold text-lg tracking-tight transition-all hover:scale-105 shadow-2xl">
+              Claim Your Weekend
+           </button>
+        </section>
+
+      </main>
+
+      <footer className="py-24 px-10 border-t border-zinc-100 bg-white flex flex-col md:flex-row justify-between items-center gap-10">
+         <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-950 rounded-[24%] flex items-center justify-center text-white text-xs font-serif shadow-xl">C</div>
+            <div className="flex flex-col text-left">
+               <span className="text-zinc-900 font-serif text-2xl tracking-tighter leading-none uppercase">C&C</span>
+               <span className="text-[8px] font-bold uppercase tracking-[0.4em] text-zinc-400 mt-1 italic">Sovereign Site Solutions</span>
+            </div>
+         </div>
+         <div className="flex gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">Infrastructure</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Economics</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Contact</a>
+         </div>
+         <div className="text-[9px] font-mono text-zinc-300 tracking-[0.3em]">© 2024 CAMBER_CASPER_CORE</div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
