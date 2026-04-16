@@ -470,7 +470,7 @@
           on sovereign Australian soil.
         </p>
         <div class="hero-ctas">
-          <a href="pricing.html" class="btn-primary">
+          <a href="pricing.html" class="btn-primary cc-glow-cta">
             Deploy the Workforce
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -484,6 +484,36 @@
         </div>
       </div>
     </section>
+
+    <!-- TRUST STATS ROW -->
+    <div style="padding:0 2rem;">
+      <div class="cc-stats-row reveal" style="max-width:72rem;margin:0 auto;">
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val" data-count="100">0</div>
+          <div class="cc-stat-label">Agents deployed</div>
+        </div>
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val">42s</div>
+          <div class="cc-stat-label">Avg. response time</div>
+        </div>
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val">0.001%</div>
+          <div class="cc-stat-label">Error rate</div>
+        </div>
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val" data-count="24">0</div>
+          <div class="cc-stat-label">Hours active daily</div>
+        </div>
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val">AU</div>
+          <div class="cc-stat-label">Sovereign infrastructure</div>
+        </div>
+        <div class="cc-stat-cell">
+          <div class="cc-stat-val">$799</div>
+          <div class="cc-stat-label">Per month · AUD</div>
+        </div>
+      </div>
+    </div>
 
     <!-- AGENT TICKER —— live activity marquee -->
     <div class="cc-ticker-wrap">
@@ -677,7 +707,7 @@
         </div>
         <div class="grid-2 reveal" data-delay="200">
           <!-- CAMBER -->
-          <div class="identity-card identity-camber tilt-card">
+          <div class="identity-card identity-camber tilt-card cc-spotlight-card">
             <div>
               <div class="card-icon card-icon-light mb-8">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -697,7 +727,7 @@
               Structural Integrity</div>
           </div>
           <!-- CASPER -->
-          <div class="identity-card identity-casper tilt-card">
+          <div class="identity-card identity-casper tilt-card cc-spotlight-card">
             <div>
               <div class="card-icon card-icon-blue mb-8">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -830,7 +860,7 @@
         </div>
         <div class="grid-2 reveal" data-delay="200">
           <!-- Competitor -->
-          <div class="compare-card compare-human tilt-card">
+          <div class="compare-card compare-human tilt-card cc-spotlight-card">
             <div class="flex-between mb-8">
               <span class="text-label" style="color:var(--cc-zinc-300);">Traditional Competitor</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-200)" stroke-width="2">
@@ -849,7 +879,7 @@
             </ul>
           </div>
           <!-- C&C Apex -->
-          <div class="compare-card compare-apex tilt-card">
+          <div class="compare-card compare-apex tilt-card cc-spotlight-card">
             <div class="flex-between mb-8">
               <span class="text-label" style="color:var(--cc-blue-500);">C&C Powered Apex</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2">
@@ -878,7 +908,7 @@
          "Before the intelligence of Casper, there was
          the brute force of Ironbark."
          ============================================ -->
-    <section class="section section-dark" style="padding:10rem 2rem;">
+    <section class="section section-dark section-noise" style="padding:10rem 2rem;">
       <div class="dot-grid"></div>
       <div class="container" style="position:relative;z-index:1;">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
@@ -1283,6 +1313,11 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <button id="cc-back-top" class="cc-back-top" aria-label="Back to top">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M8 12V4M4 7l4-4 4 4" />
+    </svg>
+  </button>
 </body>
 
 </html>
