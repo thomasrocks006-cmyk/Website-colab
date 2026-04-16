@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- SPLASH SCREEN ---
   const splash = document.querySelector('.splash');
   if (splash) {
-    setTimeout(() => splash.classList.add('hidden'), 2500);
+    // Fade out + scale up, then remove from flow
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      setTimeout(() => { splash.style.display = 'none'; }, 1100);
+    }, 2800);
   }
 
   // --- NAV SCROLL ---
