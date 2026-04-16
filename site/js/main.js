@@ -781,3 +781,30 @@ if (stickyBar) {
     obs.observe(hero);
   }
 }
+
+// === PASS 14 ===
+
+// Badge pop entrance
+const badgeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('cc-badge-popped'); badgeObs.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.cc-badge-pop').forEach(el => badgeObs.observe(el));
+
+// Text-label tracking expand
+const labelObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('cc-label-tracked'); labelObs.unobserve(e.target); }
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('.cc-label-track').forEach(el => labelObs.observe(el));
+
+// Hero-mesh parallax on scroll
+const heroMesh = document.querySelector('.hero-mesh');
+if (heroMesh) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroMesh.style.transform = `translateY(${y * 0.35}px)`;
+  }, { passive: true });
+}

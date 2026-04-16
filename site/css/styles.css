@@ -3080,3 +3080,63 @@ button {
   transition: width 0.28s ease;
 }
 .nav-links a:hover::after { width: 100%; }
+
+/* ============================================================
+   PASS 14: BADGE POP · LABEL TRACK-IN · HERO PARALLAX · QUOTE GLYPH
+   ============================================================ */
+
+/* Badge pop entrance */
+.cc-badge-pop {
+  opacity: 0;
+  transform: scale(0.7);
+}
+.cc-badge-pop.cc-badge-popped {
+  animation: cc-badge-pop-anim 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes cc-badge-pop-anim {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Text-label tracking expand */
+.cc-label-track {
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transition: letter-spacing 0.7s ease, opacity 0.5s ease;
+}
+.cc-label-track.cc-label-tracked {
+  letter-spacing: 0.25em;
+  opacity: 1;
+}
+
+/* Hero mesh parallax holder */
+.hero-mesh { will-change: transform; }
+
+/* Testimonial decorative quote glyph */
+.cc-testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+.cc-testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.5rem;
+  left: 1.25rem;
+  font-size: 7rem;
+  line-height: 1;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, var(--cc-blue-500) 0%, var(--cc-emerald-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Focus-visible polish */
+:focus-visible {
+  outline: 2px solid var(--cc-blue-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
