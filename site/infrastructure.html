@@ -23,150 +23,6 @@
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .infra-card {
-      background: var(--cc-zinc-900);
-      border: 1px solid var(--cc-zinc-800);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      transition: all 0.5s;
-    }
-
-    .infra-card:hover {
-      border-color: var(--cc-zinc-700);
-      transform: translateY(-2px);
-    }
-
-    .infra-icon {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Australia Map Visual */
-    .map-container {
-      background: var(--cc-zinc-950);
-      border-radius: 60px;
-      border: 1px solid var(--cc-zinc-800);
-      padding: 4rem;
-      position: relative;
-      overflow: hidden;
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .map-node {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .map-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--cc-blue-500);
-      animation: pulse 2s infinite;
-      position: relative;
-    }
-
-    .map-dot::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      animation: pulse 2s infinite 0.5s;
-    }
-
-    .map-label {
-      font-family: var(--font-mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cc-zinc-500);
-      margin-top: 0.5rem;
-      white-space: nowrap;
-    }
-
-    /* Encryption Demo */
-    .encrypt-demo {
-      background: var(--cc-zinc-950);
-      border: 1px solid var(--cc-zinc-800);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .encrypt-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid var(--cc-zinc-800);
-    }
-
-    .encrypt-body {
-      padding: 2rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-    }
-
-    .encrypt-row {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--cc-zinc-900);
-    }
-
-    .encrypt-row:last-child {
-      border-bottom: none;
-    }
-
-    /* Node Spec Card */
-    .spec-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .spec-item {
-      background: var(--cc-zinc-900);
-      border: 1px solid var(--cc-zinc-800);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .spec-value {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      color: white;
-    }
-
-    .spec-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cc-zinc-500);
-      margin-top: 0.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .spec-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -175,9 +31,9 @@
   <!-- NAV -->
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <div style="display:flex;align-items:center;gap:3rem;">
+      <div class="flex items-center gap-12">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
           <span class="nav-logo-text font-serif">C&C</span>
         </a>
         <div class="nav-links">
@@ -191,7 +47,7 @@
           <a href="pricing.html">Pricing</a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="flex items-center gap-4x">
         <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
         <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -213,9 +69,9 @@
 
   <main id="main">
     <!-- HERO — Dark theme for infrastructure -->
-    <section class="section-dark pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
+    <section class="section-dark pt-40 section-pad-hero">
       <div class="dot-grid"></div>
-      <div class="reveal container-sm" style="position:relative;z-index:1;">
+      <div class="reveal container-sm z-1">
         <div class="badge cc-badge-pop"
           style="background:rgba(255,255,255,0.05);border-color:var(--cc-zinc-800);color:var(--cc-zinc-400);"
           class="mb-8">
@@ -224,9 +80,9 @@
           </svg>
           Sovereign Infrastructure
         </div>
-        <h1 class="text-hero" style="color:white;">Ironbark<br><span class="cc-grad-text"
+        <h1 class="text-hero text-white">Ironbark<br><span class="cc-grad-text"
             style="font-style:italic;">Evolved.</span></h1>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+        <p class="text-body-lg mt-6 mx-auto max-w-lg text-zinc-400">
           Before the intelligence of Casper, there was the brute force of Ironbark. Hardened server nodes on Australian
           soil. Air-gapped. Sovereign. The bedrock that everything else is built upon.
         </p>
@@ -237,7 +93,7 @@
          AUSTRALIA MAP — from Sovereign Security v3.0
          Node locations: Sydney, Melbourne, Brisbane
          ============================================ -->
-    <section class="section section-dark" style="padding:6rem 2rem;">
+    <section class="section section-dark section-pad-sm">
       <div class="container reveal">
         <div class="map-container">
           <div
@@ -283,14 +139,14 @@
     <!-- ============================================
          NODE SPECIFICATIONS — from Ironbark Infrastructure
          ============================================ -->
-    <section class="section section-dark" style="padding:6rem 2rem;">
+    <section class="section section-dark section-pad-sm">
       <div class="container">
         <div class="reveal text-center mb-12">
-          <h2 class="text-display" style="color:white;">Node Specifications</h2>
+          <h2 class="text-display text-white">Node Specifications</h2>
         </div>
         <div class="spec-grid reveal" data-delay="200">
           <div class="spec-item">
-            <div class="spec-value" style="color:var(--cc-blue-500);" data-count="4">0</div>
+            <div class="spec-value text-blue" data-count="4">0</div>
             <div class="spec-label">Active Clusters</div>
           </div>
           <div class="spec-item">
@@ -298,7 +154,7 @@
             <div class="spec-label">TB Encrypted Storage</div>
           </div>
           <div class="spec-item">
-            <div class="spec-value" style="color:var(--cc-emerald-500);">99.997%</div>
+            <div class="spec-value text-emerald">99.997%</div>
             <div class="spec-label">Uptime SLA</div>
           </div>
           <div class="spec-item">
@@ -316,32 +172,32 @@
     <section class="section section-dark" style="padding:8rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-12">
-          <p class="text-label cc-label-track" style="color:var(--cc-zinc-600);">Live Telemetry</p>
-          <h2 class="text-display mt-4" style="color:white;">The Brute Force of 100.</h2>
+          <p class="text-label cc-label-track text-zinc-600">Live Telemetry</p>
+          <h2 class="text-display mt-4 text-white">The Brute Force of 100.</h2>
         </div>
         <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;">
           <div
             style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;">
             <div style="font-size:2.5rem;font-weight:800;color:white;letter-spacing:-0.03em;">1.2</div>
-            <div class="text-label mt-2 cc-label-track" style="color:var(--cc-blue-500);">Exaflops</div>
+            <div class="text-label mt-2 cc-label-track text-blue">Exaflops</div>
             <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:0.75rem;">Processing Density</p>
           </div>
           <div
             style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;">
             <div style="font-size:2.5rem;font-weight:800;color:var(--cc-emerald-500);letter-spacing:-0.03em;">100%</div>
-            <div class="text-label mt-2 cc-label-track" style="color:var(--cc-emerald-500);">Uptime</div>
+            <div class="text-label mt-2 cc-label-track text-emerald">Uptime</div>
             <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:0.75rem;">System Continuity</p>
           </div>
           <div
             style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;">
             <div style="font-size:2.5rem;font-weight:800;color:white;letter-spacing:-0.03em;">0.04</div>
-            <div class="text-label mt-2" style="color:var(--cc-zinc-400);">ms Latency</div>
+            <div class="text-label mt-2 text-zinc-400">ms Latency</div>
             <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:0.75rem;">Response Time</p>
           </div>
           <div
             style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;">
             <div style="font-size:2.5rem;font-weight:800;color:white;letter-spacing:-0.03em;">400</div>
-            <div class="text-label mt-2" style="color:var(--cc-amber-500);">GB/s</div>
+            <div class="text-label mt-2 text-amber">GB/s</div>
             <p style="font-size:0.625rem;color:var(--cc-zinc-600);margin-top:0.75rem;">Storage Throughput</p>
           </div>
         </div>
@@ -384,29 +240,29 @@
          SECURITY LAYERS — from Sovereign Security v2/v3
          Encryption, identity-first, air-gap approach
          ============================================ -->
-    <section class="section" style="padding:10rem 2rem;">
+    <section class="section section-pad">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">Security Architecture</p>
+          <p class="text-label text-zinc-400">Security Architecture</p>
           <h2 class="text-display mt-4">Sovereign by Design.<br><span class="text-ghost cc-grad-text">Secure by
               Default.</span></h2>
         </div>
-        <div class="grid-3 reveal" data-delay="200" style="gap:2rem;">
+        <div class="grid-3 reveal gap-8" data-delay="200">
           <div class="card cc-lift" style="padding:3rem;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Air-Gapped Isolation</h3>
+            <h3 class="text-2xl font-semibold text-tight">Air-Gapped Isolation</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">
               Your data never touches a public cloud. Ironbark nodes are physically and logically isolated from the
               internet backbone. The most sensitive operations happen in an air-gapped chamber.
             </p>
           </div>
           <div class="card cc-lift" style="padding:3rem;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4" />
                 <path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2" />
@@ -419,19 +275,19 @@
                 <path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Identity-First Encryption</h3>
+            <h3 class="text-2xl font-semibold text-tight">Identity-First Encryption</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">
               Every agent, every packet, every API call is identity-verified before execution. Quantum-grade encryption
               with rotating key schedules. Encryption Warden #01 manages every cycle.
             </p>
           </div>
           <div class="card cc-lift" style="padding:3rem;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Australian Sovereignty</h3>
+            <h3 class="text-2xl font-semibold text-tight">Australian Sovereignty</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">
               Every byte of your data stays on Australian soil. No US subpoena risk. No offshore data treaties. Full
               compliance with Australian Privacy Principles and APRA standards.
@@ -445,19 +301,19 @@
          ENCRYPTION DEMO — from Sovereign Security v3.0
          Visual showing real-time encryption status
          ============================================ -->
-    <section class="section"
-      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section section-light"
+     >
       <div class="container">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
           <div>
-            <p class="text-label" style="color:var(--cc-zinc-400);">Live Encryption Status</p>
+            <p class="text-label text-zinc-400">Live Encryption Status</p>
             <h2 class="text-display mt-4">Every packet.<br><span class="text-ghost cc-grad-text">Every cycle.</span>
             </h2>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+            <p class="text-body-lg mt-6 text-zinc-400">
               Encryption isn't a feature we added — it's the foundation. Every data packet, every agent communication,
               every client record is encrypted at rest and in transit.
             </p>
-            <div class="grid-2 mt-8" style="gap:2rem;">
+            <div class="grid-2 mt-8 gap-8">
               <div class="stat">
                 <div class="stat-value">AES-256</div>
                 <div class="stat-label italic">At-rest encryption</div>
@@ -477,27 +333,27 @@
             <div class="encrypt-body">
               <div class="encrypt-row">
                 <span style="color:var(--cc-zinc-500);width:120px;">Agent Comms</span>
-                <span style="color:var(--cc-emerald-500);">■■■■■■■■■■</span>
+                <span class="text-emerald">■■■■■■■■■■</span>
                 <span style="color:var(--cc-emerald-500);margin-left:auto;">ENCRYPTED</span>
               </div>
               <div class="encrypt-row">
                 <span style="color:var(--cc-zinc-500);width:120px;">Client Data</span>
-                <span style="color:var(--cc-emerald-500);">■■■■■■■■■■</span>
+                <span class="text-emerald">■■■■■■■■■■</span>
                 <span style="color:var(--cc-emerald-500);margin-left:auto;">ENCRYPTED</span>
               </div>
               <div class="encrypt-row">
                 <span style="color:var(--cc-zinc-500);width:120px;">Financial Records</span>
-                <span style="color:var(--cc-emerald-500);">■■■■■■■■■■</span>
+                <span class="text-emerald">■■■■■■■■■■</span>
                 <span style="color:var(--cc-emerald-500);margin-left:auto;">ENCRYPTED</span>
               </div>
               <div class="encrypt-row">
                 <span style="color:var(--cc-zinc-500);width:120px;">Audit Logs</span>
-                <span style="color:var(--cc-emerald-500);">■■■■■■■■■■</span>
+                <span class="text-emerald">■■■■■■■■■■</span>
                 <span style="color:var(--cc-emerald-500);margin-left:auto;">IMMUTABLE</span>
               </div>
               <div class="encrypt-row">
                 <span style="color:var(--cc-zinc-500);width:120px;">Key Rotation</span>
-                <span style="color:var(--cc-blue-500);">■■■■■■■■□□</span>
+                <span class="text-blue">■■■■■■■■□□</span>
                 <span style="color:var(--cc-blue-500);margin-left:auto;">CYCLING</span>
               </div>
             </div>
@@ -524,7 +380,7 @@
               </svg>
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">Australian Privacy Principles</h4>
+              <h4 class="label-sm">Australian Privacy Principles</h4>
               <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Full compliance with APPs 1-13
               </p>
             </div>
@@ -537,7 +393,7 @@
               </svg>
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">APRA CPS 234</h4>
+              <h4 class="label-sm">APRA CPS 234</h4>
               <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Information security compliance
               </p>
             </div>
@@ -550,7 +406,7 @@
               </svg>
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">ISO 27001</h4>
+              <h4 class="label-sm">ISO 27001</h4>
               <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Information security management
               </p>
             </div>
@@ -563,7 +419,7 @@
               </svg>
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">SOC 2 Type II</h4>
+              <h4 class="label-sm">SOC 2 Type II</h4>
               <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Security, availability,
                 confidentiality</p>
             </div>
@@ -573,12 +429,12 @@
     </section>
 
     <!-- CTA -->
-    <section class="section section-dark" style="padding:10rem 2rem;text-align:center;">
+    <section class="section section-dark section-pad-center">
       <div class="dot-grid"></div>
-      <div class="reveal container-sm" style="position:relative;z-index:1;">
-        <h2 class="text-display" style="color:white;">Your data.<br><span
-            style="color:var(--cc-zinc-600);font-style:italic;">Your soil.</span></h2>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-500);">
+      <div class="reveal container-sm z-1">
+        <h2 class="text-display text-white">Your data.<br><span
+ class="desc-zinc-600"           >Your soil.</span></h2>
+        <p class="text-body-lg mt-6 mx-auto max-w-md text-zinc-500">
           Sovereign infrastructure isn't a feature — it's a principle. Every byte stays in Australia.
         </p>
         <a href="contact.html" class="btn-primary mt-8" style="background:white;color:var(--cc-zinc-950);">Deploy on
@@ -591,11 +447,11 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
         <div>
-          <span class="font-serif"
-            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+          <span class="font-serif hero-num"
+           >C&C</span>
+          <span class="text-micro subtitle-zinc">Managed
             Intelligence Systems</span>
         </div>
       </div>

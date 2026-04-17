@@ -14,56 +14,6 @@
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .lost-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lost-mesh {
-            position: absolute;
-            inset: 0;
-            opacity: 0.4;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse 80% 60% at 20% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 80% 100%, rgba(239, 68, 68, 0.05) 0%, transparent 60%);
-        }
-
-        .lost-code {
-            font-family: var(--font-serif);
-            font-size: clamp(6rem, 20vw, 14rem);
-            font-weight: 300;
-            letter-spacing: -0.06em;
-            line-height: 1;
-            color: var(--cc-zinc-100);
-        }
-
-        .lost-agent {
-            font-family: var(--font-mono);
-            font-size: 0.625rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--cc-zinc-400);
-            margin: 2rem 0;
-            padding: 1rem 2rem;
-            background: var(--cc-zinc-50);
-            border: 1px solid var(--cc-zinc-100);
-            border-radius: var(--radius-pill);
-            display: inline-block;
-        }
-
-        .lost-agent::before {
-            content: '> ';
-            color: var(--cc-zinc-300);
-        }
-    </style>
 </head>
 
 <body>
@@ -72,7 +22,7 @@
     <nav class="nav scrolled" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">
-                <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+                <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
                 <span class="nav-logo-text font-serif">C&C</span>
             </a>
             <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
@@ -85,7 +35,7 @@
             <div class="lost-code">404</div>
             <h1 class="text-display mt-4" style="letter-spacing:-0.04em;"><span class="cc-grad-text">Page Not
                     Found.</span></h1>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+            <p class="text-body-lg mt-6 text-zinc-400">
                 Even 100 agents couldn't locate this one. It may have been moved, deleted, or never deployed.
             </p>
             <div class="lost-agent">ORACLE_24 · Search returned zero results for this path</div>
@@ -99,11 +49,11 @@
                 <a href="contact.html" class="btn-secondary">Deploy the Workforce</a>
             </div>
             <div style="margin-top:4rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
-                <a href="workforce.html" class="text-label" style="color:var(--cc-zinc-300);">The 100</a>
-                <a href="advantage.html" class="text-label" style="color:var(--cc-zinc-300);">Advantage</a>
-                <a href="intelligence.html" class="text-label" style="color:var(--cc-zinc-300);">Intelligence</a>
-                <a href="infrastructure.html" class="text-label" style="color:var(--cc-zinc-300);">Infrastructure</a>
-                <a href="pricing.html" class="text-label" style="color:var(--cc-zinc-300);">Pricing</a>
+                <a href="workforce.html" class="text-label text-zinc-300">The 100</a>
+                <a href="advantage.html" class="text-label text-zinc-300">Advantage</a>
+                <a href="intelligence.html" class="text-label text-zinc-300">Intelligence</a>
+                <a href="infrastructure.html" class="text-label text-zinc-300">Infrastructure</a>
+                <a href="pricing.html" class="text-label text-zinc-300">Pricing</a>
             </div>
         </div>
     </main>

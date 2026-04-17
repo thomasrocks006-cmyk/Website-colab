@@ -52,319 +52,6 @@
     }
   }
   </script>
-  <style>
-    /* Page-specific hero enhancements */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 2rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-
-    /* Dashboard Preview — from Final Brand Identity */
-    .dashboard-preview {
-      background: white;
-      border-radius: 60px;
-      border: 1px solid var(--cc-zinc-100);
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.04);
-      overflow: hidden;
-    }
-
-    .dashboard-header {
-      background: var(--cc-zinc-50);
-      border-bottom: 1px solid var(--cc-zinc-100);
-      padding: 1.25rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dashboard-dots {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .dashboard-dots span {
-      width: 0.625rem;
-      height: 0.625rem;
-      border-radius: 50%;
-      background: var(--cc-zinc-200);
-    }
-
-    .dashboard-body {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-    }
-
-    .dashboard-sidebar {
-      border-right: 1px solid var(--cc-zinc-100);
-      padding: 2rem;
-    }
-
-    .dashboard-main {
-      padding: 3rem;
-    }
-
-    .dashboard-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .dashboard-nav-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.875rem 1rem;
-      border-radius: 1rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--cc-zinc-400);
-      background: white;
-      border: 1px solid transparent;
-    }
-
-    .dashboard-nav-item.active {
-      color: var(--cc-zinc-900);
-      background: var(--cc-zinc-50);
-      border-color: var(--cc-zinc-100);
-    }
-
-    .node-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem;
-      border-radius: 0.75rem;
-      background: var(--cc-zinc-50);
-      border: 1px solid var(--cc-zinc-100);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--cc-zinc-600);
-      margin-bottom: 0.5rem;
-    }
-
-    .node-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background: var(--cc-emerald-500);
-      animation: pulse 2s infinite;
-    }
-
-    .dashboard-main-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .metric-card {
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      aspect-ratio: 16/10;
-    }
-
-    .metric-card-dark {
-      background: var(--cc-zinc-950);
-      color: white;
-    }
-
-    .metric-card-light {
-      background: var(--cc-zinc-50);
-      border: 1px solid var(--cc-zinc-100);
-    }
-
-    .metric-value {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .activity-feed {
-      margin-top: 1.5rem;
-      border: 1px solid var(--cc-zinc-100);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .activity-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--cc-zinc-50);
-      background: white;
-    }
-
-    .activity-row:last-child {
-      border-bottom: none;
-    }
-
-    .activity-agent {
-      font-size: 0.625rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cc-blue-600);
-    }
-
-    .activity-text {
-      font-size: 0.875rem;
-      color: var(--cc-zinc-600);
-      font-weight: 500;
-    }
-
-    .activity-time {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cc-zinc-300);
-    }
-
-    /* Identity Split — from Identity Playbook */
-    .identity-card {
-      padding: 3rem;
-      border-radius: var(--radius-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 420px;
-      border: 1px solid;
-      transition: all 0.7s;
-    }
-
-    .identity-camber {
-      background: white;
-      border-color: var(--cc-zinc-100);
-      color: var(--cc-zinc-900);
-    }
-
-    .identity-casper {
-      background: var(--cc-zinc-950);
-      border-color: rgba(255, 255, 255, 0.05);
-      color: white;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
-
-    .identity-card .protocol {
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      font-size: 0.625rem;
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      opacity: 0.5;
-    }
-
-    /* Force Multiplier — from Unfair Advantage */
-    .compare-card {
-      padding: 3rem;
-      border-radius: 60px;
-      text-align: left;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .compare-human {
-      background: white;
-      border: 1px solid var(--cc-zinc-100);
-    }
-
-    .compare-apex {
-      background: var(--cc-zinc-950);
-      color: white;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
-
-    .compare-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .compare-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.5rem 0;
-    }
-
-    .compare-list li .dot {
-      width: 0.375rem;
-      height: 0.375rem;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* Ironbark Dark Section */
-    .ironbark-visual {
-      background: var(--cc-zinc-900);
-      border-radius: 60px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 500px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ironbark-feature {
-      padding: 1.5rem;
-      border-radius: var(--radius-lg);
-      background: var(--cc-zinc-900);
-      border: 1px solid var(--cc-zinc-800);
-    }
-
-    @media (max-width: 768px) {
-      .dashboard-body {
-        grid-template-columns: 1fr;
-      }
-
-      .dashboard-sidebar {
-        display: none;
-      }
-
-      .dashboard-main-top,
-      .metrics-grid {
-        grid-template-columns: 1fr;
-        display: grid;
-      }
-
-      .hero .text-hero {
-        font-size: 3rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -435,9 +122,9 @@
   <!-- NAVIGATION — synthesized from all files -->
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <div style="display:flex;align-items:center;gap:3rem;">
+      <div class="flex items-center gap-12">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
           <span class="nav-logo-text font-serif">C&C</span>
         </a>
         <div class="nav-links">
@@ -451,7 +138,7 @@
           <a href="pricing.html">Pricing</a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="flex items-center gap-4x">
         <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
         <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -509,8 +196,8 @@
           <a href="infrastructure.html" class="btn-secondary">The Ironbark Legacy</a>
         </div>
         <div style="display:flex;justify-content:center;gap:2rem;margin-top:2rem;">
-          <span class="text-label cc-label-track" style="color:var(--cc-zinc-300);">Response Time: 42 Seconds</span>
-          <span class="text-label cc-label-track" style="color:var(--cc-zinc-300);">100 Agents · $799/mo</span>
+          <span class="text-label cc-label-track text-zinc-300">Response Time: 42 Seconds</span>
+          <span class="text-label cc-label-track text-zinc-300">100 Agents · $799/mo</span>
         </div>
       </div>
     </section>
@@ -596,7 +283,7 @@
         <div class="dashboard-preview">
           <div class="dashboard-header">
             <div class="dashboard-dots"><span></span><span></span><span></span></div>
-            <span class="text-micro" style="color:var(--cc-zinc-400);">Casper_Terminal // Executive_Control</span>
+            <span class="text-micro text-zinc-400">Casper_Terminal // Executive_Control</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="2" aria-hidden="true">
               <polyline points="15 3 21 3 21 9" />
               <polyline points="9 21 3 21 3 15" />
@@ -619,14 +306,14 @@
             <div class="dashboard-main">
               <div class="dashboard-main-top">
                 <div>
-                  <span class="text-label cc-label-track" style="color:var(--cc-zinc-400);">Executive Interface</span>
+                  <span class="text-label cc-label-track text-zinc-400">Executive Interface</span>
                   <h3 class="text-headline" style="margin-top:0.5rem;">Welcome back, Director.</h3>
                   <p style="color:var(--cc-zinc-400);font-weight:300;font-style:italic;margin-top:0.25rem;">Your
                     synthetic team has completed 1,402 actions since midnight.</p>
                 </div>
                 <div class="text-right">
                   <div style="font-size:0.75rem;font-weight:700;letter-spacing:-0.02em;">0.04ms</div>
-                  <div class="text-micro" style="color:var(--cc-zinc-300);">Global Sync</div>
+                  <div class="text-micro text-zinc-300">Global Sync</div>
                 </div>
               </div>
               <div class="metrics-grid">
@@ -645,7 +332,7 @@
                   </div>
                   <div>
                     <div class="metric-value" style="color:var(--cc-zinc-900);" data-count="1402">0</div>
-                    <div class="text-label" style="color:var(--cc-zinc-400);">Actions Completed Today</div>
+                    <div class="text-label text-zinc-400">Actions Completed Today</div>
                   </div>
                 </div>
                 <div class="metric-card metric-card-dark">
@@ -660,7 +347,7 @@
                   </div>
                   <div>
                     <div class="metric-value" data-count="100" data-suffix="%">0%</div>
-                    <div class="text-label" style="color:var(--cc-zinc-500);">Sovereign AU Integrity</div>
+                    <div class="text-label text-zinc-500">Sovereign AU Integrity</div>
                   </div>
                 </div>
                 <div class="metric-card metric-card-light">
@@ -680,7 +367,7 @@
                   </div>
                   <div>
                     <div class="metric-value" style="color:var(--cc-zinc-900);">$12,840</div>
-                    <div class="text-label" style="color:var(--cc-zinc-400);">Optimized by Casper</div>
+                    <div class="text-label text-zinc-400">Optimized by Casper</div>
                   </div>
                 </div>
               </div>
@@ -689,7 +376,7 @@
                   <div
                     style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cc-zinc-900);">
                     Recent Swarm Activity</div>
-                  <div class="text-micro" style="color:var(--cc-zinc-300);">Live Log</div>
+                  <div class="text-micro text-zinc-300">Live Log</div>
                 </div>
                 <div class="activity-row">
                   <div>
@@ -725,10 +412,10 @@
          Camber = structural backbone, Casper = ethereal intelligence
          Sources: 24-Hour Cycle doc, Identity Playbook
          ============================================ -->
-    <section class="section" style="padding:10rem 2rem;">
+    <section class="section section-pad">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">The Dual Core</p>
+          <p class="text-label text-zinc-400">The Dual Core</p>
           <h2 class="text-display mt-4">Strength by Day.<br><span class="text-ghost cc-grad-text">Ghost by Night.</span>
           </h2>
           <p class="text-body-lg mt-6 mx-auto" style="max-width:48rem;color:var(--cc-zinc-400);">
@@ -748,7 +435,7 @@
                 </svg>
               </div>
               <h3 style="font-size:2rem;font-weight:600;letter-spacing:-0.03em;">Camber</h3>
-              <p class="text-label mt-2" style="color:var(--cc-zinc-400);">The Structural Backbone</p>
+              <p class="text-label mt-2 text-zinc-400">The Structural Backbone</p>
               <p style="font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--cc-zinc-500);margin-top:1.5rem;">
                 Built for the high-intensity sunlight of your workday. Camber manages the Ironbark nodes, the air-gapped
                 security, and the raw computational metrics. It is the lift that supports your heaviest tasks.
@@ -766,7 +453,7 @@
                 </svg>
               </div>
               <h3 style="font-size:2rem;font-weight:600;letter-spacing:-0.03em;">Casper</h3>
-              <p class="text-label mt-2" style="color:var(--cc-blue-500);">The Ethereal Intelligence</p>
+              <p class="text-label mt-2 text-blue">The Ethereal Intelligence</p>
               <p style="font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--cc-zinc-400);margin-top:1.5rem;">
                 The 'ghost' in your office. Casper stays behind after the tools go down. It cleans the inbox, chases the
                 invoices, and organizes the next day while you are at the dinner table.
@@ -784,14 +471,14 @@
          "A hundred minds. One click."
          Roles: Hustlers, Money, Admin, Watchdogs
          ============================================ -->
-    <section class="section" style="padding:10rem 2rem;">
+    <section class="section section-pad">
       <div class="container">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
           <div>
-            <p class="text-label" style="color:var(--cc-zinc-400);">The Human Factor</p>
+            <p class="text-label text-zinc-400">The Human Factor</p>
             <h2 class="text-display mt-4">A hundred minds.<br><span class="text-ghost cc-grad-text">One click.</span>
             </h2>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-500);">
+            <p class="text-body-lg mt-6 text-zinc-500">
               Camber & Casper coordinates a workforce of 100 specialized agents. Tradies, plumbers, agencies, and
               business owners use us to scale their efforts without adding a single headcount.
             </p>
@@ -825,7 +512,7 @@
                 </div>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">The
                   Hustlers</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Lead generation, quote
+                <p class="caption-zinc">Lead generation, quote
                   building, and keeping the pipeline full.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-blue-500);">30 Agents</span>
               </div>
@@ -839,7 +526,7 @@
                 </div>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Capital
                   Team</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Invoice management, cashflow,
+                <p class="caption-zinc">Invoice management, cashflow,
                   debt recovery, reconciliation.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-emerald-500);">20 Agents</span>
               </div>
@@ -853,7 +540,7 @@
                 </div>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">
                   Operations</h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Scheduling, compliance,
+                <p class="caption-zinc">Scheduling, compliance,
                   logistics, fleet coordination.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-amber-500);">25 Agents</span>
               </div>
@@ -866,7 +553,7 @@
                 </div>
                 <h4 style="font-weight:700;font-size:0.875rem;letter-spacing:0.05em;text-transform:uppercase;">Sentry
                 </h4>
-                <p style="font-size:0.75rem;color:var(--cc-zinc-400);margin-top:0.5rem;">Security, encryption,
+                <p class="caption-zinc">Security, encryption,
                   reputation monitoring, sovereign watch.</p>
                 <span class="text-micro mt-4" style="display:block;color:var(--cc-red-500);">25 Agents</span>
               </div>
@@ -888,14 +575,14 @@
       style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);border-bottom:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">The Force Multiplier</p>
+          <p class="text-label text-zinc-400">The Force Multiplier</p>
           <h2 class="text-display mt-4 cc-wipe-in">100 Agents vs 1 Human.</h2>
         </div>
         <div class="grid-2 reveal" data-delay="200">
           <!-- Competitor -->
           <div class="compare-card compare-human tilt-card cc-spotlight-card">
             <div class="flex-between mb-8">
-              <span class="text-label" style="color:var(--cc-zinc-300);">Traditional Competitor</span>
+              <span class="text-label text-zinc-300">Traditional Competitor</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-200)" stroke-width="2" aria-hidden="true">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
@@ -905,7 +592,7 @@
             </div>
             <p style="font-size:0.875rem;color:var(--cc-zinc-400);font-style:italic;margin-bottom:1.5rem;">"I'll get
               back to you by Friday when I'm back in the office."</p>
-            <ul class="compare-list" style="color:var(--cc-zinc-300);">
+            <ul class="compare-list text-zinc-300">
               <li><span class="dot" style="background:var(--cc-zinc-200);"></span> Max capacity: 8 hours/day</li>
               <li><span class="dot" style="background:var(--cc-zinc-200);"></span> Lead lag: 12-24 hours</li>
               <li><span class="dot" style="background:var(--cc-zinc-200);"></span> Errors: 15% due to fatigue</li>
@@ -914,7 +601,7 @@
           <!-- C&C Apex -->
           <div class="compare-card compare-apex tilt-card cc-spotlight-card">
             <div class="flex-between mb-8">
-              <span class="text-label" style="color:var(--cc-blue-500);">C&C Powered Apex</span>
+              <span class="text-label text-blue">C&C Powered Apex</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cc-blue-500)" stroke-width="2" aria-hidden="true">
                 <path
                   d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z" />
@@ -922,7 +609,7 @@
             </div>
             <p style="font-size:0.875rem;color:var(--cc-zinc-300);font-style:italic;margin-bottom:1.5rem;">"Your quote
               is in your inbox now. Our team is ready to start Monday."</p>
-            <ul class="compare-list" style="color:var(--cc-zinc-500);">
+            <ul class="compare-list text-zinc-500">
               <li><span class="dot" style="background:var(--cc-blue-500);"></span> Max capacity: 2,400 hours/day</li>
               <li><span class="dot" style="background:var(--cc-blue-500);"></span> Lead lag: 0.04 seconds</li>
               <li><span class="dot" style="background:var(--cc-blue-500);"></span> Errors: 0.001% logic verified</li>
@@ -941,15 +628,15 @@
          "Before the intelligence of Casper, there was
          the brute force of Ironbark."
          ============================================ -->
-    <section class="section section-dark section-noise" style="padding:10rem 2rem;">
+    <section class="section section-dark section-noise section-pad">
       <div class="dot-grid"></div>
-      <div class="container" style="position:relative;z-index:1;">
+      <div class="container z-1">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
           <div>
-            <p class="text-label" style="color:var(--cc-zinc-600);">The Bedrock Layer</p>
+            <p class="text-label text-zinc-600">The Bedrock Layer</p>
             <h2 class="text-display mt-4">Ironbark<br><span
                 style="color:var(--cc-zinc-700);font-style:italic;font-weight:300;">Evolved.</span></h2>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-400);">
+            <p class="text-body-lg mt-6 text-zinc-400">
               Before the intelligence of Casper, there was the brute force of Ironbark. We've taken that rugged,
               physical server infrastructure and turned it into the foundation for the Camber umbrella. All on
               Australian soil. Air-gapped. Sovereign.
@@ -1015,10 +702,10 @@
          MARKETING PLAYS PREVIEW — from Marketing Playbook
          3 core plays: The Ghost, The Hand-Back, The Passion
          ============================================ -->
-    <section class="section" style="padding:10rem 2rem;">
+    <section class="section section-pad">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">What You Get Back</p>
+          <p class="text-label text-zinc-400">What You Get Back</p>
           <h2 class="text-display mt-4">This isn't about software.<br><span class="text-ghost cc-grad-text">It's about
               time.</span>
           </h2>
@@ -1033,7 +720,7 @@
                 <line x1="12" y1="17" x2="12" y2="21" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">The Productive Ghost</h3>
+            <h3 class="text-2xl font-semibold text-tight">The Productive Ghost</h3>
             <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"The most
               productive team you'll never see."</p>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">
@@ -1047,7 +734,7 @@
                   d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">The 6 PM Dinner</h3>
+            <h3 class="text-2xl font-semibold text-tight">The 6 PM Dinner</h3>
             <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Casper has the
               office. You have the family."</p>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">We
@@ -1060,7 +747,7 @@
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Tools Down. Hood Up.</h3>
+            <h3 class="text-2xl font-semibold text-tight">Tools Down. Hood Up.</h3>
             <p style="font-size:0.875rem;font-style:italic;color:var(--cc-zinc-400);margin-top:0.5rem;">"Get back to the
               work you actually love."</p>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;line-height:1.7;margin-top:1rem;">The
@@ -1077,13 +764,13 @@
       style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">Industry Verticals</p>
+          <p class="text-label text-zinc-400">Industry Verticals</p>
           <h2 class="text-display mt-4">Built for how<br><span class="text-ghost cc-grad-text">you actually work.</span>
           </h2>
         </div>
         <div class="grid-3 reveal" data-delay="200">
           <a href="industries.html#tradies" class="card" style="padding:3rem;text-decoration:none;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z" />
                 <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
@@ -1091,32 +778,32 @@
                 <path d="M14 6a6 6 0 0 1 6 6v3" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Tradies & Trades</h3>
+            <h3 class="text-2xl font-semibold text-tight">Tradies & Trades</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Win back your
               weekends. 42-second quotes, automated invoicing, fleet coordination.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
           </a>
           <a href="industries.html#agencies" class="card" style="padding:3rem;text-decoration:none;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">Boutique Agencies</h3>
+            <h3 class="text-2xl font-semibold text-tight">Boutique Agencies</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Output like a
               network agency. Research, reporting, outbound — at scale.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
           </a>
           <a href="industries.html#ecommerce" class="card" style="padding:3rem;text-decoration:none;">
-            <div class="card-icon card-icon-dark mb-8" style="width:3.5rem;height:3.5rem;border-radius:1rem;">
+            <div class="card-icon card-icon-dark mb-8 icon-box">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="8" cy="21" r="1" />
                 <circle cx="19" cy="21" r="1" />
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
               </svg>
             </div>
-            <h3 style="font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;">E-Commerce</h3>
+            <h3 class="text-2xl font-semibold text-tight">E-Commerce</h3>
             <p style="font-size:0.875rem;color:var(--cc-zinc-500);font-weight:300;margin-top:0.5rem;">Supply forensics,
               LTV optimization, and negotiated recovery at scale.</p>
             <span class="text-label mt-6" style="display:block;color:var(--cc-blue-500);">Explore Portal →</span>
@@ -1128,7 +815,7 @@
     <!-- TESTIMONIAL CAROUSEL -->
     <section class="section" style="padding:6rem 0;overflow:hidden;">
       <div class="container text-center mb-12">
-        <p class="text-label" style="color:var(--cc-zinc-400);">What operators say</p>
+        <p class="text-label text-zinc-400">What operators say</p>
         <h2 class="text-display mt-4">Real businesses.<br><span class="text-ghost cc-grad-text">Real results.</span>
         </h2>
       </div>
@@ -1331,11 +1018,11 @@
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
         <div>
-          <span class="font-serif"
-            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+          <span class="font-serif hero-num"
+           >C&C</span>
+          <span class="text-micro subtitle-zinc">Managed
             Intelligence Systems</span>
         </div>
       </div>
