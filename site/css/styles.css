@@ -1938,6 +1938,101 @@ button,
   clip: rect(0, 0, 0, 0);
 }
 
+/* --- INLINE-STYLE EXTRACTION UTILITIES --- */
+
+/* Color utilities */
+.text-zinc-300 { color: var(--cc-zinc-300); }
+.text-zinc-400 { color: var(--cc-zinc-400); }
+.text-zinc-500 { color: var(--cc-zinc-500); }
+.text-zinc-600 { color: var(--cc-zinc-600); }
+.text-blue { color: var(--cc-blue-500); }
+.text-emerald { color: var(--cc-emerald-500); }
+.text-amber { color: var(--cc-amber-500); }
+.text-red { color: var(--cc-red-500); }
+.text-white { color: white; }
+
+/* Font utilities */
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+.font-light { font-weight: 300; }
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-tight { letter-spacing: -0.02em; }
+.text-tighter { letter-spacing: -0.05em; }
+
+/* Layout utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.inline-flex { display: inline-flex; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4x { gap: 1rem; }
+
+/* Spacing utilities */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.p-10 { padding: 2.5rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.py-40x { padding-top: 10rem; padding-bottom: 10rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+
+/* Sizing */
+.max-w-sm { max-width: 24rem; }
+.max-w-md { max-width: 36rem; }
+.max-w-lg { max-width: 42rem; }
+.max-w-xl { max-width: 48rem; }
+.z-1 { position: relative; z-index: 1; }
+
+/* Combined patterns (most common inline combos) */
+.label-sm { font-weight: 700; font-size: 0.875rem; }
+.caption { font-size: 0.8rem; color: var(--cc-zinc-400); margin-top: 0.25rem; }
+.caption-emerald { font-size: 0.75rem; color: var(--cc-emerald-500); font-weight: 700; margin-top: 0.25rem; }
+.caption-zinc { font-size: 0.75rem; color: var(--cc-zinc-400); margin-top: 0.5rem; }
+.caption-strikethrough { font-size: 0.75rem; color: var(--cc-zinc-400); text-decoration: line-through; margin-top: 0.5rem; }
+.desc-zinc { color: var(--cc-zinc-500); font-style: italic; }
+.desc-zinc-600 { color: var(--cc-zinc-600); font-style: italic; }
+.subtitle-zinc { color: var(--cc-zinc-400); display: block; margin-top: 0.25rem; }
+.hero-num { font-size: 1.5rem; letter-spacing: -0.05em; display: block; line-height: 1; }
+.stat-label { font-size: 0.5rem; color: var(--cc-zinc-600); }
+
+/* Section padding patterns */
+.section-pad { padding: 10rem 2rem; }
+.section-pad-sm { padding: 6rem 2rem; }
+.section-pad-center { padding: 10rem 2rem; text-align: center; }
+.section-pad-hero { padding: 12rem 2rem 6rem; text-align: center; }
+.section-light { background: var(--cc-zinc-50); border-top: 1px solid var(--cc-zinc-100); padding: 8rem 2rem; }
+
+/* Card patterns */
+.card-dark-inner { background: var(--cc-zinc-900); border: 1px solid var(--cc-zinc-800); border-radius: var(--radius-lg); padding: 2.5rem; }
+.icon-box { width: 3.5rem; height: 3.5rem; border-radius: 1rem; }
+
+/* Dark mode support for extracted utilities */
+[data-theme="casper"] .text-white { color: white; }
+[data-theme="casper"] .section-light { background: var(--cc-zinc-50); border-color: var(--cc-zinc-100); }
+[data-theme="casper"] .card-dark-inner { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); }
+
 /* ============================================
    PASS 3 PREMIUM FEATURES
    ============================================ */
