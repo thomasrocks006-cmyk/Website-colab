@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(4px)`;
-    });
+    }, { passive: true });
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
     });
@@ -458,7 +458,7 @@ document.querySelectorAll('.cc-spotlight-card').forEach(card => {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     card.style.setProperty('--mx', x + '%');
     card.style.setProperty('--my', y + '%');
-  });
+  }, { passive: true });
 });
 
 // --- MAGNETIC BUTTONS ---
@@ -470,7 +470,7 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
     const dx = (e.clientX - cx) * 0.25;
     const dy = (e.clientY - cy) * 0.25;
     btn.style.transform = `translate(${dx}px, ${dy}px)`;
-  });
+  }, { passive: true });
   btn.addEventListener('mouseleave', () => {
     btn.style.transform = '';
   });
@@ -616,7 +616,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     dot._t = setTimeout(function () {
       dot.el.style.opacity = '0';
     }, 120);
-  });
+  }, { passive: true });
 })();
 
 // --- TABLE ROW STAGGER REVEAL ---
@@ -650,7 +650,7 @@ document.querySelectorAll('.cc-tilt').forEach(card => {
     const x = (e.clientX - r.left - r.width  / 2) / r.width;
     const y = (e.clientY - r.top  - r.height / 2) / r.height;
     card.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale(1.03)`;
-  });
+  }, { passive: true });
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
@@ -687,7 +687,7 @@ document.querySelectorAll('.section-dark').forEach(sec => {
     const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
     const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
     bg.style.background = `radial-gradient(ellipse 520px 420px at ${x}% ${y}%, rgba(59,130,246,0.09) 0%, transparent 68%)`;
-  });
+  }, { passive: true });
 });
 
 // Clip-path wipe-in observer
