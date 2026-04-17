@@ -221,9 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.createElement('button');
   themeToggle.className = 'cc-theme-toggle';
   themeToggle.setAttribute('aria-label', 'Toggle Casper dark mode');
-  const savedTheme = localStorage.getItem('cc-theme') || 'camber';
-  if (savedTheme === 'casper') document.documentElement.setAttribute('data-theme', 'casper');
-  themeToggle.textContent = savedTheme === 'casper' ? '☀' : '☾';
+  const savedTheme = localStorage.getItem('cc-theme');
+  // Auto-detect system preference if no saved theme
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'casper' : 'camber');
+  if (initialTheme === 'casper') document.documentElement.setAttribute('data-theme', 'casper');
+  themeToggle.textContent = initialTheme === 'casper' ? '☀' : '☾';
   themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'casper' ? 'camber' : 'casper';
@@ -388,32 +391,6 @@ function updateCalculator(value) {
 
 // (Duplicates removed — all initialization is inside DOMContentLoaded above)
 
-// --- AUTONOMY CALCULATOR ---
-function updateCalculator(value) {
-  const employees = parseInt(value);
-  const salaryBase = 68000;
-  const overhead = 1.28;
-  const humanMonthly = (salaryBase * overhead * employees) / 12;
-  const ccMonthly = 799;
-  const yearlySavings = (salaryBase * overhead * employees) - (799 * 12);
-
-  document.getElementById('calc-employees').textContent = employees;
-  document.getElementById('calc-human-cost').textContent = Math.round(humanMonthly).toLocaleString();
-  document.getElementById('calc-savings').textContent = '$' + Math.round(yearlySavings / 1000) + 'k';
-
-  // Update reinvestment plays
-  const plays = document.getElementById('calc-plays');
-  if (plays) {
-    if (yearlySavings < 100000) {
-      plays.innerHTML = '<div class="play">Toyota HiLux SR5 — fully funded in 10 months</div><div class="play">500% Marketing Boost — total local search domination</div><div class="play">3 Months Off (Paid) — full quarter sabbatical</div>';
-    } else if (yearlySavings < 300000) {
-      plays.innerHTML = '<div class="play">New Warehouse Lease — 2 years covered</div><div class="play">3x Fully Kitted Vans — expand service radius</div><div class="play">Owner Equity — direct injection into super/offset</div>';
-    } else {
-      plays.innerHTML = '<div class="play">Franchise Expansion — second territory with zero debt</div><div class="play">Full Sales Agency — massive marketing retainer</div><div class="play">Commercial Property — 20% deposit on $1.5M warehouse</div>';
-    }
-  }
-}
-
 // --- TABS ---
 function switchTab(btn, group) {
   const parent = btn.closest('.tab-group');
@@ -525,18 +502,7 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
   });
 })();
 
-// --- READING PROGRESS BAR ---
-(function () {
-  const bar = document.createElement('div');
-  bar.id = 'cc-progress-bar';
-  document.body.prepend(bar);
-  const update = () => {
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
+// (Progress bar is created inside DOMContentLoaded)
 
 // --- STAGGERED LIST REVEAL ---
 document.querySelectorAll('.cc-list-reveal').forEach(ul => {
