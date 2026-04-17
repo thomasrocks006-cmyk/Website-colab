@@ -428,7 +428,6 @@ if (quantifierSlider && typeof updateCalculator === 'function') {
   updateCalculator(quantifierSlider.value);
 }
 
-});
 
 // --- COMPETITIVE RACE SIMULATOR ---
 function startRace(btn) {
