@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (splash) {
     setTimeout(() => {
       splash.classList.add('hidden');
-      setTimeout(() => { splash.style.display = 'none'; }, 1100);
-    }, 2800);
+      setTimeout(() => { splash.style.display = 'none'; }, 800);
+    }, 1200);
   }
 
   // --- NAV SCROLL ---
@@ -41,16 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.mobile-menu');
   if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
       menuBtn.classList.toggle('active');
       mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      menuBtn.setAttribute('aria-expanded', !isOpen);
+      document.body.style.overflow = !isOpen ? 'hidden' : '';
     });
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
         mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        menuBtn.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        menuBtn.focus();
+      }
     });
   }
 
@@ -132,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="cc-float-cta-divider"></div>
     <span class="cc-float-cta-price">$799<span style="font-size:0.75rem;font-weight:400;color:var(--cc-zinc-400)">/mo</span></span>
     <div class="cc-float-cta-divider"></div>
-    <a href="pricing.html" class="cc-float-cta-btn">Deploy Now →</a>
+    <a href="contact.html" class="cc-float-cta-btn">Deploy Now →</a>
     <button class="cc-float-cta-close" aria-label="Close">✕</button>
   `;
   document.body.appendChild(floatCta);
@@ -198,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(4px)`;
-    });
+    }, { passive: true });
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
     });
@@ -208,9 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.createElement('button');
   themeToggle.className = 'cc-theme-toggle';
   themeToggle.setAttribute('aria-label', 'Toggle Casper dark mode');
-  const savedTheme = localStorage.getItem('cc-theme') || 'camber';
-  if (savedTheme === 'casper') document.documentElement.setAttribute('data-theme', 'casper');
-  themeToggle.textContent = savedTheme === 'casper' ? '☀' : '☾';
+  const savedTheme = localStorage.getItem('cc-theme');
+  // Auto-detect system preference if no saved theme
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme || (prefersDark ? 'casper' : 'camber');
+  if (initialTheme === 'casper') document.documentElement.setAttribute('data-theme', 'casper');
+  themeToggle.textContent = initialTheme === 'casper' ? '☀' : '☾';
   themeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'casper' ? 'camber' : 'casper';
@@ -373,107 +389,7 @@ function updateCalculator(value) {
   }
 }
 
-// --- NAV SCROLL ---
-const nav = document.querySelector('.nav');
-if (nav) {
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-}
-
-// --- SCROLL REVEAL ---
-const reveals = document.querySelectorAll('.reveal');
-if (reveals.length) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
-}
-
-// --- MOBILE MENU ---
-const menuBtn = document.querySelector('.mobile-menu-btn');
-const mobileMenu = document.querySelector('.mobile-menu');
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
-  // Close menu when a link is clicked
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuBtn.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-}
-
-// --- ACTIVE NAV LINK ---
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-links a').forEach(link => {
-  if (link.getAttribute('href') === currentPage) {
-    link.classList.add('active');
-  }
-});
-
-// --- PAGE-SPECIFIC CALCULATOR INIT ---
-const quantifierSlider = document.querySelector('.quantifier-slider');
-if (quantifierSlider && typeof updateCalculator === 'function') {
-  updateCalculator(quantifierSlider.value);
-}
-
-
-// --- COMPETITIVE RACE SIMULATOR ---
-function startRace(btn) {
-  const section = btn.closest('.race-section');
-  const humanFill = section.querySelector('.race-human');
-  const ccFill = section.querySelector('.race-cc');
-  const isRacing = btn.dataset.racing === 'true';
-
-  if (isRacing) {
-    humanFill.style.width = '0';
-    ccFill.style.width = '0';
-    btn.textContent = 'Start Race';
-    btn.dataset.racing = 'false';
-  } else {
-    humanFill.style.width = '10%';
-    ccFill.style.width = '100%';
-    btn.textContent = 'Reset';
-    btn.dataset.racing = 'true';
-  }
-}
-
-// --- AUTONOMY CALCULATOR ---
-function updateCalculator(value) {
-  const employees = parseInt(value);
-  const salaryBase = 68000;
-  const overhead = 1.28;
-  const humanMonthly = (salaryBase * overhead * employees) / 12;
-  const ccMonthly = 799;
-  const yearlySavings = (salaryBase * overhead * employees) - (799 * 12);
-
-  document.getElementById('calc-employees').textContent = employees;
-  document.getElementById('calc-human-cost').textContent = Math.round(humanMonthly).toLocaleString();
-  document.getElementById('calc-savings').textContent = '$' + Math.round(yearlySavings / 1000) + 'k';
-
-  // Update reinvestment plays
-  const plays = document.getElementById('calc-plays');
-  if (plays) {
-    if (yearlySavings < 100000) {
-      plays.innerHTML = '<div class="play">Toyota HiLux SR5 — fully funded in 10 months</div><div class="play">500% Marketing Boost — total local search domination</div><div class="play">3 Months Off (Paid) — full quarter sabbatical</div>';
-    } else if (yearlySavings < 300000) {
-      plays.innerHTML = '<div class="play">New Warehouse Lease — 2 years covered</div><div class="play">3x Fully Kitted Vans — expand service radius</div><div class="play">Owner Equity — direct injection into super/offset</div>';
-    } else {
-      plays.innerHTML = '<div class="play">Franchise Expansion — second territory with zero debt</div><div class="play">Full Sales Agency — massive marketing retainer</div><div class="play">Commercial Property — 20% deposit on $1.5M warehouse</div>';
-    }
-  }
-}
+// (Duplicates removed — all initialization is inside DOMContentLoaded above)
 
 // --- TABS ---
 function switchTab(btn, group) {
@@ -499,14 +415,38 @@ function switchTab(btn, group) {
 })();
 
 // --- FAQ ACCORDION ---
-document.querySelectorAll('.cc-faq-item').forEach(item => {
+document.querySelectorAll('.cc-faq-item').forEach((item, idx) => {
   const btn = item.querySelector('.cc-faq-q');
-  if (!btn) return;
+  const answer = item.querySelector('.cc-faq-a');
+  if (!btn || !answer) return;
+  // Set up ARIA
+  const answerId = answer.id || `faq-answer-${idx}`;
+  answer.id = answerId;
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', answerId);
+  answer.setAttribute('role', 'region');
+  answer.setAttribute('aria-labelledby', btn.id || `faq-q-${idx}`);
+  btn.id = btn.id || `faq-q-${idx}`;
+
   btn.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
     // close all siblings
-    item.closest('.cc-faq').querySelectorAll('.cc-faq-item.open').forEach(o => o.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    item.closest('.cc-faq').querySelectorAll('.cc-faq-item.open').forEach(o => {
+      o.classList.remove('open');
+      const oBtn = o.querySelector('.cc-faq-q');
+      if (oBtn) oBtn.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+  // Keyboard support
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      btn.click();
+    }
   });
 });
 
@@ -518,7 +458,7 @@ document.querySelectorAll('.cc-spotlight-card').forEach(card => {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     card.style.setProperty('--mx', x + '%');
     card.style.setProperty('--my', y + '%');
-  });
+  }, { passive: true });
 });
 
 // --- MAGNETIC BUTTONS ---
@@ -530,7 +470,7 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
     const dx = (e.clientX - cx) * 0.25;
     const dy = (e.clientY - cy) * 0.25;
     btn.style.transform = `translate(${dx}px, ${dy}px)`;
-  });
+  }, { passive: true });
   btn.addEventListener('mouseleave', () => {
     btn.style.transform = '';
   });
@@ -562,18 +502,7 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
   });
 })();
 
-// --- READING PROGRESS BAR ---
-(function () {
-  const bar = document.createElement('div');
-  bar.id = 'cc-progress-bar';
-  document.body.prepend(bar);
-  const update = () => {
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
+// (Progress bar is created inside DOMContentLoaded)
 
 // --- STAGGERED LIST REVEAL ---
 document.querySelectorAll('.cc-list-reveal').forEach(ul => {
@@ -687,7 +616,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     dot._t = setTimeout(function () {
       dot.el.style.opacity = '0';
     }, 120);
-  });
+  }, { passive: true });
 })();
 
 // --- TABLE ROW STAGGER REVEAL ---
@@ -721,7 +650,7 @@ document.querySelectorAll('.cc-tilt').forEach(card => {
     const x = (e.clientX - r.left - r.width  / 2) / r.width;
     const y = (e.clientY - r.top  - r.height / 2) / r.height;
     card.style.transform = `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale(1.03)`;
-  });
+  }, { passive: true });
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
@@ -758,7 +687,7 @@ document.querySelectorAll('.section-dark').forEach(sec => {
     const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
     const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
     bg.style.background = `radial-gradient(ellipse 520px 420px at ${x}% ${y}%, rgba(59,130,246,0.09) 0%, transparent 68%)`;
-  });
+  }, { passive: true });
 });
 
 // Clip-path wipe-in observer

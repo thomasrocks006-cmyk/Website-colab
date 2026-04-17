@@ -4,134 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>A Day in Command — The Executive Experience | Camber & Casper</title>
   <meta name="description"
     content="Walk through a single day of total command. 100 agents. 24 inputs tracked. Your business never sleeps, so you can.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://camberandcasper.com.au/day.html">
   <meta property="og:title" content="A Day in Command — The Executive Experience | Camber &amp; Casper">
   <meta property="og:description"
     content="Walk through a single day of total command. 100 agents. 24 inputs tracked. Your business never sleeps, so you can.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://camberandcasper.com.au/og-image.png">
+  <meta name="twitter:image" content="https://camberandcasper.com.au/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="A Day in Command | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .timeline {
-      position: relative;
-      padding-left: 4rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 1.5rem;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--cc-zinc-100);
-    }
-
-    .timeline-event {
-      position: relative;
-      margin-bottom: 6rem;
-      opacity: 0.4;
-      transition: opacity 0.7s;
-    }
-
-    .timeline-event:hover,
-    .timeline-event.active {
-      opacity: 1;
-    }
-
-    .timeline-marker {
-      position: absolute;
-      left: -2.5rem;
-      top: 0;
-      width: 3rem;
-      height: 3rem;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      border: 1px solid var(--cc-zinc-100);
-      transition: all 0.5s;
-    }
-
-    .timeline-event:hover .timeline-marker,
-    .timeline-event.active .timeline-marker {
-      background: var(--cc-zinc-950);
-      color: white;
-      border-color: var(--cc-zinc-950);
-      transform: scale(1.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .pocket-terminal {
-      background: var(--cc-zinc-950);
-      border-radius: 48px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
-      min-height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .parallel-col {
-      flex: 1;
-      padding: 2rem;
-    }
-
-    .parallel-old {
-      background: var(--cc-zinc-50);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--cc-zinc-100);
-    }
-
-    .parallel-new {
-      background: var(--cc-zinc-950);
-      border-radius: var(--radius-lg);
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .timeline {
-        padding-left: 2rem;
-      }
-
-      .timeline::before {
-        left: 0.5rem;
-      }
-
-      .timeline-marker {
-        left: -1.5rem;
-        width: 2rem;
-        height: 2rem;
-      }
-
-      .timeline-marker svg {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <a href="#main" class="skip-to-content">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <div style="display:flex;align-items:center;gap:3rem;">
+      <div class="flex items-center gap-12">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
           <span class="nav-logo-text font-serif">C&C</span>
         </a>
         <div class="nav-links">
@@ -145,15 +51,15 @@
           <a href="pricing.html">Pricing</a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
-        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="flex items-center gap-4x">
+        <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU PANEL -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="workforce.html">The 100</a>
     <a href="advantage.html">Advantage</a>
@@ -162,15 +68,15 @@
     <a href="industries.html">Industries</a>
     <a href="day.html">A Day in Command</a>
     <a href="launch.html">How It Works</a>
-    <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+    <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
   </div>
 
   <main id="main">
     <!-- HERO -->
-    <section style="padding:12rem 2rem 6rem;text-align:center;">
+    <section class="section-pad-hero">
       <div class="reveal container-sm">
         <div class="badge badge-light mb-8 cc-badge-pop">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
             <polyline points="12 6 12 12 16 14" />
           </svg>
@@ -196,7 +102,7 @@
           <!-- 07:00 AM -->
           <div class="timeline-event active reveal cc-lift">
             <div class="timeline-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M17 8l4 4-4 4" />
                 <path d="M3 12h18" />
               </svg>
@@ -206,10 +112,10 @@
                 <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
                   <span class="font-serif" style="font-size:1.75rem;color:var(--cc-zinc-300);font-style:italic;">07:00
                     AM</span>
-                  <span class="text-label cc-label-track" style="color:var(--cc-blue-500);">Executive Synthesis</span>
+                  <span class="text-label cc-label-track text-blue">Executive Synthesis</span>
                 </div>
                 <h3 class="text-headline">The Zero Start</h3>
-                <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+                <p class="text-body mt-4 text-zinc-400">
                   You wake up to a clean slate. While you slept, Casper digested 84 emails, reconciled 12 Xero payments,
                   and scrapped the night's lead-gen signals. Your morning report identifies 3 high-value actions for the
                   day. Tomorrow starts at zero.
@@ -224,26 +130,26 @@
                     <span
                       style="font-size:0.625rem;font-weight:700;color:var(--cc-blue-500);text-transform:uppercase;">Director's
                       Brief</span>
-                    <span class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);">Node_Sync: 100%</span>
+                    <span class="font-mono stat-label">Node_Sync: 100%</span>
                   </div>
                   <div style="display:flex;flex-direction:column;gap:0.75rem;">
-                    <div style="display:flex;align-items:center;gap:0.75rem;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <div class="flex items-center gap-3">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                         <polyline points="22 4 12 14.01 9 11.01" />
                       </svg>
                       <span style="font-size:0.75rem;color:var(--cc-zinc-300);">Inbox Zeroed: 12 Leads Qualified</span>
                     </div>
-                    <div style="display:flex;align-items:center;gap:0.75rem;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <div class="flex items-center gap-3">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                         <polyline points="22 4 12 14.01 9 11.01" />
                       </svg>
                       <span style="font-size:0.75rem;color:var(--cc-zinc-300);">Xero Audit: All Invoices
                         Reconciled</span>
                     </div>
-                    <div style="display:flex;align-items:center;gap:0.75rem;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                    <div class="flex items-center gap-3">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" aria-hidden="true">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                       </svg>
                       <span style="font-size:0.75rem;color:white;font-weight:700;">Top Priority: Mascot Contract
@@ -253,10 +159,10 @@
                 </div>
                 <div
                   style="padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
-                  <span class="font-mono"
-                    style="font-size:0.5rem;color:var(--cc-zinc-600);">Casper_Handover_Active</span>
+                  <span class="font-mono stat-label"
+                   >Casper_Handover_Active</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-700)"
-                    stroke-width="2">
+                    stroke-width="2" aria-hidden="true">
                     <rect width="14" height="20" x="5" y="2" rx="2" />
                     <line x1="12" x2="12.01" y1="18" y2="18" />
                   </svg>
@@ -268,7 +174,7 @@
           <!-- 10:30 AM -->
           <div class="timeline-event reveal cc-lift" data-delay="200">
             <div class="timeline-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <line x1="19" x2="19" y1="8" y2="14" />
@@ -280,10 +186,10 @@
                 <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
                   <span class="font-serif" style="font-size:1.75rem;color:var(--cc-zinc-300);font-style:italic;">10:30
                     AM</span>
-                  <span class="text-label cc-label-track" style="color:var(--cc-blue-500);">Psychology Engine</span>
+                  <span class="text-label cc-label-track text-blue">Psychology Engine</span>
                 </div>
                 <h3 class="text-headline">The Negotiated Close</h3>
-                <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+                <p class="text-body mt-4 text-zinc-400">
                   You're on a site visit. In your pocket, the Sales Swarm calls a difficult lead. The Psychology Agent
                   detects price-resistance linked to RBA rate news and instantly pivots the value-proposition. The deal
                   is closed without you opening your mouth.
@@ -311,8 +217,8 @@
                 </div>
                 <div
                   style="padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
-                  <span class="font-mono"
-                    style="font-size:0.5rem;color:var(--cc-zinc-600);">Casper_Handover_Active</span>
+                  <span class="font-mono stat-label"
+                   >Casper_Handover_Active</span>
                 </div>
               </div>
             </div>
@@ -321,7 +227,7 @@
           <!-- 02:45 PM -->
           <div class="timeline-event reveal cc-lift" data-delay="400">
             <div class="timeline-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" x2="12" y1="8" y2="12" />
                 <line x1="12" x2="16" y1="12" y2="12" />
@@ -332,10 +238,10 @@
                 <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
                   <span class="font-serif" style="font-size:1.75rem;color:var(--cc-zinc-300);font-style:italic;">02:45
                     PM</span>
-                  <span class="text-label cc-label-track" style="color:var(--cc-red-500);">Anticipatory Radar</span>
+                  <span class="text-label cc-label-track text-red">Anticipatory Radar</span>
                 </div>
                 <h3 class="text-headline">The War Room Pivot</h3>
-                <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+                <p class="text-body mt-4 text-zinc-400">
                   A flash-news report hits: Major freight strike in Botany. Casper's Layer 12 (Supply) intercepts this.
                   It checks your inventory (Layer 08) and models the cashflow impact (Layer 21). By 3:00 PM, it has
                   secured alternate stock from a secondary vendor.
@@ -347,7 +253,7 @@
                 <div
                   style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius-lg);padding:1.5rem;">
                   <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" aria-hidden="true">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                       <line x1="12" x2="12" y1="8" y2="12" />
                       <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -363,7 +269,7 @@
                 </div>
                 <div
                   style="padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
-                  <span class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);">Layer_12 → Layer_08 →
+                  <span class="font-mono stat-label">Layer_12 → Layer_08 →
                     Layer_21</span>
                 </div>
               </div>
@@ -373,7 +279,7 @@
           <!-- 05:15 PM -->
           <div class="timeline-event reveal cc-lift" data-delay="600">
             <div class="timeline-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
@@ -383,10 +289,10 @@
                 <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
                   <span class="font-serif" style="font-size:1.75rem;color:var(--cc-zinc-300);font-style:italic;">05:15
                     PM</span>
-                  <span class="text-label" style="color:var(--cc-amber-500);">Legal Hard Block</span>
+                  <span class="text-label text-amber">Legal Hard Block</span>
                 </div>
                 <h3 class="text-headline">The Sovereign Guard</h3>
-                <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+                <p class="text-body mt-4 text-zinc-400">
                   A staff member attempts to cut a corner on a late-afternoon safety report to get home early. Casper's
                   Sentinel (Layer 09) flags the missing signature and blocks the job-close on the accounting server.
                   Your liability is physically protected by code.
@@ -399,7 +305,7 @@
                   style="background:var(--cc-zinc-900);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);padding:1.5rem;">
                   <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-500)"
-                      stroke-width="2">
+                      stroke-width="2" aria-hidden="true">
                       <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                       <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                     </svg>
@@ -412,8 +318,8 @@
                 </div>
                 <div
                   style="padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
-                  <span class="font-mono"
-                    style="font-size:0.5rem;color:var(--cc-zinc-600);">Compliance_Sentinel_Active</span>
+                  <span class="font-mono stat-label"
+                   >Compliance_Sentinel_Active</span>
                 </div>
               </div>
             </div>
@@ -422,7 +328,7 @@
           <!-- 08:00 PM -->
           <div class="timeline-event reveal cc-lift" data-delay="800">
             <div class="timeline-marker">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
               </svg>
             </div>
@@ -431,10 +337,10 @@
                 <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
                   <span class="font-serif" style="font-size:1.75rem;color:var(--cc-zinc-300);font-style:italic;">08:00
                     PM</span>
-                  <span class="text-label" style="color:var(--cc-zinc-400);">Perpetual Vigilance</span>
+                  <span class="text-label text-zinc-400">Perpetual Vigilance</span>
                 </div>
                 <h3 class="text-headline">The Director's Sabbatical</h3>
-                <p class="text-body mt-4" style="color:var(--cc-zinc-400);">
+                <p class="text-body mt-4 text-zinc-400">
                   You are with your family. The computer is off. But the 100-agent team is still running. Casper is
                   auditing your competitors' new pricing and adjusting your ad-strategy for 06:00 AM tomorrow. Your
                   business never sleeps, so you can.
@@ -470,14 +376,14 @@
          Side-by-side comparison: Traditional vs C&C
          Source: "C&C The Parallel Experience.txt"
          ============================================ -->
-    <section class="section"
-      style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:8rem 2rem;">
+    <section class="section section-light"
+     >
       <div class="container">
         <div class="reveal text-center mb-12">
-          <p class="text-label" style="color:var(--cc-zinc-400);">The Parallel</p>
+          <p class="text-label text-zinc-400">The Parallel</p>
           <h2 class="text-display mt-4">Stop being the Chief<br><span class="text-ghost cc-grad-text">Everything
               Officer.</span></h2>
-          <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+          <p class="text-body-lg mt-6 mx-auto max-w-md text-zinc-400">
             Same business. Same day. Two entirely different experiences.
           </p>
         </div>
@@ -547,17 +453,17 @@
     </section>
 
     <!-- TOTAL MASTERY SUMMARY -->
-    <section class="section section-dark" style="padding:10rem 2rem;text-align:center;">
+    <section class="section section-dark section-pad-center">
       <div class="dot-grid"></div>
-      <div class="reveal container-sm" style="position:relative;z-index:1;">
+      <div class="reveal container-sm z-1">
         <h2 class="text-hero" style="font-style:italic;">Total Mastery.</h2>
-        <p class="text-body-lg mt-8 mx-auto" style="max-width:36rem;color:var(--cc-zinc-500);">
+        <p class="text-body-lg mt-8 mx-auto max-w-md text-zinc-500">
           Most business owners spend their day reacting to the past. Camber & Casper lets you direct the future. It's
           the difference between being a worker and being a Director.
         </p>
         <div style="display:flex;justify-content:center;gap:3rem;margin-top:3rem;">
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+          <div class="flex items-center gap-3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
@@ -565,8 +471,8 @@
               style="font-size:0.625rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--cc-zinc-500);">100
               Agents Working</span>
           </div>
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+          <div class="flex items-center gap-3">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
@@ -579,25 +485,25 @@
     </section>
 
     <!-- CTA -->
-    <section class="section" style="padding:10rem 2rem;text-align:center;">
+    <section class="section section-pad-center">
       <div class="reveal container-sm">
         <h2 class="text-hero" style="font-style:italic;">Scale the Day.</h2>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+        <p class="text-body-lg mt-6 mx-auto max-w-md text-zinc-400">
           Don't build a job. Build an asset. Scale your output today for $799/month. Zero technical expertise required.
         </p>
-        <a href="pricing.html" class="btn-primary mt-8">Claim Your Command</a>
+        <a href="contact.html" class="btn-primary mt-8">Claim Your Command</a>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
-        <div><span class="font-serif"
-            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span><span
-            class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Sovereign Management
+        <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
+        <div><span class="font-serif hero-num"
+           >C&C</span><span
+            class="text-micro subtitle-zinc">Sovereign Management
             Systems</span></div>
       </div>
       <div class="footer-links">
@@ -609,8 +515,17 @@
         <a href="day.html">A Day</a>
         <a href="launch.html">How It Works</a>
         <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer-contact">
+        <span>hello@camberandcasper.com.au</span>
+        <span>Sydney, NSW, Australia</span>
+      </div>
+      <div class="footer-copy">&copy; 2025 Camber &amp; Casper Pty Ltd. All rights reserved.</div>
     </div>
   </footer>
 

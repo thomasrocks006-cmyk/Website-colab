@@ -4,177 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>How It Works — 10-Minute Launch | Camber & Casper</title>
   <meta name="description"
     content="From zero to 100 agents in under 10 minutes. The commissioning protocol that gets your workforce operational immediately.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://camberandcasper.com.au/launch.html">
   <meta property="og:title" content="How It Works — 10-Minute Launch | Camber &amp; Casper">
   <meta property="og:description"
     content="From zero to 100 agents in under 10 minutes. Chaos to Command in 600 seconds.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://camberandcasper.com.au/og-image.png">
+  <meta name="twitter:image" content="https://camberandcasper.com.au/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="10-Minute Launch | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .step-card {
-      position: relative;
-      padding: 4rem 3rem;
-      background: white;
-      border: 1px solid var(--cc-zinc-100);
-      border-radius: var(--radius-card);
-    }
-
-    .step-number {
-      font-family: var(--font-mono);
-      font-size: 5rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      color: var(--cc-zinc-50);
-      position: absolute;
-      top: 2rem;
-      right: 2.5rem;
-    }
-
-    .step-time {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--cc-blue-500);
-    }
-
-    .step-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-top: 0.75rem;
-    }
-
-    .step-desc {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--cc-zinc-400);
-      line-height: 1.7;
-      margin-top: 1rem;
-      max-width: 32rem;
-    }
-
-    .step-detail {
-      margin-top: 1.5rem;
-      padding: 1.25rem 1.5rem;
-      border-radius: var(--radius-lg);
-      background: var(--cc-zinc-50);
-      border: 1px solid var(--cc-zinc-100);
-      font-size: 0.8rem;
-      color: var(--cc-zinc-500);
-      line-height: 1.8;
-    }
-
-    /* Timeline connector */
-    .launch-timeline {
-      position: relative;
-    }
-
-    .launch-timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--cc-zinc-100);
-      transform: translateX(-50%);
-      z-index: 0;
-    }
-
-    .timeline-item {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 3rem;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Progress bar */
-    .launch-progress {
-      background: var(--cc-zinc-950);
-      border-radius: 60px;
-      padding: 3rem 4rem;
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .progress-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-    }
-
-    .progress-dot {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--cc-zinc-800);
-      border: 2px solid var(--cc-zinc-700);
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .progress-dot.active {
-      background: var(--cc-blue-500);
-      border-color: var(--cc-blue-500);
-      animation: pulse 2s infinite;
-    }
-
-    .progress-dot.done {
-      background: var(--cc-emerald-500);
-      border-color: var(--cc-emerald-500);
-    }
-
-    .progress-line {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      width: 100%;
-      height: 2px;
-      background: var(--cc-zinc-800);
-      z-index: 0;
-    }
-
-    .progress-line.active {
-      background: var(--cc-blue-500);
-    }
-
-    .progress-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cc-zinc-500);
-      margin-top: 0.75rem;
-    }
-  </style>
 </head>
 
 <body>
   <a href="#main" class="skip-to-content">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <div style="display:flex;align-items:center;gap:3rem;">
+      <div class="flex items-center gap-12">
         <a href="index.html" class="nav-logo">
-          <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+          <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
           <span class="nav-logo-text font-serif">C&C</span>
         </a>
         <div class="nav-links">
@@ -187,15 +50,15 @@
           <a href="pricing.html">Pricing</a>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
-        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="flex items-center gap-4x">
+        <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU PANEL -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="workforce.html">The 100</a>
     <a href="advantage.html">Advantage</a>
@@ -204,21 +67,21 @@
     <a href="industries.html">Industries</a>
     <a href="day.html">A Day in Command</a>
     <a href="launch.html">How It Works</a>
-    <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+    <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
   </div>
 
   <main id="main">
     <!-- HERO -->
-    <section class="pt-40" style="padding:12rem 2rem 6rem;text-align:center;">
+    <section class="pt-40 section-pad-hero">
       <div class="reveal container-sm">
         <div class="badge badge-light mb-8 cc-badge-pop">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
           </svg>
           Launch Protocol v2.0
         </div>
         <h1 class="text-hero cc-blur-in">10 Minutes.<br><span class="text-ghost cc-grad-text">100 Agents.</span></h1>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:42rem;color:var(--cc-zinc-400);">
+        <p class="text-body-lg mt-6 mx-auto max-w-lg text-zinc-400">
           No integrations. No developers. No 6-week onboarding. The Camber & Casper commissioning protocol gets your
           entire workforce operational in under 10 minutes.
         </p>
@@ -235,17 +98,17 @@
           <div class="progress-step">
             <div class="progress-dot done"></div>
             <div class="progress-line active"></div>
-            <div class="progress-label" style="color:var(--cc-emerald-500);">Identify</div>
+            <div class="progress-label text-emerald">Identify</div>
           </div>
           <div class="progress-step">
             <div class="progress-dot done"></div>
             <div class="progress-line active"></div>
-            <div class="progress-label" style="color:var(--cc-emerald-500);">Configure</div>
+            <div class="progress-label text-emerald">Configure</div>
           </div>
           <div class="progress-step">
             <div class="progress-dot active"></div>
             <div class="progress-line"></div>
-            <div class="progress-label" style="color:var(--cc-blue-500);">Deploy</div>
+            <div class="progress-label text-blue">Deploy</div>
           </div>
           <div class="progress-step">
             <div class="progress-dot"></div>
@@ -273,15 +136,15 @@
               experts before deployment starts.</div>
             <div class="cc-vt-tags">
               <div class="badge badge-light cc-badge-pop"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                 </svg> Tradie / Agency / E-com</div>
               <div class="badge badge-light cc-badge-pop"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                 </svg> Team Size</div>
               <div class="badge badge-light cc-badge-pop"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
+                  stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                 </svg> Pain Point Mapping</div>
             </div>
@@ -299,10 +162,10 @@
               operating inboxes. Casper reads the live signals through a secure handshake and creates a read-only mirror
               inside your private environment.</div>
             <div class="cc-vt-tags" style="margin-top:1.25rem;">
-              <span class="text-label cc-label-track" style="color:var(--cc-blue-500);">Email</span>
-              <span class="text-label cc-label-track" style="color:var(--cc-emerald-500);">Xero</span>
-              <span class="text-label cc-label-track" style="color:var(--cc-amber-500);">Calendar</span>
-              <span class="text-label" style="color:var(--cc-red-500);">Files</span>
+              <span class="text-label cc-label-track text-blue">Email</span>
+              <span class="text-label cc-label-track text-emerald">Xero</span>
+              <span class="text-label cc-label-track text-amber">Calendar</span>
+              <span class="text-label text-red">Files</span>
             </div>
             <div class="cc-vt-detail">No master passwords are passed around the system. The handshake uses
               permission-scoped access so the agents can interpret new signals, unpaid invoices, and fresh leads without
@@ -319,16 +182,16 @@
               the node before the workforce is allowed to act.</div>
             <div
               style="background:var(--cc-zinc-950);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin-top:1.5rem;font-family:var(--font-mono);font-size:0.625rem;color:var(--cc-zinc-500);line-height:2;">
-              <div><span style="color:var(--cc-emerald-500);">&#x2713;</span> Lead Scraper #10 — <span
-                  style="color:var(--cc-emerald-500);">ONLINE</span></div>
-              <div><span style="color:var(--cc-emerald-500);">&#x2713;</span> Quote Architect #12 — <span
-                  style="color:var(--cc-emerald-500);">ONLINE</span></div>
-              <div><span style="color:var(--cc-emerald-500);">&#x2713;</span> Debt Collector #44 — <span
-                  style="color:var(--cc-emerald-500);">ONLINE</span></div>
-              <div><span style="color:var(--cc-blue-500);">&#x27F3;</span> Schedule Pilot #72 — <span
-                  style="color:var(--cc-blue-500);">CALIBRATING</span></div>
-              <div><span style="color:var(--cc-zinc-600);">&#x25CB;</span> Encryption Warden #01 — <span
-                  style="color:var(--cc-zinc-600);">PENDING</span></div>
+              <div><span class="text-emerald">&#x2713;</span> Lead Scraper #10 — <span
+ class="text-emerald"                 >ONLINE</span></div>
+              <div><span class="text-emerald">&#x2713;</span> Quote Architect #12 — <span
+ class="text-emerald"                 >ONLINE</span></div>
+              <div><span class="text-emerald">&#x2713;</span> Debt Collector #44 — <span
+ class="text-emerald"                 >ONLINE</span></div>
+              <div><span class="text-blue">&#x27F3;</span> Schedule Pilot #72 — <span
+ class="text-blue"                 >CALIBRATING</span></div>
+              <div><span class="text-zinc-600">&#x25CB;</span> Encryption Warden #01 — <span
+ class="text-zinc-600"                 >PENDING</span></div>
               <div style="color:var(--cc-zinc-600);margin-top:0.5rem;">... deploying 95 more agents</div>
             </div>
             <div class="cc-vt-detail">This is a private instance on physical infrastructure, not a shared public AI
@@ -369,7 +232,7 @@
       style="background:var(--cc-zinc-50);border-top:1px solid var(--cc-zinc-100);padding:10rem 2rem;">
       <div class="container">
         <div class="reveal text-center mb-16">
-          <p class="text-label" style="color:var(--cc-zinc-400);">Day One</p>
+          <p class="text-label text-zinc-400">Day One</p>
           <h2 class="text-display mt-4">Your first 24 hours<br><span class="text-ghost cc-grad-text">with the
               Swarm.</span></h2>
         </div>
@@ -378,8 +241,8 @@
             style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
             <div class="font-mono" style="font-weight:700;color:var(--cc-blue-500);width:4rem;flex-shrink:0;">6:00</div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">Morning Report Arrives</h4>
-              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Your phone buzzes. Casper has
+              <h4 class="label-sm">Morning Report Arrives</h4>
+              <p class="caption">Your phone buzzes. Casper has
                 already processed overnight enquiries, prioritized leads, and drafted responses. 1,402 actions completed
                 since midnight.</p>
             </div>
@@ -388,8 +251,8 @@
             style="display:flex;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--cc-zinc-200);align-items:flex-start;">
             <div class="font-mono" style="font-weight:700;color:var(--cc-blue-500);width:4rem;flex-shrink:0;">9:00</div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">You Start Work — Already Ahead</h4>
-              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Your competitors are just opening
+              <h4 class="label-sm">You Start Work — Already Ahead</h4>
+              <p class="caption">Your competitors are just opening
                 email. You've already sent 3 quotes, chased 2 debtors, and scheduled next week.</p>
             </div>
           </div>
@@ -398,8 +261,8 @@
             <div class="font-mono" style="font-weight:700;color:var(--cc-emerald-500);width:4rem;flex-shrink:0;">12:00
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">Midday Check-In</h4>
-              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Dashboard shows 14 new leads
+              <h4 class="label-sm">Midday Check-In</h4>
+              <p class="caption">Dashboard shows 14 new leads
                 captured, $12.8k in pipeline, and one compliance alert flagged and auto-resolved by Compliance Sorter
                 #85.</p>
             </div>
@@ -409,8 +272,8 @@
             <div class="font-mono" style="font-weight:700;color:var(--cc-amber-500);width:4rem;flex-shrink:0;">17:00
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">Tools Down</h4>
-              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">You finish your day. The agents
+              <h4 class="label-sm">Tools Down</h4>
+              <p class="caption">You finish your day. The agents
                 keep going. Casper takes over the evening shift — invoice follow-ups, tomorrow's schedule prep, and
                 overnight lead monitoring.</p>
             </div>
@@ -419,8 +282,8 @@
             <div class="font-mono" style="font-weight:700;color:var(--cc-zinc-400);width:4rem;flex-shrink:0;">18:00
             </div>
             <div>
-              <h4 style="font-weight:700;font-size:0.875rem;">Dinner with the Family</h4>
-              <p style="font-size:0.8rem;color:var(--cc-zinc-400);margin-top:0.25rem;">Casper has the office. You have
+              <h4 class="label-sm">Dinner with the Family</h4>
+              <p class="caption">Casper has the office. You have
                 the family. That's the deal.</p>
             </div>
           </div>
@@ -432,32 +295,32 @@
          THE MORNING HANDSHAKE — from Morning Handshake doc
          "By 7:00 AM on Day 2, your business is already running."
          ============================================ -->
-    <section class="section section-dark" style="padding:10rem 2rem;">
+    <section class="section section-dark section-pad">
       <div class="dot-grid"></div>
-      <div class="container" style="position:relative;z-index:1;">
+      <div class="container z-1">
         <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
           <div>
-            <p class="text-label" style="color:var(--cc-zinc-600);">Day 2</p>
-            <h2 class="text-display mt-4" style="color:white;">The Morning<br><span
-                style="color:var(--cc-zinc-600);font-style:italic;">Handshake.</span></h2>
-            <p class="text-body-lg mt-6" style="color:var(--cc-zinc-500);">
+            <p class="text-label text-zinc-600">Day 2</p>
+            <h2 class="text-display mt-4 text-white">The Morning<br><span
+ class="desc-zinc-600"               >Handshake.</span></h2>
+            <p class="text-body-lg mt-6 text-zinc-500">
               By 7:00 AM on Day 2, your business is already running. You wake up to a synthesized executive brief
               detailing every quote sent, invoice chased, and site-visit optimized while you were asleep. This is what
               command feels like.
             </p>
           </div>
           <div
-            style="background:var(--cc-zinc-900);border:1px solid var(--cc-zinc-800);border-radius:var(--radius-lg);padding:2.5rem;">
+ class="card-dark-inner"           >
             <div
               style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--cc-zinc-800);padding-bottom:1rem;margin-bottom:1.5rem;">
               <span
                 style="font-size:0.5rem;font-weight:700;color:var(--cc-blue-500);letter-spacing:0.3em;text-transform:uppercase;">Morning
                 Report · Day 2</span>
-              <span class="font-mono" style="font-size:0.5rem;color:var(--cc-zinc-600);">07:00 AEST</span>
+              <span class="font-mono stat-label">07:00 AEST</span>
             </div>
             <div style="display:flex;flex-direction:column;gap:1.25rem;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <div class="flex items-center gap-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
@@ -466,8 +329,8 @@
                   <span style="font-size:0.5rem;color:var(--cc-zinc-600);display:block;">Market Growth</span>
                 </div>
               </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <div class="flex items-center gap-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" aria-hidden="true">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
@@ -476,8 +339,8 @@
                   <span style="font-size:0.5rem;color:var(--cc-zinc-600);display:block;">Fiscal Integrity</span>
                 </div>
               </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <div class="flex items-center gap-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                   <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
                 </svg>
@@ -485,8 +348,8 @@
                   <span style="font-size:0.75rem;color:var(--cc-zinc-300);">Lead Captures: Completed</span>
                 </div>
               </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <div class="flex items-center gap-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                   <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
                 </svg>
@@ -494,8 +357,8 @@
                   <span style="font-size:0.75rem;color:var(--cc-zinc-300);">Fiscal Audit: Verified</span>
                 </div>
               </div>
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <div class="flex items-center gap-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" aria-hidden="true">
                   <polyline points="9 11 12 14 22 4" />
                   <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
                 </svg>
@@ -514,26 +377,26 @@
     </section>
 
     <!-- CTA -->
-    <section class="section" style="padding:10rem 2rem;text-align:center;">
+    <section class="section section-pad-center">
       <div class="reveal container-sm">
         <h2 class="text-display">Chaos to Command<br><span class="text-ghost cc-grad-text">in 600 seconds.</span></h2>
-        <p class="text-body-lg mt-6 mx-auto" style="max-width:36rem;color:var(--cc-zinc-400);">
+        <p class="text-body-lg mt-6 mx-auto max-w-md text-zinc-400">
           No contracts. No lock-in. Deploy the workforce today and see measurable output by tomorrow morning.
         </p>
-        <a href="pricing.html" class="btn-primary mt-8">Begin Commissioning</a>
+        <a href="contact.html" class="btn-primary mt-8">Begin Commissioning</a>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
+        <div class="nav-logo-mark">C<span class="desc-zinc">C</span></div>
         <div>
-          <span class="font-serif"
-            style="font-size:1.5rem;letter-spacing:-0.05em;display:block;line-height:1;">C&C</span>
-          <span class="text-micro" style="color:var(--cc-zinc-400);margin-top:0.25rem;display:block;">Managed
+          <span class="font-serif hero-num"
+           >C&C</span>
+          <span class="text-micro subtitle-zinc">Managed
             Intelligence Systems</span>
         </div>
       </div>
@@ -546,8 +409,17 @@
         <a href="day.html">A Day</a>
         <a href="launch.html">How It Works</a>
         <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer-contact">
+        <span>hello@camberandcasper.com.au</span>
+        <span>Sydney, NSW, Australia</span>
+      </div>
+      <div class="footer-copy">&copy; 2025 Camber &amp; Casper Pty Ltd. All rights reserved.</div>
     </div>
   </footer>
 
