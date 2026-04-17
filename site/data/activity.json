@@ -1,0 +1,17 @@
+{
+  "_note": "REAL DATA REQUIRED — Replace these placeholder events with actual agent activity from the C&C platform. Update this file every 5 minutes via cron or connect to a live API endpoint. Agent names and action types are real; numbers and specifics must reflect real completed actions only.",
+  "_howToUpdate": "Export from the C&C platform dashboard → anonymise client names → save here. When the backend API is ready, replace the JS fetch URL in main.js (search for 'activity.json') with the real endpoint.",
+  "_lastUpdated": "PENDING — populate with real data before go-live",
+  "events": [
+    { "agent": "ARCHER_07", "action": "Quote generated and dispatched", "highlight": false },
+    { "agent": "NOVA_12", "action": "Morning brief delivered to Director", "highlight": false },
+    { "agent": "SHIELD_03", "action": "Security audit completed — all nodes clean", "highlight": true },
+    { "agent": "PULSE_19", "action": "Ad campaign rebalanced for efficiency", "highlight": false },
+    { "agent": "LEDGER_05", "action": "Overdue invoice followed up automatically", "highlight": false },
+    { "agent": "REACH_22", "action": "Post-job review requests sent", "highlight": false },
+    { "agent": "CASPER CORE", "action": "Daily action count compiled", "highlight": true },
+    { "agent": "APEX_01", "action": "Competitor pricing change detected", "highlight": false },
+    { "agent": "ORACLE_24", "action": "High-intent leads scored and queued", "highlight": false },
+    { "agent": "FORGE_08", "action": "Contract template updated and filed", "highlight": false }
+  ]
+}

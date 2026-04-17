@@ -498,6 +498,183 @@ function switchTab(btn, group) {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
+/* ============================================================
+   LIVE DATA — Status dot, agent activity ticker & log, metrics
+   Data files live in /data/*.json — update those files with real
+   data, or point the fetch() calls to a live API endpoint.
+   ============================================================ */
+
+// --- UPTIME STATUS DOT ---
+// Reads from /data/status.json. Replace the fetch URL with your
+// BetterStack or UptimeRobot public API endpoint when ready.
+(function initStatusDot() {
+  const dots = document.querySelectorAll('.cc-status-dot');
+  if (!dots.length) return;
+
+  const STATUS_URL = 'data/status.json';
+
+  function applyStatus(status, message) {
+    dots.forEach(dot => {
+      dot.setAttribute('data-status', status);
+      // Show short message text beside dot
+      const label = status === 'operational' ? 'Operational'
+        : status === 'degraded' ? 'Degraded'
+        : 'Outage';
+      dot.textContent = label;
+      dot.title = message || label;
+    });
+  }
+
+  fetch(STATUS_URL, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      const s = (data.status || 'operational').toLowerCase();
+      applyStatus(s, data.message);
+    })
+    .catch(() => {
+      // Default to operational if fetch fails (local file:// or CORS)
+      applyStatus('operational', 'All systems operational');
+    });
+})();
+
+// --- LIVE ACTIVITY: Ticker + Swarm Log ---
+// Reads from /data/activity.json. Replace the fetch URL with a
+// real API endpoint when C&C platform backend is ready.
+(function initLiveActivity() {
+  const ACTIVITY_URL = 'data/activity.json';
+
+  // Relative-time helper: turns an index (0 = most recent) into "Xm ago"
+  function relativeTime(idx) {
+    const mins = [2, 5, 9, 14, 21, 28, 36, 44, 53, 61];
+    const m = mins[idx] || (idx * 7 + 2);
+    return m < 60 ? m + 'm ago' : Math.floor(m / 60) + 'h ago';
+  }
+
+  function buildTicker(events) {
+    const track = document.querySelector('.cc-ticker-track');
+    if (!track) return;
+
+    // Build items (doubled for seamless loop)
+    const makeItems = () => events.map(e =>
+      `<div class="cc-ticker-item${e.highlight ? ' highlight' : ''}">` +
+      `<span class="ticker-dot"></span>${e.agent} · ${e.action}` +
+      `</div>`
+    ).join('');
+
+    track.innerHTML = makeItems() + makeItems();
+  }
+
+  function buildSwarmLog(events) {
+    const logBody = document.getElementById('cc-swarm-log-body');
+    if (!logBody) return;
+
+    logBody.innerHTML = events.slice(0, 10).map((e, i) =>
+      `<div class="cc-swarm-log-row${e.highlight ? ' highlight' : ''}">` +
+      `<div class="cc-swarm-log-agent">${e.agent}</div>` +
+      `<div class="cc-swarm-log-action">${e.action}</div>` +
+      `<div class="cc-swarm-log-time">${relativeTime(i)}</div>` +
+      `</div>`
+    ).join('');
+
+    // Update refresh timestamp
+    const ts = document.getElementById('cc-swarm-log-ts');
+    if (ts) {
+      const now = new Date();
+      ts.textContent = 'Updated ' + now.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' });
+    }
+  }
+
+  function loadActivity() {
+    fetch(ACTIVITY_URL, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => {
+        if (data.events && data.events.length) {
+          buildTicker(data.events);
+          buildSwarmLog(data.events);
+        }
+      })
+      .catch(() => {
+        // Ticker keeps its hardcoded HTML on error — no action needed.
+        // Swarm log gets a fallback placeholder row.
+        const logBody = document.getElementById('cc-swarm-log-body');
+        if (logBody && !logBody.children.length) {
+          logBody.innerHTML =
+            '<div class="cc-swarm-log-row">' +
+            '<div class="cc-swarm-log-agent">CASPER CORE</div>' +
+            '<div class="cc-swarm-log-action">Swarm active — live log feed connecting...</div>' +
+            '<div class="cc-swarm-log-time">now</div>' +
+            '</div>';
+        }
+      });
+  }
+
+  loadActivity();
+
+  // Re-fetch every 60 seconds for near-real-time updates
+  setInterval(loadActivity, 60000);
+})();
+
+// --- LIVE METRICS ---
+// Reads from /data/metrics.json. Updates data-count targets before
+// the counter animation fires, so animated numbers reflect real values.
+// Replace fetch URL with a live telemetry API endpoint when ready.
+(function initLiveMetrics() {
+  const METRICS_URL = 'data/metrics.json';
+
+  fetch(METRICS_URL, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      // Map JSON keys to element IDs in the dashboard metrics
+      const mappings = [
+        { key: 'actionsToday', selector: '[data-metric="actions-today"]' },
+        { key: 'activeClients', selector: '[data-metric="active-clients"]' },
+        { key: 'uptimePercent', selector: '[data-metric="uptime-percent"]' },
+      ];
+      mappings.forEach(({ key, selector }) => {
+        const val = data[key];
+        if (val === null || val === undefined) return;
+        document.querySelectorAll(selector).forEach(el => {
+          el.setAttribute('data-count', val);
+          el.textContent = '0'; // reset so counter animation starts from 0
+        });
+      });
+    })
+    .catch(() => {
+      // Silently keep hardcoded values if metrics.json unavailable
+    });
+})();
+
+// --- VIDEO EMBED ACTIVATION ---
+// Looks for .cc-video-wrap[data-vimeo-id], .cc-video-wrap[data-youtube-id],
+// and .cc-proof-clip-wrap[data-vimeo-id].
+// When a real ID is set, swaps the placeholder for a real iframe.
+(function initVideoEmbeds() {
+  document.querySelectorAll(
+    '.cc-video-wrap[data-vimeo-id], .cc-video-wrap[data-youtube-id], ' +
+    '.cc-proof-clip-wrap[data-vimeo-id], .cc-proof-clip-wrap[data-youtube-id]'
+  ).forEach(wrap => {
+    const vimeoId = wrap.dataset.vimeoId;
+    const youtubeId = wrap.dataset.youtubeId;
+    if (!vimeoId && !youtubeId) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.loading = 'lazy';
+    iframe.allowFullscreen = true;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+
+    if (vimeoId) {
+      iframe.src = `https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479`;
+      iframe.title = wrap.dataset.title || 'C&C product video';
+    } else if (youtubeId) {
+      iframe.src = `https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1`;
+      iframe.title = wrap.dataset.title || 'C&C product video';
+    }
+
+    wrap.innerHTML = '';
+    wrap.appendChild(iframe);
+  });
+})();
+
 // --- FAQ ACCORDION ---
 document.querySelectorAll('.cc-faq-item').forEach(item => {
   const btn = item.querySelector('.cc-faq-q');

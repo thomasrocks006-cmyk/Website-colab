@@ -1,0 +1,11 @@
+{
+  "_note": "REAL DATA REQUIRED — Replace all values below with real metrics from the C&C platform before go-live. Update hourly via cron or connect to a live telemetry API. Do not publish inflated numbers — real figures, even if modest, build more trust than impressive fakes.",
+  "_howToUpdate": "Pull from C&C dashboard telemetry API → save here. When backend API is ready, replace the JS fetch URL in main.js (search for 'metrics.json') with the real endpoint.",
+  "_lastUpdated": "PENDING — populate with real data before go-live",
+  "actionsToday": null,
+  "actionsLabel": "Actions completed today",
+  "activeClients": null,
+  "activeClientsLabel": "Active clients",
+  "uptimePercent": null,
+  "uptimeLabel": "Uptime this month"
+}

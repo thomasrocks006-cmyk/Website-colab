@@ -1,0 +1,8 @@
+{
+  "_note": "REAL DATA REQUIRED — Update 'status' to reflect actual system health. Options: 'operational', 'degraded', 'outage'. For automatic updates, sign up for BetterStack (betterstack.com) or UptimeRobot (uptimerobot.com) — both have free tiers — then replace the fetch URL in main.js (search for 'status.json') with your public status page API URL.",
+  "_howToUpdate": "BetterStack public API: https://uptime.betterstack.com/api/v1/status-pages/{YOUR_ID}/summary — returns JSON with 'attributes.status'. UptimeRobot API returns monitor status. Or update this file manually when incidents occur.",
+  "_lastUpdated": "PENDING — connect to real uptime monitoring before go-live",
+  "status": "operational",
+  "message": "All systems operational",
+  "updatedAt": "2026-04-17T04:00:00Z"
+}

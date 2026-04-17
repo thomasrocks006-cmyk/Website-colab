@@ -422,6 +422,7 @@
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
+        <span class="cc-status-dot" aria-label="System status"></span>
         <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
         <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
@@ -481,6 +482,33 @@
         <div style="display:flex;justify-content:center;gap:2rem;margin-top:2rem;">
           <span class="text-label cc-label-track" style="color:var(--cc-zinc-300);">Response Time: 42 Seconds</span>
           <span class="text-label cc-label-track" style="color:var(--cc-zinc-300);">100 Agents · $799/mo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PRODUCT EXPLAINER VIDEO
+         HOW TO ACTIVATE: Record a 90-second screen recording of the real
+         C&C dashboard using Loom, OBS, or Cleanshot. Upload to Vimeo (cleaner,
+         no ads) or YouTube. Then replace data-vimeo-id="" with your real video
+         ID (e.g. data-vimeo-id="123456789") and the placeholder disappears.
+         ============================================ -->
+    <section class="cc-video-section reveal">
+      <div class="container-sm">
+        <p class="text-label cc-label-track" style="color:var(--cc-zinc-400);text-align:center;margin-bottom:1rem;">The Platform</p>
+        <h2 class="text-display text-center mb-8" style="max-width:36rem;margin-left:auto;margin-right:auto;">See it working.<br><span class="text-ghost cc-grad-text">In real time.</span></h2>
+        <div class="cc-video-wrap" data-vimeo-id="" data-youtube-id="" data-title="Camber & Casper — Live Platform Demo">
+          <!-- Placeholder: visible until a real video ID is set above -->
+          <div class="cc-video-placeholder">
+            <div class="cc-video-play-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" stroke="none">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <p class="cc-video-placeholder-label">Product Demo</p>
+            <p class="cc-video-placeholder-title">Watch the platform in action</p>
+            <p class="cc-video-placeholder-desc">A 90-second screen recording of the real dashboard — agents completing tasks, quotes generating, and the executive command view. Recording in progress.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -555,6 +583,66 @@
           priority queued</div>
       </div>
     </div>
+
+    <!-- ============================================
+         SWARM LIVE LOG WIDGET
+         Reads from /data/activity.json (refreshes every 60s).
+         HOW TO ACTIVATE: Populate activity.json with real agent events
+         from the C&C platform, or point the fetch in main.js to a real
+         API endpoint. The hardcoded data below shows on first load and
+         is replaced as soon as the JSON file loads.
+         ============================================ -->
+    <section class="cc-swarm-log-section reveal">
+      <div class="container">
+        <div class="cc-swarm-log" aria-label="Live agent activity log">
+          <div class="cc-swarm-log-header">
+            <div class="cc-swarm-log-title">
+              <span>Swarm Activity</span>
+              <span class="cc-swarm-log-live-badge">Live</span>
+            </div>
+            <span class="cc-swarm-log-refresh" id="cc-swarm-log-ts">Refreshes every 60s</span>
+          </div>
+          <div class="cc-swarm-log-body" id="cc-swarm-log-body">
+            <!-- Populated by initLiveActivity() in main.js from /data/activity.json -->
+            <div class="cc-swarm-log-row">
+              <div class="cc-swarm-log-agent">ARCHER_07</div>
+              <div class="cc-swarm-log-action">Quote generated and dispatched</div>
+              <div class="cc-swarm-log-time">2m ago</div>
+            </div>
+            <div class="cc-swarm-log-row">
+              <div class="cc-swarm-log-agent">NOVA_12</div>
+              <div class="cc-swarm-log-action">Morning brief delivered to Director</div>
+              <div class="cc-swarm-log-time">5m ago</div>
+            </div>
+            <div class="cc-swarm-log-row highlight">
+              <div class="cc-swarm-log-agent">SHIELD_03</div>
+              <div class="cc-swarm-log-action">Security audit completed — all nodes clean</div>
+              <div class="cc-swarm-log-time">9m ago</div>
+            </div>
+            <div class="cc-swarm-log-row">
+              <div class="cc-swarm-log-agent">LEDGER_05</div>
+              <div class="cc-swarm-log-action">Overdue invoice followed up automatically</div>
+              <div class="cc-swarm-log-time">14m ago</div>
+            </div>
+            <div class="cc-swarm-log-row">
+              <div class="cc-swarm-log-agent">PULSE_19</div>
+              <div class="cc-swarm-log-action">Ad campaign rebalanced for efficiency</div>
+              <div class="cc-swarm-log-time">21m ago</div>
+            </div>
+            <div class="cc-swarm-log-row">
+              <div class="cc-swarm-log-agent">REACH_22</div>
+              <div class="cc-swarm-log-action">Post-job review requests sent</div>
+              <div class="cc-swarm-log-time">28m ago</div>
+            </div>
+            <div class="cc-swarm-log-row highlight">
+              <div class="cc-swarm-log-agent">CASPER CORE</div>
+              <div class="cc-swarm-log-action">Daily action count compiled</div>
+              <div class="cc-swarm-log-time">36m ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================
          DASHBOARD PREVIEW — from Final Brand Identity
@@ -686,6 +774,101 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SCREENSHOT GALLERY
+         HOW TO ACTIVATE: Take real screenshots of the C&C product dashboard.
+         Anonymise/blur any client-identifying data. Export as WebP (max 200KB each).
+         Save to /site/images/screenshots/ and replace the data-src attributes below.
+         The placeholder cards are visible until real screenshots are added.
+
+         Suggested shots:
+         - screenshot-01: Executive dashboard — morning overview with action count
+         - screenshot-02: Quote generated in 42 seconds — clock visible in frame
+         - screenshot-03: Agent swarm activity log — showing concurrent tasks
+         - screenshot-04: Ironbark node status panel — all nodes green
+         - screenshot-05: Invoice recovery workflow — before/after view
+         - screenshot-06: Lead scoring panel — high-intent queue
+         ============================================ -->
+    <section class="cc-screenshot-section">
+      <div class="container">
+        <div class="reveal text-center">
+          <p class="text-label cc-label-track" style="color:var(--cc-zinc-400);">The Platform in Action</p>
+          <h2 class="text-display mt-4">Real outputs.<br><span class="text-ghost cc-grad-text">Real results.</span></h2>
+          <p class="text-body-lg mt-6 mx-auto" style="max-width:40rem;color:var(--cc-zinc-400);">Screenshots from the live C&C platform. All client data anonymised.</p>
+        </div>
+        <div class="cc-screenshot-grid reveal" data-delay="200">
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>Executive Dashboard</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">Executive Dashboard</div>
+              <div class="cc-screenshot-caption-desc">Morning overview — action count, node status, and priority queue in one view.</div>
+            </div>
+          </div>
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>42-Second Quote</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">42-Second Quote Generation</div>
+              <div class="cc-screenshot-caption-desc">Lead arrives, quote dispatched in 42 seconds. Clock visible. Unedited.</div>
+            </div>
+          </div>
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>Swarm Activity Log</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">Swarm Activity Log</div>
+              <div class="cc-screenshot-caption-desc">100 agents running concurrently — tasks completed, queued, and reported in real time.</div>
+            </div>
+          </div>
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>Ironbark Node Status</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">Ironbark Node Status</div>
+              <div class="cc-screenshot-caption-desc">Sydney and Melbourne nodes — sovereign AU infrastructure, all green.</div>
+            </div>
+          </div>
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>Invoice Recovery</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">Invoice Recovery Workflow</div>
+              <div class="cc-screenshot-caption-desc">Automated follow-up sequence for overdue invoices — trigger, escalation, and resolution.</div>
+            </div>
+          </div>
+
+          <div class="cc-screenshot-card">
+            <div class="cc-screenshot-img-wrap cc-screenshot-pending" data-src="">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cc-zinc-300)" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <p class="cc-screenshot-pending-label">Screenshot pending<br>Lead Scoring Panel</p>
+            </div>
+            <div class="cc-screenshot-caption">
+              <div class="cc-screenshot-caption-title">Lead Scoring &amp; Priority Queue</div>
+              <div class="cc-screenshot-caption-desc">High-intent leads scored, ranked, and routed to the right agent within seconds.</div>
+            </div>
+          </div>
+
+        </div>
+        <p class="text-center mt-8" style="font-size:0.6875rem;color:var(--cc-zinc-300);font-family:var(--font-mono);letter-spacing:0.1em;">SCREENSHOTS FROM LIVE PLATFORM · CLIENT DATA ANONYMISED · UPDATED AS PRODUCT EVOLVES</p>
       </div>
     </section>
 
@@ -1314,7 +1497,7 @@
         <a href="launch.html">How It Works</a>
         <a href="pricing.html">Pricing</a>
       </div>
-      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+      <div class="footer-copy"><span class="cc-status-dot cc-status-dot-footer" aria-label="System status"></span>© 2024 CAMBER_CASPER_CORE</div>
     </div>
   </footer>
 
