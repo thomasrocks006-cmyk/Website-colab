@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (splash) {
     setTimeout(() => {
       splash.classList.add('hidden');
-      setTimeout(() => { splash.style.display = 'none'; }, 1100);
-    }, 2800);
+      setTimeout(() => { splash.style.display = 'none'; }, 800);
+    }, 1200);
   }
 
   // --- NAV SCROLL ---
@@ -41,16 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.mobile-menu');
   if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
       menuBtn.classList.toggle('active');
       mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      menuBtn.setAttribute('aria-expanded', !isOpen);
+      document.body.style.overflow = !isOpen ? 'hidden' : '';
     });
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuBtn.classList.remove('active');
         mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        menuBtn.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        menuBtn.focus();
+      }
     });
   }
 
@@ -132,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="cc-float-cta-divider"></div>
     <span class="cc-float-cta-price">$799<span style="font-size:0.75rem;font-weight:400;color:var(--cc-zinc-400)">/mo</span></span>
     <div class="cc-float-cta-divider"></div>
-    <a href="pricing.html" class="cc-float-cta-btn">Deploy Now →</a>
+    <a href="contact.html" class="cc-float-cta-btn">Deploy Now →</a>
     <button class="cc-float-cta-close" aria-label="Close">✕</button>
   `;
   document.body.appendChild(floatCta);
@@ -373,81 +386,7 @@ function updateCalculator(value) {
   }
 }
 
-// --- NAV SCROLL ---
-const nav = document.querySelector('.nav');
-if (nav) {
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
-}
-
-// --- SCROLL REVEAL ---
-const reveals = document.querySelectorAll('.reveal');
-if (reveals.length) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
-}
-
-// --- MOBILE MENU ---
-const menuBtn = document.querySelector('.mobile-menu-btn');
-const mobileMenu = document.querySelector('.mobile-menu');
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
-  // Close menu when a link is clicked
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuBtn.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-}
-
-// --- ACTIVE NAV LINK ---
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-links a').forEach(link => {
-  if (link.getAttribute('href') === currentPage) {
-    link.classList.add('active');
-  }
-});
-
-// --- PAGE-SPECIFIC CALCULATOR INIT ---
-const quantifierSlider = document.querySelector('.quantifier-slider');
-if (quantifierSlider && typeof updateCalculator === 'function') {
-  updateCalculator(quantifierSlider.value);
-}
-
-
-// --- COMPETITIVE RACE SIMULATOR ---
-function startRace(btn) {
-  const section = btn.closest('.race-section');
-  const humanFill = section.querySelector('.race-human');
-  const ccFill = section.querySelector('.race-cc');
-  const isRacing = btn.dataset.racing === 'true';
-
-  if (isRacing) {
-    humanFill.style.width = '0';
-    ccFill.style.width = '0';
-    btn.textContent = 'Start Race';
-    btn.dataset.racing = 'false';
-  } else {
-    humanFill.style.width = '10%';
-    ccFill.style.width = '100%';
-    btn.textContent = 'Reset';
-    btn.dataset.racing = 'true';
-  }
-}
+// (Duplicates removed — all initialization is inside DOMContentLoaded above)
 
 // --- AUTONOMY CALCULATOR ---
 function updateCalculator(value) {
@@ -499,14 +438,38 @@ function switchTab(btn, group) {
 })();
 
 // --- FAQ ACCORDION ---
-document.querySelectorAll('.cc-faq-item').forEach(item => {
+document.querySelectorAll('.cc-faq-item').forEach((item, idx) => {
   const btn = item.querySelector('.cc-faq-q');
-  if (!btn) return;
+  const answer = item.querySelector('.cc-faq-a');
+  if (!btn || !answer) return;
+  // Set up ARIA
+  const answerId = answer.id || `faq-answer-${idx}`;
+  answer.id = answerId;
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', answerId);
+  answer.setAttribute('role', 'region');
+  answer.setAttribute('aria-labelledby', btn.id || `faq-q-${idx}`);
+  btn.id = btn.id || `faq-q-${idx}`;
+
   btn.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
     // close all siblings
-    item.closest('.cc-faq').querySelectorAll('.cc-faq-item.open').forEach(o => o.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    item.closest('.cc-faq').querySelectorAll('.cc-faq-item.open').forEach(o => {
+      o.classList.remove('open');
+      const oBtn = o.querySelector('.cc-faq-q');
+      if (oBtn) oBtn.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+  // Keyboard support
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      btn.click();
+    }
   });
 });
 

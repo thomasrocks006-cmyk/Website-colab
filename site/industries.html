@@ -8,10 +8,14 @@
   <meta name="description"
     content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://camberandcasper.com.au/industries.html">
   <meta property="og:title" content="Industries — Tradies, Agencies, E-Commerce | Camber &amp; Casper">
   <meta property="og:description"
     content="Built for Australian tradies, boutique agencies, and e-commerce operators. Win back your weekends.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://camberandcasper.com.au/og-image.png">
+  <meta name="twitter:image" content="https://camberandcasper.com.au/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Industries | Camber &amp; Casper">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,7 +154,7 @@
   <a href="#main" class="skip-to-content">Skip to content</a>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <div style="display:flex;align-items:center;gap:3rem;">
         <a href="index.html" class="nav-logo">
@@ -169,14 +173,14 @@
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
-        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
-        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU PANEL -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="workforce.html">The 100</a>
     <a href="advantage.html">Advantage</a>
@@ -185,7 +189,7 @@
     <a href="industries.html">Industries</a>
     <a href="day.html">A Day in Command</a>
     <a href="launch.html">How It Works</a>
-    <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+    <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
   </div>
 
   <main id="main">
@@ -203,10 +207,10 @@
     <!-- TAB NAVIGATION -->
     <section class="section" style="padding:4rem 2rem 10rem;">
       <div class="container">
-        <div class="reveal tab-bar" id="industryTabs">
-          <button class="tab-btn active" onclick="switchTab('tradies')">Tradies & Trades</button>
-          <button class="tab-btn" onclick="switchTab('agencies')">Boutique Agencies</button>
-          <button class="tab-btn" onclick="switchTab('ecommerce')">E-Commerce</button>
+        <div class="reveal tab-bar" id="industryTabs" role="tablist" aria-label="Industry portals">
+          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-tradies" onclick="switchTab('tradies')">Tradies & Trades</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-agencies" onclick="switchTab('agencies')">Boutique Agencies</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-ecommerce" onclick="switchTab('ecommerce')">E-Commerce</button>
         </div>
 
         <!-- ============================================
@@ -215,7 +219,7 @@
              "Win back your weekends."
              James Miller testimonial, 42-second quotes
              ============================================ -->
-        <div class="tab-panel active" id="tab-tradies">
+        <div class="tab-panel active" id="tab-tradies" role="tabpanel" aria-labelledby="industryTabs">
           <div class="reveal"
             style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
@@ -392,7 +396,7 @@
              Source: C&C Agency Command Portal.txt
              "Output like a network agency. Run like a founder."
              ============================================ -->
-        <div class="tab-panel" id="tab-agencies">
+        <div class="tab-panel" id="tab-agencies" role="tabpanel" aria-labelledby="industryTabs">
           <div class="reveal"
             style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
@@ -535,7 +539,7 @@
              Source: C&C E-commerce Command.txt
              "Supply Forensics. LTV Optimization."
              ============================================ -->
-        <div class="tab-panel" id="tab-ecommerce">
+        <div class="tab-panel" id="tab-ecommerce" role="tabpanel" aria-labelledby="industryTabs">
           <div class="reveal"
             style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-bottom:6rem;">
             <div>
@@ -711,7 +715,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
@@ -731,8 +735,17 @@
         <a href="day.html">A Day</a>
         <a href="launch.html">How It Works</a>
         <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer-contact">
+        <span>hello@camberandcasper.com.au</span>
+        <span>Sydney, NSW, Australia</span>
+      </div>
+      <div class="footer-copy">&copy; 2025 Camber &amp; Casper Pty Ltd. All rights reserved.</div>
     </div>
   </footer>
 
@@ -740,12 +753,16 @@
   <script>
     function switchTab(id) {
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active', 'cc-tab-anim'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       const panel = document.getElementById('tab-' + id);
       panel.classList.add('active');
       void panel.offsetWidth;
       panel.classList.add('cc-tab-anim');
       event.currentTarget.classList.add('active');
+      event.currentTarget.setAttribute('aria-selected', 'true');
       // Handle hash navigation
       window.location.hash = id;
     }

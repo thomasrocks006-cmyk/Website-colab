@@ -8,12 +8,16 @@
   <meta name="description"
     content="100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure. The unfair advantage for tradies, agencies, and modern businesses.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://camberandcasper.com.au/">
   <!-- Open Graph -->
   <meta property="og:title" content="Camber &amp; Casper — Simply Powerful. Engineered for Command.">
   <meta property="og:description"
     content="100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure. $799/month.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://camberandcasper.com.au/">
+  <meta property="og:image" content="https://camberandcasper.com.au/og-image.png">
+  <meta name="twitter:image" content="https://camberandcasper.com.au/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Camber &amp; Casper — Simply Powerful. Engineered for Command.">
   <meta name="twitter:description" content="100 autonomous AI agents. Sovereign Australian infrastructure. $799/month.">
@@ -22,6 +26,32 @@
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Camber & Casper",
+    "alternateName": "C&C",
+    "url": "https://camberandcasper.com.au",
+    "description": "100 autonomous AI agents managing your business 24/7 on sovereign Australian infrastructure.",
+    "email": "hello@camberandcasper.com.au",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sydney",
+      "addressRegion": "NSW",
+      "addressCountry": "AU"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "C&C Managed Intelligence Platform",
+      "price": "799",
+      "priceCurrency": "AUD",
+      "priceValidUntil": "2026-12-31",
+      "description": "100 autonomous AI agents on sovereign Australian infrastructure. No lock-in contracts.",
+      "url": "https://camberandcasper.com.au/pricing.html"
+    }
+  }
+  </script>
   <style>
     /* Page-specific hero enhancements */
     .hero {
@@ -403,7 +433,7 @@
   </div>
 
   <!-- NAVIGATION — synthesized from all files -->
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <div style="display:flex;align-items:center;gap:3rem;">
         <a href="index.html" class="nav-logo">
@@ -422,14 +452,14 @@
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;">
-        <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
-        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
+        <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU PANEL -->
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="navigation" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="workforce.html">The 100</a>
     <a href="advantage.html">Advantage</a>
@@ -438,7 +468,7 @@
     <a href="industries.html">Industries</a>
     <a href="day.html">A Day in Command</a>
     <a href="launch.html">How It Works</a>
-    <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+    <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
   </div>
 
   <main id="main">
@@ -1270,6 +1300,11 @@
           </div>
         </div><!-- /track -->
       </div><!-- /wrap -->
+      <div class="container text-center mt-8">
+        <p class="text-micro" style="color:var(--cc-zinc-300);font-style:italic;max-width:36rem;margin:0 auto;">
+          * Results shown represent individual experiences and projections based on early platform usage. Individual results may vary depending on business type, industry, and engagement level. Names and identifying details may have been changed to protect privacy.
+        </p>
+      </div>
     </section>
 
     <!-- ============================================
@@ -1293,7 +1328,7 @@
   </main>
 
   <!-- FOOTER — synthesized from all files -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
@@ -1313,8 +1348,17 @@
         <a href="day.html">A Day</a>
         <a href="launch.html">How It Works</a>
         <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-copy">© 2024 CAMBER_CASPER_CORE</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer-contact">
+        <span>hello@camberandcasper.com.au</span>
+        <span>Sydney, NSW, Australia</span>
+      </div>
+      <div class="footer-copy">&copy; 2025 Camber &amp; Casper Pty Ltd. All rights reserved.</div>
     </div>
   </footer>
 

@@ -7,6 +7,8 @@
     <title>404 — Page Not Found | Camber & Casper</title>
     <meta name="description" content="Even our 100 agents couldn't find that page.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://camberandcasper.com.au/404.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
@@ -65,18 +67,19 @@
 </head>
 
 <body>
+    <a href="#main" class="skip-to-content">Skip to content</a>
 
-    <nav class="nav scrolled" id="nav">
+    <nav class="nav scrolled" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">
                 <div class="nav-logo-mark">C<span style="color:var(--cc-zinc-500);font-style:italic;">C</span></div>
                 <span class="nav-logo-text font-serif">C&C</span>
             </a>
-            <a href="pricing.html" class="nav-cta">Deploy the Workforce</a>
+            <a href="contact.html" class="nav-cta">Deploy the Workforce</a>
         </div>
     </nav>
 
-    <main class="lost-page">
+    <main id="main" class="lost-page">
         <div class="lost-mesh"></div>
         <div class="cc-blur-in cc-blur-in-1" style="position:relative;z-index:1;max-width:42rem;">
             <div class="lost-code">404</div>
@@ -89,11 +92,11 @@
             <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
                 <a href="index.html" class="btn-primary">
                     Back to Command
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </a>
-                <a href="pricing.html" class="btn-secondary">Deploy the Workforce</a>
+                <a href="contact.html" class="btn-secondary">Deploy the Workforce</a>
             </div>
             <div style="margin-top:4rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;">
                 <a href="workforce.html" class="text-label" style="color:var(--cc-zinc-300);">The 100</a>

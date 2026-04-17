@@ -26,8 +26,14 @@
   --font-serif: 'EB Garamond', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --cc-blue-400: #60a5fa;
+  --cc-emerald-400: #34d399;
+  --cc-emerald-300: #6ee7b7;
+  --cc-amber-400: #fbbf24;
+  --cc-amber-300: #fcd34d;
   --radius-pill: 9999px;
   --radius-card: 48px;
+  --radius-2xl: 24px;
   --radius-lg: 32px;
   --radius-md: 24px;
   --radius-sm: 16px;
@@ -1260,6 +1266,39 @@ button {
   letter-spacing: 0.3em;
 }
 
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-legal a {
+  font-size: 0.6875rem;
+  color: var(--cc-zinc-400);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: var(--cc-zinc-600);
+}
+
+.footer-contact {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  font-size: 0.6875rem;
+  color: var(--cc-zinc-400);
+}
+
+[data-theme="casper"] .footer-legal a {
+  color: var(--cc-zinc-600);
+}
+
+[data-theme="casper"] .footer-legal a:hover {
+  color: var(--cc-zinc-400);
+}
+
 .footer-dark {
   background: var(--cc-zinc-950);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1387,18 +1426,33 @@ button {
 }
 
 /* --- CUSTOM CURSOR --- */
-*,
-*::before,
-*::after {
-  cursor: none !important;
+/* Only hide cursor on interactive elements where custom cursor enhances UX */
+a,
+button,
+[role="button"],
+.tilt-card,
+.cc-tilt,
+.cc-spotlight-card {
+  cursor: none;
 }
 
 @media (hover: none) {
+  a,
+  button,
+  [role="button"],
+  .tilt-card,
+  .cc-tilt,
+  .cc-spotlight-card {
+    cursor: auto;
+  }
+}
 
-  *,
-  *::before,
-  *::after {
-    cursor: auto !important;
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
